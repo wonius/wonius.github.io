@@ -1,0 +1,2 @@
+Sitemap: https://wonius.github.io/sitemap.xml
+Sitemap: https://wonius.github.io/baidusitemap.xml
