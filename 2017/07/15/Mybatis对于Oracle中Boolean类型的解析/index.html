@@ -97,19 +97,22 @@
 
 
 
-<meta name="description" content="Java中Boolean类型映射为Oracle类型Mybatis针对于 12345678910111213141516void setBooleanInternal(int var1, boolean var2) throws SQLException &amp;#123;        int var3 = var1 - 1;        if(var3 &amp;gt;= 0 &amp;amp;&amp;amp; var1">
+<meta name="description" content="DB为Oracle时，Mybatis对于参数中boolean类型的处理&amp;emsp;&amp;emsp;Oracle不支持boolean类型，针对此类型，Oracle的驱动包中做了转换处理，将true转换为 数字  1，false转换为 数字  0。 &amp;emsp;&amp;emsp;Mybatis解析sqlmapper文件时，调用TypeHandler类中的方法对类型进行处理，针对boolean类型的实现类为Boo">
 <meta name="keywords" content="Mybatis,Oracle">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mybatis对于Oracle中Boolean类型的处理">
+<meta property="og:title" content="Mybatis对于Oracle中boolean类型的处理">
 <meta property="og:url" content="https://wonius.github.io/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
-<meta property="og:description" content="Java中Boolean类型映射为Oracle类型Mybatis针对于 12345678910111213141516void setBooleanInternal(int var1, boolean var2) throws SQLException &amp;#123;        int var3 = var1 - 1;        if(var3 &amp;gt;= 0 &amp;amp;&amp;amp; var1">
-<meta property="og:image" content="https://wonius.github.io/path/to/image">
-<meta property="og:updated_time" content="2017-07-15T16:01:16.000Z">
+<meta property="og:description" content="DB为Oracle时，Mybatis对于参数中boolean类型的处理&amp;emsp;&amp;emsp;Oracle不支持boolean类型，针对此类型，Oracle的驱动包中做了转换处理，将true转换为 数字  1，false转换为 数字  0。 &amp;emsp;&amp;emsp;Mybatis解析sqlmapper文件时，调用TypeHandler类中的方法对类型进行处理，针对boolean类型的实现类为Boo">
+<meta property="og:image" content="https://wonius.github.io/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/BooleanTypeHandler.png">
+<meta property="og:image" content="https://wonius.github.io/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/setBooleanInternal.png">
+<meta property="og:image" content="https://wonius.github.io/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/TypeHandler.png">
+<meta property="og:image" content="https://wonius.github.io/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/getBoolean.png">
+<meta property="og:updated_time" content="2017-07-16T08:20:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mybatis对于Oracle中Boolean类型的处理">
-<meta name="twitter:description" content="Java中Boolean类型映射为Oracle类型Mybatis针对于 12345678910111213141516void setBooleanInternal(int var1, boolean var2) throws SQLException &amp;#123;        int var3 = var1 - 1;        if(var3 &amp;gt;= 0 &amp;amp;&amp;amp; var1">
-<meta name="twitter:image" content="https://wonius.github.io/path/to/image">
+<meta name="twitter:title" content="Mybatis对于Oracle中boolean类型的处理">
+<meta name="twitter:description" content="DB为Oracle时，Mybatis对于参数中boolean类型的处理&amp;emsp;&amp;emsp;Oracle不支持boolean类型，针对此类型，Oracle的驱动包中做了转换处理，将true转换为 数字  1，false转换为 数字  0。 &amp;emsp;&amp;emsp;Mybatis解析sqlmapper文件时，调用TypeHandler类中的方法对类型进行处理，针对boolean类型的实现类为Boo">
+<meta name="twitter:image" content="https://wonius.github.io/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/BooleanTypeHandler.png">
 
 
 
@@ -143,7 +146,7 @@
 
 
 
-  <title>Mybatis对于Oracle中Boolean类型的处理 | Gavin's Notes</title>
+  <title>Mybatis对于Oracle中boolean类型的处理 | Gavin's Notes</title>
   
 
 
@@ -279,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Mybatis对于Oracle中Boolean类型的处理</h1>
+          <h1 class="post-title" itemprop="name headline">Mybatis对于Oracle中boolean类型的处理</h1>
         
 
         <div class="post-meta">
@@ -331,7 +334,7 @@
 
           
           
-             <span id="/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/" class="leancloud_visitors" data-flag-title="Mybatis对于Oracle中Boolean类型的处理">
+             <span id="/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/" class="leancloud_visitors" data-flag-title="Mybatis对于Oracle中boolean类型的处理">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -359,9 +362,19 @@
       
 
       
-        <h2 id="Java中Boolean类型映射为Oracle类型"><a href="#Java中Boolean类型映射为Oracle类型" class="headerlink" title="Java中Boolean类型映射为Oracle类型"></a>Java中Boolean类型映射为Oracle类型</h2><p>Mybatis针对于</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">void setBooleanInternal(int var1, boolean var2) throws SQLException &#123;</div><div class="line">        int var3 = var1 - 1;</div><div class="line">        if(var3 &gt;= 0 &amp;&amp; var1 &lt;= this.numberOfBindPositions) &#123;</div><div class="line">            this.currentRowCharLens[var3] = 0;</div><div class="line">            this.currentRowBinders[var3] = this.theBooleanBinder;</div><div class="line">            if(this.parameterInt == null) &#123;</div><div class="line">                this.parameterInt = new int[this.numberOfBindRowsAllocated][this.numberOfBindPositions];</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            this.parameterInt[this.currentRank][var3] = var2?1:0;</div><div class="line">        &#125; else &#123;</div><div class="line">            SQLException var4 = DatabaseError.createSqlException(this.getConnectionDuringExceptionHandling(), 3);</div><div class="line">            var4.fillInStackTrace();</div><div class="line">            throw var4;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<img src="/path/to/image" class="[class names]" title="[width] [height] [title text [alt text]]">
+        <h1 id="DB为Oracle时，Mybatis对于参数中boolean类型的处理"><a href="#DB为Oracle时，Mybatis对于参数中boolean类型的处理" class="headerlink" title="DB为Oracle时，Mybatis对于参数中boolean类型的处理"></a>DB为Oracle时，Mybatis对于参数中boolean类型的处理</h1><p>&emsp;&emsp;Oracle不支持boolean类型，针对此类型，Oracle的驱动包中做了转换处理，将true转换为 <strong><em>数字</em></strong>  1，false转换为 <strong><em>数字</em></strong>  0。</p>
+<p>&emsp;&emsp;Mybatis解析sqlmapper文件时，调用TypeHandler类中的方法对类型进行处理，针对boolean类型的实现类为BooleanTypeHandler，如下，此类包含在ojdbc包中。其中setNonNullParameter方法为传参时，对入参的处理。</p>
+<img src="/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/BooleanTypeHandler.png" alt="BooleanTypeHandler类" title="BooleanTypeHandler类">
+<p>&emsp;&emsp;setBoolean的具体实现。我们可以看到，boolean类型最后转换为Int类型。</p>
+<img src="/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/setBooleanInternal.png" alt="setBoolean方法的实现" title="setBoolean方法的实现">
+<p>&emsp;&emsp;因此，在做insert、update操作时，用decode进行处理，即可将true/false转换成自己想要的值。我通常用Y/N表示状态。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">decode(#&#123;enabled&#125;, 1, &apos;Y&apos;, &apos;N&apos;)</div></pre></td></tr></table></figure>
+<h1 id="DB为Oracle时，将查询结果转换为boolean类型"><a href="#DB为Oracle时，将查询结果转换为boolean类型" class="headerlink" title="DB为Oracle时，将查询结果转换为boolean类型"></a>DB为Oracle时，将查询结果转换为boolean类型</h1><p>&emsp;&emsp;同样，由TypeHandler作为入口，查看Mybatis的处理方式。针对不同情况，有三种处理方法，根据入参大体可以猜到每个方法的作用，此处不做展开。挑选一个方法深入，最终找到getBoolean的实现。</p>
+<img src="/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/TypeHandler.png" alt="TypeHandler类" title="TypeHandler类">
+<p>&emsp;&emsp;下图中getBoolean方法属于ResultSet类，在JDK中rt.jar包中（我的环境为JDK1.8）。根据注释我们可以知道，如果值为如下类型的 0，返回结果为false；如果值为如下类型的1，返回true。</p>
+<img src="/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/getBoolean.png" alt="getBoolean方法的实现" title="getBoolean方法的实现">
+<p>&emsp;&emsp;所以当你希望将ResultSet中的某个属性转换为boolean类型时，可以使用如下方式。enabled为字段名称。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">decode(enabled, &apos;Y&apos;, 1, &apos;N&apos;, 0) enabled</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -406,8 +419,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/15/Mybatis对于Oracle中Boolean类型的解析2/" rel="next" title="Mybatis对于Oracle中Boolean类型的处理">
-                <i class="fa fa-chevron-left"></i> Mybatis对于Oracle中Boolean类型的处理
+              <a href="/2017/07/14/git笔记/" rel="next" title="Git笔记">
+                <i class="fa fa-chevron-left"></i> Git笔记
               </a>
             
           </div>
@@ -489,7 +502,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -546,7 +559,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中Boolean类型映射为Oracle类型"><span class="nav-number">1.</span> <span class="nav-text">Java中Boolean类型映射为Oracle类型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DB为Oracle时，Mybatis对于参数中boolean类型的处理"><span class="nav-number">1.</span> <span class="nav-text">DB为Oracle时，Mybatis对于参数中boolean类型的处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DB为Oracle时，将查询结果转换为boolean类型"><span class="nav-number">2.</span> <span class="nav-text">DB为Oracle时，将查询结果转换为boolean类型</span></a></li></ol></div>
             
 
           </div>
