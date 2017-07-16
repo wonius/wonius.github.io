@@ -97,21 +97,21 @@
 
 
 
-<meta name="description" content="DB为Oracle时，Mybatis对于参数中boolean类型的处理&amp;emsp;&amp;emsp;Oracle不支持boolean类型，针对此类型，Oracle的驱动包中做了转换处理，将true转换为 数字  1，false转换为 数字  0。 &amp;emsp;&amp;emsp;Mybatis解析sqlmapper文件时，调用TypeHandler类中的方法对类型进行处理，针对boolean类型的实现类为Boo">
+<meta name="description" content="DB为Oracle时，参数中存在boolean类型&amp;emsp;&amp;emsp;Oracle不支持boolean类型，针对此类型，Oracle的驱动包中做了转换处理，将true转换为 数字  1，false转换为 数字  0。 &amp;emsp;&amp;emsp;Mybatis解析sqlmapper文件时，调用TypeHandler类中的方法对类型进行处理，针对boolean类型的实现类为BooleanTypeHa">
 <meta name="keywords" content="Mybatis,Oracle">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mybatis对于Oracle中boolean类型的处理">
+<meta property="og:title" content="使用Mybatis时，对于Oracle中boolean类型的处理">
 <meta property="og:url" content="https://wonius.github.io/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
-<meta property="og:description" content="DB为Oracle时，Mybatis对于参数中boolean类型的处理&amp;emsp;&amp;emsp;Oracle不支持boolean类型，针对此类型，Oracle的驱动包中做了转换处理，将true转换为 数字  1，false转换为 数字  0。 &amp;emsp;&amp;emsp;Mybatis解析sqlmapper文件时，调用TypeHandler类中的方法对类型进行处理，针对boolean类型的实现类为Boo">
+<meta property="og:description" content="DB为Oracle时，参数中存在boolean类型&amp;emsp;&amp;emsp;Oracle不支持boolean类型，针对此类型，Oracle的驱动包中做了转换处理，将true转换为 数字  1，false转换为 数字  0。 &amp;emsp;&amp;emsp;Mybatis解析sqlmapper文件时，调用TypeHandler类中的方法对类型进行处理，针对boolean类型的实现类为BooleanTypeHa">
 <meta property="og:image" content="https://wonius.github.io/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/BooleanTypeHandler.png">
 <meta property="og:image" content="https://wonius.github.io/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/setBooleanInternal.png">
 <meta property="og:image" content="https://wonius.github.io/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/TypeHandler.png">
 <meta property="og:image" content="https://wonius.github.io/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/getBoolean.png">
-<meta property="og:updated_time" content="2017-07-16T08:20:52.000Z">
+<meta property="og:updated_time" content="2017-07-16T08:44:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mybatis对于Oracle中boolean类型的处理">
-<meta name="twitter:description" content="DB为Oracle时，Mybatis对于参数中boolean类型的处理&amp;emsp;&amp;emsp;Oracle不支持boolean类型，针对此类型，Oracle的驱动包中做了转换处理，将true转换为 数字  1，false转换为 数字  0。 &amp;emsp;&amp;emsp;Mybatis解析sqlmapper文件时，调用TypeHandler类中的方法对类型进行处理，针对boolean类型的实现类为Boo">
+<meta name="twitter:title" content="使用Mybatis时，对于Oracle中boolean类型的处理">
+<meta name="twitter:description" content="DB为Oracle时，参数中存在boolean类型&amp;emsp;&amp;emsp;Oracle不支持boolean类型，针对此类型，Oracle的驱动包中做了转换处理，将true转换为 数字  1，false转换为 数字  0。 &amp;emsp;&amp;emsp;Mybatis解析sqlmapper文件时，调用TypeHandler类中的方法对类型进行处理，针对boolean类型的实现类为BooleanTypeHa">
 <meta name="twitter:image" content="https://wonius.github.io/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/BooleanTypeHandler.png">
 
 
@@ -146,7 +146,7 @@
 
 
 
-  <title>Mybatis对于Oracle中boolean类型的处理 | Gavin's Notes</title>
+  <title>使用Mybatis时，对于Oracle中boolean类型的处理 | Gavin's Notes</title>
   
 
 
@@ -282,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Mybatis对于Oracle中boolean类型的处理</h1>
+          <h1 class="post-title" itemprop="name headline">使用Mybatis时，对于Oracle中boolean类型的处理</h1>
         
 
         <div class="post-meta">
@@ -334,7 +334,7 @@
 
           
           
-             <span id="/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/" class="leancloud_visitors" data-flag-title="Mybatis对于Oracle中boolean类型的处理">
+             <span id="/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/" class="leancloud_visitors" data-flag-title="使用Mybatis时，对于Oracle中boolean类型的处理">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -362,7 +362,7 @@
       
 
       
-        <h1 id="DB为Oracle时，Mybatis对于参数中boolean类型的处理"><a href="#DB为Oracle时，Mybatis对于参数中boolean类型的处理" class="headerlink" title="DB为Oracle时，Mybatis对于参数中boolean类型的处理"></a>DB为Oracle时，Mybatis对于参数中boolean类型的处理</h1><p>&emsp;&emsp;Oracle不支持boolean类型，针对此类型，Oracle的驱动包中做了转换处理，将true转换为 <strong><em>数字</em></strong>  1，false转换为 <strong><em>数字</em></strong>  0。</p>
+        <h1 id="DB为Oracle时，参数中存在boolean类型"><a href="#DB为Oracle时，参数中存在boolean类型" class="headerlink" title="DB为Oracle时，参数中存在boolean类型"></a>DB为Oracle时，参数中存在boolean类型</h1><p>&emsp;&emsp;Oracle不支持boolean类型，针对此类型，Oracle的驱动包中做了转换处理，将true转换为 <strong><em>数字</em></strong>  1，false转换为 <strong><em>数字</em></strong>  0。</p>
 <p>&emsp;&emsp;Mybatis解析sqlmapper文件时，调用TypeHandler类中的方法对类型进行处理，针对boolean类型的实现类为BooleanTypeHandler，如下，此类包含在ojdbc包中。其中setNonNullParameter方法为传参时，对入参的处理。</p>
 <img src="/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/BooleanTypeHandler.png" alt="BooleanTypeHandler类" title="BooleanTypeHandler类">
 <p>&emsp;&emsp;setBoolean的具体实现。我们可以看到，boolean类型最后转换为Int类型。</p>
@@ -524,7 +524,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -559,7 +559,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DB为Oracle时，Mybatis对于参数中boolean类型的处理"><span class="nav-number">1.</span> <span class="nav-text">DB为Oracle时，Mybatis对于参数中boolean类型的处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DB为Oracle时，将查询结果转换为boolean类型"><span class="nav-number">2.</span> <span class="nav-text">DB为Oracle时，将查询结果转换为boolean类型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DB为Oracle时，参数中存在boolean类型"><span class="nav-number">1.</span> <span class="nav-text">DB为Oracle时，参数中存在boolean类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DB为Oracle时，将查询结果转换为boolean类型"><span class="nav-number">2.</span> <span class="nav-text">DB为Oracle时，将查询结果转换为boolean类型</span></a></li></ol></div>
             
 
           </div>
