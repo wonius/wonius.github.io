@@ -101,13 +101,18 @@
 <meta name="keywords" content="Mybatis,Oracle">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Mybatis时，对于Oracle中boolean类型的处理">
-<meta property="og:url" content="https://wonius.github.io/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/index.html">
+<meta property="og:url" content="https://wonius.github.io/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="DB为Oracle时，参数中存在boolean类型&amp;emsp;&amp;emsp;Oracle不支持boolean类型，针对此类型，Oracle的驱动包中做了转换处理，将true转换为 数字  1，false转换为 数字  0。 &amp;emsp;&amp;emsp;Mybatis解析sqlmapper文件时，调用TypeHandler类中的方法对类型进行处理，针对boolean类型的实现类为BooleanTypeHa">
-<meta property="og:updated_time" content="2017-07-16T08:44:04.000Z">
+<meta property="og:image" content="https://wonius.github.io/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/BooleanTypeHandler.png">
+<meta property="og:image" content="https://wonius.github.io/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/setBooleanInternal.png">
+<meta property="og:image" content="https://wonius.github.io/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/TypeHandler.png">
+<meta property="og:image" content="https://wonius.github.io/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/getBoolean.png">
+<meta property="og:updated_time" content="2017-07-16T13:12:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Mybatis时，对于Oracle中boolean类型的处理">
 <meta name="twitter:description" content="DB为Oracle时，参数中存在boolean类型&amp;emsp;&amp;emsp;Oracle不支持boolean类型，针对此类型，Oracle的驱动包中做了转换处理，将true转换为 数字  1，false转换为 数字  0。 &amp;emsp;&amp;emsp;Mybatis解析sqlmapper文件时，调用TypeHandler类中的方法对类型进行处理，针对boolean类型的实现类为BooleanTypeHa">
+<meta name="twitter:image" content="https://wonius.github.io/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/BooleanTypeHandler.png">
 
 
 
@@ -135,7 +140,7 @@
 
 
 
-  <link rel="canonical" href="https://wonius.github.io/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/"/>
+  <link rel="canonical" href="https://wonius.github.io/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/"/>
 
 
 
@@ -260,7 +265,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://wonius.github.io/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/">
+    <link itemprop="mainEntityOfPage" href="https://wonius.github.io/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gavin">
@@ -329,7 +334,7 @@
 
           
           
-             <span id="/2017/07/15/Mybatis对于Oracle中Boolean类型的解析/" class="leancloud_visitors" data-flag-title="使用Mybatis时，对于Oracle中boolean类型的处理">
+             <span id="/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/" class="leancloud_visitors" data-flag-title="使用Mybatis时，对于Oracle中boolean类型的处理">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -359,15 +364,15 @@
       
         <h1 id="DB为Oracle时，参数中存在boolean类型"><a href="#DB为Oracle时，参数中存在boolean类型" class="headerlink" title="DB为Oracle时，参数中存在boolean类型"></a>DB为Oracle时，参数中存在boolean类型</h1><p>&emsp;&emsp;Oracle不支持boolean类型，针对此类型，Oracle的驱动包中做了转换处理，将true转换为 <strong><em>数字</em></strong>  1，false转换为 <strong><em>数字</em></strong>  0。</p>
 <p>&emsp;&emsp;Mybatis解析sqlmapper文件时，调用TypeHandler类中的方法对类型进行处理，针对boolean类型的实现类为BooleanTypeHandler，如下，此类包含在ojdbc包中。其中setNonNullParameter方法为传参时，对入参的处理。</p>
-
+<img src="/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/BooleanTypeHandler.png" alt="BooleanTypeHandler类" title="BooleanTypeHandler类">
 <p>&emsp;&emsp;setBoolean的具体实现。我们可以看到，boolean类型最后转换为Int类型。</p>
-
+<img src="/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/setBooleanInternal.png" alt="setBoolean方法的实现" title="setBoolean方法的实现">
 <p>&emsp;&emsp;因此，在做insert、update操作时，用decode进行处理，即可将true/false转换成自己想要的值。我通常用Y/N表示状态。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">decode(#&#123;enabled&#125;, 1, &apos;Y&apos;, &apos;N&apos;)</div></pre></td></tr></table></figure>
 <h1 id="DB为Oracle时，将查询结果转换为boolean类型"><a href="#DB为Oracle时，将查询结果转换为boolean类型" class="headerlink" title="DB为Oracle时，将查询结果转换为boolean类型"></a>DB为Oracle时，将查询结果转换为boolean类型</h1><p>&emsp;&emsp;同样，由TypeHandler作为入口，查看Mybatis的处理方式。针对不同情况，有三种处理方法，根据入参大体可以猜到每个方法的作用，此处不做展开。挑选一个方法深入，最终找到getBoolean的实现。</p>
-
+<img src="/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/TypeHandler.png" alt="TypeHandler类" title="TypeHandler类">
 <p>&emsp;&emsp;下图中getBoolean方法属于ResultSet类，在JDK中rt.jar包中（我的环境为JDK1.8）。根据注释我们可以知道，如果值为如下类型的 0，返回结果为false；如果值为如下类型的1，返回true。</p>
-
+<img src="/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/getBoolean.png" alt="getBoolean方法的实现" title="getBoolean方法的实现">
 <p>&emsp;&emsp;所以当你希望将ResultSet中的某个属性转换为boolean类型时，可以使用如下方式。enabled为字段名称。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">decode(enabled, &apos;Y&apos;, 1, &apos;N&apos;, 0) enabled</div></pre></td></tr></table></figure>
 
