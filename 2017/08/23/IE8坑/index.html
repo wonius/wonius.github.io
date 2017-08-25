@@ -104,7 +104,7 @@
 <meta property="og:url" content="http://wonius.top/2017/08/23/IE8坑/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="IE8遇到的一些坑">
-<meta property="og:updated_time" content="2017-08-23T14:27:42.000Z">
+<meta property="og:updated_time" content="2017-08-25T13:03:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IE8遇到的坑">
 <meta name="twitter:description" content="IE8遇到的一些坑">
@@ -382,6 +382,8 @@
       
         <h2 id="new-Date"><a href="#new-Date" class="headerlink" title="new Date()"></a>new Date()</h2><p>​    当new Date()时，IE8与IE11产生的结果不同。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//IE8，date1格式为‘2017年8月23日’。当将该参数传递到rest接口时，无法绑定到date类型</span></div><div class="line"><span class="comment">//另外，使用oracle的to_date()方法时，to_date('', 'yyyy"年"MM"月"dd"日"')</span></div><div class="line"><span class="keyword">var</span> date1 = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"></div><div class="line"><span class="comment">//IE11，date2格式为‘2017/8/23’</span></div><div class="line"><span class="keyword">var</span> date2 =<span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"></div><div class="line"><span class="comment">//为了兼容IE8和IE11，需在前端对日期做处理</span></div><div class="line"><span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"><span class="keyword">var</span> today = date.getFullYear()+<span class="string">"-"</span>+date.getMonth()+<span class="string">"-"</span>+date.getDay();</div></pre></td></tr></table></figure>
+<h2 id="for-var-…-in-params"><a href="#for-var-…-in-params" class="headerlink" title="for(var … in params)"></a>for(var … in params)</h2><p>​    在IE8下，for in 方法，会将params中所有的对象遍历，包括函数。所以还是老老实实的写全吧。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; params.length; i++)</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -564,7 +566,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#new-Date"><span class="nav-number">1.</span> <span class="nav-text">new Date()</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#new-Date"><span class="nav-number">1.</span> <span class="nav-text">new Date()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for-var-…-in-params"><span class="nav-number">2.</span> <span class="nav-text">for(var … in params)</span></a></li></ol></div>
             
 
           </div>
