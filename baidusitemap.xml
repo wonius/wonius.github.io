@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://wonius.top/2017/08/23/IE8%E5%9D%91/</loc>
-    <lastmod>2017-08-25T13:03:26.000Z</lastmod>
+    <lastmod>2017-09-05T14:23:35.000Z</lastmod>
     <data>
         <display>
         <title>IE8遇到的坑</title>
@@ -17,6 +17,26 @@
            
              
               <breadCrumb title="浏览器兼容性" url="http://wonius.top/categories/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://wonius.top/2017/08/02/%E5%B8%B8%E7%94%A8Java%E7%A8%8B%E5%BA%8F%E7%89%87%E6%AE%B5/</loc>
+    <lastmod>2017-09-03T15:32:02.000Z</lastmod>
+    <data>
+        <display>
+        <title>常用Java程序片段</title>
+        <pubTime>2017-08-02T15:27:26.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="JAVA" url="http://wonius.top/categories/JAVA/"/>
           
         </display>
     </data>
@@ -95,26 +115,6 @@
            
              
               <breadCrumb title="技术仓库" url="http://wonius.top/categories/%E6%8A%80%E6%9C%AF%E4%BB%93%E5%BA%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://wonius.top/2017/08/02/%E5%B8%B8%E7%94%A8Java%E7%A8%8B%E5%BA%8F%E7%89%87%E6%AE%B5/</loc>
-    <lastmod>2017-08-19T08:34:21.000Z</lastmod>
-    <data>
-        <display>
-        <title>常用Java程序片段</title>
-        <pubTime>2017-08-02T15:27:26.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-         
-           
-             
-              <breadCrumb title="JAVA" url="http://wonius.top/categories/JAVA/"/>
           
         </display>
     </data>
