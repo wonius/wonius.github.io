@@ -104,7 +104,7 @@
 <meta property="og:url" content="http://wonius.top/2017/08/23/IE8坑/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="IE8遇到的一些坑">
-<meta property="og:updated_time" content="2017-09-10T15:29:47.000Z">
+<meta property="og:updated_time" content="2017-09-18T11:12:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IE8遇到的坑">
 <meta name="twitter:description" content="IE8遇到的一些坑">
@@ -387,17 +387,18 @@
 <p>​    但是，对于对象原型的操作，是很危险的事情，严重会导致导致原型链断裂。不过这次讨论的不是这个问题。</p>
 <p>​    当IE8解析for in 方法时，会将forEach等添加到prototype上的方法当做变量，一起循环。所以循环体里如果对变量进行了操作，会导致报错。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> params) &#123;</div><div class="line">    <span class="built_in">console</span>.log(params[i].length);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​    这种情况，我们一般有两种处理方式：</p>
+<p>​    解决方法：</p>
 <ol>
-<li><p>使用 hasOwnProperty() 对变量进行判断：</p>
+<li><p>在使用for..in时，使用 hasOwnProperty() 对变量进行判断：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> params) &#123;</div><div class="line">  <span class="keyword">if</span>(params.hasOwnProperty(params[i]))</div><div class="line">    <span class="built_in">console</span>.log(params[i].length);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>​</p>
 </li>
-<li><p>换另外一种方式：</p>
+<li><p>for循环的另一种写法：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; params.length; i++) &#123;</div><div class="line">    <span class="built_in">console</span>.log(params[i].length);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
+<li><p>使用框架封装好的接口，_.forEach，如果不想引入框架，可以自己写一个forEach函数。</p>
+</li>
 </ol>
-<p>或者使用框架封装好的接口，_.forEach等。</p>
 
       
     </div>
@@ -449,6 +450,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/18/错误-程序包com-sun-image-codec-jpeg不存在/" rel="prev" title="错误: 程序包com.sun.image.codec.jpeg不存在">
+                错误: 程序包com.sun.image.codec.jpeg不存在 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -523,7 +528,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
