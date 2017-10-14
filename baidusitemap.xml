@@ -4,8 +4,63 @@
 
     
   <url>
+    <loc>http://wonius.top/2017/10/14/Mybatis%E4%BD%BF%E7%94%A8association%EF%BC%8C%E7%BB%93%E6%9E%9C%E8%BF%94%E5%9B%9E%E6%95%B0%E7%BB%84/</loc>
+    <lastmod>2017-10-14T12:37:01.000Z</lastmod>
+    <data>
+        <display>
+        <title></title>
+        <pubTime>2017-10-14T05:47:24.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://wonius.top/2017/07/15/%E4%BD%BF%E7%94%A8Mybatis%E6%97%B6%E5%AF%B9%E4%BA%8EOracle%E4%B8%ADboolean%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%A4%84%E7%90%86/</loc>
+    <lastmod>2017-10-14T05:46:40.000Z</lastmod>
+    <data>
+        <display>
+        <title></title>
+        <pubTime>2017-07-15T14:35:41.000Z</pubTime>
+        
+        <tag>Mybatis</tag>
+         
+        <tag>Oracle</tag>
+         
+         
+           
+             
+              <breadCrumb title="DB" url="http://wonius.top/categories/DB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://wonius.top/2017/08/13/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/</loc>
+    <lastmod>2017-10-13T10:17:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>技术备忘</title>
+        <pubTime>2017-08-13T06:23:31.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="技术仓库" url="http://wonius.top/categories/%E6%8A%80%E6%9C%AF%E4%BB%93%E5%BA%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wonius.top/2017/07/14/git%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2017-09-23T05:26:03.000Z</lastmod>
+    <lastmod>2017-09-24T13:30:56.000Z</lastmod>
     <data>
         <display>
         <title>Git学习笔记</title>
@@ -144,24 +199,6 @@
 
     
   <url>
-    <loc>http://wonius.top/2017/08/13/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/</loc>
-    <lastmod>2017-08-19T08:37:47.000Z</lastmod>
-    <data>
-        <display>
-        <title>技术备忘</title>
-        <pubTime>2017-08-13T06:23:31.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="技术仓库" url="http://wonius.top/categories/%E6%8A%80%E6%9C%AF%E4%BB%93%E5%BA%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://wonius.top/2017/06/05/%E5%A4%96%E5%9C%B0%E9%A9%BE%E7%85%A7%E6%9B%B4%E6%8D%A2%E4%B8%8A%E6%B5%B7%E9%A9%BE%E7%85%A7/</loc>
     <lastmod>2017-08-19T08:34:11.000Z</lastmod>
     <data>
@@ -235,28 +272,6 @@
            
              
               <breadCrumb title="JAVA" url="http://wonius.top/categories/JAVA/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://wonius.top/2017/07/15/%E4%BD%BF%E7%94%A8Mybatis%E6%97%B6%E5%AF%B9%E4%BA%8EOracle%E4%B8%ADboolean%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%A4%84%E7%90%86/</loc>
-    <lastmod>2017-08-19T05:10:55.000Z</lastmod>
-    <data>
-        <display>
-        <title>使用Mybatis时，对于Oracle中boolean类型的处理</title>
-        <pubTime>2017-07-15T14:35:41.000Z</pubTime>
-        
-        <tag>Mybatis</tag>
-         
-        <tag>Oracle</tag>
-         
-         
-           
-             
-              <breadCrumb title="DB" url="http://wonius.top/categories/DB/"/>
           
         </display>
     </data>
