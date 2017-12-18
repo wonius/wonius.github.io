@@ -104,13 +104,10 @@
 <meta property="og:url" content="http://wonius.top/2017/09/18/错误-程序包com-sun-image-codec-jpeg不存在/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="程序包com.sun.image.codec.jpeg不存在">
-<meta property="og:image" content="http://wonius.top/2017/09/18/错误-程序包com-sun-image-codec-jpeg不存在/jpeg_error.png">
-<meta property="og:image" content="http://wonius.top/2017/09/18/错误-程序包com-sun-image-codec-jpeg不存在/JAVA_HOME_ERROR.png">
 <meta property="og:updated_time" content="2017-09-18T14:31:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="错误: 程序包com.sun.image.codec.jpeg不存在">
 <meta name="twitter:description" content="程序包com.sun.image.codec.jpeg不存在">
-<meta name="twitter:image" content="http://wonius.top/2017/09/18/错误-程序包com-sun-image-codec-jpeg不存在/jpeg_error.png">
 
 
 
@@ -384,13 +381,13 @@
 
       
         <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>​    最近项目中有个应用，需要将上传图片压缩为缩略图，用到了JPEGCodec等类。开发过程中一切正常，程序也能运行。当使用maven发布时，程序报错了：</p>
-<img src="/2017/09/18/错误-程序包com-sun-image-codec-jpeg不存在/jpeg_error.png" alt="错误信息" title="错误信息">
+
 <h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>​    度娘了一下，maven的插件maven-compiler-plugin在编译的时候，没有加载/jre/lib内的包。而我们用到的JPEGCodec等类，恰好在/jre/lib/rt.jar包内。为了解决该问题，我们可以使用bootclasspath标签。该标签会将你指定路径下的包，通知到maven进行加载。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;plugin&gt;</div><div class="line">	&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</div><div class="line">	&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</div><div class="line">	&lt;version&gt;2.0.2&lt;/version&gt;</div><div class="line">	&lt;configuration&gt;</div><div class="line">		&lt;source&gt;1.7&lt;/source&gt;</div><div class="line">		&lt;target&gt;1.7&lt;/target&gt;</div><div class="line">		&lt;encoding&gt;UTF8&lt;/encoding&gt;</div><div class="line">		&lt;!-- 设置指定包的路径 --&gt;</div><div class="line">		&lt;compilerArguments&gt;</div><div class="line">		&lt;verbose /&gt;</div><div class="line">		&lt;!-- 有两点需要注意 --&gt;</div><div class="line">		&lt;bootclasspath&gt;$&#123;env.JAVA_HOME&#125;/jre/lib/rt.jar:$&#123;env.JAVA_HOME&#125;/jre/lib/jce.jarr&lt;/bootclasspath&gt;</div><div class="line">		&lt;/compilerArguments&gt;</div><div class="line">	&lt;/configuration&gt;</div><div class="line">&lt;/plugin&gt;</div></pre></td></tr></table></figure>
 <p>Attention:</p>
 <ol>
 <li><p>${JAVA_HOME}设置为全局变量。我用的是Mac+IDEA，刚开始改过之后，IDEA的编辑器显示一直为红色。因为过度相信工具，所以一直以为全局变量设置的有问题，走了弯路。所以只要echo正常，就不要怀疑。</p>
-<img src="/2017/09/18/错误-程序包com-sun-image-codec-jpeg不存在/JAVA_HOME_ERROR.png" alt="IDEA下JAVA_HOME显示为红色" title="IDEA下JAVA_HOME显示为红色">
+
 </li>
 <li><p>当bootclasspath标签内，有多个变量时，Mac/Linux系统以 ：分隔，Windows系统以 ; 分隔。否则也会有异常。</p>
 <p>​</p>
@@ -525,7 +522,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -536,7 +533,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -547,7 +544,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
