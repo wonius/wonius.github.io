@@ -104,7 +104,7 @@
 <meta property="og:url" content="http://wonius.top/2017/12/18/CentOs安装zsh和oh-my-zsh/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="CentOs安装zsh和oh-my-zsh">
-<meta property="og:updated_time" content="2017-12-18T14:29:24.691Z">
+<meta property="og:updated_time" content="2017-12-21T14:17:34.607Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOs安装zsh和oh-my-zsh">
 <meta name="twitter:description" content="CentOs安装zsh和oh-my-zsh">
@@ -383,8 +383,40 @@
         <h3 id="1、查看系统当前的shell"><a href="#1、查看系统当前的shell" class="headerlink" title="1、查看系统当前的shell"></a>1、查看系统当前的shell</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="variable">$SHELL</span></div></pre></td></tr></table></figure>
 <p>返回结果如下：</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">/bin/</span>bash</div></pre></td></tr></table></figure>
-<p>PS.默认的shell一般都是bash</p>
-<p>2、查看bin下是否有zsh包</p>
+<p><em>PS.默认的shell一般都是bash</em></p>
+<h3 id="2、查看bin下是否有zsh包"><a href="#2、查看bin下是否有zsh包" class="headerlink" title="2、查看bin下是否有zsh包"></a>2、查看bin下是否有zsh包</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat <span class="regexp">/etc/</span>shells</div></pre></td></tr></table></figure>
+<p>返回结果如下：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">/bin/</span>sh</div><div class="line"><span class="regexp">/bin/</span>bash</div><div class="line"><span class="regexp">/sbin/</span>nologin</div><div class="line"><span class="regexp">/bin/</span>dash</div><div class="line"><span class="regexp">/bin/</span>tcsh</div><div class="line"><span class="regexp">/bin/</span>csh</div></pre></td></tr></table></figure>
+<p><em>PS：默认没有安装zsh</em></p>
+<h3 id="3、安装zsh包"><a href="#3、安装zsh包" class="headerlink" title="3、安装zsh包"></a>3、安装zsh包</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y <span class="keyword">install</span> zsh</div></pre></td></tr></table></figure>
+<p>安装完成后查看shell列表：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat <span class="regexp">/etc/</span>shells</div></pre></td></tr></table></figure>
+<p>返回结果如下：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">/bin/</span>sh</div><div class="line"><span class="regexp">/bin/</span>bash</div><div class="line"><span class="regexp">/sbin/</span>nologin</div><div class="line"><span class="regexp">/bin/</span>dash</div><div class="line"><span class="regexp">/bin/</span>tcsh</div><div class="line"><span class="regexp">/bin/</span>csh</div><div class="line"><span class="regexp">/bin/</span>zsh</div></pre></td></tr></table></figure>
+<h3 id="4、切换shell至zsh"><a href="#4、切换shell至zsh" class="headerlink" title="4、切换shell至zsh"></a>4、切换shell至zsh</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chsh -s <span class="regexp">/bin/</span>zsh</div></pre></td></tr></table></figure>
+<p>chsh用法请自行查找，返回结果如下：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Shell</span><span class="bash"> changed.</span></div></pre></td></tr></table></figure>
+<p>此时查看shell，已经更换为zsh：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="variable">$SHELL</span></div></pre></td></tr></table></figure>
+<p>返回结果如下：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">/bin/</span>bash</div></pre></td></tr></table></figure>
+<p>需要重启才能生效：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">sudo reboot</span></div></pre></td></tr></table></figure>
+<p>重启后查看shell：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="variable">$SHELL</span></div></pre></td></tr></table></figure>
+<p>返回结果：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">/bin/</span>zsh</div></pre></td></tr></table></figure>
+<h3 id="5、安装git"><a href="#5、安装git" class="headerlink" title="5、安装git"></a>5、安装git</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y <span class="keyword">install</span> git</div></pre></td></tr></table></figure>
+<h3 id="6、安装oh-my-zsh"><a href="#6、安装oh-my-zsh" class="headerlink" title="6、安装oh-my-zsh"></a>6、安装oh-my-zsh</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https:<span class="regexp">//gi</span>thub.com<span class="regexp">/robbyrussell/</span>oh-my-zsh<span class="regexp">/raw/m</span>aster<span class="regexp">/tools/i</span>nstall.sh -O - | sh</div></pre></td></tr></table></figure>
+<p>出现如下界面显示安装成功：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">         __                                     __   </div><div class="line">  ____  <span class="regexp">/ /</span>_     ____ ___  __  __   ____  _____<span class="regexp">/ /</span>_  </div><div class="line"> <span class="regexp">/ __ \/</span> __ \   <span class="regexp">/ __ `__ \/</span> <span class="regexp">/ /</span> <span class="regexp">/  /</span>_  <span class="regexp">/ /</span> ___/ __ \ </div><div class="line"><span class="regexp">/ /</span>_<span class="regexp">/ /</span> <span class="regexp">/ /</span> <span class="regexp">/  /</span> <span class="regexp">/ /</span> <span class="regexp">/ /</span> <span class="regexp">/ /</span>_<span class="regexp">/ /</span>    <span class="regexp">/ /</span>_(__  ) <span class="regexp">/ /</span> / </div><div class="line">\____<span class="regexp">/_/</span> <span class="regexp">/_/</span>  <span class="regexp">/_/</span> <span class="regexp">/_/</span> <span class="regexp">/_/\_</span>_, <span class="regexp">/    /</span>___<span class="regexp">/____/</span>_<span class="regexp">/ /</span>_/  </div><div class="line">                        <span class="regexp">/____/</span>                       ....is now installed!</div><div class="line">Please look over the ~/.zshrc file to select plugins, themes, and options.</div><div class="line"></div><div class="line">p.s. Follow us at <span class="string">https:</span><span class="comment">//twitter.com/ohmyzsh.</span></div><div class="line"></div><div class="line">p.p.s. Get stickers and t-shirts at <span class="string">http:</span><span class="comment">//shop.planetargon.com.</span></div></pre></td></tr></table></figure>
+<p><em>添加插件、换themes修改~/.zshrc文件</em></p>
+<p>如果执行命令时提示==warning: cannot set LC_CTYPE locale==，修改profile文件：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">vim</span> /etc/<span class="keyword">profile</span></div></pre></td></tr></table></figure>
+<p>在文件末尾处添加：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="builtin-name">export</span> <span class="attribute">LC_ALL</span>=en_US.UTF-8</div><div class="line"><span class="builtin-name">export</span> <span class="attribute">LC_CTYPE</span>=en_US.UTF-8</div></pre></td></tr></table></figure>
+<p>修改后更新：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">source</span> <span class="regexp">/etc/</span>profile</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -571,7 +603,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、查看系统当前的shell"><span class="nav-number">1.</span> <span class="nav-text">1、查看系统当前的shell</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、查看系统当前的shell"><span class="nav-number">1.</span> <span class="nav-text">1、查看系统当前的shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、查看bin下是否有zsh包"><span class="nav-number">2.</span> <span class="nav-text">2、查看bin下是否有zsh包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、安装zsh包"><span class="nav-number">3.</span> <span class="nav-text">3、安装zsh包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、切换shell至zsh"><span class="nav-number">4.</span> <span class="nav-text">4、切换shell至zsh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、安装git"><span class="nav-number">5.</span> <span class="nav-text">5、安装git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、安装oh-my-zsh"><span class="nav-number">6.</span> <span class="nav-text">6、安装oh-my-zsh</span></a></li></ol></div>
             
 
           </div>
