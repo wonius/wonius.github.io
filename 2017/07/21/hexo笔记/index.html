@@ -100,13 +100,13 @@
 <meta name="description" content="Hexo常用设置">
 <meta name="keywords" content="Hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo学习笔记">
+<meta property="og:title" content="Hexo常用设置">
 <meta property="og:url" content="http://wonius.top/2017/07/21/hexo笔记/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="Hexo常用设置">
-<meta property="og:updated_time" content="2018-01-15T16:30:51.984Z">
+<meta property="og:updated_time" content="2018-01-15T16:37:38.155Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo学习笔记">
+<meta name="twitter:title" content="Hexo常用设置">
 <meta name="twitter:description" content="Hexo常用设置">
 
 
@@ -141,7 +141,7 @@
 
 
 
-  <title>Hexo学习笔记 | Gavin's Notes</title>
+  <title>Hexo常用设置 | Gavin's Notes</title>
   
 
 
@@ -296,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hexo学习笔记</h1>
+          <h1 class="post-title" itemprop="name headline">Hexo常用设置</h1>
         
 
         <div class="post-meta">
@@ -348,7 +348,7 @@
 
           
           
-             <span id="/2017/07/21/hexo笔记/" class="leancloud_visitors" data-flag-title="Hexo学习笔记">
+             <span id="/2017/07/21/hexo笔记/" class="leancloud_visitors" data-flag-title="Hexo常用设置">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -410,6 +410,7 @@
 </ol>
 <h2 id="修改文章宽度"><a href="#修改文章宽度" class="headerlink" title="修改文章宽度"></a>修改文章宽度</h2><p>&emsp;&emsp; 修改/next/source/css/_custom/custom.styl。该文件提供给用户配置自定义的样式，用户尽量避免对源代码的改动，以免牵一发而动全身。<br>针对Mist、Muse风格，可以用如下配置<br><figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 修改成你期望的宽度</span></div><div class="line"><span class="meta"><span class="meta-keyword">$content</span>-desktop = 1080px</span></div><div class="line"></div><div class="line"><span class="comment">// 当视窗超过 1600px 后的宽度</span></div><div class="line"><span class="meta"><span class="meta-keyword">$content</span>-desktop-large = 1200px</span></div></pre></td></tr></table></figure></p>
 <p>如果是Pisces风格，则需要<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">header</span>&#123; <span class="attribute">width</span>: <span class="number">90%</span>; &#125;</div><div class="line"><span class="selector-class">.container</span> <span class="selector-class">.main-inner</span> &#123; <span class="attribute">width</span>: <span class="number">90%</span>; &#125;</div><div class="line"><span class="selector-class">.content-wrap</span> &#123; <span class="attribute">width</span>: <span class="built_in">calc</span>(100% - 260px); &#125;</div></pre></td></tr></table></figure></p>
+<h2 id="新建文章时同时建立同名目录，保存图片"><a href="#新建文章时同时建立同名目录，保存图片" class="headerlink" title="新建文章时同时建立同名目录，保存图片"></a>新建文章时同时建立同名目录，保存图片</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//编辑hexo目录下的_config.yml，修改如下配置</span></div><div class="line"><span class="string">post_asset_folder:</span><span class="literal">true</span></div><div class="line"></div><div class="line"><span class="comment">//新建文件</span></div><div class="line">hexo <span class="keyword">new</span> <span class="string">'helloworld'</span></div><div class="line"></div><div class="line"><span class="comment">//将图片移动到helloworld目录中，并且在md中引用</span></div><div class="line">&#123;% asset_img <span class="number">2.</span>JPG 这是描述 %&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -596,7 +597,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置favicon-ico（网站logo）"><span class="nav-number">1.</span> <span class="nav-text">设置favicon.ico（网站logo）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用Leancloud实现阅读统计，请求异常401"><span class="nav-number">2.</span> <span class="nav-text">利用Leancloud实现阅读统计，请求异常401</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增加关键字、摘要"><span class="nav-number">3.</span> <span class="nav-text">增加关键字、摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改文章宽度"><span class="nav-number">4.</span> <span class="nav-text">修改文章宽度</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置favicon-ico（网站logo）"><span class="nav-number">1.</span> <span class="nav-text">设置favicon.ico（网站logo）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用Leancloud实现阅读统计，请求异常401"><span class="nav-number">2.</span> <span class="nav-text">利用Leancloud实现阅读统计，请求异常401</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增加关键字、摘要"><span class="nav-number">3.</span> <span class="nav-text">增加关键字、摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改文章宽度"><span class="nav-number">4.</span> <span class="nav-text">修改文章宽度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建文章时同时建立同名目录，保存图片"><span class="nav-number">5.</span> <span class="nav-text">新建文章时同时建立同名目录，保存图片</span></a></li></ol></div>
             
 
           </div>
