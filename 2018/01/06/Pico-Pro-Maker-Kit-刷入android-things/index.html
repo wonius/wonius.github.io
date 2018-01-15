@@ -81,7 +81,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="androidthings" />
+  <meta name="keywords" content="Android-Things" />
 
 
 
@@ -97,17 +97,17 @@
 
 
 
-<meta name="description" content="Pico Pro Maker Kit 刷入android things">
-<meta name="keywords" content="androidthings">
+<meta name="description" content="Pico Pro Maker Kit 刷入Android-Things">
+<meta name="keywords" content="Android-Things">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Pico Pro Maker Kit 刷入android things">
+<meta property="og:title" content="Pico Pro Maker Kit 刷入Android-Things">
 <meta property="og:url" content="http://wonius.top/2018/01/06/Pico-Pro-Maker-Kit-刷入android-things/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
-<meta property="og:description" content="Pico Pro Maker Kit 刷入android things">
-<meta property="og:updated_time" content="2018-01-15T15:41:33.497Z">
+<meta property="og:description" content="Pico Pro Maker Kit 刷入Android-Things">
+<meta property="og:updated_time" content="2018-01-15T16:13:35.044Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Pico Pro Maker Kit 刷入android things">
-<meta name="twitter:description" content="Pico Pro Maker Kit 刷入android things">
+<meta name="twitter:title" content="Pico Pro Maker Kit 刷入Android-Things">
+<meta name="twitter:description" content="Pico Pro Maker Kit 刷入Android-Things">
 
 
 
@@ -141,7 +141,7 @@
 
 
 
-  <title>Pico Pro Maker Kit 刷入android things | Gavin's Notes</title>
+  <title>Pico Pro Maker Kit 刷入Android-Things | Gavin's Notes</title>
   
 
 
@@ -296,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Pico Pro Maker Kit 刷入android things</h1>
+          <h1 class="post-title" itemprop="name headline">Pico Pro Maker Kit 刷入Android-Things</h1>
         
 
         <div class="post-meta">
@@ -348,7 +348,7 @@
 
           
           
-             <span id="/2018/01/06/Pico-Pro-Maker-Kit-刷入android-things/" class="leancloud_visitors" data-flag-title="Pico Pro Maker Kit 刷入android things">
+             <span id="/2018/01/06/Pico-Pro-Maker-Kit-刷入android-things/" class="leancloud_visitors" data-flag-title="Pico Pro Maker Kit 刷入Android-Things">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -366,7 +366,7 @@
 
           
               <div class="post-description">
-                  Pico Pro Maker Kit 刷入android things
+                  Pico Pro Maker Kit 刷入Android-Things
               </div>
           
 
@@ -380,15 +380,26 @@
       
 
       
-        <h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>​    2017年底，参加了GDD上海活动，初次接触了Android Things，并且拿到了一块开发板，Pico Pro Maker Kit，拿回来后有事一直闲置。最近有时间掏出来研究下。</p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>​    2017年底，参加了GDD上海活动，初次接触了Android Things，并且拿到了一块开发板，Pico Pro Maker Kit，拿回来后有事一直闲置。最近有时间掏出来研究下。</p>
 <p>图1</p>
 <h2 id="组装"><a href="#组装" class="headerlink" title="组装"></a>组装</h2><p>​    组装很简单，按照官网教程做，很快就组装好了。</p>
 <p>​    <a href="https://developer.android.google.cn/things/hardware/imx7d-kit.html#install-at" target="_blank" rel="external">https://developer.android.google.cn/things/hardware/imx7d-kit.html#install-at</a></p>
 <p>​    不过我拿到的是阉割版，没有Rainbow HAT，差评…</p>
 <p>图2</p>
-<h2 id="写入android-things"><a href="#写入android-things" class="headerlink" title="写入android things"></a>写入android things</h2><p>​    到官网下载Android things setup utility。可是官网上的链接一直无法下载，后来联系了google里的开发人员，发到我的邮箱才拿到。已经上传到百度网盘，可以直接下载。</p>
+<h2 id="下载Android-Things"><a href="#下载Android-Things" class="headerlink" title="下载Android-Things"></a>下载Android-Things</h2><p>​    到官网下载Android things setup utility。可是官网上的链接一直无法下载，后来联系了google里的开发人员，发到我的邮箱才拿到。已经上传到百度网盘，可以直接下载。（之前在网上有搜到某同学上传到csdn，下载还需要积分，没积分的宝宝心里苦/(ㄒoㄒ)/~~）</p>
 <p>链接: <a href="https://pan.baidu.com/s/1dgmIvk" target="_blank" rel="external">https://pan.baidu.com/s/1dgmIvk</a> 密码: rsps</p>
-
+<h2 id="配置fastboot"><a href="#配置fastboot" class="headerlink" title="配置fastboot"></a>配置fastboot</h2><p>​    在写入镜像之前，需要确保已安装SDK（我装了Android Studio，内置SDK。你也可以单独装）。将fastboot所在目录加入到环境变量中，不然无法成功执行fastboot命令。</p>
+<p>查找fastboot文件目录，并确保fastboot有执行权限，并且属主正确：</p>
+<p>图4</p>
+<p>加入环境变量：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//我安装了ohmyzsh插件，所以需要编辑.zshrc。同学们根据实际配置修改</span></div><div class="line">vim ~/<span class="selector-class">.zshrc</span></div><div class="line"></div><div class="line"><span class="comment">//文件末尾中加入</span></div><div class="line">export PATH=<span class="variable">$PATH</span>:/Users/woniu/Library/Android/sdk/platform-tools</div><div class="line"></div><div class="line"><span class="comment">//别忘了编译</span></div><div class="line">source ~/<span class="selector-class">.zshrc</span></div><div class="line"></div><div class="line"><span class="comment">//检测是否可用</span></div><div class="line">fastboot -h</div></pre></td></tr></table></figure>
+<h2 id="写入Android-Things"><a href="#写入Android-Things" class="headerlink" title="写入Android-Things"></a>写入Android-Things</h2><p>​    下载完成，解压，运行里面的android-things-setup-utility-macos，按照提示选择。（如果选择在线安装，需要科学上网。没有条件的同学也可以到我的百度云下载镜像。链接: <a href="https://pan.baidu.com/s/1hticxNI" target="_blank" rel="external">https://pan.baidu.com/s/1hticxNI</a> 密码: 4rvc）</p>
+<p>图3</p>
+<p>从上图可以看到，最后报错了，原因是找不到fastboot命令。当我配置好fastboot后重新在线安装，一直无法下载。只好下载镜像手动安装。</p>
+<p>下载iot_imx7d_pico后，解压，到该目录下执行：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./flash-all<span class="selector-class">.sh</span>		<span class="comment">//Win系统下执行flash-all.bat</span></div></pre></td></tr></table></figure>
+<p>之后静待安装，完成后会自动重启，就可以了：</p>
+<p>图5</p>
 <p><a href="http://blog.csdn.net/yelin042/article/details/72802920" target="_blank" rel="external">http://blog.csdn.net/yelin042/article/details/72802920</a></p>
 <p><a href="https://developer.android.google.cn/things/hardware/imx7d-kit.html#install-at" target="_blank" rel="external">https://developer.android.google.cn/things/hardware/imx7d-kit.html#install-at</a></p>
 <p><a href="https://developer.android.google.cn/things/hardware/imx7d.html" target="_blank" rel="external">https://developer.android.google.cn/things/hardware/imx7d.html</a></p>
@@ -423,7 +434,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/android-things/" rel="tag"># android-things</a>
+            <a href="/tags/Android-Things/" rel="tag"># Android-Things</a>
           
         </div>
       
@@ -446,8 +457,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/06/Linux系统知识/" rel="prev" title="Linux系统知识">
-                Linux系统知识 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/06/01Pico-Pro-Maker-Kit-刷入Android-Things/" rel="prev" title="01Pico Pro Maker Kit 刷入Android-Things">
+                01Pico Pro Maker Kit 刷入Android-Things <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -523,7 +534,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -580,7 +591,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起源"><span class="nav-number">1.</span> <span class="nav-text">起源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组装"><span class="nav-number">2.</span> <span class="nav-text">组装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写入android-things"><span class="nav-number">3.</span> <span class="nav-text">写入android things</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组装"><span class="nav-number">2.</span> <span class="nav-text">组装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载Android-Things"><span class="nav-number">3.</span> <span class="nav-text">下载Android-Things</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置fastboot"><span class="nav-number">4.</span> <span class="nav-text">配置fastboot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写入Android-Things"><span class="nav-number">5.</span> <span class="nav-text">写入Android-Things</span></a></li></ol></div>
             
 
           </div>
