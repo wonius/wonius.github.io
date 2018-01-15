@@ -106,9 +106,11 @@
 <meta property="og:description" content="Pico Pro Maker Kit 刷入Android-Things">
 <meta property="og:image" content="http://wonius.top/2018/01/06/01Pico-Pro-Maker-Kit-刷入Android-Things/1.JPG">
 <meta property="og:image" content="http://wonius.top/2018/01/06/01Pico-Pro-Maker-Kit-刷入Android-Things/2.JPG">
+<meta property="og:image" content="http://wonius.top/2018/01/06/01Pico-Pro-Maker-Kit-刷入Android-Things/6.png">
 <meta property="og:image" content="http://wonius.top/2018/01/06/01Pico-Pro-Maker-Kit-刷入Android-Things/4.png">
 <meta property="og:image" content="http://wonius.top/2018/01/06/01Pico-Pro-Maker-Kit-刷入Android-Things/3.png">
-<meta property="og:updated_time" content="2018-01-15T16:17:01.833Z">
+<meta property="og:image" content="http://wonius.top/2018/01/06/01Pico-Pro-Maker-Kit-刷入Android-Things/5.jpeg">
+<meta property="og:updated_time" content="2018-01-15T16:26:54.645Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="01Pico Pro Maker Kit 刷入Android-Things">
 <meta name="twitter:description" content="Pico Pro Maker Kit 刷入Android-Things">
@@ -394,8 +396,9 @@
 <h2 id="下载Android-Things"><a href="#下载Android-Things" class="headerlink" title="下载Android-Things"></a>下载Android-Things</h2><p>​    到官网下载Android things setup utility。可是官网上的链接一直无法下载，后来联系了google里的开发人员，发到我的邮箱才拿到。已经上传到百度网盘，可以直接下载。（之前在网上有搜到某同学上传到csdn，下载还需要积分，没积分的宝宝心里苦/(ㄒoㄒ)/~~）</p>
 <p>链接: <a href="https://pan.baidu.com/s/1dgmIvk" target="_blank" rel="external">https://pan.baidu.com/s/1dgmIvk</a> 密码: rsps</p>
 <h2 id="配置fastboot"><a href="#配置fastboot" class="headerlink" title="配置fastboot"></a>配置fastboot</h2><p>​    在写入镜像之前，需要确保已安装SDK（我装了Android Studio，内置SDK。你也可以单独装）。将fastboot所在目录加入到环境变量中，不然无法成功执行fastboot命令。</p>
+<img src="/2018/01/06/01Pico-Pro-Maker-Kit-刷入Android-Things/6.png" alt="找不到fastboot命令" title="找不到fastboot命令">
 <p>查找fastboot文件目录，并确保fastboot有执行权限，并且属主正确：</p>
-<img src="/2018/01/06/01Pico-Pro-Maker-Kit-刷入Android-Things/4.png" alt="fastboot命令所在位置" title="fastboot命令所在位置">
+<img src="/2018/01/06/01Pico-Pro-Maker-Kit-刷入Android-Things/4.png" alt="fastboot" title="fastboot">
 <p>加入环境变量：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//我安装了ohmyzsh插件，所以需要编辑.zshrc。同学们根据实际配置修改</span></div><div class="line">vim ~/<span class="selector-class">.zshrc</span></div><div class="line"></div><div class="line"><span class="comment">//文件末尾中加入</span></div><div class="line">export PATH=<span class="variable">$PATH</span>:/Users/woniu/Library/Android/sdk/platform-tools</div><div class="line"></div><div class="line"><span class="comment">//别忘了编译</span></div><div class="line">source ~/<span class="selector-class">.zshrc</span></div><div class="line"></div><div class="line"><span class="comment">//检测是否可用</span></div><div class="line">fastboot -h</div></pre></td></tr></table></figure>
 <h2 id="写入Android-Things"><a href="#写入Android-Things" class="headerlink" title="写入Android-Things"></a>写入Android-Things</h2><p>​    下载完成，解压，运行里面的android-things-setup-utility-macos，按照提示选择。（如果选择在线安装，需要科学上网。没有条件的同学也可以到我的百度云下载镜像。链接: <a href="https://pan.baidu.com/s/1hticxNI" target="_blank" rel="external">https://pan.baidu.com/s/1hticxNI</a> 密码: 4rvc）</p>
@@ -404,7 +407,7 @@
 <p>下载iot_imx7d_pico后，解压，到该目录下执行：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./flash-all<span class="selector-class">.sh</span>		<span class="comment">//Win系统下执行flash-all.bat</span></div></pre></td></tr></table></figure>
 <p>之后静待安装，完成后会自动重启，就可以了：</p>
-<p>图5</p>
+<img src="/2018/01/06/01Pico-Pro-Maker-Kit-刷入Android-Things/5.jpeg" alt="成功" title="成功">
 <p><a href="http://blog.csdn.net/yelin042/article/details/72802920" target="_blank" rel="external">http://blog.csdn.net/yelin042/article/details/72802920</a></p>
 <p><a href="https://developer.android.google.cn/things/hardware/imx7d-kit.html#install-at" target="_blank" rel="external">https://developer.android.google.cn/things/hardware/imx7d-kit.html#install-at</a></p>
 <p><a href="https://developer.android.google.cn/things/hardware/imx7d.html" target="_blank" rel="external">https://developer.android.google.cn/things/hardware/imx7d.html</a></p>
