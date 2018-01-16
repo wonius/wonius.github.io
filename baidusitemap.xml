@@ -4,6 +4,41 @@
 
     
   <url>
+    <loc>http://wonius.top/2018/01/16/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2018-01-16T14:26:38.935Z</lastmod>
+    <data>
+        <display>
+        <title>Linux常用命令</title>
+        <pubTime>2018-01-16T13:58:57.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://wonius.top/2018/01/06/Linux%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86/</loc>
+    <lastmod>2018-01-16T13:57:29.100Z</lastmod>
+    <data>
+        <display>
+        <title>Linux服务器常用功能</title>
+        <pubTime>2018-01-06T12:54:56.000Z</pubTime>
+        
+        <tag>Linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="OS" url="http://wonius.top/categories/OS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wonius.top/2018/01/06/01Pico-Pro-Maker-Kit-%E5%88%B7%E5%85%A5Android-Things/</loc>
     <lastmod>2018-01-16T13:53:30.868Z</lastmod>
     <data>
@@ -119,26 +154,6 @@
            
              
               <breadCrumb title="学习笔记" url="http://wonius.top/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://wonius.top/2018/01/06/Linux%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86/</loc>
-    <lastmod>2018-01-06T13:02:41.513Z</lastmod>
-    <data>
-        <display>
-        <title>Linux系统知识</title>
-        <pubTime>2018-01-06T12:54:56.000Z</pubTime>
-        
-        <tag>Linux</tag>
-         
-         
-           
-             
-              <breadCrumb title="OS" url="http://wonius.top/categories/OS/"/>
           
         </display>
     </data>
