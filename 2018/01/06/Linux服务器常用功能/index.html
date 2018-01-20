@@ -87,16 +87,16 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="mask-icon" href="/images/favicon-logo.svg?v=5.1.4" color="#222">
 
 
 
@@ -120,7 +120,7 @@
 <meta property="og:url" content="http://wonius.top/2018/01/06/Linux服务器常用功能/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="服务器常用功能">
-<meta property="og:updated_time" content="2018-01-17T14:59:11.725Z">
+<meta property="og:updated_time" content="2018-01-20T05:25:52.337Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux服务器常用功能">
 <meta name="twitter:description" content="服务器常用功能">
@@ -406,9 +406,10 @@
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//首先查看要启动的服务是否在chkconfig列表中</div><div class="line">chkconfig <span class="comment">--list</span></div><div class="line"><span class="comment"></span></div><div class="line">//如果列表中没有，需要单服务添加到列表</div><div class="line">chkconfig <span class="comment">--add XX</span></div><div class="line"><span class="comment"></span></div><div class="line">//打开自启动</div><div class="line">chkconfig mysqld <span class="keyword">on</span></div><div class="line"><span class="comment"></span></div><div class="line">//取消自启动</div><div class="line">chkconfig mysqld off</div><div class="line"></div><div class="line">ps:<span class="number">2</span>~<span class="number">5</span>为<span class="keyword">on</span>，就是表明打开自启动开关了</div></pre></td></tr></table></figure>
 </li>
 <li><p>修改/etc/rc.d/rc.local</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//编辑rc.local</span></div><div class="line">vim <span class="regexp">/etc/</span>rc.d/rc.local</div><div class="line"></div><div class="line"><span class="comment">//添加服务</span></div><div class="line"><span class="regexp">/etc/</span>rc.d<span class="regexp">/init.d/</span>mysqld start</div></pre></td></tr></table></figure>
+<p>​</p>
 </li>
 </ol>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//编辑rc.local</span></div><div class="line">vim <span class="regexp">/etc/</span>rc.d/rc.local</div><div class="line"></div><div class="line"><span class="comment">//添加服务</span></div><div class="line"><span class="regexp">/etc/</span>rc.d<span class="regexp">/init.d/</span>mysqld start</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -566,7 +567,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -577,7 +578,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -588,7 +589,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -669,7 +670,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

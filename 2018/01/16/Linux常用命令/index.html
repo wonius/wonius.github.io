@@ -87,22 +87,22 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="mask-icon" href="/images/favicon-logo.svg?v=5.1.4" color="#222">
 
 
 
 
 
-  <meta name="keywords" content="cat,head,tail,grep,find" />
+  <meta name="keywords" content="cat,head,tail,grep,find,tar" />
 
 
 
@@ -114,13 +114,13 @@
 
 
 <meta name="description" content="Linux常用命令">
-<meta name="keywords" content="cat,head,tail,grep,find">
+<meta name="keywords" content="cat,head,tail,grep,find,tar">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux常用命令">
 <meta property="og:url" content="http://wonius.top/2018/01/16/Linux常用命令/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="Linux常用命令">
-<meta property="og:updated_time" content="2018-01-18T16:31:14.814Z">
+<meta property="og:updated_time" content="2018-01-20T06:15:41.518Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux常用命令">
 <meta name="twitter:description" content="Linux常用命令">
@@ -399,7 +399,7 @@
       
 
       
-        <h2 id="文件内容查看"><a href="#文件内容查看" class="headerlink" title="文件内容查看"></a>文件内容查看</h2><ol>
+        <h2 id="cat-grep-sed-文件内容查看"><a href="#cat-grep-sed-文件内容查看" class="headerlink" title="cat/grep/sed-文件内容查看"></a>cat/grep/sed-文件内容查看</h2><ol>
 <li><p>cat、head/tail组合</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//查看前1000行</div><div class="line">head -n 1000 filename</div><div class="line">//查看后1000行</div><div class="line">tail -n 1000 filename</div><div class="line">//查看1000之后</div><div class="line">tail -n +1000 filename</div><div class="line">//实时查看</div><div class="line">tail -f filename</div><div class="line"></div><div class="line">//查看最后1000行数据</div><div class="line">cat filename | tail -n 1000</div><div class="line">//查看1000到3000行的数据</div><div class="line">cat file | head -n 3000 | tail -n +1000</div></pre></td></tr></table></figure>
 </li>
@@ -410,9 +410,21 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//显示第1000到3000行的数据</div><div class="line">sed -n '1000,3000p' filename</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<h2 id="文件搜索"><a href="#文件搜索" class="headerlink" title="文件搜索"></a>文件搜索</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find / -name filename</div></pre></td></tr></table></figure>
-<h2 id="查找进程"><a href="#查找进程" class="headerlink" title="查找进程"></a>查找进程</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ps -ef | grep XXX</div><div class="line"></div><div class="line">kill -9 pid</div></pre></td></tr></table></figure>
-<h2 id="跨服务器拷贝"><a href="#跨服务器拷贝" class="headerlink" title="跨服务器拷贝"></a>跨服务器拷贝</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp file user@localhost:dir</div></pre></td></tr></table></figure>
+<h2 id="find-文件搜索"><a href="#find-文件搜索" class="headerlink" title="find-文件搜索"></a>find-文件搜索</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find / -name filename</div></pre></td></tr></table></figure>
+<h2 id="ps-查找进程"><a href="#ps-查找进程" class="headerlink" title="ps-查找进程"></a>ps-查找进程</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ps -ef | grep XXX</div><div class="line"></div><div class="line">kill -9 pid</div></pre></td></tr></table></figure>
+<h2 id="scp-跨服务器拷贝"><a href="#scp-跨服务器拷贝" class="headerlink" title="scp-跨服务器拷贝"></a>scp-跨服务器拷贝</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp file user@localhost:dir</div></pre></td></tr></table></figure>
+<h2 id="tar-压缩、解压"><a href="#tar-压缩、解压" class="headerlink" title="tar-压缩、解压"></a>tar-压缩、解压</h2><ol>
+<li>压缩</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">只打包</span></div><div class="line">tar -cvf file.tar file</div><div class="line"><span class="meta">#</span><span class="bash">使用gzip压缩，再打包</span></div><div class="line">tar -czf file.tar.gz file</div><div class="line"><span class="meta">#</span><span class="bash">使用bzip2压缩，再打包</span></div><div class="line">tar -cjf file.tar.bz2 file</div><div class="line"><span class="meta">#</span><span class="bash">使用compress压缩，再打包</span></div><div class="line">tar -cZf file.tar.Z file</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash">rar压缩,需先安装rar服务</span></div><div class="line">rar a file.rar file</div><div class="line"><span class="meta">#</span><span class="bash">zip压缩，需先安装zip服务</span></div><div class="line">zip file.zip file</div></pre></td></tr></table></figure>
+<ol>
+<li>解压</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">解压常规包</span></div><div class="line">tar -xvf file.tar</div><div class="line"><span class="meta">#</span><span class="bash">解压gzip包</span></div><div class="line">tar -xzvf file.tar.gz</div><div class="line"><span class="meta">#</span><span class="bash">解压bzip2包</span></div><div class="line">tar -xjvf file.tar.bz2</div><div class="line"><span class="meta">#</span><span class="bash">解压compress包</span></div><div class="line">tar -xZvf file.tar.Z</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash">解压rar</span></div><div class="line">unrar e file.rar</div><div class="line"><span class="meta">#</span><span class="bash">解压zip</span></div><div class="line">unzip file.zip</div></pre></td></tr></table></figure>
+<ol>
+<li>参数解析</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">必须参数，且只能选一个</span></div><div class="line">-c:	建立压缩文档</div><div class="line">-x:	解压</div><div class="line">-t:	查看文件</div><div class="line">-r:	压缩文件末尾追加文件</div><div class="line">-u:	更新原压缩文件中的文件</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash">可选参数，根据需要添加</span></div><div class="line">-z: gzip</div><div class="line">-j:	bz2</div><div class="line">-Z:	compress</div><div class="line">-v:	显示所有过程</div><div class="line">-O:	将文件解开到标准输出</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash">必选参数</span></div><div class="line">-f: 在所有参数最后，后面接文档名</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -570,7 +582,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -581,7 +593,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -592,7 +604,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -653,7 +665,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件内容查看"><span class="nav-number">1.</span> <span class="nav-text">文件内容查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件搜索"><span class="nav-number">2.</span> <span class="nav-text">文件搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找进程"><span class="nav-number">3.</span> <span class="nav-text">查找进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跨服务器拷贝"><span class="nav-number">4.</span> <span class="nav-text">跨服务器拷贝</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#cat-grep-sed-文件内容查看"><span class="nav-number">1.</span> <span class="nav-text">cat/grep/sed-文件内容查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find-文件搜索"><span class="nav-number">2.</span> <span class="nav-text">find-文件搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ps-查找进程"><span class="nav-number">3.</span> <span class="nav-text">ps-查找进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scp-跨服务器拷贝"><span class="nav-number">4.</span> <span class="nav-text">scp-跨服务器拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tar-压缩、解压"><span class="nav-number">5.</span> <span class="nav-text">tar-压缩、解压</span></a></li></ol></div>
             
 
           </div>
@@ -673,7 +685,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
