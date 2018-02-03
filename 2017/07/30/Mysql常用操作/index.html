@@ -120,7 +120,7 @@
 <meta property="og:url" content="http://wonius.top/2017/07/30/Mysql常用操作/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="Mysql常用操作">
-<meta property="og:updated_time" content="2018-01-21T02:33:54.483Z">
+<meta property="og:updated_time" content="2018-02-03T05:03:21.081Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql常用操作">
 <meta name="twitter:description" content="Mysql常用操作">
@@ -419,7 +419,8 @@
 </li>
 </ol>
 <h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">CREATE USER username IDENTIFIED BY &apos;password&apos;;</div><div class="line"></div><div class="line">#限定在固定地址localhost登录</div><div class="line">CREATE USER username@localhost IDENTIFIED BY &apos;password&apos;;</div><div class="line"></div><div class="line">#当你在服务器主机上创建用户，为了方便远程连接，通常使用%代替，如：</div><div class="line">CREATE USER username@&apos;%&apos; IDENTIFIED BY &apos;password&apos;;</div></pre></td></tr></table></figure>
-<h2 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">GRANT ALL PRIVILEGES ON *.* TO user@localhost</div><div class="line"></div><div class="line">#授予某一些权限时</div><div class="line">GRANT select,insert ON *.* TO test1@&apos;%&apos; IDENTIFIED BY &apos;password&apos;;</div></pre></td></tr></table></figure>
+<h2 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">GRANT ALL PRIVILEGES ON *.* TO user@localhost IDENTIFIED BY &apos;password&apos;;</div><div class="line"></div><div class="line">#授予某一些权限时</div><div class="line">GRANT select,insert ON *.* TO test1@&apos;%&apos; IDENTIFIED BY &apos;password&apos;;</div></pre></td></tr></table></figure>
+<h2 id="查看用户拥有的权限"><a href="#查看用户拥有的权限" class="headerlink" title="查看用户拥有的权限"></a>查看用户拥有的权限</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show grants for user;</div></pre></td></tr></table></figure>
 <h2 id="查看用户"><a href="#查看用户" class="headerlink" title="查看用户"></a>查看用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select host, user from mysql.user;</div></pre></td></tr></table></figure>
 <h2 id="创建库"><a href="#创建库" class="headerlink" title="创建库"></a>创建库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CREATE DATABASE dbname;</div></pre></td></tr></table></figure>
 <h2 id="删除库"><a href="#删除库" class="headerlink" title="删除库"></a>删除库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DROP DATABASE dbname；</div></pre></td></tr></table></figure>
@@ -580,7 +581,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -591,7 +592,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -602,7 +603,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -663,7 +664,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MacOs，修改root用户密码"><span class="nav-number">1.</span> <span class="nav-text">MacOs，修改root用户密码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库备份、还原"><span class="nav-number">1.1.</span> <span class="nav-text">数据库备份、还原</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建用户"><span class="nav-number">2.</span> <span class="nav-text">创建用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#授权"><span class="nav-number">3.</span> <span class="nav-text">授权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看用户"><span class="nav-number">4.</span> <span class="nav-text">查看用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建库"><span class="nav-number">5.</span> <span class="nav-text">创建库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除库"><span class="nav-number">6.</span> <span class="nav-text">删除库</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MacOs，修改root用户密码"><span class="nav-number">1.</span> <span class="nav-text">MacOs，修改root用户密码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库备份、还原"><span class="nav-number">1.1.</span> <span class="nav-text">数据库备份、还原</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建用户"><span class="nav-number">2.</span> <span class="nav-text">创建用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#授权"><span class="nav-number">3.</span> <span class="nav-text">授权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看用户拥有的权限"><span class="nav-number">4.</span> <span class="nav-text">查看用户拥有的权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看用户"><span class="nav-number">5.</span> <span class="nav-text">查看用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建库"><span class="nav-number">6.</span> <span class="nav-text">创建库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除库"><span class="nav-number">7.</span> <span class="nav-text">删除库</span></a></li></ol></div>
             
 
           </div>

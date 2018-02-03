@@ -120,7 +120,7 @@
 <meta property="og:url" content="http://wonius.top/2018/01/30/Mysql常见问题/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="Mysql常见问题">
-<meta property="og:updated_time" content="2018-01-30T14:31:23.144Z">
+<meta property="og:updated_time" content="2018-02-03T06:19:32.258Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql常见问题">
 <meta name="twitter:description" content="Mysql常见问题">
@@ -400,7 +400,8 @@
 
       
         <h2 id="ERROR-1044-42000-Access-denied-for-user-‘’-’localhost’-to-database-‘XXX’"><a href="#ERROR-1044-42000-Access-denied-for-user-‘’-’localhost’-to-database-‘XXX’" class="headerlink" title="ERROR 1044 (42000): Access denied for user ‘’@’localhost’ to database ‘XXX’"></a>ERROR 1044 (42000): Access denied for user ‘’@’localhost’ to database ‘XXX’</h2><p>​    今天在DB里用普通用户做操作时，会报这个错误。主要是因为user表中有匿名用户，将匿名用户删除就可以了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">#首先进入mysql</div><div class="line">mysql -uroot -p</div><div class="line"></div><div class="line">#切换到mysql数据库</div><div class="line">user mysql;</div><div class="line">#查看当前用户</div><div class="line">select host, user from user;</div><div class="line">#删除匿名用户</div><div class="line">delete from user where user=&apos;&apos;;</div><div class="line">#写入</div><div class="line">flush privileges;</div><div class="line">#退出</div><div class="line">\q</div><div class="line"></div><div class="line">#重启服务</div><div class="line">service mysqld restart</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">#首先进入mysql</div><div class="line">mysql -uroot -p</div><div class="line"></div><div class="line">#切换到mysql数据库</div><div class="line">user mysql;</div><div class="line">#查看当前用户</div><div class="line">select host, user, password from user;</div><div class="line">#删除匿名用户</div><div class="line">delete from user where user=&apos;&apos;;</div><div class="line">#写入</div><div class="line">flush privileges;</div><div class="line">#退出</div><div class="line">\q</div><div class="line"></div><div class="line">#重启服务</div><div class="line">service mysqld restart</div></pre></td></tr></table></figure>
+<h2 id="ERROR-1045-28000-Access-denied-for-user-‘root’-’localhost’-using-password-YES"><a href="#ERROR-1045-28000-Access-denied-for-user-‘root’-’localhost’-using-password-YES" class="headerlink" title="ERROR 1045 (28000): Access denied for user ‘root’@’localhost’ (using password: YES)"></a>ERROR 1045 (28000): Access denied for user ‘root’@’localhost’ (using password: YES)</h2><p>​    一般由于密码错误，或者有用户没有密码的情况。    </p>
 
       
     </div>
@@ -469,6 +470,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/03/ssh连接保持会话/" rel="prev" title="ssh连接保持会话">
+                ssh连接保持会话 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -554,7 +559,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -565,7 +570,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -576,7 +581,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -637,7 +642,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ERROR-1044-42000-Access-denied-for-user-‘’-’localhost’-to-database-‘XXX’"><span class="nav-number">1.</span> <span class="nav-text">ERROR 1044 (42000): Access denied for user ‘’@’localhost’ to database ‘XXX’</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ERROR-1044-42000-Access-denied-for-user-‘’-’localhost’-to-database-‘XXX’"><span class="nav-number">1.</span> <span class="nav-text">ERROR 1044 (42000): Access denied for user ‘’@’localhost’ to database ‘XXX’</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ERROR-1045-28000-Access-denied-for-user-‘root’-’localhost’-using-password-YES"><span class="nav-number">2.</span> <span class="nav-text">ERROR 1045 (28000): Access denied for user ‘root’@’localhost’ (using password: YES)</span></a></li></ol></div>
             
 
           </div>
