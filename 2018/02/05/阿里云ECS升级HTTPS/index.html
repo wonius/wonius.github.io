@@ -102,7 +102,7 @@
 
 
 
-  <meta name="keywords" content="IE8" />
+  <meta name="keywords" content="安全,SSL,https" />
 
 
 
@@ -113,17 +113,17 @@
 
 
 
-<meta name="description" content="IE8遇到的一些坑">
-<meta name="keywords" content="IE8">
+<meta name="description" content="阿里云主机，通过阿里云盾制作证书，开启SSL，使用https协议">
+<meta name="keywords" content="安全,SSL,https">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IE8遇到的坑">
-<meta property="og:url" content="http://wonius.top/2017/08/23/IE8坑/index.html">
+<meta property="og:title" content="阿里云ECS升级HTTPS">
+<meta property="og:url" content="http://wonius.top/2018/02/05/阿里云ECS升级HTTPS/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
-<meta property="og:description" content="IE8遇到的一些坑">
-<meta property="og:updated_time" content="2018-01-18T16:32:06.478Z">
+<meta property="og:description" content="阿里云主机，通过阿里云盾制作证书，开启SSL，使用https协议">
+<meta property="og:updated_time" content="2018-02-05T17:15:19.552Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IE8遇到的坑">
-<meta name="twitter:description" content="IE8遇到的一些坑">
+<meta name="twitter:title" content="阿里云ECS升级HTTPS">
+<meta name="twitter:description" content="阿里云主机，通过阿里云盾制作证书，开启SSL，使用https协议">
 
 
 
@@ -153,13 +153,13 @@
 
 
 
-  <link rel="canonical" href="http://wonius.top/2017/08/23/IE8坑/"/>
+  <link rel="canonical" href="http://wonius.top/2018/02/05/阿里云ECS升级HTTPS/"/>
 
 
 
 
 
-  <title>IE8遇到的坑 | Gavin's Notes</title>
+  <title>阿里云ECS升级HTTPS | Gavin's Notes</title>
   
 
 
@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wonius.top/2017/08/23/IE8坑/">
+    <link itemprop="mainEntityOfPage" href="http://wonius.top/2018/02/05/阿里云ECS升级HTTPS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gavin">
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">IE8遇到的坑</h1>
+          <h1 class="post-title" itemprop="name headline">阿里云ECS升级HTTPS</h1>
         
 
         <div class="post-meta">
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-23T22:06:26+08:00">
-                2017-08-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-05T14:29:32+08:00">
+                2018-02-05
               </time>
             
 
@@ -347,8 +347,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/BS/" itemprop="url" rel="index">
-                    <span itemprop="name">BS</span>
+                  <a href="/categories/安全/" itemprop="url" rel="index">
+                    <span itemprop="name">安全</span>
                   </a>
                 </span>
 
@@ -364,7 +364,7 @@
 
           
           
-             <span id="/2017/08/23/IE8坑/" class="leancloud_visitors" data-flag-title="IE8遇到的坑">
+             <span id="/2018/02/05/阿里云ECS升级HTTPS/" class="leancloud_visitors" data-flag-title="阿里云ECS升级HTTPS">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -382,7 +382,7 @@
 
           
               <div class="post-description">
-                  IE8遇到的一些坑
+                  阿里云主机，通过阿里云盾制作证书，开启SSL，使用https协议
               </div>
           
 
@@ -399,25 +399,17 @@
       
 
       
-        <h2 id="new-Date"><a href="#new-Date" class="headerlink" title="new Date()"></a>new Date()</h2><p>​    当new Date()时，IE8与IE11产生的结果不同。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//IE8，date1格式为‘2017年8月23日’。当将该参数传递到rest接口时，无法绑定到date类型</span></div><div class="line"><span class="comment">//另外，使用oracle的to_date()方法时，to_date('', 'yyyy"年"MM"月"dd"日"')</span></div><div class="line"><span class="keyword">var</span> date1 = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"></div><div class="line"><span class="comment">//IE11，date2格式为‘2017/8/23’</span></div><div class="line"><span class="keyword">var</span> date2 =<span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"></div><div class="line"><span class="comment">//为了兼容IE8和IE11，需在前端对日期做处理</span></div><div class="line"><span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"><span class="keyword">var</span> today = date.getFullYear()+<span class="string">"-"</span>+date.getMonth()+<span class="string">"-"</span>+date.getDay();</div></pre></td></tr></table></figure>
-<h2 id="for-var-i-in-obj"><a href="#for-var-i-in-obj" class="headerlink" title="for(var i in obj)"></a>for(var i in obj)</h2><p>​    IE8支持JS版本较低，Array.prototype中的函数无法使用。比如forEach、indexOf等。一般为了兼容，使在IE8下也可以使用这些函数，会重写Array.prototype，加上这些函数。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(!<span class="built_in">Array</span>.prototype.forEach) &#123;</div><div class="line">  <span class="built_in">Array</span>.prototype.forEach = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      </div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​    但是，对于对象原型的操作，是很危险的事情，严重会导致导致原型链断裂。不过这次讨论的不是这个问题。</p>
-<p>​    当IE8解析for in 方法时，会将forEach等添加到prototype上的方法当做变量，一起循环。所以循环体里如果对变量进行了操作，会导致报错。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> params) &#123;</div><div class="line">    <span class="built_in">console</span>.log(params[i].length);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​    解决方法：</p>
-<ol>
-<li><p>在使用for..in时，使用 hasOwnProperty() 对变量进行判断：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> params) &#123;</div><div class="line">  <span class="keyword">if</span>(params.hasOwnProperty(params[i]))</div><div class="line">    <span class="built_in">console</span>.log(params[i].length);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>for循环的另一种写法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; params.length; i++) &#123;</div><div class="line">    <span class="built_in">console</span>.log(params[i].length);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>使用框架封装好的接口，_.forEach，如果不想引入框架，可以自己写一个forEach函数。</p>
-</li>
-</ol>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>​    最近系统准备开发小程序，增加流量入口，而小程序的后端接口需要支持https协议，顺便给网站安全升下级。</p>
+<h2 id="制作证书"><a href="#制作证书" class="headerlink" title="制作证书"></a>制作证书</h2><p>​    阿里云上有证书服务，填写完整信息可以在线制作，省时省力。登录阿里云后，点开安全（云盾）- CA证书服务，点击右上角购买证书，填写信息，域名验证类型选择DNS，因为域名也是在阿里买的，所以勾上自动完成域名授权验证，完成。很快，10min左右就审核通过了。</p>
+<h2 id="配置安全组"><a href="#配置安全组" class="headerlink" title="配置安全组"></a>配置安全组</h2><p>​    在ECS中点击管理实例，添加安全组规则，公网入方向中加入443/443，地址段为0.0.0.0/0。</p>
+<h2 id="防火墙打开443端口"><a href="#防火墙打开443端口" class="headerlink" title="防火墙打开443端口"></a>防火墙打开443端口</h2><p>​    打开防火墙端口</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#编辑</span></div><div class="line">vim /etc/sysconfig/iptables</div><div class="line"><span class="comment">#添加记录</span></div><div class="line">-A INPUT -p tcp -m tcp --dport 443 -j ACCEPT </div><div class="line"><span class="comment">#重启服务</span><span class="built_in"></span></div><div class="line">service iptables restart</div></pre></td></tr></table></figure>
+<h2 id="Nginx配置"><a href="#Nginx配置" class="headerlink" title="Nginx配置"></a>Nginx配置</h2><p>​    将证书下载，在服务器上nginx目录下建立/cert，将证书解压，scp到/cert目录下：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#在conf.d下建立单独conf文件</span></div><div class="line"><span class="attribute">vim</span> ssl.yuming.conf</div><div class="line"></div><div class="line"><span class="comment">#增加如下配置</span></div><div class="line">server &#123;</div><div class="line">  <span class="attribute">listen</span>       <span class="number">443</span>;</div><div class="line">  <span class="attribute">server_name</span>  域名;</div><div class="line">  <span class="attribute">ssl</span>          <span class="literal">on</span>;</div><div class="line">  <span class="attribute">root</span> html;</div><div class="line">  <span class="attribute">index</span> index.html; </div><div class="line"></div><div class="line">  <span class="attribute">ssl_certificate</span>   /etc/nginx/cert/XXXXXXXXXX.pem;</div><div class="line">  <span class="attribute">ssl_certificate_key</span>  /etc/nginx/cert/XXXXXXXXXXX.key;</div><div class="line">  <span class="attribute">ssl_session_timeout</span> <span class="number">5m</span>;</div><div class="line">  <span class="attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="number">1</span> TLSv1.<span class="number">2</span>;</div><div class="line">  <span class="attribute">ssl_ciphers</span> AESGCM:ALL:!DH:!EXPORT:!RC4:+HIGH:!MEDIUM:!LOW:!aNULL:!eNULL;</div><div class="line">  <span class="attribute">ssl_prefer_server_ciphers</span> <span class="literal">on</span>;</div><div class="line">  </div><div class="line">  <span class="comment">#需要加上，一开始没加，访问一直404，找了半天原因</span></div><div class="line">  <span class="attribute">location</span> / &#123;</div><div class="line">		<span class="attribute">proxy_pass</span>	http://localhost:8080;</div><div class="line">		<span class="attribute">proxy_set_header</span> Host	<span class="variable">$host</span>;</div><div class="line">		<span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</div><div class="line">		<span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">		<span class="attribute">proxy_set_header</span> X-Forwarded-Proto  <span class="variable">$scheme</span>; 		<span class="comment">#同下方tomcat配置对应</span></div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">#重启nginx</span></div><div class="line"><span class="attribute">service</span> nginx restart</div></pre></td></tr></table></figure>
+<h2 id="Tomcat配置"><a href="#Tomcat配置" class="headerlink" title="Tomcat配置"></a>Tomcat配置</h2><p>​    做完上面的配置之后，可以通过https协议访问网站，不过代码中使用request.getScheme()取到的协议仍是http，不是https，有报错，还需在server.xml中的Engine模块中添加：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;Valve className=<span class="string">"org.apache.catalina.valves.RemoteIpValve"</span>  </div><div class="line">remoteIpHeader=<span class="string">"X-Forwarded-For"</span>  </div><div class="line">protocolHeader=<span class="string">"X-Forwarded-Proto"</span>  </div><div class="line">protocolHeaderHttpsValue=<span class="string">"https"</span>/&gt;</div></pre></td></tr></table></figure>
+<h2 id="one-more-thing"><a href="#one-more-thing" class="headerlink" title="one more thing"></a>one more thing</h2><p>​    如果需要将所有请求强制使用https协议，在监听80端口处增加如下配置：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">rewrite</span><span class="regexp"> ^(.*)$</span> https://<span class="variable">$&#123;server_name&#125;</span><span class="variable">$1</span> <span class="literal">permanent</span>;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -464,7 +456,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/IE8/" rel="tag"># IE8</a>
+            <a href="/tags/SSL/" rel="tag"># SSL</a>
           
         </div>
       
@@ -477,8 +469,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/19/JSON转换/" rel="next" title="JSON转换">
-                <i class="fa fa-chevron-left"></i> JSON转换
+              <a href="/2018/02/03/ssh连接保持会话/" rel="next" title="ssh连接保持会话">
+                <i class="fa fa-chevron-left"></i> ssh连接保持会话
               </a>
             
           </div>
@@ -486,10 +478,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/18/错误-程序包com-sun-image-codec-jpeg不存在/" rel="prev" title="错误: 程序包com.sun.image.codec.jpeg不存在">
-                错误: 程序包com.sun.image.codec.jpeg不存在 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -658,7 +646,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#new-Date"><span class="nav-number">1.</span> <span class="nav-text">new Date()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for-var-i-in-obj"><span class="nav-number">2.</span> <span class="nav-text">for(var i in obj)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#制作证书"><span class="nav-number">2.</span> <span class="nav-text">制作证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置安全组"><span class="nav-number">3.</span> <span class="nav-text">配置安全组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防火墙打开443端口"><span class="nav-number">4.</span> <span class="nav-text">防火墙打开443端口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx配置"><span class="nav-number">5.</span> <span class="nav-text">Nginx配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat配置"><span class="nav-number">6.</span> <span class="nav-text">Tomcat配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#one-more-thing"><span class="nav-number">7.</span> <span class="nav-text">one more thing</span></a></li></ol></div>
             
 
           </div>
