@@ -120,7 +120,7 @@
 <meta property="og:url" content="http://wonius.top/2017/08/13/Sql优化/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="通用的sql优化小技巧">
-<meta property="og:updated_time" content="2017-08-19T05:12:03.000Z">
+<meta property="og:updated_time" content="2018-02-06T12:30:11.658Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sql优化">
 <meta name="twitter:description" content="通用的sql优化小技巧">
@@ -417,7 +417,7 @@
 </li>
 <li><p><strong>将整个sql循环</strong></p>
 <p>将整个sql循环，而不是参数。例如入参是有100个参数的list，循环创建出100条update语句，参数固定为一个，形式如下：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;foreach collection=list item="item" index="index" open="begin" close=";end;" separator=";"&gt;</div><div class="line">update worker </div><div class="line">set status = "Y"</div><div class="line">where id = #&#123;item.id&#125;</div><div class="line">&lt;/foreach&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">foreach</span> collection=<span class="keyword">list</span> item=<span class="string">"item"</span> index=<span class="string">"index"</span> <span class="keyword">open</span>=<span class="string">"begin"</span> <span class="keyword">close</span>=<span class="string">";end;"</span> separator=<span class="string">";"</span>&gt;</div><div class="line"><span class="keyword">update</span> worker </div><div class="line"><span class="keyword">set</span> status = <span class="string">"Y"</span></div><div class="line">where id = #&#123;item.id&#125;</div><div class="line">&lt;/<span class="keyword">foreach</span>&gt;</div></pre></td></tr></table></figure>
 <p>​</p>
 </li>
 </ol>
@@ -578,7 +578,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -589,7 +589,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -600,7 +600,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

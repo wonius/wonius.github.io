@@ -120,7 +120,7 @@
 <meta property="og:url" content="http://wonius.top/2018/02/06/阿里云ECS升级HTTPS/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="阿里云主机，通过阿里云盾制作证书，开启SSL，使用https协议">
-<meta property="og:updated_time" content="2018-02-05T23:49:12.565Z">
+<meta property="og:updated_time" content="2018-02-06T02:03:40.996Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="阿里云ECS升级HTTPS">
 <meta name="twitter:description" content="阿里云主机，通过阿里云盾制作证书，开启SSL，使用https协议">
@@ -405,10 +405,10 @@
 <h2 id="防火墙打开443端口"><a href="#防火墙打开443端口" class="headerlink" title="防火墙打开443端口"></a>防火墙打开443端口</h2><p>​    打开防火墙端口</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#编辑</span></div><div class="line">vim /etc/sysconfig/iptables</div><div class="line"><span class="comment">#添加记录</span></div><div class="line">-A INPUT -p tcp -m tcp --dport 443 -j ACCEPT </div><div class="line"><span class="comment">#重启服务</span><span class="built_in"></span></div><div class="line">service iptables restart</div></pre></td></tr></table></figure>
 <h2 id="Nginx配置"><a href="#Nginx配置" class="headerlink" title="Nginx配置"></a>Nginx配置</h2><p>​    将证书下载，在服务器上nginx目录下建立/cert，将证书解压，scp到/cert目录下：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#在conf.d下建立单独conf文件</span></div><div class="line"><span class="attribute">vim</span> ssl.yuming.conf</div><div class="line"></div><div class="line"><span class="comment">#增加如下配置</span></div><div class="line">server &#123;</div><div class="line">  <span class="attribute">listen</span>       <span class="number">443</span>;</div><div class="line">  <span class="attribute">server_name</span>  域名;</div><div class="line">  <span class="attribute">ssl</span>          <span class="literal">on</span>;</div><div class="line">  <span class="attribute">root</span> html;</div><div class="line">  <span class="attribute">index</span> index.html; </div><div class="line"></div><div class="line">  <span class="attribute">ssl_certificate</span>   /etc/nginx/cert/XXXXXXXXXX.pem;</div><div class="line">  <span class="attribute">ssl_certificate_key</span>  /etc/nginx/cert/XXXXXXXXXXX.key;</div><div class="line">  <span class="attribute">ssl_session_timeout</span> <span class="number">5m</span>;</div><div class="line">  <span class="attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="number">1</span> TLSv1.<span class="number">2</span>;</div><div class="line">  <span class="attribute">ssl_ciphers</span> AESGCM:ALL:!DH:!EXPORT:!RC4:+HIGH:!MEDIUM:!LOW:!aNULL:!eNULL;</div><div class="line">  <span class="attribute">ssl_prefer_server_ciphers</span> <span class="literal">on</span>;</div><div class="line">  </div><div class="line">  <span class="comment">#需要加上，一开始没加，访问一直404，找了半天原因</span></div><div class="line">  <span class="attribute">location</span> / &#123;</div><div class="line">		<span class="attribute">proxy_pass</span>	http://localhost:8080;</div><div class="line">		<span class="attribute">proxy_set_header</span> Host	<span class="variable">$host</span>;</div><div class="line">		<span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</div><div class="line">		<span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">		<span class="attribute">proxy_set_header</span> X-Forwarded-Proto  <span class="variable">$scheme</span>; 		<span class="comment">#同下方tomcat配置对应</span></div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">#重启nginx</span></div><div class="line"><span class="attribute">service</span> nginx restart</div></pre></td></tr></table></figure>
-<h2 id="Tomcat配置"><a href="#Tomcat配置" class="headerlink" title="Tomcat配置"></a>Tomcat配置</h2><p>​    做完上面的配置之后，可以通过https协议访问网站，不过代码中使用request.getScheme()取到的协议仍是http，不是https，有报错，还需在server.xml中的Engine模块中添加：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#在conf.d下建立单独conf文件</span></div><div class="line"><span class="attribute">vim</span> ssl.yuming.conf</div><div class="line"></div><div class="line"><span class="comment">#增加如下配置</span></div><div class="line">server &#123;</div><div class="line">  <span class="attribute">listen</span>       <span class="number">443</span>;</div><div class="line">  <span class="attribute">server_name</span>  域名;</div><div class="line">  <span class="attribute">ssl</span>          <span class="literal">on</span>;</div><div class="line">  <span class="attribute">root</span> html;</div><div class="line">  <span class="attribute">index</span> index.html; </div><div class="line"></div><div class="line">  <span class="attribute">ssl_certificate</span>   /etc/nginx/cert/XXXXXXXXXX.pem;</div><div class="line">  <span class="attribute">ssl_certificate_key</span>  /etc/nginx/cert/XXXXXXXXXXX.key;</div><div class="line">  <span class="attribute">ssl_session_timeout</span> <span class="number">5m</span>;</div><div class="line">  <span class="attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="number">1</span> TLSv1.<span class="number">2</span>;</div><div class="line">  <span class="attribute">ssl_ciphers</span> AESGCM:ALL:!DH:!EXPORT:!RC4:+HIGH:!MEDIUM:!LOW:!aNULL:!eNULL;</div><div class="line">  <span class="attribute">ssl_prefer_server_ciphers</span> <span class="literal">on</span>;</div><div class="line">  </div><div class="line">  <span class="comment">#需要加上，一开始没加，访问一直404，找了半天原因</span></div><div class="line">  <span class="attribute">location</span> / &#123;</div><div class="line">		<span class="attribute">proxy_pass</span>	http://localhost:8080;</div><div class="line">		<span class="attribute">proxy_set_header</span> Host	<span class="variable">$host</span>;</div><div class="line">		<span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</div><div class="line">		<span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">		<span class="attribute">proxy_set_header</span> X-Forwarded-Proto  <span class="variable">$scheme</span>; 		<span class="comment">#与下方tomcat配置对应，解决request.getScheme()问题。不需要可以不用配</span></div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">#重启nginx</span></div><div class="line"><span class="attribute">service</span> nginx restart</div></pre></td></tr></table></figure>
+<h2 id="Tomcat配置"><a href="#Tomcat配置" class="headerlink" title="Tomcat配置"></a>Tomcat配置</h2><p>​    做完上面的配置之后，可以通过https协议访问网站，不过代码中使用request.getScheme()取到的协议仍是http，不是https，有报错，还需在server.xml中的Engine模块中添加，需重启。</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;Valve className=<span class="string">"org.apache.catalina.valves.RemoteIpValve"</span>  </div><div class="line">remoteIpHeader=<span class="string">"X-Forwarded-For"</span>  </div><div class="line">protocolHeader=<span class="string">"X-Forwarded-Proto"</span>  </div><div class="line">protocolHeaderHttpsValue=<span class="string">"https"</span>/&gt;</div></pre></td></tr></table></figure>
-<h2 id="one-more-thing"><a href="#one-more-thing" class="headerlink" title="one more thing"></a>one more thing</h2><p>​    如果需要将所有请求强制使用https协议，在监听80端口处]增加如下配置：</p>
+<h2 id="one-more-thing"><a href="#one-more-thing" class="headerlink" title="one more thing"></a>one more thing</h2><p>​    如果需要将所有请求强制使用https协议，在监听80端口处增加如下配置：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">rewrite</span><span class="regexp"> ^(.*)$</span> https://<span class="variable">$&#123;server_name&#125;</span><span class="variable">$1</span> <span class="literal">permanent</span>;</div></pre></td></tr></table></figure>
 
       
@@ -478,6 +478,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/06/CentOS安装NodeJS/" rel="prev" title="CentOS安装NodeJS">
+                CentOS安装NodeJS <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -563,7 +567,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -574,7 +578,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -585,7 +589,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

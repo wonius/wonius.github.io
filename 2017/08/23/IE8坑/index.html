@@ -120,7 +120,7 @@
 <meta property="og:url" content="http://wonius.top/2017/08/23/IE8坑/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="IE8遇到的一些坑">
-<meta property="og:updated_time" content="2018-01-18T16:32:06.478Z">
+<meta property="og:updated_time" content="2018-02-06T07:21:46.495Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IE8遇到的坑">
 <meta name="twitter:description" content="IE8遇到的一些坑">
@@ -400,7 +400,7 @@
 
       
         <h2 id="new-Date"><a href="#new-Date" class="headerlink" title="new Date()"></a>new Date()</h2><p>​    当new Date()时，IE8与IE11产生的结果不同。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//IE8，date1格式为‘2017年8月23日’。当将该参数传递到rest接口时，无法绑定到date类型</span></div><div class="line"><span class="comment">//另外，使用oracle的to_date()方法时，to_date('', 'yyyy"年"MM"月"dd"日"')</span></div><div class="line"><span class="keyword">var</span> date1 = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"></div><div class="line"><span class="comment">//IE11，date2格式为‘2017/8/23’</span></div><div class="line"><span class="keyword">var</span> date2 =<span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"></div><div class="line"><span class="comment">//为了兼容IE8和IE11，需在前端对日期做处理</span></div><div class="line"><span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"><span class="keyword">var</span> today = date.getFullYear()+<span class="string">"-"</span>+date.getMonth()+<span class="string">"-"</span>+date.getDay();</div></pre></td></tr></table></figure>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//IE8，date1格式为‘2017年8月23日’。当将该参数传递到rest接口时，无法绑定到date类型</span></div><div class="line"><span class="comment">//另外，使用oracle的to_date()方法时，to_date('', 'yyyy"年"MM"月"dd"日"')</span></div><div class="line"><span class="built_in">var</span> date1 = <span class="literal">new</span> <span class="built_in">Date</span>();</div><div class="line"></div><div class="line"><span class="comment">//IE11，date2格式为‘2017/8/23’</span></div><div class="line"><span class="built_in">var</span> date2 =<span class="literal">new</span> <span class="built_in">Date</span>();</div><div class="line"></div><div class="line"><span class="comment">//为了兼容IE8和IE11，需在前端对日期做处理</span></div><div class="line"><span class="built_in">var</span> <span class="built_in">date</span> = <span class="literal">new</span> <span class="built_in">Date</span>();</div><div class="line"><span class="built_in">var</span> today = <span class="built_in">date</span>.getFullYear()+<span class="string">"-"</span>+<span class="built_in">date</span>.getMonth()+<span class="string">"-"</span>+<span class="built_in">date</span>.getDay();</div></pre></td></tr></table></figure>
 <h2 id="for-var-i-in-obj"><a href="#for-var-i-in-obj" class="headerlink" title="for(var i in obj)"></a>for(var i in obj)</h2><p>​    IE8支持JS版本较低，Array.prototype中的函数无法使用。比如forEach、indexOf等。一般为了兼容，使在IE8下也可以使用这些函数，会重写Array.prototype，加上这些函数。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(!<span class="built_in">Array</span>.prototype.forEach) &#123;</div><div class="line">  <span class="built_in">Array</span>.prototype.forEach = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      </div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>​    但是，对于对象原型的操作，是很危险的事情，严重会导致导致原型链断裂。不过这次讨论的不是这个问题。</p>
@@ -409,11 +409,11 @@
 <p>​    解决方法：</p>
 <ol>
 <li><p>在使用for..in时，使用 hasOwnProperty() 对变量进行判断：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> params) &#123;</div><div class="line">  <span class="keyword">if</span>(params.hasOwnProperty(params[i]))</div><div class="line">    <span class="built_in">console</span>.log(params[i].length);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> <span class="keyword">params</span>) &#123;</div><div class="line">  <span class="keyword">if</span>(<span class="keyword">params</span>.hasOwnProperty(<span class="keyword">params</span>[i]))</div><div class="line">    console.log(<span class="keyword">params</span>[i].length);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>​</p>
 </li>
 <li><p>for循环的另一种写法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; params.length; i++) &#123;</div><div class="line">    <span class="built_in">console</span>.log(params[i].length);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(var <span class="built_in">i</span> = <span class="number">0</span>; <span class="built_in">i</span> &lt; params.<span class="built_in">length</span>; <span class="built_in">i</span>++) &#123;</div><div class="line">    console.log(params[i].length);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>使用框架封装好的接口，_.forEach，如果不想引入框架，可以自己写一个forEach函数。</p>
 </li>
@@ -575,7 +575,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -586,7 +586,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -597,7 +597,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
