@@ -124,7 +124,8 @@
 <meta property="og:image" content="http://wonius.top/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/setBooleanInternal.png">
 <meta property="og:image" content="http://wonius.top/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/TypeHandler.png">
 <meta property="og:image" content="http://wonius.top/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/getBoolean.png">
-<meta property="og:updated_time" content="2018-01-27T15:04:02.539Z">
+<meta property="og:image" content="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
+<meta property="og:updated_time" content="2018-03-07T07:54:38.519Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Mybatis时，对于Oracle中boolean类型的处理">
 <meta name="twitter:description" content="Mybatis+Oracle，对boolean类型的处理">
@@ -451,6 +452,7 @@
 <img src="/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/getBoolean.png" alt="getBoolean方法的实现" title="getBoolean方法的实现">
 <p>&emsp;&emsp;所以当你希望将ResultSet中的某个属性转换为boolean类型时，可以使用如下方式。enabled为字段名称。</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">decode</span><span class="params">(enabled, <span class="string">'Y'</span>, <span class="number">1</span>, <span class="string">'N'</span>, <span class="number">0</span>)</span></span> enabled</div></pre></td></tr></table></figure>
+<p><a rel="external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a><br>本作品由<a xmlns:cc="http://creativecommons.org/ns#" href="http://wonius.top/" property="cc:attributionName" rel="cc:attributionURL">Gavin</a>采用<a rel="external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。</p>
 
       
     </div>

@@ -120,10 +120,12 @@
 <meta property="og:url" content="http://wonius.top/2018/02/06/阿里云ECS升级HTTPS/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="阿里云主机，通过阿里云盾制作证书，开启SSL，使用https协议">
-<meta property="og:updated_time" content="2018-02-06T02:03:40.996Z">
+<meta property="og:image" content="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
+<meta property="og:updated_time" content="2018-03-07T07:54:00.032Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="阿里云ECS升级HTTPS">
 <meta name="twitter:description" content="阿里云主机，通过阿里云盾制作证书，开启SSL，使用https协议">
+<meta name="twitter:image" content="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
 
 
 
@@ -444,6 +446,7 @@
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;Valve className=<span class="string">"org.apache.catalina.valves.RemoteIpValve"</span>  </div><div class="line">remoteIpHeader=<span class="string">"X-Forwarded-For"</span>  </div><div class="line">protocolHeader=<span class="string">"X-Forwarded-Proto"</span>  </div><div class="line">protocolHeaderHttpsValue=<span class="string">"https"</span>/&gt;</div></pre></td></tr></table></figure>
 <h2 id="one-more-thing"><a href="#one-more-thing" class="headerlink" title="one more thing"></a>one more thing</h2><p>​    如果需要将所有请求强制使用https协议，在监听80端口处增加如下配置：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">rewrite</span><span class="regexp"> ^(.*)$</span> https://<span class="variable">$&#123;server_name&#125;</span><span class="variable">$1</span> <span class="literal">permanent</span>;</div></pre></td></tr></table></figure>
+<p><a rel="external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a><br>本作品由<a xmlns:cc="http://creativecommons.org/ns#" href="http://wonius.top/" property="cc:attributionName" rel="cc:attributionURL">Gavin</a>采用<a rel="external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。</p>
 
       
     </div>
