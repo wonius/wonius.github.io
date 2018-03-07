@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Java常见报错]]></title>
+    <url>%2F2018%2F03%2F06%2FJava%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99%2F</url>
+    <content type="text"><![CDATA[List(Arrays.asList)后add或remove出现UnsupportedOperationException当使用Arrays.asList()，将Array转换为List后，如果使用List.add()、List.remove()方法，会报改错。 根本原因是转换后创建的对象是一个ArrayList对象，该对象集成了AbstractList，没有实现add、remove方法，所以使用的时候会报错。 改正： new ArrayList&lt;&gt;(Arrays.asList());]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS安装NodeJS]]></title>
+    <url>%2F2018%2F02%2F06%2FCentOS%E5%AE%89%E8%A3%85NodeJS%2F</url>
+    <content type="text"><![CDATA[​ 最近需要在服务器上安装nodejs，网上搜了一下，文章都是转来转去，都出到9.x版本了还在讲如何装6.x，很无语。所以自己整理一下。 选择合适的版本​ yum安装自带nodjs版本太低，到node源码版本上选择合适的版本，我安装了最新版本，9.x 1curl -sL https://rpm.nodesource.com/setup_9.x | bash - 安装1yum install -y nodejs 检查node、npm版本12node -vnpm -v one more thing​ 除了在线安装，还有下载安装包、加压、编译安装的方法，操作繁琐，不推荐。]]></content>
+      <categories>
+        <category>NodeJS</category>
+      </categories>
+      <tags>
+        <tag>CentOS</tag>
+        <tag>NodeJS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[阿里云ECS升级HTTPS]]></title>
+    <url>%2F2018%2F02%2F06%2F%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%8D%87%E7%BA%A7HTTPS%2F</url>
+    <content type="text"><![CDATA[背景​ 最近系统准备开发小程序，增加流量入口，而小程序的后端接口需要支持https协议，顺便给网站安全升下级。 制作证书​ 阿里云上有证书服务，填写完整信息可以在线制作，省时省力。登录阿里云后，点开安全（云盾）- CA证书服务，点击右上角购买证书，填写信息，域名验证类型选择DNS，因为域名也是在阿里买的，所以勾上自动完成域名授权验证，完成。很快，10min左右就审核通过了。 配置安全组​ 在ECS中点击管理实例，添加安全组规则，公网入方向中加入443/443，地址段为0.0.0.0/0。 防火墙打开443端口​ 打开防火墙端口 123456#编辑vim /etc/sysconfig/iptables#添加记录-A INPUT -p tcp -m tcp --dport 443 -j ACCEPT #重启服务service iptables restart Nginx配置​ 将证书下载，在服务器上nginx目录下建立/cert，将证书解压，scp到/cert目录下： 123456789101112131415161718192021222324252627282930#在conf.d下建立单独conf文件vim ssl.yuming.conf#增加如下配置server &#123; listen 443; server_name 域名; ssl on; root html; index index.html; ssl_certificate /etc/nginx/cert/XXXXXXXXXX.pem; ssl_certificate_key /etc/nginx/cert/XXXXXXXXXXX.key; ssl_session_timeout 5m; ssl_protocols TLSv1 TLSv1.1 TLSv1.2; ssl_ciphers AESGCM:ALL:!DH:!EXPORT:!RC4:+HIGH:!MEDIUM:!LOW:!aNULL:!eNULL; ssl_prefer_server_ciphers on; #需要加上，一开始没加，访问一直404，找了半天原因 location / &#123; proxy_pass http://localhost:8080; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto $scheme; #与下方tomcat配置对应，解决request.getScheme()问题。不需要可以不用配 &#125;&#125;#重启nginxservice nginx restart Tomcat配置​ 做完上面的配置之后，可以通过https协议访问网站，不过代码中使用request.getScheme()取到的协议仍是http，不是https，有报错，还需在server.xml中的Engine模块中添加，需重启。 1234&lt;Valve className="org.apache.catalina.valves.RemoteIpValve" remoteIpHeader="X-Forwarded-For" protocolHeader="X-Forwarded-Proto" protocolHeaderHttpsValue="https"/&gt; one more thing​ 如果需要将所有请求强制使用https协议，在监听80端口处增加如下配置： 1rewrite ^(.*)$ https://$&#123;server_name&#125;$1 permanent;]]></content>
+      <categories>
+        <category>安全</category>
+      </categories>
+      <tags>
+        <tag>SSL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ssh连接保持会话]]></title>
+    <url>%2F2018%2F02%2F03%2Fssh%E8%BF%9E%E6%8E%A5%E4%BF%9D%E6%8C%81%E4%BC%9A%E8%AF%9D%2F</url>
+    <content type="text"><![CDATA[​ 相信玩服务器的朋友都遇到过这个问题，终端里的ssh连接服务器经常超时，自动断开链接； 而又不想专门下载一个ssh客户端，一方面是因为安全问题，另一方面是觉得有些鸡肋。所以查了一下能否将ssh的会话保持住，不自动断开连接，还真有。 ​ 主要有两个参数： 1234#发送保持活跃的数据包时间间隔，单位为秒，默认300秒ServerAliveInterval 60 #系统ssh服务维持最大的保活连接数量，默认是3ServerAliveCountMax 10 ​ 如果需要更改全部用户的设置，修改/etc/ssh/ssh_config中的文件； ​ 如果只改某一个用户中的设置，修改~/etc/ssh/ssh_config中的文件； PS: Host :Host后面加的是服务器ip、ip端，代表所有服务器]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>ssh</tag>
+        <tag>macOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Mysql常见问题]]></title>
+    <url>%2F2018%2F01%2F30%2FMysql%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[ERROR 1044 (42000): Access denied for user ‘’@’localhost’ to database ‘XXX’​ 今天在DB里用普通用户做操作时，会报这个错误。主要是因为user表中有匿名用户，将匿名用户删除就可以了。 12345678910111213141516#首先进入mysqlmysql -uroot -p#切换到mysql数据库user mysql;#查看当前用户select host, user, password from user;#删除匿名用户delete from user where user='';#写入flush privileges;#退出\q#重启服务service mysqld restart ERROR 1045 (28000): Access denied for user ‘root’@’localhost’ (using password: YES)​ 一般由于密码错误，或者有用户没有密码的情况。 可以先设置成无密码模式进入，再将有问题的用户进行调整。 1234567891011121314151617181920212223#修改my.cnfvim /etc/my.cnf#在[mysqld]中加入skip-grant-tables#保存退出后，重启mysqlservice mysqld restart#无需密码直接进入mysql#先看一下用户的状态，在判断要做什么操作select user, password, host from mysql.user;#删除不需要的用户drop from mysql.user where password='';#或者更新用户密码update mysql.user set password=password("你的新密码") where user="XXX";#写入flush privileges;#退出\q#重启服务service mysqld restart]]></content>
+      <categories>
+        <category>DB</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Mysql迁移]]></title>
+    <url>%2F2018%2F01%2F24%2FMysql%E8%BF%81%E7%A7%BB%2F</url>
+    <content type="text"><![CDATA[背景​ 生产环境上的Mysql服务器资源有限，需要迁移到另外一台资源更多的服务器。 准备工作 新服务器安装mysql（如果本身有Mysql，重装Mysql，一定要重启服务; 将mysql服务加入到开机自启列表; 停服，备份数据; 开始 目标服务器上新建Mysql用户、数据库； 传输备份脚本； 刚开始使用scp命令将备份脚本传输到目标服务器，使用Mysql命令恢复DB。备份脚本500多M，压缩后150多，采用这种方式实在是太慢。 摸索其他方式，最后通过Mysql Workbench里的Schema Transfer Wizard功能进行同步，大大缩短了同步时间。 应用连接Mysql进行验证，成功； 调优​ 迁移到新服务器之后，检测到应用响应时间过长，主要是因为数据库返回比较慢。对Mysql进行调优，主要是开启Mysql查询缓存，应用恢复正常响应速度。下面列举一些常用配置 查询缓存的设置 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#查看查询缓存的设置#如下参数都可是使用 select @@global.XXXX; 单独查询show variables like '%query_cache%';hava_query_cache 查询缓存是否可用，YES/NOquery_cache_limit 缓存大小，超过该值不会进行缓存，默认1Mquery_cache_min_res_unit 双刃剑，默认4KB，设置值大对大数据查询有好处，如果都是小数据查询，易造成内存碎片和浪费query_cache_size 缓存内存大小。 设置方法：set @@global.query_cache_size=1000000; query_cache_type 查询缓存是否使用，OFF(0)/ON(1)/DEMAND(2) 当DEMAND时，必须使用SQL_CACHE关键字才会缓存，如select SQL_CACHE user_name from user; 当ON时，不想使用缓存使用sql_no_cache关键字，如select sql_no_cache user_name from user;另外，SQL中有用到mysql函数也不会缓存。 设置方法： set session query_cache_type=off; query_cache_wlock_invalidate #查看查询缓存的状态show status like '%Qcache%';Qcache_free_blocks 目前处于空闲状态的 Query Cache中内存Block数量Qcache_free_memory 目前处于空闲状态的 Query Cache内存总量Qcache_hits Query Cache 命中次数Qcache_inserts 向 Query Cache中插入新的 Query Cache的次数，即没命中的次数Qcache_lowmem_prunes 当 Query Cache内存容量不走，删除老的 Query Cache给新对象的次数Qcache_not_cached 没有被Cache的SQL数，包含无法被Cache的SQL、由于query_cache_type设置不会被Cache的SQLQcache_queries_in_cache 目前 Query Cache中的SQL数量Qcache_total_blocks Query Cache中总Block数量#调优1. query_cache_min_res_unit的设置query_cache_min_res_unit = (query_cache_size - Qcache_free_memory)/ Qcache_queries_in_cache2. Qcache_Lowmem_prunes值较大，说明查询缓存区较小，需调大；3. Qcache_free_blocks 较多，说明内存碎片较多，需清理，FLUSH QUERY CACHE4. 查询缓存碎片率： Qcache_free_blocks / Qcache_total_blocks * 100%该值超过20%，使用FLUSH QUERY CACHE整理缓存碎片，或者调小query_cache_min_res_unit5. 查询缓存利用率：(query_cache_size - Qcache_free_memory) / query_cache_size * 100%该值在25%以下，说明query_cache_siz设置过大，可适当减小；该值在80%以上，且Qcache_lowmem_prunes &gt; 50，说明query_cache_siz有点小，或者碎片太大；6. 查询缓存命中率：(Qcache_hits - Qcache_inserts) / Qcache_hits * 100%该值较低，说明写操作比较频繁，或者有些碎片 ​ 其他配置 大部分应用，设置查询缓存的配置就可以满足需要了，如果不够可以设置其他参数 http://blog.csdn.net/nightelve/article/details/17393631 one more thing还有一点需要注意，有时设置了各项参数调整之后，Mysql反应还是很慢，这时候可以查看磁盘使用情况，有可能是磁盘容量不够，限制了读写导致查询效率低。]]></content>
+      <categories>
+        <category>DB</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+        <tag>运维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[工欲善其事，必先利其器]]></title>
+    <url>%2F2018%2F01%2F20%2F%E5%B7%A5%E6%AC%B2%E5%96%84%E5%85%B6%E4%BA%8B%EF%BC%8C%E5%BF%85%E5%85%88%E5%88%A9%E5%85%B6%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[MacOS 软件 简介 Typora md编辑利器，MacWeb也不错 番茄土豆(Pomotodo) 番茄钟+todoList，全平台支持 CheatSheet 所有软件快捷键，一查便知 IINA 视频播放器 ShadowsocksX 科学上网软件，需配置ss服务器 CleanMyMac 相当于电脑管家 VSSH、 SecureCRT for mac、 ssh tunnel mac、 SSH Shell for Mac ssh客户端 iOS App 简介 AppSo App推荐平台，而且经常会有iOS限免通知 XMind 思维导图软件 SsrConnectPro 科学上网软件，需配置ss服务器。之前用openwingy，可惜中国区下架了 Seed 英文资讯App，可以一键翻译中文 Podcasts iOS自带 Lingvist 英语单词学习软件 Seed 英文资讯软件，一键中英文对照 行程助手 旅游行程软件，可以帮助生成行程单，而且可以加好友共享 Android App 简介 影梭(shadowsocks) 科学上网软件，需配置ss服务器 AirDroid 文件传输工具，全平台支持 滴答清单 清单类App Win App 简介 everything 本地文件搜索软件，自带搜索秒成渣 Chrome App 简介 Secure Shell SSH插件 Vimium 通过vim方式控制浏览器 剪藏 使用印象笔记的都有吧 公众号 App 简介 36氪 互联网资讯 差评 比较杂，什么专题都有 鼠绘漫画网 漫画 混子曰 漫画看历史、聊车。不过现在好久才推一篇文章 旅行雷达 旅行类 少数派 会推一些App、以及使用文章 AI前线 AI类文章]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Mysql重装后无法正常启动]]></title>
+    <url>%2F2018%2F01%2F17%2FMysql%E9%87%8D%E8%A3%85%E5%90%8E%E6%97%A0%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%90%AF%E5%8A%A8%2F</url>
+    <content type="text"><![CDATA[背景​ 最近在做服务器上的DB迁移，服务器上的Mysql重新安装后无法正常启动服务，查看版本信息正常。 ​ 当使用mysql -uroot -p命令登录时，报 1ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) ​ 怀疑服务没有启动，启动服务时service mysqld start，报 123MySQL Daemon failed to start.Starting mysqld: [FAILED] 处理​ 百度了一下，有的说没有权限，需要授权，有的说需要在/etc/my.cnf中加配置。试过都不行。最后尝试将mysql所有文件删掉，杀掉所有进程重启，终于成功。 1234567//删除文件、自启服务、杀掉进程rm -rf /var/lib/mysql/rm /var/lock/subsys/mysqldkillall mysqld//启动服务service mysqld start one more thing​ 除了以上情况出现“ERROR 2002 (HY000) Can’t connect to local MySQL server through socket ‘/var/lib/mysql/mysql.sock’ (2)”报错，还有另外一种情况，已经安装好mysql服务，然后将mysql移动到另外的目录，启动mysql时找不到mysql.sock，是因为my.cnf中配置的路径还是原来的目录，将my.cnf中的配置修改就可以了 12345678910#编辑my.cnf，事先可以使用cp命令备份vim /etc/my.cnf#修改新的目录，我的是/data1/mysql[mysqld]datadir=/data1/mysqlsocket=/data1/mysql/mysql.sock[mysql]socket=/data1/mysql/mysql.sock]]></content>
+      <categories>
+        <category>DB</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux常用命令]]></title>
+    <url>%2F2018%2F01%2F16%2FLinux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[cat/grep/sed-文件内容查看 cat、head/tail组合 12345678910111213//查看前1000行head -n 1000 filename//查看后1000行tail -n 1000 filename//查看1000之后tail -n +1000 filename//实时查看tail -f filename//查看最后1000行数据cat filename | tail -n 1000//查看1000到3000行的数据cat file | head -n 3000 | tail -n +1000 grep 12345678//匹配文件中所有foo关键字上下1000行grep -C 1000 foo filename//匹配文件中所有foo关键字及前1000行grep -B 1000 foo filename//匹配文件中所有foo关键字及后1000行grep -A 1000 foo filename sed 12//显示第1000到3000行的数据sed -n '1000,3000p' filename find-文件搜索1find / -name filename ps-查找进程123ps -ef | grep XXXkill -9 pid scp-跨服务器拷贝1scp file user@localhost:dir tar-压缩、解压 压缩 12345678910111213#只打包tar -cvf file.tar file#使用gzip压缩，再打包tar -czf file.tar.gz file#使用bzip2压缩，再打包tar -cjf file.tar.bz2 file#使用compress压缩，再打包tar -cZf file.tar.Z file#rar压缩,需先安装rar服务rar a file.rar file#zip压缩，需先安装zip服务zip file.zip file 解压 12345678910111213#解压常规包tar -xvf file.tar#解压gzip包tar -xzvf file.tar.gz#解压bzip2包tar -xjvf file.tar.bz2#解压compress包tar -xZvf file.tar.Z#解压rarunrar e file.rar#解压zipunzip file.zip 参数解析 12345678910111213141516#必须参数，且只能选一个-c: 建立压缩文档-x: 解压-t: 查看文件-r: 压缩文件末尾追加文件-u: 更新原压缩文件中的文件#可选参数，根据需要添加-z: gzip-j: bz2-Z: compress-v: 显示所有过程-O: 将文件解开到标准输出#必选参数-f: 在所有参数最后，后面接文档名 创建软连接12#源文件指要被链接的文件，目标文件指新建的软连接ln -s 源文件 目标文件 匹配进程并kill12//查找hello相关进程并killps -ef |grep hello |awk '&#123;print $2&#125;'|xargs kill -9 sed: 替换文本12//将book替换为bookssed 's/book/books/g' file]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[02创建Android Things工程]]></title>
+    <url>%2F2018%2F01%2F16%2F02%E5%88%9B%E5%BB%BAAndroid-Things%E5%B7%A5%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[https://partner.android.com/things/console/#/ https://developer.android.com/things/training/first-device/create-studio-project.html https://developer.android.com/studio/projects/create-project.html &emsp;&emsp;]]></content>
+      <categories>
+        <category>IoT</category>
+      </categories>
+      <tags>
+        <tag>Android-Things</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux服务器常用服务]]></title>
+    <url>%2F2018%2F01%2F06%2FLinux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E7%94%A8%E6%9C%8D%E5%8A%A1%2F</url>
+    <content type="text"><![CDATA[加入定时任务1234567891011121314151617181920212223242526#创建shell脚本vim bakup.sh#赋予执行权限chmod -R 777 bakup.sh#加入定时任务vim /etc/crontab#最后一行加入。每天凌晨1点执行0 1 * * * root /usr/bakup.sh#重启crontab服务service crond restart#常用cron表达式 每五分钟执行 */5 * * * * 每小时执行 0 * * * * 每天执行 0 0 * * * 每周执行 0 0 * * 0 每月执行 0 0 1 * * 每年执行 0 0 1 1 * 加入自启动服务主要有两种方法，chkconfig命令和修改rc.local文件 chkconfig命令 12345678910111213//首先查看要启动的服务是否在chkconfig列表中chkconfig --list//如果列表中没有，需要单服务添加到列表chkconfig --add XX//打开自启动chkconfig mysqld on//取消自启动chkconfig mysqld offps:2~5为on，就是表明打开自启动开关了 修改/etc/rc.d/rc.local 12345//编辑rc.localvim /etc/rc.d/rc.local//添加服务/etc/rc.d/init.d/mysqld start ​]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>运维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[01Pico Pro Maker Kit 刷入Android-Things]]></title>
+    <url>%2F2018%2F01%2F06%2F01Pico-Pro-Maker-Kit-%E5%88%B7%E5%85%A5Android-Things%2F</url>
+    <content type="text"><![CDATA[背景​ 2017年底，参加了GDD上海活动，初次接触了Android Things，并且拿到了一块开发板，Pico Pro Maker Kit，拿回来后有事一直闲置。最近有时间掏出来研究下。 组装​ 组装很简单，按照官网教程做，很快就组装好了。 ​ https://developer.android.google.cn/things/hardware/imx7d-kit.html#install-at ​ 不过我拿到的是阉割版，没有Rainbow HAT，差评… 下载Android-Things​ 到官网下载Android things setup utility。可是官网上的链接一直无法下载，后来联系了google里的开发人员，发到我的邮箱才拿到。已经上传到百度网盘，可以直接下载。（之前在网上有搜到某同学上传到csdn，下载还需要积分，没积分的宝宝心里苦/(ㄒoㄒ)/~~） 链接: https://pan.baidu.com/s/1dgmIvk 密码: rsps 配置fastboot​ 在写入镜像之前，需要确保已安装SDK（我装了Android Studio，内置SDK。你也可以单独装）。将fastboot所在目录加入到环境变量中，不然无法成功执行fastboot命令。 查找fastboot文件目录，并确保fastboot有执行权限，并且属主正确： 加入环境变量： 1234567891011//我安装了ohmyzsh插件，所以需要编辑.zshrc。同学们根据实际配置修改vim ~/.zshrc//文件末尾中加入export PATH=$PATH:/Users/woniu/Library/Android/sdk/platform-tools//别忘了编译source ~/.zshrc//检测是否可用fastboot -h 写入Android-Things​ 下载Android things setup utility成功之后，解压，运行android-things-setup-utility-macos，按照提示选择，在线下载镜像并且刷入（需要科学上网。没有条件的同学也可以到我的百度云下载iot_imx7d_pico镜像，手动安装。链接: https://pan.baidu.com/s/1hticxNI 密码: 4rvc）。 从上图可以看到，最后报错了，原因是找不到fastboot命令。当我配置好fastboot后重新在线安装，一直无法下载。只好下载镜像手动安装。 下载iot_imx7d_pico后，解压，到该目录下执行： 1./flash-all.sh //Win系统下执行flash-all.bat 之后静待安装，完成后会自动重启，就可以了：]]></content>
+      <categories>
+        <category>IoT</category>
+      </categories>
+      <tags>
+        <tag>Android-Things</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[setTimeOut()与jQuery中的$.ajax合用，导致内存泄漏]]></title>
+    <url>%2F2017%2F12%2F18%2FsetTimeOut-%E4%B8%8EjQuery%E4%B8%AD%E7%9A%84-ajax%E5%90%88%E7%94%A8%EF%BC%8C%E5%AF%BC%E8%87%B4%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%2F</url>
+    <content type="text"><![CDATA[## &emsp;&emsp;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexo常用命令]]></title>
+    <url>%2F2017%2F12%2F18%2FHexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[创建新文档1hexo new filename 启动本地服务12#启动本地服务，然后访问http://localhost:4000/hexo s 重新编译并且发布1hexo g &amp;&amp; hexo d 清理缓存1hexo clean]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS安装zsh和oh-my-zsh]]></title>
+    <url>%2F2017%2F12%2F18%2FCentOs%E5%AE%89%E8%A3%85zsh%E5%92%8Coh-my-zsh%2F</url>
+    <content type="text"><![CDATA[查看系统当前的shell1echo $SHELL 返回结果如下： 1/bin/bash PS.默认的shell一般都是bash 查看bin下是否有zsh包1cat /etc/shells 返回结果如下： 123456/bin/sh/bin/bash/sbin/nologin/bin/dash/bin/tcsh/bin/csh PS：默认没有安装zsh 安装zsh包1yum -y install zsh 安装完成后查看shell列表： 1cat /etc/shells 返回结果如下： 1234567/bin/sh/bin/bash/sbin/nologin/bin/dash/bin/tcsh/bin/csh/bin/zsh 切换shell至zsh1chsh -s /bin/zsh chsh用法请自行查找，返回结果如下： 1Shell changed. 此时查看shell，已经更换为zsh： 1echo $SHELL 返回结果如下： 1/bin/bash 需要重启才能生效： 1sudo reboot 重启后查看shell： 1echo $SHELL 返回结果： 1/bin/zsh 安装git1yum -y install git 安装oh-my-zsh1wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh 出现如下界面显示安装成功： 1234567891011 __ __ ____ / /_ ____ ___ __ __ ____ _____/ /_ / __ \/ __ \ / __ `__ \/ / / / /_ / / ___/ __ \ / /_/ / / / / / / / / / / /_/ / / /_(__ ) / / / \____/_/ /_/ /_/ /_/ /_/\__, / /___/____/_/ /_/ /____/ ....is now installed!Please look over the ~/.zshrc file to select plugins, themes, and options.p.s. Follow us at https://twitter.com/ohmyzsh.p.p.s. Get stickers and t-shirts at http://shop.planetargon.com. 添加插件、换themes修改~/.zshrc文件 如果执行命令时提示==warning: cannot set LC_CTYPE locale==，修改profile文件： 1vim /etc/profile 在文件末尾处添加： 12export LC_ALL=en_US.UTF-8export LC_CTYPE=en_US.UTF-8 修改后更新： 1source /etc/profile]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>shell</tag>
+        <tag>zsh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CentOS彻底删除并重装、升级Mysql]]></title>
+    <url>%2F2017%2F12%2F18%2FCentOs%E5%BD%BB%E5%BA%95%E5%88%A0%E9%99%A4%E5%B9%B6%E9%87%8D%E8%A3%85Mysql%2F</url>
+    <content type="text"><![CDATA[删除Mysql1234567891011121314151617//备份数据mysqldump -u xxx -h xxx -P 3306 -p --all-databases &gt; databases.sqlmysqldump -u xxx -h xxx -P 3306 -p *** &gt; ***.sql//停止服务service mysqld stop//卸载相关软件yum remove mysql mysql-*//找到遗留文件，并删除find / -name mysqlsudo rm -rf **//找到依赖包，并卸载rpm -qa| grep mysqlyum remove *** 重装Mysql12//重新安装yum install mysql mysql-server mysql-libs 升级高版本Mysql123456789101112131415161718192021222324252627282930//查看系统信息，el版本、i686还是x86——64等uname -r//到镜像中找适合自己的镜像，拿到链接http://mirrors.sohu.com/mysql///下载镜像(适合我系统的镜像)weget http://mirrors.sohu.com/mysql/MySQL-5.7/mysql-5.7.18-1.el6.x86_64.rpm-bundle.tar//下载后解压tar xvf mysql-5.7.18-1.el6.x86_64.rpm-bundle.tar//依次安装服务yum localinstall mysql-***-common-***.rpm mysql-***-libs-***.rpm mysql-***-client-***.rmp mysql-***-server-***.rpm//查看mysql版本mysql -V//启动mysqlservice mysqld start//查看root用户初始密码grep 'temporary password' /var/log/mysqld.log (或/root/.mysql_secret)//使用密码登录之后，用下面命令修改密码ALTER USER ‘root'@'localhost' IDENTIFIED BY '你的密码'//将Mysql加到服务自启动chkconfig mysqld on!8.6I)?9tf6; &emsp;&emsp;]]></content>
+      <categories>
+        <category>DB</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+        <tag>CentOs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Mybatis使用association，结果返回数组]]></title>
+    <url>%2F2017%2F10%2F14%2FMybatis%E4%BD%BF%E7%94%A8association%EF%BC%8C%E7%BB%93%E6%9E%9C%E8%BF%94%E5%9B%9E%E6%95%B0%E7%BB%84-1%2F</url>
+    <content type="text"><![CDATA[关于association、collection标签网上很多帖子，这里就不赘述，直接讲问题。 问题我DAO接口返回的数据格式为 List&lt;Map&lt;String, Object&gt;&gt;，Map中的数据对象为如下，Book是一个实体。 1234567891011&lt;resultMap type="HashMap" id="PushInfo"&gt; &lt;result column="id" property="id"/&gt; &lt;result column="pushDate" property="pushDate"/&gt; &lt;association property="book" select="selectBookById" column="book_id" javaType="Book"/&gt; &lt;/resultMap&gt; &lt;select id="selectBookById" resultType="Book"&gt; SELECT book.*,user.nickName AS `createUser.nickName` FROM book LEFT JOIN `user` ON user.id = book.createUser WHERE book.id = #&#123;bookId&#125;&lt;/select&gt; 实际返回的结果，出现了格式不一致的问题: 1234567891011121314151617181920212223242526272829303132333435 &#123; "pushDate": 1494645459000, "book": &#123; //该处，book是实体对象，是正常的 "status": null, "createUser": null, "tags": "[唐家三少, 斗罗大陆, 玄幻, 网络小说, 小说, 三少的书，很经典, 奇幻, 魔幻小说]", "imgUrl": "https://img3.doubanio.com/lpic/s6847563.jpg", "enable": true, "author": "唐家三少", "doubanScore": 7.5, "createDate": 1420038859000, "name": "斗罗大陆（全14卷）", "content": "", "book_id": 3249 &#125; &#125;, &#123; "pushDate": 1494571741000, "book": [ //此时，却变成了book实体的数组对象 &#123; "status": null, "createUser": null, "tags": "[唐家三少, 斗罗大陆, 玄幻, 网络小说, 小说, 三少的书，很经典, 奇幻, 魔幻小说]", "imgUrl": "https://img3.doubanio.com/lpic/s6847563.jpg", "enable": true, "author": "唐家三少", "doubanScore": 7.5, "createDate": 1420038859000, "name": "斗罗大陆（全14卷）", "content": "", "book_id": 3249 &#125; ] &#125;··········· 解决方案新建了BookPush实体类，指定book类型。 12345&lt;resultMap type="BookPush" id="PushInfo"&gt; &lt;result column="id" property="id"/&gt; &lt;result column="pushDate" property="pushDate"/&gt; &lt;association property="book" select="selectBookById" column="book_id" javaType="Book"/&gt; &lt;/resultMap&gt; 分析仔细核查数据可以发现，当父查询返回的book_id有重复时，第二个book_id查出来的数据，返回的一定是一个数组。比如上面，book_id都为3249，第一个结果为实体，第二个结果为数组。 我猜测association标签在执行时，会将同一个事务中的数据缓存。先在缓存中查，发现有一个实体，所以就创建了数组，然后再执行sql，查出来的结果与缓存中的一样，所以数组中只有一个元素。 但是感觉跟数据类型也有关系 以后有空看看这部分的源码]]></content>
+      <categories>
+        <category>DB</category>
+      </categories>
+      <tags>
+        <tag>Mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[错误: 程序包com.sun.image.codec.jpeg不存在]]></title>
+    <url>%2F2017%2F09%2F18%2F%E9%94%99%E8%AF%AF-%E7%A8%8B%E5%BA%8F%E5%8C%85com-sun-image-codec-jpeg%E4%B8%8D%E5%AD%98%E5%9C%A8%2F</url>
+    <content type="text"><![CDATA[问题​ 最近项目中有个应用，需要将上传图片压缩为缩略图，用到了JPEGCodec等类。开发过程中一切正常，程序也能运行。当使用maven发布时，程序报错了： 过程​ 度娘了一下，maven的插件maven-compiler-plugin在编译的时候，没有加载/jre/lib内的包。而我们用到的JPEGCodec等类，恰好在/jre/lib/rt.jar包内。为了解决该问题，我们可以使用bootclasspath标签。该标签会将你指定路径下的包，通知到maven进行加载。 12345678910111213141516&lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt; &lt;version&gt;2.0.2&lt;/version&gt; &lt;configuration&gt; &lt;source&gt;1.7&lt;/source&gt; &lt;target&gt;1.7&lt;/target&gt; &lt;encoding&gt;UTF8&lt;/encoding&gt; &lt;!-- 设置指定包的路径 --&gt; &lt;compilerArguments&gt; &lt;verbose /&gt; &lt;!-- 有两点需要注意 --&gt; &lt;bootclasspath&gt;$&#123;env.JAVA_HOME&#125;/jre/lib/rt.jar:$&#123;env.JAVA_HOME&#125;/jre/lib/jce.jarr&lt;/bootclasspath&gt; &lt;/compilerArguments&gt; &lt;/configuration&gt;&lt;/plugin&gt; Attention: ${JAVA_HOME}设置为全局变量。我用的是Mac+IDEA，刚开始改过之后，IDEA的编辑器显示一直为红色。因为过度相信工具，所以一直以为全局变量设置的有问题，走了弯路。所以只要echo正常，就不要怀疑。 当bootclasspath标签内，有多个变量时，Mac/Linux系统以 ：分隔，Windows系统以 ; 分隔。否则也会有异常。 ​]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[IE8遇到的坑]]></title>
+    <url>%2F2017%2F08%2F23%2FIE8%E5%9D%91%2F</url>
+    <content type="text"><![CDATA[new Date()​ 当new Date()时，IE8与IE11产生的结果不同。 12345678910//IE8，date1格式为‘2017年8月23日’。当将该参数传递到rest接口时，无法绑定到date类型//另外，使用oracle的to_date()方法时，to_date('', 'yyyy"年"MM"月"dd"日"')var date1 = new Date();//IE11，date2格式为‘2017/8/23’var date2 =new Date();//为了兼容IE8和IE11，需在前端对日期做处理var date = new Date();var today = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDay(); for(var i in obj)​ IE8支持JS版本较低，Array.prototype中的函数无法使用。比如forEach、indexOf等。一般为了兼容，使在IE8下也可以使用这些函数，会重写Array.prototype，加上这些函数。 12345if(!Array.prototype.forEach) &#123; Array.prototype.forEach = function() &#123; &#125;&#125; ​ 但是，对于对象原型的操作，是很危险的事情，严重会导致导致原型链断裂。不过这次讨论的不是这个问题。 ​ 当IE8解析for in 方法时，会将forEach等添加到prototype上的方法当做变量，一起循环。所以循环体里如果对变量进行了操作，会导致报错。 123for(var i in params) &#123; console.log(params[i].length);&#125; ​ 解决方法： 在使用for..in时，使用 hasOwnProperty() 对变量进行判断： 1234for(var i in params) &#123; if(params.hasOwnProperty(params[i])) console.log(params[i].length);&#125; ​ for循环的另一种写法： 123for(var i = 0; i &lt; params.length; i++) &#123; console.log(params[i].length);&#125; 使用框架封装好的接口，_.forEach，如果不想引入框架，可以自己写一个forEach函数。]]></content>
+      <categories>
+        <category>BS</category>
+      </categories>
+      <tags>
+        <tag>IE8</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JSON转换]]></title>
+    <url>%2F2017%2F08%2F19%2FJSON%E8%BD%AC%E6%8D%A2%2F</url>
+    <content type="text"><![CDATA[JSON.parse(data)转换 当data为 ‘undefined’ 时，转换异常。为 ‘null’ 时，转换正常； 如果data不是key、value形式的字符串，是 ‘1234’ 这种只有一个值的字符串，也可以转换，转换后还是原值；]]></content>
+      <categories>
+        <category>积累</category>
+      </categories>
+      <tags>
+        <tag>JSON</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Node学习笔记]]></title>
+    <url>%2F2017%2F08%2F19%2FNode%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[Node服务器对于session的处理​ 最近项目中有用到Node，也在学习。开发过程中发现，Node对于session的处理方式与普通服务器不同。 Node服务器收到请求后，会为本次请求创建session，但是如果这次请求中没有对session的处理（放值等操作），在请求返回时不会做set-cookie操作，该次请求不会生成cookie。所以重复调用该请求每次都会生成一个新的session； 请求处理函数中对session有操作，返回时有set-cookie，生成cookie，下次请求时不会生成新的session； Node进程通信​ Node开始时是单线程，为了有效利用资源，后来增加了child_process可以多进程。后来又封装了cluster模块，更好的处理多进程。进程间通信主要依赖于监听。 1234567891011121314151617181920212223242526272829303132333435363738var cluster = require('cluster');var numCPUs = require('os').cpus().length;//主进程if (cluster.isMaster) &#123; console.log('[master] ' + "start master..."); //根据CPU数量创建子进程 for (var i = 0; i &lt; numCPUs; i++) &#123; cluster.fork(); &#125; //cluster监听 cluster.on('listening', function (worker, address) &#123; console.log('[master] ' + 'listening: worker' + worker.id + ',pid:' + worker.process.pid + ', Address:' + address.address + ":" + address.port); &#125;); Object.keys(cluster.workers).forEach(function (id) &#123; //监听所有的worker cluster.workers[id].on('message', function (msg) &#123; console.log('[master] ' + 'received msg:' + msg + 'from worker' + id); &#125;); //向子进程发送信息 cluster.workers[id].send('[master] ' + 'send msg ' + i + ' to worker' + worker.id); &#125;); &#125; else if (cluster.isWorker) &#123; //子进程 //向父进程发送数据 process.send(data); //监听数据 process.on('message', function(data) &#123; &#125;); //子进程都监听3000端口 http.createServer(app).listen(3000) ;&#125; cluster对象cluster的各种属性和函数 cluster.setttings:配置集群参数对象 cluster.isMaster:判断是不是master节点 cluster.isWorker:判断是不是worker节点 Event: ‘fork’: 监听创建worker进程事件 Event: ‘online’: 监听worker创建成功事件 Event: ‘listening’: 监听worker向master状态事件 Event: ‘disconnect’: 监听worker断线事件 Event: ‘exit’: 监听worker退出事件 Event: ‘setup’: 监听setupMaster事件 cluster.setupMaster([settings]): 设置集群参数 cluster.fork([env]): 创建worker进程 cluster.disconnect([callback]): 关闭worket进程 cluster.worker: 获得当前的worker对象 cluster.workers: 获得集群中所有存活的worker对象 worker对象worker的各种属性和函数：可以通过cluster.workers, cluster.worket获得。 worker.id: 进程ID号 worker.process: ChildProcess对象 worker.suicide: 在disconnect()后，判断worker是否自杀 worker.send(message, [sendHandle]): master给worker发送消息。注：worker给发master发送消息要用process.send(message) worker.kill([signal=’SIGTERM’]): 杀死指定的worker，别名destory() worker.disconnect(): 断开worker连接，让worker自杀 Event: ‘message’: 监听master和worker的message事件 Event: ‘online’: 监听指定的worker创建成功事件 Event: ‘listening’: 监听master向worker状态事件 Event: ‘disconnect’: 监听worker断线事件 Event: ‘exit’: 监听worker退出事件]]></content>
+      <categories>
+        <category>NodeJS</category>
+      </categories>
+      <tags>
+        <tag>NodeJS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Mac常用命令]]></title>
+    <url>%2F2017%2F08%2F15%2FMac%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[查看端口号1lsof -i tcp:port //port为端口号 设置软件安装来源为所有来源1sudo spctl --master-disable/--master-enable redis1redis-server //启动 mysql1mysql.server start //启动 postgresql1pg_ctl -d /usr/local/var/postgres -l /usr/local/var/postgres/server.log start //启动 远程传递文件1scp **.zip username@**.**.**.**:/目录]]></content>
+      <categories>
+        <category>MAC</category>
+      </categories>
+      <tags>
+        <tag>命令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Sql优化]]></title>
+    <url>%2F2017%2F08%2F13%2FSql%E4%BC%98%E5%8C%96%2F</url>
+    <content type="text"><![CDATA[什么情况下可以全表扫公司这边的要求是，Sql的查询数据小于50M时，可以全表扫。 假如一条数据大小为100B，50M对应的数据量为： $5010241024/100=524288$, 约50w条数据。所以当表中数据量小于50w时，可以全表扫。 Oracle分页众所周知，Oracle分页的写法比较麻烦，需要用嵌套查询的方式。举个🌰： 1234567891011Select * from ( select rownum rowno, t.* from (select id, name, salary from worker order by name desc) t //如果分页时需要排序，一定要在子查询里排序完成后，再分页 where rownum &lt;= 10 //&lt; 一定在子查询中。因为rownum是查询出数据之后再给rownum赋值。否则从第2页开始查询结果都为空) where rowno &gt;0; 另外还有一种写法，使用between： 1234select rownum, w.* from worker wwhere rownum between 1 and 10; 这种格式更加简单，不过效率可能会有不同。具体还是要看执行计划，选择最优。 批量更新时，如果参数不固定，造成硬解析比如我们有个场景，需要根据id批量更新某个值。一般都是会将id放到list中，将list作为参数传入。 123456update workerset status = "Y"where id in&lt;iterator open="(" close=")" conjunction=","&gt; #list[]#&lt;/iterator&gt; 因为入参是list，长度不固定，生成的sql也会不同，数据库在执行时每次都要生成新的执行计划，导致硬解析。 针对这种情况，我能想到的有如下两种方式处理： 将list长度固定 将大批量分成若干小批次，比如每批次更新100条，list定长为100，当最后的批次长度不够100时，后面的数据设置为空。这样生成的sql就是固定的，执行计划相同。 将整个sql循环 将整个sql循环，而不是参数。例如入参是有100个参数的list，循环创建出100条update语句，参数固定为一个，形式如下： 12345&lt;foreach collection=list item="item" index="index" open="begin" close=";end;" separator=";"&gt;update worker set status = "Y"where id = #&#123;item.id&#125;&lt;/foreach&gt; ​]]></content>
+      <categories>
+        <category>DB</category>
+      </categories>
+      <tags>
+        <tag>Sql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[技术栈]]></title>
+    <url>%2F2017%2F08%2F13%2F%E6%8A%80%E6%9C%AF%E6%A0%88%2F</url>
+    <content type="text"><![CDATA[名称 语言 领域 说明 Solr java 搜索引擎 Freemarker 模板 模板引擎，java端生成模板 Shiro java 安全框架 Rhino.js 基于Java的javascript实现。可以再java中调js，也可以在js中调用java growingio 无埋点 用户行为埋点 mybatis-plus 简化mybatis语句模板 Echarts、AntV（G2） js 图表 walle 部署 Android-Things IoT TensorFlow DL PaddlePaddle DL Docsify、Docute、Showdoc、MinDoc、apidoc API文档]]></content>
+      <categories>
+        <category>技术栈</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[IE8下，a标签触发onbeforeunload事件]]></title>
+    <url>%2F2017%2F08%2F03%2FIE8%E4%B8%8B%EF%BC%8Ca%E6%A0%87%E7%AD%BE%E8%A7%A6%E5%8F%91onbeforeunload%E4%BA%8B%E4%BB%B6%2F</url>
+    <content type="text"><![CDATA[背景&emsp;&emsp;今天开发过程中，遇到个奇怪现象。我们系统针对onbeforeunload事件做了处理，当该事件触发时弹框提示，由用户确认退出。当点击a标签时，IE8下触发了该事件。IE11与Chrome都没有问题。好吧，又是IE的坑。 分析&emsp;&emsp;网上搜索一番，原来点击a标签会以此触发如下事件 onclick-&gt;window.onbeforeunload-&gt;href 所以解决这个问题，在onclick的回调函数末尾，加 return false; ，阻止事件传递到onbeforeunload。 另外还有网友说，href=“###” 也可以解决该问题 补充根据 MSDN 中描述，IE 的 onbeforeunload 事件可由以下这些条件触发： 关闭当前浏览器窗口。 导航到另一个进入一个新的地址或选择一个喜欢的位置。 单击后退，前进，刷新，或主页按钮。 点击一个链接到新页面。 调用 超链接的 click 方法。 调用 document.write 方法。 调用 document.open 方法。 调用 document.close 方法。 调用 window.close 方法。 调用 window.open 方法，窗口名称设置值为 _self。 调用 window.navigate 或 NavigateAndFind 方法。 调用 location.replace 方法。 调用 location.reload 方法。 指定一个 location.href 属性的新值。 使用 submit 按键提交表单，或调用 form.submit 方法。]]></content>
+      <categories>
+        <category>BS</category>
+      </categories>
+      <tags>
+        <tag>onbeforeunload</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[常用Java程序片段]]></title>
+    <url>%2F2017%2F08%2F02%2FJava%20%E5%B8%B8%E7%94%A8Java%E7%A8%8B%E5%BA%8F%E7%89%87%E6%AE%B5%2F</url>
+    <content type="text"><![CDATA[字符串 &lt;-&gt; 整型123String a = String.valueOf(2); //integer to numeric stringint i = Integer.parseInt(a); //numeric string to an int 字符串 -&gt; 日期123456//Method 1java.util.Date = java.text.DateFormat.getDateInstance().parse(String date);//Method 2SimpleDateFormat sdf = new SimpleDateFormat(“dd.MM.yyyy”);Date date = sdf.parse(myString); util.Date -&gt; sql.Date12java.util.Date utilDate = new java.util.Date();java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime()); Array -&gt; Map1234String[][] countries = &#123;&#123; "United States", "New York" &#125;, &#123; "United Kingdom", "London" &#125;, &#123; "Netherland", "Amsterdam" &#125;, &#123; "Japan", "Tokyo" &#125;, &#123; "France", "Paris" &#125;&#125;; Map countryCapitals = ArrayUtils.toMap(countries); 向文件末尾添加内容1234567891011BufferedWriter out = null;try &#123; out = new BufferedWriter(new FileWriter(“fileName”, true)); out.write(“aString”);&#125; catch (IOException e) &#123; //error processing code&#125; finally &#123; if (out != null) &#123; out.close(); &#125;&#125; 得到当前方法的名字1String methodName = Thread.currentThread().getStackTrace()[1].getMethodName(); 发送邮件12345678910111213141516171819202122232425262728293031323334public void postMail( String recipients[ ], String subject, String message , String from) throws MessagingException &#123; boolean debug = false; //Set the host smtp address Properties props = new Properties(); props.put("mail.smtp.host", "smtp.example.com"); // create some properties and get the default Session Session session = Session.getDefaultInstance(props, null); session.setDebug(debug); // create a message Message msg = new MimeMessage(session); // set the from and to address InternetAddress addressFrom = new InternetAddress(from); msg.setFrom(addressFrom); InternetAddress[] addressTo = new InternetAddress[recipients.length]; for (int i = 0; i &lt; recipients.length; i++) &#123; addressTo[i] = new InternetAddress(recipients[i]); &#125; msg.setRecipients(Message.RecipientType.TO, addressTo); // Optional : You can also set your custom headers in the Email if you Want msg.addHeader("MyHeaderName", "myHeaderValue"); // Setting the Subject and Content Type msg.setSubject(subject); msg.setContent(message, "text/plain"); Transport.send(msg); &#125; 列出文件与目录123456789101112131415161718192021222324252627282930File dir = new File("directoryName"); String[] children = dir.list(); if (children == null) &#123; // Either dir does not exist or is not a directory &#125; else &#123; for (int i=0; i &lt; children.length; i++) &#123; // Get filename of file or directory String filename = children[i]; &#125; &#125; // It is also possible to filter the list of returned files. // This example does not return any files that start with `.'. FilenameFilter filter = new FilenameFilter() &#123; public boolean accept(File dir, String name) &#123; return !name.startsWith("."); &#125; &#125;; children = dir.list(filter); // The list of files can also be retrieved as File objects File[] files = dir.listFiles(); // This filter only returns directories FileFilter fileFilter = new FileFilter() &#123; public boolean accept(File file) &#123; return file.isDirectory(); &#125; &#125;; files = dir.listFiles(fileFilter); 创建图片缩略图1234567891011121314151617181920212223242526272829303132333435363738private void createThumbnail(String filename, int thumbWidth, int thumbHeight, int quality, String outFilename) throws InterruptedException, FileNotFoundException, IOException &#123; // load image from filename Image image = Toolkit.getDefaultToolkit().getImage(filename); MediaTracker mediaTracker = new MediaTracker(new Container()); mediaTracker.addImage(image, 0); mediaTracker.waitForID(0); // use this to test for errors at this point: System.out.println(mediaTracker.isErrorAny()); // determine thumbnail size from WIDTH and HEIGHT double thumbRatio = (double)thumbWidth / (double)thumbHeight; int imageWidth = image.getWidth(null); int imageHeight = image.getHeight(null); double imageRatio = (double)imageWidth / (double)imageHeight; if (thumbRatio &lt; imageRatio) &#123; thumbHeight = (int)(thumbWidth / imageRatio); &#125; else &#123; thumbWidth = (int)(thumbHeight * imageRatio); &#125; // draw original image to thumbnail image object and // scale it to the new size on-the-fly BufferedImage thumbImage = new BufferedImage(thumbWidth, thumbHeight, BufferedImage.TYPE_INT_RGB); Graphics2D graphics2D = thumbImage.createGraphics(); graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR); graphics2D.drawImage(image, 0, 0, thumbWidth, thumbHeight, null); // save thumbnail image to outFilename BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(outFilename)); JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out); JPEGEncodeParam param = encoder.getDefaultJPEGEncodeParam(thumbImage); quality = Math.max(0, Math.min(quality, 100)); param.setQuality((float)quality / 100.0f, false); encoder.setJPEGEncodeParam(param); encoder.encode(thumbImage); out.close(); &#125; 部分参考：http://coolshell.cn/articles/889.html]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Websocket+Stomp+RabbitMQ应用]]></title>
+    <url>%2F2017%2F08%2F02%2FWebsocket-Stomp-RabbitMQ%2F</url>
+    <content type="text"><![CDATA[背景&emsp;&emsp;最近开发中遇到实时接收关联系统信息的功能，关联系统通过RabbitMQ消息队列发布消息，之前还在想通过浏览器链接自家服务器，然后自家服务器订阅关联系统队列的架构。后来查了一下，不用这么麻烦，直接通过WebSocket+Stomp方式，即可实现浏览器直接订阅关联系统消息队列。]]></content>
+      <categories>
+        <category>积累</category>
+      </categories>
+      <tags>
+        <tag>WebSocket</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Mysql常用操作]]></title>
+    <url>%2F2017%2F07%2F30%2FMysql%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[MacOs，修改root用户密码mysql版本：5.7.18 1234567891011121314151617181920//先暂停服务mysql.server stop//启动安全模式mysqld_safe --user=mysql --skip-grant-tables//进入mysqlmysql -u root mysql//设置密码SET PASSWORD FOR 'root'@'localhost' = PASSWORD('新密码');//将变更刷入内存。该步骤我没有执行，也生效了FLUSH PRIVILEGES; //退出\q//重新启动服务mysql.server start 数据库备份、还原 备份某库 1234mysqldump -u用户名 -p密码 -h主机 数据库 a -w “sql条件” –lock-all-tables &gt; 路径mysqldump -uroot -p1234 dbname a –where “tag='88′” –no-create-info&gt; c:\a.sqlmysqldump -u root -p game &gt; /tmp/game_backup.sql 备份某几个库 1mysqldump -u root -p game game2 &gt; /tmp/game_backup.sql 备份所有库 1mysqldump -u root -p --all-databases &gt; /tmp/all_backup.sql 还原数据 1mysql -u root -p game &lt; /tmp/game_backup.sql 跨主机同步 12#前提是host2主机上已经创建targetDb数据库, -C指示主机间的数据传输使用数据压缩mysqldump --host=host1 --opt sourceDb| mysql --host=host2 -C targetDb 创建用户1234567CREATE USER username IDENTIFIED BY 'password';#限定在固定地址localhost登录CREATE USER username@localhost IDENTIFIED BY 'password';#当你在服务器主机上创建用户，为了方便远程连接，通常使用%代替，如：CREATE USER username@'%' IDENTIFIED BY 'password'; 授权1234GRANT ALL PRIVILEGES ON *.* TO user@localhost IDENTIFIED BY 'password';#授予某一些权限时GRANT select,insert ON *.* TO test1@'%' IDENTIFIED BY 'password'; 查看用户拥有的权限1show grants for user; 查看用户1select host, user from mysql.user; 创建库1CREATE DATABASE dbname; 删除库1DROP DATABASE dbname；]]></content>
+      <categories>
+        <category>DB</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java系列]]></title>
+    <url>%2F2017%2F07%2F29%2FJava%E7%B3%BB%E5%88%97%2F</url>
+    <content type="text"><![CDATA[Java虚拟机Blog 兰亭风雨|深入Java虚拟机 星空的专栏|深入理解Java虚拟机 &emsp;&emsp;]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Spring系列]]></title>
+    <url>%2F2017%2F07%2F29%2Fsrping%E7%B3%BB%E5%88%97%2F</url>
+    <content type="text"><![CDATA[Spring BootBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 Spring Boot 揭秘与实战 系列 catoop的专栏 方志朋 Spring Boot 专栏 Spring-boot集成 Website Spring Boot 官网 Spring Boot参考指南-中文版 Gradle 中文参考指南 慕课网视频 spring-boot-tutorials Code spring boot官方例子 spring-boot-starter SpringBoot-Learning favorites-web springboot-learning-example spring-boot-all Spring CloudBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 周立|Spring Cloud 方志朋 Spring Cloud 专栏 许进 跟我学Spring Cloud Website Spring Cloud 官网 Code spring-cloud-starter SpringCloud-Learning &emsp;&emsp;]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexo中的Next主题常用设置]]></title>
+    <url>%2F2017%2F07%2F21%2FHexo%E4%B8%AD%E7%9A%84NexT%E4%B8%BB%E9%A2%98%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[设置favicon.ico（网站logo）&emsp;&emsp;使用主题为next，按照主题内_config.yml所说，将icon放到hexo-site/source/目录下，没有生效。查了些资料，终于好了，设置如下： 找一副自己中意的图片，尽量简单，因为会缩成很小。利用在线工具制作icon，保存。我的大小是32*32，加载时大多时候很流畅，有时也会转啊转； 将保存的favicon.ico移动至hexo-site/themes/next/source/images目录下； 修改next配置文件_config.yml，如下： 1favicon: images/favicon.ico hexo g &amp;&amp; hexo s，就可以在本地看到效果了。调试满意后，hexo d发布； 利用Leancloud实现阅读统计，请求异常401&emsp;&emsp;如何配置leancloud在此不做赘述，next作者文档中写的已经很清晰了，可以先移步到NEXT看看。笔者的情况是，博客在github上，在万网买了个域名，绑定到github。 &emsp;&emsp;配置完成之后，发现阅读统计不能正常使用，开始以为缓存原因，过了两天，还是没好，打算解决这个问题。 &emsp;&emsp;分析过程： 接口报错401：Unauthorized，再次检查了一下AppKey、Web安全域名配置，都正常。比较纳闷，开始研究。 用chrome看了下counter的请求，Request URL竟然是https://api.us.leancloud.cn/****。看起来比较诡异，us不是美国吗。难道访问的url错了？ 重新登录leancloud，发现域名是https://leancloud.cn/，没有us。新开tab页，访问https://us.leancloud.cn/，也可以成功登录。登录后仔细对比，才发现原来leancloud右上角有个选项，可以选择国内节点、美国节点。两个节点中的应用是相互隔离的。我的next中配置的是国内节点中应用的配置，请求到美国节点认证，所以认证不通过。明白之后，我在美国节点中也创建了应用，把next中的相关配置更新，部署，果然可以正常显示。 &emsp;&emsp;个人猜测，由于github服务器在美国，所以当请求leancloud时，请求被分发到了美国节点上的服务器上。 补充：后来更新了NexT代码，又必须配置成国内节点才可以访问。 增加关键字、摘要&emsp;&emsp;建议通过在模板中增加属性的方式，添加关键字、摘要。 修改next/_config.yml配置文件: 12345auto_excerpt://开启摘要enable: true//默认文章的前150个字符作为摘要length: 150 修改hexo-site/scaffolds/post.md文件，增加keywords、description。 123456789---title: &#123;&#123; title &#125;&#125;date: &#123;&#123; date &#125;&#125;tags:categories: keywords: //摘要，填写后显示该字段的值。没有该地段，自动取文章前150个字符作为摘要description: --- 修改文章宽度&emsp;&emsp; 修改/next/source/css/_custom/custom.styl。该文件提供给用户配置自定义的样式，用户尽量避免对源代码的改动，以免牵一发而动全身。针对Mist、Muse风格，可以用如下配置12345// 修改成你期望的宽度$content-desktop = 1080px// 当视窗超过 1600px 后的宽度$content-desktop-large = 1200px 如果是Pisces风格，则需要123header&#123; width: 90%; &#125;.container .main-inner &#123; width: 90%; &#125;.content-wrap &#123; width: calc(100% - 260px); &#125; 新建文章时同时建立同名目录，保存图片12345678//编辑hexo目录下的_config.yml，修改如下配置post_asset_folder:true//新建文件hexo new 'helloworld'//将图片移动到helloworld目录中，并且在md中引用&#123;% asset_img 2.JPG 这是描述 %&#125;]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用Mybatis时，对于Oracle中boolean类型的处理]]></title>
+    <url>%2F2017%2F07%2F15%2F%E4%BD%BF%E7%94%A8Mybatis%E6%97%B6%E5%AF%B9%E4%BA%8EOracle%E4%B8%ADboolean%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%A4%84%E7%90%86%2F</url>
+    <content type="text"><![CDATA[DB为Oracle时，参数中存在boolean类型&emsp;&emsp;Oracle不支持boolean类型，针对此类型，Oracle的驱动包中做了转换处理，将true转换为 数字 1，false转换为 数字 0。 &emsp;&emsp;Mybatis解析sqlmapper文件时，调用TypeHandler类中的方法对类型进行处理，针对boolean类型的实现类为BooleanTypeHandler，如下，此类包含在ojdbc包中。其中setNonNullParameter方法为传参时，对入参的处理。 &emsp;&emsp;setBoolean的具体实现。我们可以看到，boolean类型最后转换为Int类型。 &emsp;&emsp;因此，在做insert、update操作时，用decode进行处理，即可将true/false转换成自己想要的值。我通常用Y/N表示状态。 1decode(#&#123;enabled&#125;, 1, 'Y', 'N') DB为Oracle时，将查询结果转换为boolean类型&emsp;&emsp;同样，由TypeHandler作为入口，查看Mybatis的处理方式。针对不同情况，有三种处理方法，根据入参大体可以猜到每个方法的作用，此处不做展开。挑选一个方法深入，最终找到getBoolean的实现。 &emsp;&emsp;下图中getBoolean方法属于ResultSet类，在JDK中rt.jar包中（我的环境为JDK1.8）。根据注释我们可以知道，如果值为如下类型的 0，返回结果为false；如果值为如下类型的1，返回true。 &emsp;&emsp;所以当你希望将ResultSet中的某个属性转换为boolean类型时，可以使用如下方式。enabled为字段名称。 1decode(enabled, 'Y', 1, 'N', 0) enabled]]></content>
+      <categories>
+        <category>DB</category>
+      </categories>
+      <tags>
+        <tag>Mybatis</tag>
+        <tag>Oracle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Git学习笔记]]></title>
+    <url>%2F2017%2F07%2F14%2FGit%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[更新代码时，本地冲突无法更新错误信息： error: Your local changes to the following files would be overwritten by merge: laravel/app/Services/ExpressService.php Please commit your changes or stash them before you merge. 解决办法： 12345git stashgit pullgit stash pop 如果希望更新时覆盖本地文件，命令如下： 12git reset --hardgit pull 回退到某个历史版本 首先查看要回退到哪个历史版本id： 1git log 回退。比如id为784dd834b250d634a7686f28a7c323d5c6402e90 12//该回退动作会将本地所有改动回退，所以一定要记得stash。git reset --hard 784dd834b250d634a7686f28a7c323d5c6402e90 如果想将回退的版本推送到远程服务器，再用push。只回退本地不用此操作: 1git push -f origin master 使用git stash命令进行代码暂存​ 当我们开发过程中，经常会遇到开发进行了一半，需要切换到另外一个分支的情况。stash命令可以将你现在所有变动进行暂存，后续切换回来时，从暂存中恢复就可以了。stash真的是很好用的工具。 123456789101112131415//暂存git stash//查看所有的暂存，暂存信息中包含分支名、stash版本号(形如stash@&#123;0&#125;)git stash list//恢复git stash apply //恢复到最近一次stash版本git stash pop //恢复到最近一次stash版本，并将栈中stash版本删掉git stash apply stash@&#123;0&#125; //恢复到stash@&#123;0&#125;版本git stash pop stash@&#123;0&#125; //恢复到stash@&#123;0&#125;版本，并将栈中stash@&#123;0&#125;版本删掉//删除git stash drop stash@&#123;0&#125; //将栈中stash@&#123;0&#125;版本删除git stash clear //清楚栈中所有stash版本 为了保持git栈的清洁，推荐大家使用git stash pop相关命令 分支命令123456789101112131415161718192021#查看远程分支git branch -a#查看本地分支git branch / git br#创建本地分支git branch test#本地分支推送到远程git push origin test#切换分支git checkout test#删除本地分支git br -d test#删除远程分支git branch -r -d origin/testgit push origin :test fatal: refusing to merge unrelated histories通常是因为本地仓库的历史记录，与远程仓库的历史记录不同，git认为是两个完全无关的项目，无法pull 解决办法： 1git pull origin master ----allow-unrelated-histories 代码提交到不同仓库 手动分别推送（如果需要两个库代码不同） 123456789//添加仓库，并设置别名git remote add github https://*****.gitgit remote add gitlab https://*****.git//推送git push github master:master//如果是新建的仓库，需要加-f参数git push -f github master:master 一键push所有库（两个库代码完全一样） 1234567//将新仓库URL绑定到origin上git remote set-url --add origin https://*****.git//pushgit push//查看git中配置的urlgit config -e 常用命令Git常用命令]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[外地驾照更换上海驾照]]></title>
+    <url>%2F2017%2F06%2F05%2F%E5%A4%96%E5%9C%B0%E9%A9%BE%E7%85%A7%E6%9B%B4%E6%8D%A2%E4%B8%8A%E6%B5%B7%E9%A9%BE%E7%85%A7%2F</url>
+    <content type="text"><![CDATA[&emsp;&emsp;驾照近期内过期，网上查了下，外地户口也可以在上海换驾照，省去回家的舟车劳顿。挺好。 Round 1&emsp;&emsp;因为住在浦东，查到杨高中1500号周六也上班。趁某周六朋友聚会，散场后赶紧坐公交过去，好在不远。站在杨高中路1500前，反复在地图上确认，是否来对地方了。面前是一片废墟。心中一群斯巴达草泥马在咆哮。但是我不能表现出来。 &emsp;&emsp;不能接受现实的大脑拒绝工作了10秒。重新聚焦的眼睛发现了残留的一面墙（我记得当时有拍，却找不到了），墙上是蓝底告示，还贴了警徽那种，特正式。上面写了上海所有车管所地址。杨高中路1500那一栏，被黑色签字笔划掉，一个箭头指向若干字，不羁、狂野、洒脱，依稀辨认出来，“康桥路1600号”。 KO. Round 2&emsp;&emsp;日常任务还是要做。第二次，心想进城，城里的车管所肯定靠谱。来到了南京西路1550号。这次楼不仅在，而且还有人😯。不禁为自己的智商点赞。瞧见别人进去都在门口登记，我也上去刷刷刷一通写。还没写完，里屋的50岁左右的大哥（现在这个年龄段比较尴尬，遇见人不知道该喊大哥，还是大爷。就大哥吧），“干啥干啥，你写啥，你来报案啊？”，“不是，我来换驾照。”，“早搬了，你去天目中路600号”。 &emsp;&emsp;喔。 &emsp;&emsp;好在有摩拜。30分钟后，我到门口了。这次我机灵了，先问了门口20来岁的大兄弟，“你好，这里能换驾照不？”，“去天目中路576号”。 &emsp;&emsp;喔。 &emsp;&emsp;好在这次不远，绕到前面拐个弯就是。确认了这里确实能换驾照后，取号，找了个位置坐下，吁了口气。舒坦，终于找对组织了。换驾照需要带上1寸照片、体检证明。没有体检证明，车管所也有体检服务，就是平常的身高、体重、视力等，可以吃早饭。我没有体检证明，等的时候问了下工作人员，上午11：30结束，下午1：30开始。由于几番折腾，我到时正好11：32。没办法，等呗，到下午体检完后再办。有了上午的经历，我没马上走。待会叫号到我时，问清楚体检、办理的流程，省的再出纰漏。到我了。身份证、驾照递过去。相对无言。噼里啪啦一通操作，说，“你是外地驾照？”，“昂”，“外地驾照更换得去哈密路1330号”。 &emsp;&emsp;噗…… &emsp;&emsp;马不停蹄、牛不停犁的，时间刻度往后拨70分钟，场景转换到哈密路1330号。门口很多疑似黄牛的人，没搭理，直接进去。好在这次确实找对组织了。下面是大家关心的流程： 先到10号楼拍照，25元； 然后到9号楼体检，60元（进门左边窗口领照片，表格，填表，共两张，缴费，照片千万不要弄丢了）； 出门左转，约20米，有牌子标识，上二楼体检； 体检完，工作人员会收一张，把另一张盖章后给你。然后到1号楼办理； 到1号楼后，先到二楼复印身份证，1元（有复印件不用去了）； 复印好后到一楼前台，他们会帮忙贴照片、取号（号是两张连着的，注意不要弄丢）； 等着叫号，办理（共有两个显示屏，1号显示器显示办理，2号显示器显示是取证）； 办理完后再到二楼缴费，10元。缴费后再到一楼，看2号显示器，等取证（缴费后才开始制作）； OK，可以回家了。 &emsp;&emsp;PS: 之前网上查到必须带居住证，实际没有用到。当时着急，还有别的事，陀螺似的办完也没细问。 吐槽&emsp;&emsp;时逢信息时代，身处大上海，办理的事情也是普罗大众都会遇到的事情。实际却一波三折。最开始打过电话咨询，工作人员说可以办，详情到官网上看，然后匆匆挂断。百度‘更换上海驾照’，搜索出来的信息基本没用，很多都是广告。有一个网站叫‘上海驾照服务网’，服务费竟然350元。我实际办理，总共花费不到100元。有网友说是黄牛网站，不知真假。另外搜索出来的很多帖子都写着‘上海驾照换证地点一览’。我就是看了这些信息，深受其害。这些信息不知是多久以前的，却被一转再转。大家如果要查询信息，最好到上海交通安全综合服务管理平台查询。在服务导航菜单里，可以选择业务，地图上显示可以办理的地址。针对外地驾照换上海驾照这种业务，却没有说明。也可能我没找到。 诗、和远方假如生活欺骗了你 假如生活欺骗了你​ 不要悲伤，不要心急 忧郁的日子里需要镇静 相信吧，快乐的日子将会来临 心儿永远向往着未来 现在却常是忧郁 一切都是瞬息 一切都将会过去 而那过去了的 就会成为亲切的怀恋 🙂]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2017%2F06%2F04%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
