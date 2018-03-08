@@ -120,10 +120,12 @@
 <meta property="og:url" content="http://wonius.top/2017/07/21/Hexo中的NexT主题常用设置/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="Hexo中的Next主题常用设置">
-<meta property="og:updated_time" content="2018-01-21T02:17:02.956Z">
+<meta property="og:image" content="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
+<meta property="og:updated_time" content="2018-03-07T11:23:50.307Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo中的Next主题常用设置">
 <meta name="twitter:description" content="Hexo中的Next主题常用设置">
+<meta name="twitter:image" content="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
 
 
 
@@ -465,6 +467,7 @@
 <h2 id="修改文章宽度"><a href="#修改文章宽度" class="headerlink" title="修改文章宽度"></a>修改文章宽度</h2><p>&emsp;&emsp; 修改/next/source/css/_custom/custom.styl。该文件提供给用户配置自定义的样式，用户尽量避免对源代码的改动，以免牵一发而动全身。<br>针对Mist、Muse风格，可以用如下配置<br><figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 修改成你期望的宽度</span></div><div class="line"><span class="meta"><span class="meta-keyword">$content</span>-desktop = 1080px</span></div><div class="line"></div><div class="line"><span class="comment">// 当视窗超过 1600px 后的宽度</span></div><div class="line"><span class="meta"><span class="meta-keyword">$content</span>-desktop-large = 1200px</span></div></pre></td></tr></table></figure></p>
 <p>如果是Pisces风格，则需要<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">header</span>&#123; <span class="attribute">width</span>: <span class="number">90%</span>; &#125;</div><div class="line"><span class="selector-class">.container</span> <span class="selector-class">.main-inner</span> &#123; <span class="attribute">width</span>: <span class="number">90%</span>; &#125;</div><div class="line"><span class="selector-class">.content-wrap</span> &#123; <span class="attribute">width</span>: <span class="built_in">calc</span>(100% - 260px); &#125;</div></pre></td></tr></table></figure></p>
 <h2 id="新建文章时同时建立同名目录，保存图片"><a href="#新建文章时同时建立同名目录，保存图片" class="headerlink" title="新建文章时同时建立同名目录，保存图片"></a>新建文章时同时建立同名目录，保存图片</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//编辑hexo目录下的_config.yml，修改如下配置</span></div><div class="line"><span class="string">post_asset_folder:</span><span class="literal">true</span></div><div class="line"></div><div class="line"><span class="comment">//新建文件</span></div><div class="line">hexo <span class="keyword">new</span> <span class="string">'helloworld'</span></div><div class="line"></div><div class="line"><span class="comment">//将图片移动到helloworld目录中，并且在md中引用</span></div><div class="line">&#123;% asset_img <span class="number">2.</span>JPG 这是描述 %&#125;</div></pre></td></tr></table></figure>
+<p><a rel="external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a><br>本作品由<a xmlns:cc="http://creativecommons.org/ns#" href="http://wonius.top/" property="cc:attributionName" rel="cc:attributionURL">Gavin</a>采用<a rel="external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。</p>
 
       
     </div>
