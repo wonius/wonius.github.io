@@ -121,7 +121,7 @@
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="Git常用命令">
 <meta property="og:image" content="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
-<meta property="og:updated_time" content="2018-03-07T11:23:34.642Z">
+<meta property="og:updated_time" content="2018-03-08T02:27:31.599Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git学习笔记">
 <meta name="twitter:description" content="Git常用命令">
@@ -459,7 +459,7 @@
 <h2 id="使用git-stash命令进行代码暂存"><a href="#使用git-stash命令进行代码暂存" class="headerlink" title="使用git stash命令进行代码暂存"></a>使用git stash命令进行代码暂存</h2><p>​    当我们开发过程中，经常会遇到开发进行了一半，需要切换到另外一个分支的情况。stash命令可以将你现在所有变动进行暂存，后续切换回来时，从暂存中恢复就可以了。stash真的是很好用的工具。</p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//暂存</span></div><div class="line">git stash</div><div class="line"></div><div class="line"><span class="comment">//查看所有的暂存，暂存信息中包含分支名、stash版本号(形如stash@&#123;0&#125;)</span></div><div class="line">git stash <span class="type">list</span></div><div class="line"></div><div class="line"><span class="comment">//恢复</span></div><div class="line">git stash apply  			     <span class="comment">//恢复到最近一次stash版本</span></div><div class="line">git stash pop					<span class="comment">//恢复到最近一次stash版本，并将栈中stash版本删掉</span></div><div class="line">git stash apply stash@&#123;<span class="number">0</span>&#125; 		 <span class="comment">//恢复到stash@&#123;0&#125;版本</span></div><div class="line">git stash pop stash@&#123;<span class="number">0</span>&#125;			 <span class="comment">//恢复到stash@&#123;0&#125;版本，并将栈中stash@&#123;0&#125;版本删掉</span></div><div class="line"></div><div class="line"><span class="comment">//删除</span></div><div class="line">git stash drop stash@&#123;<span class="number">0</span>&#125;		<span class="comment">//将栈中stash@&#123;0&#125;版本删除</span></div><div class="line">git stash clear					<span class="comment">//清楚栈中所有stash版本</span></div></pre></td></tr></table></figure>
 <p>为了保持git栈的清洁，推荐大家使用git stash pop相关命令</p>
-<h2 id="分支命令"><a href="#分支命令" class="headerlink" title="分支命令"></a>分支命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">查看远程分支</span></div><div class="line">git branch -a</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash">查看本地分支</span></div><div class="line">git branch / git br</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash">创建本地分支</span></div><div class="line">git branch test</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash">本地分支推送到远程</span></div><div class="line">git push origin test</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash">切换分支</span></div><div class="line">git checkout test</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash">删除本地分支</span></div><div class="line">git br -d test</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash">删除远程分支</span></div><div class="line">git branch -r -d origin/test</div><div class="line">git push origin :test</div></pre></td></tr></table></figure>
+<h2 id="分支命令"><a href="#分支命令" class="headerlink" title="分支命令"></a>分支命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">查看远程分支</span></div><div class="line">git branch -a</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash">查看本地分支</span></div><div class="line">git branch / git br</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash">创建本地分支</span></div><div class="line">git branch test</div><div class="line"><span class="meta">#</span><span class="bash">本地分支推送到远程</span></div><div class="line">git push origin test</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash">创建本地分支test1，并跟踪远程分支ci</span></div><div class="line">git checkout -b test1 origin/ci</div><div class="line"><span class="meta">#</span><span class="bash">推送到远程仓库</span></div><div class="line">git push origin test1</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash">切换分支</span></div><div class="line">git checkout test</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash">删除本地分支</span></div><div class="line">git br -d test</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash">删除远程分支</span></div><div class="line">git branch -r -d origin/test</div><div class="line">git push origin :test</div></pre></td></tr></table></figure>
 <h2 id="fatal-refusing-to-merge-unrelated-histories"><a href="#fatal-refusing-to-merge-unrelated-histories" class="headerlink" title="fatal: refusing to merge unrelated histories"></a>fatal: refusing to merge unrelated histories</h2><p>通常是因为本地仓库的历史记录，与远程仓库的历史记录不同，git认为是两个完全无关的项目，无法pull</p>
 <p>解决办法：</p>
 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull origin <span class="keyword">master</span> <span class="title">----allow-unrelated-histories</span></div></pre></td></tr></table></figure>
@@ -630,7 +630,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -641,7 +641,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -652,7 +652,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
