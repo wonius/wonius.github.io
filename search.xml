@@ -105,9 +105,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[ssh连接保持会话]]></title>
+    <title><![CDATA[SSH设置]]></title>
     <url>%2F2018%2F02%2F03%2Fssh%E8%BF%9E%E6%8E%A5%E4%BF%9D%E6%8C%81%E4%BC%9A%E8%AF%9D%2F</url>
-    <content type="text"><![CDATA[​ 相信玩服务器的朋友都遇到过这个问题，终端里的ssh连接服务器经常超时，自动断开链接； 而又不想专门下载一个ssh客户端，一方面是因为安全问题，另一方面是觉得有些鸡肋。所以查了一下能否将ssh的会话保持住，不自动断开连接，还真有。 ​ 主要有两个参数： 1234#发送保持活跃的数据包时间间隔，单位为秒，默认300秒ServerAliveInterval 60 #系统ssh服务维持最大的保活连接数量，默认是3ServerAliveCountMax 10 ​ 如果需要更改全部用户的设置，修改/etc/ssh/ssh_config中的文件； ​ 如果只改某一个用户中的设置，修改~/etc/ssh/ssh_config中的文件； PS: Host :Host后面加的是服务器ip、ip端，代表所有服务器 本作品由Gavin采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。]]></content>
+    <content type="text"><![CDATA[会话保持​ 相信玩服务器的朋友都遇到过这个问题，终端里的ssh连接服务器经常超时，自动断开链接； 而又不想专门下载一个ssh客户端，一方面是因为安全问题，另一方面是觉得有些鸡肋。所以查了一下能否将ssh的会话保持住，不自动断开连接，还真有。 ​ 主要有两个参数： 1234#发送保持活跃的数据包时间间隔，单位为秒，默认300秒ServerAliveInterval 60 #系统ssh服务维持最大的保活连接数量，默认是3ServerAliveCountMax 10 ​ 如果需要更改全部用户的设置，修改/etc/ssh/ssh_config中的文件； ​ 如果只改某一个用户中的设置，修改~/etc/ssh/ssh_config中的文件； PS: Host :Host后面加的是服务器ip、ip端，代表所有服务器 设置别名​ 为经常访问的服务器设置别名，就不用每次都写全信息了。同样，还是编辑ssh_config文件 123456789//添加，后保存退出Host prdHostName 120.52.145.22User logIdentitiesOnly yesIdentityFile ~/.ssh/id_rsa.pub//使用别名登录(如果不行重启下ssh服务:sudo service ssh reload)ssh prd 其中，Host、HostName、User为必须，其他可以根据自己需要配置。各属性含义如下： Host 别名 HostName 指定登录的主机名或IP地址 Port 指定登录的端口号 User 登录用户名 IdentityFile 登录的公钥文件（如果是pem文件，可以将pem添加到ssh，ssh-add命令） IdentitiesOnly 只接受SSH key 登录 PubkeyAuthentication 本作品由Gavin采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。]]></content>
       <categories>
         <category>运维</category>
       </categories>
@@ -259,7 +259,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[错误: 程序包com.sun.image.codec.jpeg不存在]]></title>
+    <title></title>
     <url>%2F2017%2F09%2F18%2F%E9%94%99%E8%AF%AF-%E7%A8%8B%E5%BA%8F%E5%8C%85com-sun-image-codec-jpeg%E4%B8%8D%E5%AD%98%E5%9C%A8%2F</url>
     <content type="text"><![CDATA[问题​ 最近项目中有个应用，需要将上传图片压缩为缩略图，用到了JPEGCodec等类。开发过程中一切正常，程序也能运行。当使用maven发布时，程序报错了： 过程​ 度娘了一下，maven的插件maven-compiler-plugin在编译的时候，没有加载/jre/lib内的包。而我们用到的JPEGCodec等类，恰好在/jre/lib/rt.jar包内。为了解决该问题，我们可以使用bootclasspath标签。该标签会将你指定路径下的包，通知到maven进行加载。 12345678910111213141516&lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt; &lt;version&gt;2.0.2&lt;/version&gt; &lt;configuration&gt; &lt;source&gt;1.7&lt;/source&gt; &lt;target&gt;1.7&lt;/target&gt; &lt;encoding&gt;UTF8&lt;/encoding&gt; &lt;!-- 设置指定包的路径 --&gt; &lt;compilerArguments&gt; &lt;verbose /&gt; &lt;!-- 有两点需要注意 --&gt; &lt;bootclasspath&gt;$&#123;env.JAVA_HOME&#125;/jre/lib/rt.jar:$&#123;env.JAVA_HOME&#125;/jre/lib/jce.jarr&lt;/bootclasspath&gt; &lt;/compilerArguments&gt; &lt;/configuration&gt;&lt;/plugin&gt; Attention: ${JAVA_HOME}设置为全局变量。我用的是Mac+IDEA，刚开始改过之后，IDEA的编辑器显示一直为红色。因为过度相信工具，所以一直以为全局变量设置的有问题，走了弯路。所以只要echo正常，就不要怀疑。 当bootclasspath标签内，有多个变量时，Mac/Linux系统以 ：分隔，Windows系统以 ; 分隔。否则也会有异常。 ​ ​ 本作品由Gavin采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。]]></content>
       <categories>

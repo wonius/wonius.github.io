@@ -113,18 +113,18 @@
 
 
 
-<meta name="description" content="ssh连接保持会话，不自动中断">
+<meta name="description" content="SSH连接保持会话、设置别名">
 <meta name="keywords" content="Linux,ssh,macOS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ssh连接保持会话">
+<meta property="og:title" content="SSH设置">
 <meta property="og:url" content="http://wonius.top/2018/02/03/ssh连接保持会话/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
-<meta property="og:description" content="ssh连接保持会话，不自动中断">
+<meta property="og:description" content="SSH连接保持会话、设置别名">
 <meta property="og:image" content="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
-<meta property="og:updated_time" content="2018-03-07T07:56:56.599Z">
+<meta property="og:updated_time" content="2018-03-17T16:06:03.627Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ssh连接保持会话">
-<meta name="twitter:description" content="ssh连接保持会话，不自动中断">
+<meta name="twitter:title" content="SSH设置">
+<meta name="twitter:description" content="SSH连接保持会话、设置别名">
 <meta name="twitter:image" content="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
 
 
@@ -161,7 +161,7 @@
 
 
 
-  <title>ssh连接保持会话 | Gavin's Notes</title>
+  <title>SSH设置 | Gavin's Notes</title>
   
 
 
@@ -348,7 +348,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ssh连接保持会话</h1>
+          <h1 class="post-title" itemprop="name headline">SSH设置</h1>
         
 
         <div class="post-meta">
@@ -400,7 +400,7 @@
 
           
           
-             <span id="/2018/02/03/ssh连接保持会话/" class="leancloud_visitors" data-flag-title="ssh连接保持会话">
+             <span id="/2018/02/03/ssh连接保持会话/" class="leancloud_visitors" data-flag-title="SSH设置">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -418,7 +418,7 @@
 
           
               <div class="post-description">
-                  ssh连接保持会话，不自动中断
+                  SSH连接保持会话、设置别名
               </div>
           
 
@@ -435,13 +435,25 @@
       
 
       
-        <p>​    相信玩服务器的朋友都遇到过这个问题，终端里的ssh连接服务器经常超时，自动断开链接； 而又不想专门下载一个ssh客户端，一方面是因为安全问题，另一方面是觉得有些鸡肋。所以查了一下能否将ssh的会话保持住，不自动断开连接，还真有。</p>
+        <h2 id="会话保持"><a href="#会话保持" class="headerlink" title="会话保持"></a>会话保持</h2><p>​    相信玩服务器的朋友都遇到过这个问题，终端里的ssh连接服务器经常超时，自动断开链接； 而又不想专门下载一个ssh客户端，一方面是因为安全问题，另一方面是觉得有些鸡肋。所以查了一下能否将ssh的会话保持住，不自动断开连接，还真有。</p>
 <p>​    主要有两个参数：</p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#发送保持活跃的数据包时间间隔，单位为秒，默认<span class="number">300</span>秒</div><div class="line">ServerAliveInterval <span class="number">60</span> </div><div class="line">#系统ssh服务维持最大的保活连接数量，默认是<span class="number">3</span></div><div class="line">ServerAliveCountMax <span class="number">10</span></div></pre></td></tr></table></figure>
 <p>​    如果需要更改全部用户的设置，修改/etc/ssh/ssh_config中的文件；</p>
 <p>​    如果只改某一个用户中的设置，修改~/etc/ssh/ssh_config中的文件；</p>
 <p><strong><em>PS:</em></strong></p>
 <p>Host <em> :Host后面加的是服务器ip、ip端，</em>代表所有服务器</p>
+<h2 id="设置别名"><a href="#设置别名" class="headerlink" title="设置别名"></a>设置别名</h2><p>​    为经常访问的服务器设置别名，就不用每次都写全信息了。同样，还是编辑ssh_config文件</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//添加，后保存退出</span></div><div class="line">Host prd</div><div class="line">HostName <span class="number">120.52</span><span class="number">.145</span><span class="number">.22</span></div><div class="line">User log</div><div class="line">IdentitiesOnly yes</div><div class="line">IdentityFile  ~/.ssh/id_rsa.pub</div><div class="line"></div><div class="line"><span class="comment">//使用别名登录(如果不行重启下ssh服务:sudo service ssh reload)</span></div><div class="line">ssh prd</div></pre></td></tr></table></figure>
+<p>其中，Host、HostName、User为必须，其他可以根据自己需要配置。各属性含义如下：</p>
+<ul>
+<li>Host 别名</li>
+<li>HostName 指定登录的主机名或IP地址</li>
+<li>Port 指定登录的端口号</li>
+<li>User 登录用户名</li>
+<li>IdentityFile 登录的公钥文件（如果是pem文件，可以将pem添加到ssh，ssh-add命令）</li>
+<li>IdentitiesOnly 只接受SSH key 登录</li>
+<li>PubkeyAuthentication</li>
+</ul>
 <p><a rel="external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a><br>本作品由<a xmlns:cc="http://creativecommons.org/ns#" href="http://wonius.top/" property="cc:attributionName" rel="cc:attributionURL">Gavin</a>采用<a rel="external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。</p>
 
       
@@ -575,8 +587,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -668,6 +689,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#会话保持"><span class="nav-number">1.</span> <span class="nav-text">会话保持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置别名"><span class="nav-number">2.</span> <span class="nav-text">设置别名</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
