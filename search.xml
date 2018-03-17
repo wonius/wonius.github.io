@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[技能图谱-Apollo自动驾驶]]></title>
+    <url>%2F2018%2F03%2F17%2F%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1-Apollo%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%2F</url>
+    <content type="text"><![CDATA[​ 今年参加AICon大会时，参与活动获得了一些知识图谱手册，在这里分享给大家 本作品由Gavin采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。]]></content>
+      <categories>
+        <category>技能图谱</category>
+      </categories>
+      <tags>
+        <tag>Apollo</tag>
+        <tag>技能图谱</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[技能图谱-大数据]]></title>
+    <url>%2F2018%2F03%2F17%2F%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1-%E5%A4%A7%E6%95%B0%E6%8D%AE%2F</url>
+    <content type="text"><![CDATA[​ 今年参加AICon大会时，参与活动获得了一些知识图谱手册，在这里分享给大家 本作品由Gavin采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。]]></content>
+      <categories>
+        <category>技能图谱</category>
+      </categories>
+      <tags>
+        <tag>技能图谱</tag>
+        <tag>大数据</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[技能图谱-机器学习]]></title>
+    <url>%2F2018%2F03%2F17%2F%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%2F</url>
+    <content type="text"><![CDATA[​ 今年参加AICon大会时，参与活动获得了一些知识图谱手册，在这里分享给大家 本作品由Gavin采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。]]></content>
+      <categories>
+        <category>技能图谱</category>
+      </categories>
+      <tags>
+        <tag>技能图谱</tag>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[技能图谱-前端]]></title>
+    <url>%2F2018%2F03%2F17%2F%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1-%E5%89%8D%E7%AB%AF%2F</url>
+    <content type="text"><![CDATA[​ 今年参加AICon大会时，参与活动获得了一些知识图谱手册，在这里分享给大家 本作品由Gavin采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。]]></content>
+      <categories>
+        <category>技能图谱</category>
+      </categories>
+      <tags>
+        <tag>技能图谱</tag>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[AWS免费EC2创建记录]]></title>
     <url>%2F2018%2F03%2F17%2FAWS%E5%85%8D%E8%B4%B9EC2%E5%88%9B%E5%BB%BA%E8%AE%B0%E5%BD%95%2F</url>
     <content type="text"><![CDATA[注册AWS账号如果没有AWS账号，请先注册。注意AWS账号与Amazon商城是两套账号系统，不能共用。AWS主页 选择机房选择加州机房，速度快： 选择系统镜像注意选择免费套餐： 选择实例同样，选择免费套餐： 实例配置默认配置就可以： 设置存储默认5G，可以调整到30G： 设置标签即实例标签，用来区分不同实例。这里我添加了Name标签，并为该实例命名： 设置安全组设置开放的接口，将常用的ssh、http、https协议开放： 设置秘钥对设置秘钥对，并下载。使用ssh访问服务器时用于校验： 设置秘钥对设置秘钥对，并下载。使用ssh访问服务器时用于校验： SSH访问创建完成后，查看创建好的实例，系统会介绍如何通过ssh访问服务器。将上一步下载好的pem文件保存到本地，设置权限，并在该目录下使用命令进行链接： 每次都要到pem所在目录访问，比较麻烦。可以将pem加入到ssh中，就可以在任何目录下访问了： 连接服务器： 本作品由Gavin采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。]]></content>
