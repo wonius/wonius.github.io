@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[SSH配置证书登录服务器]]></title>
-    <url>%2F2018%2F03%2F18%2FSSH%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8%2F</url>
+    <title><![CDATA[SSH通过Key登录服务器]]></title>
+    <url>%2F2018%2F03%2F18%2FSSH%E9%80%9A%E8%BF%87Key%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8%2F</url>
     <content type="text"><![CDATA[服务器上创建访问用户该步为可选，根据个人需要创建。不推荐直接使用root用户。 12345678910//创建用户adduser gavin//设置密码passwd gavin//增加sudo权限vim /etc/sudoers//添加下行gavin ALL=(ALL) ALL 通常为了增加密码复杂度，我会用在线生成密码工具 生成密码 本机创建秘钥/公钥对（Key）网上很多帖子都直接用ssh-keygen，或者ssh-keygen -t rsa，这样会生成名为id_rsa的Key（默认名），这样当你每次需要生成新的Key时，会覆盖以前的。如果你的所有认证共用一组Key，也可以，不过不推荐。 下为用rsa算法，在~/.ssh/下生成名为id_rsa.qcloud，注释为qcloud的Key： 12//qcloud对应腾讯云，可以根据自己情况取名ssh-keygen -t rsa -f ~/.ssh/id_rsa.qcloud -C "qcloud" 然后一路Enter（可以选择输入passphrase） 12cd ~/.ssh/ll 查看生成的id_rsa.qcloud、id_rsa.qcloud.pub 将公钥拷贝到服务器私钥存本地，公钥放到服务器 123456789//用gavin用户登录服务器，创建.ssh目录mkdir .ssh//本机拷贝到服务器scp -r ~/.ssh/id_rsa.qcloud.pub gavin@XXX.XXX.XXX.XXX:/home/gavin/.ssh/authorized_keys//修改服务器上.ssh、authorized_keys权限，仅当前用户可操作chmod 700 .sshchmod 600 .ssh/authorized_keys 服务器开启秘钥验证1234567891011vim /etc/ssh/sshd_config//开启秘钥验证RSAAuthentication yesPubkeyAuthentication yes//另外可以关闭密码验证PasswordAuthentication no//重启服务service sshd restart 本机设置别名前面设置完，就可以无密码登录了。不过每次都要输入服务器ip，比较反人类。可以进一步设置别名，使体验更友好。 12345678vim /etc/ssh/ssh_config (或者~/.ssh/ssh_config)//添加，保存退出Host qcloudHostName XXX.XXX.XXX.XXXUser gavinIdentitiesOnly yesIdentityFile ~/.ssh/id_rsa.pub 如此设置之后，就可以直接ssh qcloud登录，方便快捷。 本作品由Gavin采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可。]]></content>
       <categories>
         <category>运维</category>

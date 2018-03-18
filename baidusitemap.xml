@@ -4,11 +4,11 @@
 
     
   <url>
-    <loc>http://wonius.top/2018/03/18/SSH%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
-    <lastmod>2018-03-18T15:25:52.932Z</lastmod>
+    <loc>http://wonius.top/2018/03/18/SSH%E9%80%9A%E8%BF%87Key%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <lastmod>2018-03-18T15:27:32.763Z</lastmod>
     <data>
         <display>
-        <title>SSH配置证书登录服务器</title>
+        <title>SSH通过Key登录服务器</title>
         <pubTime>2018-03-18T12:40:52.000Z</pubTime>
         
         <tag>Linux</tag>
