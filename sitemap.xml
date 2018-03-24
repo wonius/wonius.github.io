@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://wonius.top/2017/12/18/CentOs%E5%AE%89%E8%A3%85zsh%E5%92%8Coh-my-zsh/</loc>
+    
+    <lastmod>2018-03-24T02:31:19.792Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wonius.top/2017/07/21/Hexo%E4%B8%AD%E7%9A%84NexT%E4%B8%BB%E9%A2%98%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/</loc>
     
     <lastmod>2018-03-24T02:06:08.324Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://wonius.top/2017/12/18/Hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
     
     <lastmod>2018-03-24T02:05:46.968Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wonius.top/2017/12/18/CentOs%E5%AE%89%E8%A3%85zsh%E5%92%8Coh-my-zsh/</loc>
-    
-    <lastmod>2018-03-24T02:04:02.132Z</lastmod>
     
   </url>
   
