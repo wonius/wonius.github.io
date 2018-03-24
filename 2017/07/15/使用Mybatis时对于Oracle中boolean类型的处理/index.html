@@ -131,8 +131,7 @@
 <meta property="og:image" content="http://wonius.top/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/setBooleanInternal.png">
 <meta property="og:image" content="http://wonius.top/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/TypeHandler.png">
 <meta property="og:image" content="http://wonius.top/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/getBoolean.png">
-<meta property="og:image" content="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
-<meta property="og:updated_time" content="2018-03-07T07:54:38.519Z">
+<meta property="og:updated_time" content="2018-03-24T09:46:51.966Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Mybatis时，对于Oracle中boolean类型的处理">
 <meta name="twitter:description" content="Mybatis+Oracle，对boolean类型的处理">
@@ -436,7 +435,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  394
+                  357
                 </span>
               
 
@@ -490,7 +489,6 @@
 <img src="/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/getBoolean.png" alt="getBoolean方法的实现" title="getBoolean方法的实现">
 <p>&emsp;&emsp;所以当你希望将ResultSet中的某个属性转换为boolean类型时，可以使用如下方式。enabled为字段名称。</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">decode</span><span class="params">(enabled, <span class="string">'Y'</span>, <span class="number">1</span>, <span class="string">'N'</span>, <span class="number">0</span>)</span></span> enabled</div></pre></td></tr></table></figure>
-<p><a rel="external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a><br>本作品由<a xmlns:cc="http://creativecommons.org/ns#" href="http://wonius.top/" property="cc:attributionName" rel="cc:attributionURL">Gavin</a>采用<a rel="external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。</p>
 
       
     </div>
@@ -503,6 +501,35 @@
     
       <div>
       
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/">使用Mybatis时，对于Oracle中boolean类型的处理</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Gavin 的个人博客">Gavin</a></p>
+  <p><span>发布时间:</span>2017年07月15日 - 22:07</p>
+  <p><span>最后更新:</span>2018年03月24日 - 17:03</p>
+  <p><span>原始链接:</span><a href="/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/" title="使用Mybatis时，对于Oracle中boolean类型的处理">http://wonius.top/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://wonius.top/2017/07/15/使用Mybatis时对于Oracle中boolean类型的处理/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>
+</div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          icon: "success",
+          showConfirmButton: true
+          });
+        });
+    });
+</script>
+
 
       </div>
     
@@ -513,7 +540,7 @@
     
       <div>
         <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>Donate comment here</div>
+  <div></div>
   <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
     <span>打赏</span>
   </button>
@@ -777,7 +804,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.9k</span>
+    <span title="Site words total count">14.4k</span>
   
 </div>
 

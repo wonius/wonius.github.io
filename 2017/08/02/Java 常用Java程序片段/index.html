@@ -127,12 +127,10 @@
 <meta property="og:url" content="http://wonius.top/2017/08/02/Java 常用Java程序片段/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="常用Java程序片段">
-<meta property="og:image" content="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
-<meta property="og:updated_time" content="2018-03-15T06:15:14.379Z">
+<meta property="og:updated_time" content="2018-03-24T09:44:20.810Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用Java程序片段">
 <meta name="twitter:description" content="常用Java程序片段">
-<meta name="twitter:image" content="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
 
 
 
@@ -432,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  703
+                  656
                 </span>
               
 
@@ -483,8 +481,6 @@
 <h2 id="列出文件与目录"><a href="#列出文件与目录" class="headerlink" title="列出文件与目录"></a>列出文件与目录</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">File dir = <span class="keyword">new</span> File(<span class="string">"directoryName"</span>);  </div><div class="line">  String[] children = dir.list();  </div><div class="line">  <span class="keyword">if</span> (children == <span class="keyword">null</span>) &#123;  </div><div class="line">      <span class="comment">// Either dir does not exist or is not a directory  </span></div><div class="line">  &#125; <span class="keyword">else</span> &#123;  </div><div class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; children.length; i++) &#123;  </div><div class="line">          <span class="comment">// Get filename of file or directory  </span></div><div class="line">          String filename = children[i];  </div><div class="line">      &#125;  </div><div class="line">  &#125;  </div><div class="line">  </div><div class="line">  <span class="comment">// It is also possible to filter the list of returned files.  </span></div><div class="line">  <span class="comment">// This example does not return any files that start with `.'.  </span></div><div class="line">  FilenameFilter filter = <span class="keyword">new</span> FilenameFilter() &#123;  </div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">accept</span><span class="params">(File dir, String name)</span> </span>&#123;  </div><div class="line">          <span class="keyword">return</span> !name.startsWith(<span class="string">"."</span>);  </div><div class="line">      &#125;  </div><div class="line">  &#125;;  </div><div class="line">  children = dir.list(filter);  </div><div class="line">  </div><div class="line">  <span class="comment">// The list of files can also be retrieved as File objects  </span></div><div class="line">  File[] files = dir.listFiles();  </div><div class="line">  </div><div class="line">  <span class="comment">// This filter only returns directories  </span></div><div class="line">  FileFilter fileFilter = <span class="keyword">new</span> FileFilter() &#123;  </div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">accept</span><span class="params">(File file)</span> </span>&#123;  </div><div class="line">          <span class="keyword">return</span> file.isDirectory();  </div><div class="line">      &#125;  </div><div class="line">  &#125;;  </div><div class="line">  files = dir.listFiles(fileFilter);</div></pre></td></tr></table></figure>
 <h2 id="创建图片缩略图"><a href="#创建图片缩略图" class="headerlink" title="创建图片缩略图"></a>创建图片缩略图</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">createThumbnail</span><span class="params">(String filename, <span class="keyword">int</span> thumbWidth, <span class="keyword">int</span> thumbHeight, <span class="keyword">int</span> quality, String outFilename)</span>  </span></div><div class="line">        <span class="keyword">throws</span> InterruptedException, FileNotFoundException, IOException  </div><div class="line">    &#123;  </div><div class="line">        <span class="comment">// load image from filename  </span></div><div class="line">        Image image = Toolkit.getDefaultToolkit().getImage(filename);  </div><div class="line">        MediaTracker mediaTracker = <span class="keyword">new</span> MediaTracker(<span class="keyword">new</span> Container());  </div><div class="line">        mediaTracker.addImage(image, <span class="number">0</span>);  </div><div class="line">        mediaTracker.waitForID(<span class="number">0</span>);  </div><div class="line">        <span class="comment">// use this to test for errors at this point: System.out.println(mediaTracker.isErrorAny());  </span></div><div class="line">  </div><div class="line">        <span class="comment">// determine thumbnail size from WIDTH and HEIGHT  </span></div><div class="line">        <span class="keyword">double</span> thumbRatio = (<span class="keyword">double</span>)thumbWidth / (<span class="keyword">double</span>)thumbHeight;  </div><div class="line">        <span class="keyword">int</span> imageWidth = image.getWidth(<span class="keyword">null</span>);  </div><div class="line">        <span class="keyword">int</span> imageHeight = image.getHeight(<span class="keyword">null</span>);  </div><div class="line">        <span class="keyword">double</span> imageRatio = (<span class="keyword">double</span>)imageWidth / (<span class="keyword">double</span>)imageHeight;  </div><div class="line">        <span class="keyword">if</span> (thumbRatio &lt; imageRatio) &#123;  </div><div class="line">            thumbHeight = (<span class="keyword">int</span>)(thumbWidth / imageRatio);  </div><div class="line">        &#125; <span class="keyword">else</span> &#123;  </div><div class="line">            thumbWidth = (<span class="keyword">int</span>)(thumbHeight * imageRatio);  </div><div class="line">        &#125;  </div><div class="line">  </div><div class="line">        <span class="comment">// draw original image to thumbnail image object and  </span></div><div class="line">        <span class="comment">// scale it to the new size on-the-fly  </span></div><div class="line">        BufferedImage thumbImage = <span class="keyword">new</span> BufferedImage(thumbWidth, thumbHeight, BufferedImage.TYPE_INT_RGB);  </div><div class="line">        Graphics2D graphics2D = thumbImage.createGraphics();  </div><div class="line">        graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);  </div><div class="line">        graphics2D.drawImage(image, <span class="number">0</span>, <span class="number">0</span>, thumbWidth, thumbHeight, <span class="keyword">null</span>);  </div><div class="line">  </div><div class="line">        <span class="comment">// save thumbnail image to outFilename  </span></div><div class="line">        BufferedOutputStream out = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(outFilename));  </div><div class="line">        JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);  </div><div class="line">        JPEGEncodeParam param = encoder.getDefaultJPEGEncodeParam(thumbImage);  </div><div class="line">        quality = Math.max(<span class="number">0</span>, Math.min(quality, <span class="number">100</span>));  </div><div class="line">        param.setQuality((<span class="keyword">float</span>)quality / <span class="number">100.0f</span>, <span class="keyword">false</span>);  </div><div class="line">        encoder.setJPEGEncodeParam(param);  </div><div class="line">        encoder.encode(thumbImage);  </div><div class="line">        out.close();  </div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <h2 id="按照规则取目录下的文件名数组"><a href="#按照规则取目录下的文件名数组" class="headerlink" title="按照规则取目录下的文件名数组"></a>按照规则取目录下的文件名数组</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">File</span> rootFile = <span class="keyword">new</span> <span class="built_in">File</span>(<span class="string">"/XX/XX"</span>);</div><div class="line"><span class="keyword">String</span>[] dirList = rootFile.list(<span class="keyword">new</span> FilenameFilter() &#123;</div><div class="line">    @Override</div><div class="line">    <span class="keyword">public</span> <span class="keyword">boolean</span> accept(<span class="built_in">File</span> dir, <span class="keyword">String</span> name) &#123;</div><div class="line">    	<span class="comment">//XXX开通的文件</span></div><div class="line">        <span class="built_in">if</span> (name.startsWith(<span class="string">"XXX"</span>)) &#123;</div><div class="line">            <span class="built_in">return</span> true;</div><div class="line">        &#125; <span class="built_in">else</span> &#123;</div><div class="line">            <span class="built_in">return</span> false;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>部分参考：<a href="http://coolshell.cn/articles/889.html" target="_blank" rel="external">http://coolshell.cn/articles/889.html</a></p>
-<p><a rel="external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a><br>本作品由<a xmlns:cc="http://creativecommons.org/ns#" href="http://wonius.top/" property="cc:attributionName" rel="cc:attributionURL">Gavin</a>采用<a rel="external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。</p>
 
       
     </div>
@@ -497,6 +493,35 @@
     
       <div>
       
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2017/08/02/Java 常用Java程序片段/">常用Java程序片段</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Gavin 的个人博客">Gavin</a></p>
+  <p><span>发布时间:</span>2017年08月02日 - 23:08</p>
+  <p><span>最后更新:</span>2018年03月24日 - 17:03</p>
+  <p><span>原始链接:</span><a href="/2017/08/02/Java 常用Java程序片段/" title="常用Java程序片段">http://wonius.top/2017/08/02/Java 常用Java程序片段/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://wonius.top/2017/08/02/Java 常用Java程序片段/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>
+</div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          icon: "success",
+          showConfirmButton: true
+          });
+        });
+    });
+</script>
+
 
       </div>
     
@@ -507,7 +532,7 @@
     
       <div>
         <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>Donate comment here</div>
+  <div></div>
   <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
     <span>打赏</span>
   </button>
@@ -769,7 +794,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.9k</span>
+    <span title="Site words total count">14.4k</span>
   
 </div>
 
