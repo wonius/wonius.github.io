@@ -123,14 +123,14 @@
 <meta name="description" content="Hexo常用命令">
 <meta name="keywords" content="Hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo常用命令">
+<meta property="og:title" content="Hexo相关配置">
 <meta property="og:url" content="http://wonius.top/2017/12/18/Hexo常用命令/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="Hexo常用命令">
 <meta property="og:image" content="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
-<meta property="og:updated_time" content="2018-03-24T02:05:46.968Z">
+<meta property="og:updated_time" content="2018-03-24T08:39:08.445Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo常用命令">
+<meta name="twitter:title" content="Hexo相关配置">
 <meta name="twitter:description" content="Hexo常用命令">
 <meta name="twitter:image" content="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
 
@@ -168,7 +168,7 @@
 
 
 
-  <title>Hexo常用命令 | Gavin's Notes</title>
+  <title>Hexo相关配置 | Gavin's Notes</title>
   
 
 
@@ -355,7 +355,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hexo常用命令</h1>
+          <h1 class="post-title" itemprop="name headline">Hexo相关配置</h1>
         
 
         <div class="post-meta">
@@ -407,7 +407,7 @@
 
           
           
-             <span id="/2017/12/18/Hexo常用命令/" class="leancloud_visitors" data-flag-title="Hexo常用命令">
+             <span id="/2017/12/18/Hexo常用命令/" class="leancloud_visitors" data-flag-title="Hexo相关配置">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -432,7 +432,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  88
+                  298
                 </span>
               
 
@@ -477,6 +477,55 @@
 <h2 id="启动本地服务"><a href="#启动本地服务" class="headerlink" title="启动本地服务"></a>启动本地服务</h2><figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#启动本地服务，然后访问http:<span class="comment">//localhost:4000/</span></span></div><div class="line">hexo s</div></pre></td></tr></table></figure>
 <h2 id="重新编译并且发布"><a href="#重新编译并且发布" class="headerlink" title="重新编译并且发布"></a>重新编译并且发布</h2><figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo g <span class="meta">&amp;&amp; hexo d</span></div></pre></td></tr></table></figure>
 <h2 id="清理缓存"><a href="#清理缓存" class="headerlink" title="清理缓存"></a>清理缓存</h2><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">hexo clean</span></div></pre></td></tr></table></figure>
+<h2 id="部署到vps"><a href="#部署到vps" class="headerlink" title="部署到vps"></a>部署到vps</h2><p>一般使用Hexo搭建blog，都是采用Hexo+Github的结构，但是由于Github屏蔽了百度的爬虫，所以建好的blog百度搜不到，满足不了知识分享（装逼）的需求。解决办法有很多，最简单的就是买一块vps，将blog直接推送到自己的vps上。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="string">//安装hexo-deployer-rsync</span></div><div class="line"><span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-deployer-rsync</span> <span class="bullet">--save</span></div><div class="line"></div><div class="line"><span class="string">//修改Hexo中的_confg.xml的deploy</span></div><div class="line"><span class="attr">- type:</span> <span class="string">git</span></div><div class="line"><span class="attr">  repo:</span></div><div class="line"><span class="attr">      github:</span> <span class="attr">https://github.com/XXXX/xxxx.github.io.git</span> </div><div class="line"><span class="attr">      coding:</span> <span class="attr">https://git.coding.net/XXXX/xxxx.git</span></div><div class="line"><span class="attr">  branch:</span> <span class="string">master</span></div><div class="line"><span class="attr">- type:</span> <span class="string">rsync</span></div><div class="line"><span class="attr">  host:</span> <span class="number">140.143</span><span class="number">.251</span><span class="number">.238</span></div><div class="line"><span class="attr">  user:</span> <span class="string">root</span></div><div class="line"><span class="attr">  root:</span> <span class="string">/data/www/hexo</span></div><div class="line"><span class="attr">  port:</span> <span class="number">22</span></div><div class="line"><span class="attr">  delete:</span> <span class="literal">true</span></div><div class="line"><span class="attr">  verbose:</span> <span class="literal">true</span></div><div class="line"><span class="attr">  ignore_errors:</span> <span class="literal">false</span></div><div class="line">  </div><div class="line"><span class="string">//生成并部署</span></div><div class="line"><span class="string">hexo</span> <span class="string">g</span> <span class="string">&amp;&amp;</span> <span class="string">hexo</span> <span class="string">d</span></div></pre></td></tr></table></figure>
+<p>参数讲解：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>host</strong></td>
+<td>远程主机的地址</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>user</strong></td>
+<td>使用者名称</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>root</strong></td>
+<td>远程主机的根目录</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>port</strong></td>
+<td>端口</td>
+<td>22</td>
+</tr>
+<tr>
+<td><strong>delete</strong></td>
+<td>删除远程主机上的旧文件</td>
+<td>true</td>
+</tr>
+<tr>
+<td><strong>verbose</strong></td>
+<td>显示调试信息</td>
+<td>true</td>
+</tr>
+<tr>
+<td><strong>ignore_errors</strong></td>
+<td>忽略错误</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
 <p><a rel="external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a><br>本作品由<a xmlns:cc="http://creativecommons.org/ns#" href="http://wonius.top/" property="cc:attributionName" rel="cc:attributionURL">Gavin</a>采用<a rel="external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。</p>
 
       
@@ -484,6 +533,16 @@
     
     
     
+
+
+
+    
+      <div>
+      
+
+      </div>
+    
+
 
     
 
@@ -718,7 +777,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建新文档"><span class="nav-number">1.</span> <span class="nav-text">创建新文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动本地服务"><span class="nav-number">2.</span> <span class="nav-text">启动本地服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重新编译并且发布"><span class="nav-number">3.</span> <span class="nav-text">重新编译并且发布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清理缓存"><span class="nav-number">4.</span> <span class="nav-text">清理缓存</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建新文档"><span class="nav-number">1.</span> <span class="nav-text">创建新文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动本地服务"><span class="nav-number">2.</span> <span class="nav-text">启动本地服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重新编译并且发布"><span class="nav-number">3.</span> <span class="nav-text">重新编译并且发布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清理缓存"><span class="nav-number">4.</span> <span class="nav-text">清理缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署到vps"><span class="nav-number">5.</span> <span class="nav-text">部署到vps</span></a></li></ol></div>
             
 
           </div>
@@ -752,7 +811,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.7k</span>
+    <span title="Site words total count">15.9k</span>
   
 </div>
 
