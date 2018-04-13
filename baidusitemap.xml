@@ -4,14 +4,36 @@
 
     
   <url>
+    <loc>http://wonius.top/2018/04/13/Redis%E6%89%B9%E9%87%8F%E6%94%B9%E5%90%8Dkey/</loc>
+    <lastmod>2018-04-13T03:39:05.939Z</lastmod>
+    <data>
+        <display>
+        <title>Redis批量改名key</title>
+        <pubTime>2018-04-13T03:04:12.000Z</pubTime>
+        
+        <tag>Redis</tag>
+         
+         
+           
+             
+              <breadCrumb title="DB" url="http://wonius.top/categories/DB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wonius.top/2018/03/30/MacOS%E6%90%AD%E5%BB%BAAria2/</loc>
-    <lastmod>2018-03-30T11:51:43.192Z</lastmod>
+    <lastmod>2018-04-11T15:34:15.824Z</lastmod>
     <data>
         <display>
         <title>MacOS搭建Aria2</title>
         <pubTime>2018-03-30T06:09:16.000Z</pubTime>
         
         <tag>MacOS</tag>
+         
+        <tag>Aria2</tag>
          
          
            
@@ -151,9 +173,9 @@
         <title>技能图谱-大数据</title>
         <pubTime>2018-03-17T13:22:00.000Z</pubTime>
         
-        <tag>技能图谱</tag>
-         
         <tag>大数据</tag>
+         
+        <tag>技能图谱</tag>
          
          
            
@@ -217,9 +239,9 @@
         <title>技能图谱-Apollo自动驾驶</title>
         <pubTime>2018-03-17T13:22:29.000Z</pubTime>
         
-        <tag>Apollo</tag>
-         
         <tag>技能图谱</tag>
+         
+        <tag>Apollo</tag>
          
          
            
