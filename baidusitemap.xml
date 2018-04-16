@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://wonius.top/2018/04/13/Redis%E6%89%B9%E9%87%8F%E6%94%B9%E5%90%8Dkey/</loc>
-    <lastmod>2018-04-16T08:12:01.424Z</lastmod>
+    <lastmod>2018-04-16T14:38:31.929Z</lastmod>
     <data>
         <display>
         <title>Redis批量改名key</title>
@@ -387,9 +387,9 @@
         <title>CentOS彻底删除并重装、升级Mysql</title>
         <pubTime>2017-12-18T14:05:18.000Z</pubTime>
         
-        <tag>Mysql</tag>
-         
         <tag>CentOS</tag>
+         
+        <tag>Mysql</tag>
          
          
            

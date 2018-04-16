@@ -127,7 +127,7 @@
 <meta property="og:url" content="http://wonius.top/2018/04/13/Redis批量改名key/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="Redis批量改名key">
-<meta property="og:updated_time" content="2018-04-16T08:12:01.424Z">
+<meta property="og:updated_time" content="2018-04-16T14:38:31.929Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis批量改名key">
 <meta name="twitter:description" content="Redis批量改名key">
@@ -471,7 +471,7 @@
       
 
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>​    最近接到一个任务，需要将redis中的key进行rename。之前的结构为XXX-XXX-XXX-<em>，替换为XXX:XXX:XXX:\</em>。</p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>​    最近接到一个任务，需要将redis中的key进行rename。之前的结构为XXX-XXX-XXX-*，替换为XXX:XXX:XXX:*。</p>
 <h2 id="思路-amp-方案"><a href="#思路-amp-方案" class="headerlink" title="思路&amp;方案"></a>思路&amp;方案</h2><p>​    第一反应想到是用正则，匹配出对应的key，然后利用redis中也有rename命令，支持重命名。尽量都在redis中处理。</p>
 <p>​    后来调研了一下，redis中没有类似于find的命令😩，唯一可用的是keys命令，所以调整方案，使用keys+pattern匹配出所有对应的key，流向shell，shell中对key循环，转换key名。</p>
 <p>​    其中还有一个坑，keys虽然支持正则，但是貌似支持*，?、+、^都不支持。库中新结构、老结构的数据都有，所以只能枚举了</p>
@@ -504,7 +504,7 @@
   <p><span>本文标题:</span><a href="/2018/04/13/Redis批量改名key/">Redis批量改名key</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gavin 的个人博客">Gavin</a></p>
   <p><span>发布时间:</span>2018年04月13日 - 11:04</p>
-  <p><span>最后更新:</span>2018年04月16日 - 16:04</p>
+  <p><span>最后更新:</span>2018年04月16日 - 22:04</p>
   <p><span>原始链接:</span><a href="/2018/04/13/Redis批量改名key/" title="Redis批量改名key">http://wonius.top/2018/04/13/Redis批量改名key/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://wonius.top/2018/04/13/Redis批量改名key/"  aria-label="复制成功！"></i></span>
   </p>
