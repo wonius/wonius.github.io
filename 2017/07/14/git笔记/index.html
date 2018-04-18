@@ -127,7 +127,7 @@
 <meta property="og:url" content="http://wonius.top/2017/07/14/Git笔记/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="Git常用命令">
-<meta property="og:updated_time" content="2018-03-24T09:45:30.167Z">
+<meta property="og:updated_time" content="2018-04-18T09:39:04.808Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git学习笔记">
 <meta name="twitter:description" content="Git常用命令">
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  715
+                  779
                 </span>
               
 
@@ -471,7 +471,8 @@
       
 
       
-        <h2 id="更新代码时，本地冲突无法更新"><a href="#更新代码时，本地冲突无法更新" class="headerlink" title="更新代码时，本地冲突无法更新"></a>更新代码时，本地冲突无法更新</h2><p>错误信息：</p>
+        <h2 id="本地代码初始化到远程仓库"><a href="#本地代码初始化到远程仓库" class="headerlink" title="本地代码初始化到远程仓库"></a>本地代码初始化到远程仓库</h2><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//<span class="built_in">create</span> <span class="keyword">a</span> <span class="built_in">new</span> repository <span class="keyword">on</span> <span class="title">the</span> <span class="title">command</span> <span class="title">line</span></div><div class="line">git init</div><div class="line">git <span class="built_in">add</span> README.md</div><div class="line">git commit -m <span class="string">"first commit"</span></div><div class="line">git remote <span class="built_in">add</span> origin <span class="keyword">https</span>://github.com/wonius/XXXXXX.git</div><div class="line">git push -u origin master</div><div class="line"><span class="comment"></span></div><div class="line">//push an existing repository from the command line</div><div class="line">git remote <span class="built_in">add</span> origin <span class="keyword">https</span>://github.com/wonius/MySpringBootDemo.git</div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
+<h2 id="更新代码时，本地冲突无法更新"><a href="#更新代码时，本地冲突无法更新" class="headerlink" title="更新代码时，本地冲突无法更新"></a>更新代码时，本地冲突无法更新</h2><p>错误信息：</p>
 <blockquote>
 <p>error: Your local changes to the following files would be overwritten by merge:</p>
 <p>laravel/app/Services/ExpressService.php</p>
@@ -529,7 +530,7 @@
   <p><span>本文标题:</span><a href="/2017/07/14/Git笔记/">Git学习笔记</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gavin 的个人博客">Gavin</a></p>
   <p><span>发布时间:</span>2017年07月14日 - 00:07</p>
-  <p><span>最后更新:</span>2018年03月24日 - 17:03</p>
+  <p><span>最后更新:</span>2018年04月18日 - 17:04</p>
   <p><span>原始链接:</span><a href="/2017/07/14/Git笔记/" title="Git学习笔记">http://wonius.top/2017/07/14/Git笔记/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://wonius.top/2017/07/14/Git笔记/"  aria-label="复制成功！"></i></span>
   </p>
@@ -787,7 +788,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#更新代码时，本地冲突无法更新"><span class="nav-number">1.</span> <span class="nav-text">更新代码时，本地冲突无法更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回退到某个历史版本"><span class="nav-number">2.</span> <span class="nav-text">回退到某个历史版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用git-stash命令进行代码暂存"><span class="nav-number">3.</span> <span class="nav-text">使用git stash命令进行代码暂存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支命令"><span class="nav-number">4.</span> <span class="nav-text">分支命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fatal-refusing-to-merge-unrelated-histories"><span class="nav-number">5.</span> <span class="nav-text">fatal: refusing to merge unrelated histories</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码提交到不同仓库"><span class="nav-number">6.</span> <span class="nav-text">代码提交到不同仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">7.</span> <span class="nav-text">常用命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本地代码初始化到远程仓库"><span class="nav-number">1.</span> <span class="nav-text">本地代码初始化到远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新代码时，本地冲突无法更新"><span class="nav-number">2.</span> <span class="nav-text">更新代码时，本地冲突无法更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回退到某个历史版本"><span class="nav-number">3.</span> <span class="nav-text">回退到某个历史版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用git-stash命令进行代码暂存"><span class="nav-number">4.</span> <span class="nav-text">使用git stash命令进行代码暂存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支命令"><span class="nav-number">5.</span> <span class="nav-text">分支命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fatal-refusing-to-merge-unrelated-histories"><span class="nav-number">6.</span> <span class="nav-text">fatal: refusing to merge unrelated histories</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码提交到不同仓库"><span class="nav-number">7.</span> <span class="nav-text">代码提交到不同仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">8.</span> <span class="nav-text">常用命令</span></a></li></ol></div>
             
 
           </div>
@@ -821,7 +822,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.6k</span>
+    <span title="Site words total count">15.7k</span>
   
 </div>
 
