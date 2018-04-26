@@ -127,7 +127,7 @@
 <meta property="og:url" content="http://wonius.top/2018/04/25/SpringBoot集成MockServer/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="SpringBoot集成MockServer，将http接口进行mock">
-<meta property="og:updated_time" content="2018-04-26T11:27:28.510Z">
+<meta property="og:updated_time" content="2018-04-26T11:38:47.255Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot集成MockServer">
 <meta name="twitter:description" content="SpringBoot集成MockServer，将http接口进行mock">
@@ -399,8 +399,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/Mock/" itemprop="url" rel="index">
-                    <span itemprop="name">Mock</span>
+                  <a href="/categories/Spring/SpringBoot/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringBoot</span>
                   </a>
                 </span>
 
@@ -441,7 +441,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  570
+                  599
                 </span>
               
 
@@ -484,14 +484,14 @@
       
         <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近项目中在引入Mock，其中有一项是屏蔽掉外部依赖，包括关联系统的REST接口。做了下技术调研，打算使用MockServer对外部接口进行mock</p>
 <h2 id="插件集成"><a href="#插件集成" class="headerlink" title="插件集成"></a>插件集成</h2><ol>
-<li><p>在pom文件中增加mockserver的maven插件</p>
+<li><p>在pom文件中增加mockserver的maven插件：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mock-server<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mockserver-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.3.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">serverPort</span>&gt;</span>1080<span class="tag">&lt;/<span class="name">serverPort</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!-- 可根据情况是否设置porxyPort。我没设置 --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">proxyPort</span>&gt;</span>1090<span class="tag">&lt;/<span class="name">proxyPort</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">logLevel</span>&gt;</span>DEBUG<span class="tag">&lt;/<span class="name">logLevel</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 该类为初始化类，按照自己的文件配置，即下一步中的类 --&gt;</span>        <span class="tag">&lt;<span class="name">initializationClass</span>&gt;</span>org.mockserver.maven.ExampleInitializationClass<span class="tag">&lt;/<span class="name">initializationClass</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">executions</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">execution</span>&gt;</span></div><div class="line">        	<span class="comment">&lt;!-- 指定在该生命周期时调用该插件 --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>process-test-classes<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">phase</span>&gt;</span>process-test-classes<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">goals</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">goal</span>&gt;</span>start<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">execution</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>verify<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">phase</span>&gt;</span>verify<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">goals</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">goal</span>&gt;</span>stop<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div></pre></td></tr></table></figure>
 </li>
-<li><p>创建自己的MockServerInitializer类（<strong>类名一定不要定义为<code>MockServerInitializer</code>，官方有这个类</strong>），实现ExpectationInitializer接口。</p>
+<li><p>创建自己的MockServerInitializer类（<strong>类名一定不要定义为<code>MockServerInitializer</code>，官方有这个类</strong>），实现ExpectationInitializer接口：</p>
 <figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public class HttpMockServerInitializer implements ExpectationInitializer &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void initializeExpectations(MockServerClient mockServerClient) &#123;</div><div class="line">        mockServerClient.when(HttpRequest.request().withMethod(<span class="string">"<span class="keyword">POST</span>"</span>).withPath(<span class="string">"/test"</span>))</div><div class="line">                .respond(HttpResponse.response().withStatusCode(<span class="number">200</span>).withBody(<span class="string">"success"</span>));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><em>PS：如果你在用idea编辑器，一定要打开idea的自动编译功能，默认该功能是不开启的。打开方式</em></p>
 </li>
-<li><p>运行mockserver服务</p>
+<li><p>运行mockserver服务：</p>
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn mockserver:<span class="keyword">run</span><span class="bash"></span></div></pre></td></tr></table></figure>
 <p>然后就可以使用postman请求，得到预设的返回。</p>
 </li>
@@ -499,18 +499,18 @@
 <h2 id="代码手动创建"><a href="#代码手动创建" class="headerlink" title="代码手动创建"></a>代码手动创建</h2><p>插件集成比较方便，不过有些场景无法满足。比如需要在MockServer中注入Spring容器中的对象，当运行MockServer时，由于没有初始化Spring容器，导致注入失败。</p>
 <p>这种情况就需要手动创建MockServer。</p>
 <ol>
-<li><p>编辑pom.xml，导入依赖</p>
+<li><p>编辑pom.xml，导入依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mock-server<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mockserver-netty<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 成文时最新版本，可以到官网查询目前最新版本 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.3.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
 </li>
-<li><p>创建mockServer。proxy可不设</p>
+<li><p>创建mockServer，proxy可不设：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//引入类</span></div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.mockserver.integration.ClientAndProxy.startClientAndProxy;</div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.mockserver.integration.ClientAndServer.startClientAndServer;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 使用<span class="doctag">@Service</span>将该类注入spring，方便管理</div><div class="line"> * 实现InitializingBean接口，初始化类对象时，实例化mockServer对象</div><div class="line"> * 实现DisposableBean接口，销毁类对象时，关闭服务</div><div class="line"> */</div><div class="line"><span class="meta">@Service</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpMockServerManual</span> <span class="keyword">implements</span> <span class="title">InitializingBean</span>, <span class="title">DisposableBean</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//创建对象</span></div><div class="line">    <span class="keyword">private</span> ClientAndProxy proxy;</div><div class="line">    <span class="keyword">private</span> ClientAndServer mockServer;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="comment">//别忘了关闭服务</span></div><div class="line">        proxy.stop();</div><div class="line">        mockServer.stop();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterPropertiesSet</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="comment">//实例化对象</span></div><div class="line">        mockServer = startClientAndServer(<span class="number">1080</span>);</div><div class="line">        proxy = startClientAndProxy(<span class="number">1090</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
-<li><p>mock相关http接口</p>
+<li><p>mock相关http接口：</p>
 <figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mockServer.when(HttpRequest.request().withMethod(<span class="string">"<span class="keyword">POST</span>"</span>).withPath(<span class="string">"/test"</span>))</div><div class="line">                .respond(HttpResponse.response().withStatusCode(<span class="number">200</span>).withBody(<span class="string">"success"</span>));</div></pre></td></tr></table></figure>
 <p>​</p>
 </li>
 </ol>
-<p><a href="http://mock-server.com/#what-is-mockserver" target="_blank" rel="external">MockServer官网</a></p>
+<h2 id="更多详情参见官网"><a href="#更多详情参见官网" class="headerlink" title="更多详情参见官网"></a>更多详情参见官网</h2><p>本文只提供了java实现。官网还有JS等实现，请戳<a href="http://mock-server.com/#what-is-mockserver" target="_blank" rel="external">MockServer官网</a>了解。</p>
 
       
     </div>
@@ -788,7 +788,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件集成"><span class="nav-number">2.</span> <span class="nav-text">插件集成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码手动创建"><span class="nav-number">3.</span> <span class="nav-text">代码手动创建</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件集成"><span class="nav-number">2.</span> <span class="nav-text">插件集成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码手动创建"><span class="nav-number">3.</span> <span class="nav-text">代码手动创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多详情参见官网"><span class="nav-number">4.</span> <span class="nav-text">更多详情参见官网</span></a></li></ol></div>
             
 
           </div>
@@ -822,7 +822,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">16.8k</span>
+    <span title="Site words total count">16.9k</span>
   
 </div>
 
