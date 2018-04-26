@@ -120,17 +120,17 @@
 
 
 
-<meta name="description" content="查看端口号1lsof -i tcp:port	//port为端口号 设置软件安装来源为所有来源1sudo spctl --master-disable/--master-enable redis1redis-server	//启动 mysql1mysql.server start	//启动 postgresql1pg_ctl -d /usr/local/var/postgres -l /usr/l">
+<meta name="description" content="查看端口号12345//8080为端口号lsof -i :8080	//killsudo kill -9 pid 设置软件安装来源为所有来源1sudo spctl --master-disable/--master-enable redis1redis-server	//启动 mysql1mysql.server start	//启动 postgresql1pg_ctl -d /usr/local">
 <meta name="keywords" content="Mac常用命令">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MacOS常用命令">
 <meta property="og:url" content="http://wonius.top/2017/08/15/Mac常用命令/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
-<meta property="og:description" content="查看端口号1lsof -i tcp:port	//port为端口号 设置软件安装来源为所有来源1sudo spctl --master-disable/--master-enable redis1redis-server	//启动 mysql1mysql.server start	//启动 postgresql1pg_ctl -d /usr/local/var/postgres -l /usr/l">
-<meta property="og:updated_time" content="2018-03-30T06:08:42.080Z">
+<meta property="og:description" content="查看端口号12345//8080为端口号lsof -i :8080	//killsudo kill -9 pid 设置软件安装来源为所有来源1sudo spctl --master-disable/--master-enable redis1redis-server	//启动 mysql1mysql.server start	//启动 postgresql1pg_ctl -d /usr/local">
+<meta property="og:updated_time" content="2018-04-26T06:18:45.639Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MacOS常用命令">
-<meta name="twitter:description" content="查看端口号1lsof -i tcp:port	//port为端口号 设置软件安装来源为所有来源1sudo spctl --master-disable/--master-enable redis1redis-server	//启动 mysql1mysql.server start	//启动 postgresql1pg_ctl -d /usr/local/var/postgres -l /usr/l">
+<meta name="twitter:description" content="查看端口号12345//8080为端口号lsof -i :8080	//killsudo kill -9 pid 设置软件安装来源为所有来源1sudo spctl --master-disable/--master-enable redis1redis-server	//启动 mysql1mysql.server start	//启动 postgresql1pg_ctl -d /usr/local">
 
 
 
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  78
+                  80
                 </span>
               
 
@@ -467,7 +467,7 @@
       
 
       
-        <h2 id="查看端口号"><a href="#查看端口号" class="headerlink" title="查看端口号"></a>查看端口号</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsof -<span class="selector-tag">i</span> tcp:port	<span class="comment">//port为端口号</span></div></pre></td></tr></table></figure>
+        <h2 id="查看端口号"><a href="#查看端口号" class="headerlink" title="查看端口号"></a>查看端口号</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//8080为端口号</span></div><div class="line">lsof -<span class="selector-tag">i</span> :<span class="number">8080</span>	</div><div class="line"></div><div class="line"><span class="comment">//kill</span></div><div class="line">sudo kill -<span class="number">9</span> pid</div></pre></td></tr></table></figure>
 <h2 id="设置软件安装来源为所有来源"><a href="#设置软件安装来源为所有来源" class="headerlink" title="设置软件安装来源为所有来源"></a>设置软件安装来源为所有来源</h2><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">sudo</span> <span class="comment">spctl</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">master</span><span class="literal">-</span><span class="comment">disable/</span><span class="literal">-</span><span class="literal">-</span><span class="comment">master</span><span class="literal">-</span><span class="comment">enable</span></div></pre></td></tr></table></figure>
 <h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><figure class="highlight axapta"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-<span class="keyword">server</span>	<span class="comment">//启动</span></div></pre></td></tr></table></figure>
 <h2 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql<span class="selector-class">.server</span> start	<span class="comment">//启动</span></div></pre></td></tr></table></figure>
@@ -494,7 +494,7 @@
   <p><span>本文标题:</span><a href="/2017/08/15/Mac常用命令/">MacOS常用命令</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gavin 的个人博客">Gavin</a></p>
   <p><span>发布时间:</span>2017年08月15日 - 00:08</p>
-  <p><span>最后更新:</span>2018年03月30日 - 14:03</p>
+  <p><span>最后更新:</span>2018年04月26日 - 14:04</p>
   <p><span>原始链接:</span><a href="/2017/08/15/Mac常用命令/" title="MacOS常用命令">http://wonius.top/2017/08/15/Mac常用命令/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://wonius.top/2017/08/15/Mac常用命令/"  aria-label="复制成功！"></i></span>
   </p>
@@ -669,7 +669,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -680,7 +680,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -691,7 +691,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -786,7 +786,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.7k</span>
+    <span title="Site words total count">16.6k</span>
   
 </div>
 
