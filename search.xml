@@ -46,6 +46,7 @@
         <category>DB</category>
       </categories>
       <tags>
+        <tag>Shell</tag>
         <tag>Redis</tag>
       </tags>
   </entry>
@@ -103,8 +104,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>Apollo</tag>
         <tag>技能图谱</tag>
+        <tag>Apollo</tag>
       </tags>
   </entry>
   <entry>
@@ -139,8 +140,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>技能图谱</tag>
         <tag>前端</tag>
+        <tag>技能图谱</tag>
       </tags>
   </entry>
   <entry>
@@ -253,6 +254,7 @@
         <category>Linux</category>
       </categories>
       <tags>
+        <tag>Shell</tag>
         <tag>Linux</tag>
       </tags>
   </entry>
@@ -275,6 +277,7 @@
         <category>Linux</category>
       </categories>
       <tags>
+        <tag>Shell</tag>
         <tag>Linux</tag>
         <tag>运维</tag>
       </tags>
@@ -293,7 +296,7 @@
   <entry>
     <title><![CDATA[setTimeOut()与jQuery中的$.ajax合用，导致内存泄漏]]></title>
     <url>%2F2017%2F12%2F18%2FsetTimeOut-%E4%B8%8EjQuery%E4%B8%AD%E7%9A%84-ajax%E5%90%88%E7%94%A8%EF%BC%8C%E5%AF%BC%E8%87%B4%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%2F</url>
-    <content type="text"><![CDATA[## &emsp;&emsp;]]></content>
+    <content type="text"><![CDATA[最近遇到这个问题，记录一下]]></content>
   </entry>
   <entry>
     <title><![CDATA[Hexo相关配置]]></title>
@@ -314,7 +317,7 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>shell</tag>
+        <tag>Shell</tag>
         <tag>zsh</tag>
       </tags>
   </entry>
@@ -393,6 +396,7 @@
         <category>MacOS</category>
       </categories>
       <tags>
+        <tag>Shell</tag>
         <tag>MacOS</tag>
       </tags>
   </entry>
