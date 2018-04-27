@@ -4,6 +4,70 @@
 
     
   <url>
+    <loc>http://wonius.top/2018/04/27/SpringBoot%E9%9B%86%E6%88%90TestNG/</loc>
+    <lastmod>2018-04-27T07:29:40.993Z</lastmod>
+    <data>
+        <display>
+        <title>SpringBoot集成TestNG</title>
+        <pubTime>2018-04-27T03:21:06.000Z</pubTime>
+        
+        <tag>SpringBoot</tag>
+         
+        <tag>TestNG</tag>
+         
+         
+           
+             
+              <breadCrumb title="Spring" url="http://wonius.top/categories/Spring/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://wonius.top/2018/04/25/SpringBoot%E9%9B%86%E6%88%90MockServer/</loc>
+    <lastmod>2018-04-27T07:29:33.827Z</lastmod>
+    <data>
+        <display>
+        <title>SpringBoot集成MockServer</title>
+        <pubTime>2018-04-25T15:25:25.000Z</pubTime>
+        
+        <tag>SpringBoot</tag>
+         
+        <tag>MockServer</tag>
+         
+         
+           
+             
+              <breadCrumb title="Spring" url="http://wonius.top/categories/Spring/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://wonius.top/2018/04/18/SpringBoot%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99/</loc>
+    <lastmod>2018-04-27T07:29:22.879Z</lastmod>
+    <data>
+        <display>
+        <title>SpringBoot常见报错</title>
+        <pubTime>2018-04-18T06:50:55.000Z</pubTime>
+        
+        <tag>SpringBoot</tag>
+         
+         
+           
+             
+              <breadCrumb title="Spring" url="http://wonius.top/categories/Spring/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wonius.top/2017/07/29/SpringCloud/</loc>
     <lastmod>2018-04-27T07:27:37.723Z</lastmod>
     <data>
@@ -171,31 +235,6 @@
 
     
   <url>
-    <loc>http://wonius.top/2018/04/27/SpringBoot%E9%9B%86%E6%88%90TestNG/</loc>
-    <lastmod>2018-04-27T07:15:20.610Z</lastmod>
-    <data>
-        <display>
-        <title>SpringBoot集成TestNG</title>
-        <pubTime>2018-04-27T03:21:06.000Z</pubTime>
-        
-        <tag>SpringBoot</tag>
-         
-        <tag>TestNG</tag>
-         
-         
-           
-             
-              <breadCrumb title="Spring" url="http://wonius.top/categories/Spring/"/>
-          
-             
-              <breadCrumb title="SpringBoot" url="http://wonius.top/categories/Spring/SpringBoot/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://wonius.top/2018/03/18/Docker/</loc>
     <lastmod>2018-04-27T03:08:52.481Z</lastmod>
     <data>
@@ -269,54 +308,6 @@
            
              
               <breadCrumb title="Git" url="http://wonius.top/categories/Git/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://wonius.top/2018/04/25/SpringBoot%E9%9B%86%E6%88%90MockServer/</loc>
-    <lastmod>2018-04-26T11:38:47.255Z</lastmod>
-    <data>
-        <display>
-        <title>SpringBoot集成MockServer</title>
-        <pubTime>2018-04-25T15:25:25.000Z</pubTime>
-        
-        <tag>SpringBoot</tag>
-         
-        <tag>MockServer</tag>
-         
-         
-           
-             
-              <breadCrumb title="Spring" url="http://wonius.top/categories/Spring/"/>
-          
-             
-              <breadCrumb title="SpringBoot" url="http://wonius.top/categories/Spring/SpringBoot/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://wonius.top/2018/04/18/SpringBoot%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99/</loc>
-    <lastmod>2018-04-26T11:37:59.656Z</lastmod>
-    <data>
-        <display>
-        <title>SpringBoot常见报错</title>
-        <pubTime>2018-04-18T06:50:55.000Z</pubTime>
-        
-        <tag>SpringBoot</tag>
-         
-         
-           
-             
-              <breadCrumb title="Spring" url="http://wonius.top/categories/Spring/"/>
-          
-             
-              <breadCrumb title="SpringBoot" url="http://wonius.top/categories/Spring/SpringBoot/"/>
           
         </display>
     </data>
