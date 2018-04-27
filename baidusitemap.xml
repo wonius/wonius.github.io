@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://wonius.top/2018/03/18/Docker/</loc>
+    <lastmod>2018-04-27T03:08:52.481Z</lastmod>
+    <data>
+        <display>
+        <title>Docker常用方法</title>
+        <pubTime>2018-03-18T05:24:40.000Z</pubTime>
+        
+        <tag>Docker</tag>
+         
+         
+           
+             
+              <breadCrumb title="Docker" url="http://wonius.top/categories/Docker/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wonius.top/2017/07/21/Hexo%E4%B8%AD%E7%9A%84NexT%E4%B8%BB%E9%A2%98%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/</loc>
     <lastmod>2018-04-26T11:40:39.936Z</lastmod>
     <data>
@@ -523,26 +543,6 @@
            
              
               <breadCrumb title="DB" url="http://wonius.top/categories/DB/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://wonius.top/2018/03/18/Docker/</loc>
-    <lastmod>2018-03-24T09:45:37.030Z</lastmod>
-    <data>
-        <display>
-        <title>Docker安装</title>
-        <pubTime>2018-03-18T05:24:40.000Z</pubTime>
-        
-        <tag>Docker</tag>
-         
-         
-           
-             
-              <breadCrumb title="Docker" url="http://wonius.top/categories/Docker/"/>
           
         </display>
     </data>

@@ -120,17 +120,17 @@
 
 
 
-<meta name="description" content="Docker安装、设置">
+<meta name="description" content="Docker安装、设置，以及Dockerfile常用语法">
 <meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker安装">
+<meta property="og:title" content="Docker常用方法">
 <meta property="og:url" content="http://wonius.top/2018/03/18/Docker/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
-<meta property="og:description" content="Docker安装、设置">
-<meta property="og:updated_time" content="2018-03-24T09:45:37.030Z">
+<meta property="og:description" content="Docker安装、设置，以及Dockerfile常用语法">
+<meta property="og:updated_time" content="2018-04-27T03:08:52.481Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker安装">
-<meta name="twitter:description" content="Docker安装、设置">
+<meta name="twitter:title" content="Docker常用方法">
+<meta name="twitter:description" content="Docker安装、设置，以及Dockerfile常用语法">
 
 
 
@@ -166,7 +166,7 @@
 
 
 
-  <title>Docker安装 | Gavin's Notes</title>
+  <title>Docker常用方法 | Gavin's Notes</title>
   
 
 
@@ -353,7 +353,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Docker安装</h1>
+          <h1 class="post-title" itemprop="name headline">Docker常用方法</h1>
         
 
         <div class="post-meta">
@@ -405,7 +405,7 @@
 
           
           
-             <span id="/2018/03/18/Docker/" class="leancloud_visitors" data-flag-title="Docker安装">
+             <span id="/2018/03/18/Docker/" class="leancloud_visitors" data-flag-title="Docker常用方法">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  169
+                  490
                 </span>
               
 
@@ -446,7 +446,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -454,7 +454,7 @@
 
           
               <div class="post-description">
-                  Docker安装、设置
+                  Docker安装、设置，以及Dockerfile常用语法
               </div>
           
 
@@ -476,6 +476,9 @@
 <h2 id="安装镜像"><a href="#安装镜像" class="headerlink" title="安装镜像"></a>安装镜像</h2><figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//拉取一个centos镜像</span></div><div class="line">docker pull centos</div><div class="line"></div><div class="line"><span class="comment">//查看docker中有的镜像</span></div><div class="line">docker images</div></pre></td></tr></table></figure>
 <h2 id="运行镜像"><a href="#运行镜像" class="headerlink" title="运行镜像"></a>运行镜像</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">//</span>运行docker容器中的centos，并使用bash shell</div><div class="line">docker run -it centos <span class="regexp">/bin/</span>bash</div><div class="line"></div><div class="line"><span class="regexp">//</span>登录后可以按自己需要做操作</div><div class="line">······</div><div class="line"></div><div class="line"><span class="regexp">//</span>退出镜像</div><div class="line"><span class="keyword">exit</span></div></pre></td></tr></table></figure>
 <h2 id="保存镜像"><a href="#保存镜像" class="headerlink" title="保存镜像"></a>保存镜像</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//查看容器信息，获取容器id</span></div><div class="line">docker ps -a</div><div class="line"></div><div class="line"><span class="comment">//保存</span></div><div class="line">docker commit -m=<span class="string">"你的备注"</span> 容器<span class="keyword">id</span> 镜像<span class="keyword">id</span></div></pre></td></tr></table></figure>
+<h2 id="Dockerfile语法"><a href="#Dockerfile语法" class="headerlink" title="Dockerfile语法"></a>Dockerfile语法</h2><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">//拉取基础镜像</div><div class="line"><span class="keyword">FROM</span> &lt;IMAGE&gt;</div><div class="line"></div><div class="line">//设置镜像作者</div><div class="line"><span class="keyword">MAINTAINER</span> &lt;NAME&gt; &lt;EMAIL&gt;</div><div class="line"></div><div class="line">//为后续的 <span class="keyword">RUN</span><span class="bash"> 、 CMD 、 ENTRYPOINT 指定工作目录</span></div><div class="line"><span class="keyword">WORKDIR</span><span class="bash"> &lt;PATH&gt;</span></div><div class="line"></div><div class="line">//创建镜像时执行</div><div class="line"><span class="keyword">RUN</span><span class="bash"> &lt;COMMAND&gt;</span></div><div class="line"></div><div class="line">//镜像创建成功后，在镜像中执行。如果有多条，只执行最后一条。可被docker <span class="keyword">run</span><span class="bash">覆盖</span></div><div class="line"><span class="keyword">CMD</span><span class="bash"> [“executable” ,”Param1”, “param2”]使用<span class="built_in">exec</span>执行，推荐 </span></div><div class="line"><span class="keyword">CMD</span><span class="bash"> <span class="built_in">command</span> param1 param2，在/bin/sh上执行 </span></div><div class="line"><span class="keyword">CMD</span><span class="bash"> [“Param1”, “param2”] 提供给ENTRYPOINT做默认参数。</span></div><div class="line"></div><div class="line">//与<span class="keyword">CMD</span><span class="bash">类似。不可被docker run覆盖，除非加上--entrypoint</span></div><div class="line"><span class="keyword">ENTRYPOINT</span><span class="bash"> <span class="built_in">command</span> param1 param2</span></div><div class="line"></div><div class="line">//复制，src可以为Dockerfile所在目录的相对路径，也可以是url。如果是url，会下载并复制到dest；可自动解压</div><div class="line"><span class="keyword">ADD</span><span class="bash"> &lt;SRC&gt; &lt;DEST&gt;</span></div><div class="line"></div><div class="line">//复制，src为Dockerfile所在目录的相对路径</div><div class="line"><span class="keyword">COPY</span><span class="bash"> &lt;SRC&gt; &lt;DEST&gt;</span></div><div class="line"></div><div class="line">//容器暴露的端口号。多个以空格间隔</div><div class="line"><span class="keyword">EXPOSE</span> &lt;PORT&gt;</div><div class="line"></div><div class="line">//设置环境变量</div><div class="line"><span class="keyword">ENV</span> &lt;KEY&gt; &lt;VALUE&gt;</div><div class="line"></div><div class="line">//指定运行容器时的用户名或UID，后续的<span class="keyword">RUN</span><span class="bash">、CMD、ENTRYPOINT使用该用户</span></div><div class="line"><span class="keyword">USER</span> daemon</div><div class="line"></div><div class="line">//在主机上创建一个挂载，挂载到容器的指定路径。不如docker <span class="keyword">run</span><span class="bash"> -v强大</span></div><div class="line"><span class="keyword">VOLUME</span><span class="bash"> &lt;PATH&gt;</span></div><div class="line"></div><div class="line">//其他镜像<span class="keyword">FROM</span>该镜像时，执行</div><div class="line"><span class="keyword">ONBUILD</span> [INSTRUCTION]</div></pre></td></tr></table></figure>
+<p>举个🌰</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">FROM</span> centos</div><div class="line"><span class="keyword">MAINTAINER</span> nobody <span class="string">"xx@163.com"</span></div><div class="line"><span class="keyword">RUN</span><span class="bash"> mkdir -p /opt/jdk/</span></div><div class="line"><span class="keyword">RUN</span><span class="bash"> mkdir -p /opt/tomcat/</span></div><div class="line"><span class="keyword">ADD</span><span class="bash"> jdk1.7.0_79 /opt/jdk/</span></div><div class="line"><span class="keyword">ADD</span><span class="bash"> tomcat  /opt/tomcat/</span></div><div class="line"><span class="keyword">ENV</span> CATALINA_HOME /opt/tomcat</div><div class="line"><span class="keyword">ENV</span> JAVA_HOME /opt/jdk</div><div class="line"><span class="keyword">EXPOSE</span> <span class="number">8080</span></div><div class="line"><span class="keyword">ENV</span> PATH $PATH:$JAVA_HOME/bin</div><div class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">"/opt/tomcat/bin/catalina.sh"</span>,<span class="string">"run"</span>]</span></div></pre></td></tr></table></figure>
 
       
     </div>
@@ -494,11 +497,11 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/03/18/Docker/">Docker安装</a></p>
+  <p><span>本文标题:</span><a href="/2018/03/18/Docker/">Docker常用方法</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gavin 的个人博客">Gavin</a></p>
   <p><span>发布时间:</span>2018年03月18日 - 13:03</p>
-  <p><span>最后更新:</span>2018年03月24日 - 17:03</p>
-  <p><span>原始链接:</span><a href="/2018/03/18/Docker/" title="Docker安装">http://wonius.top/2018/03/18/Docker/</a>
+  <p><span>最后更新:</span>2018年04月27日 - 11:04</p>
+  <p><span>原始链接:</span><a href="/2018/03/18/Docker/" title="Docker常用方法">http://wonius.top/2018/03/18/Docker/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://wonius.top/2018/03/18/Docker/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>
@@ -755,7 +758,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Docker"><span class="nav-number">1.</span> <span class="nav-text">安装Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Docker"><span class="nav-number">2.</span> <span class="nav-text">配置Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装镜像"><span class="nav-number">3.</span> <span class="nav-text">安装镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行镜像"><span class="nav-number">4.</span> <span class="nav-text">运行镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保存镜像"><span class="nav-number">5.</span> <span class="nav-text">保存镜像</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Docker"><span class="nav-number">1.</span> <span class="nav-text">安装Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Docker"><span class="nav-number">2.</span> <span class="nav-text">配置Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装镜像"><span class="nav-number">3.</span> <span class="nav-text">安装镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行镜像"><span class="nav-number">4.</span> <span class="nav-text">运行镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保存镜像"><span class="nav-number">5.</span> <span class="nav-text">保存镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerfile语法"><span class="nav-number">6.</span> <span class="nav-text">Dockerfile语法</span></a></li></ol></div>
             
 
           </div>
@@ -789,7 +792,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">16.9k</span>
+    <span title="Site words total count">17.2k</span>
   
 </div>
 
