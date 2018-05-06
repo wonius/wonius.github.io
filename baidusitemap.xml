@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://wonius.top/2018/05/06/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAshadowsocks%E6%9C%8D%E5%8A%A1/</loc>
+    <lastmod>2018-05-06T07:23:35.690Z</lastmod>
+    <data>
+        <display>
+        <title>服务器搭建shadowsocks服务</title>
+        <pubTime>2018-05-06T05:53:55.000Z</pubTime>
+        
+        <tag>shadowsocks</tag>
+         
+         
+           
+             
+              <breadCrumb title="shadowsocks" url="http://wonius.top/categories/shadowsocks/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wonius.top/2018/05/03/Vimium%E5%BF%AB%E6%8D%B7%E9%94%AE/</loc>
     <lastmod>2018-05-03T09:19:17.144Z</lastmod>
     <data>
@@ -678,9 +698,9 @@
         <title>CentOS彻底删除并重装、升级Mysql</title>
         <pubTime>2017-12-18T14:05:18.000Z</pubTime>
         
-        <tag>CentOS</tag>
-         
         <tag>Mysql</tag>
+         
+        <tag>CentOS</tag>
          
          
            
