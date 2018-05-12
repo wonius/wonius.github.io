@@ -4,6 +4,88 @@
 
     
   <url>
+    <loc>http://wonius.top/2018/05/11/TensorFlow-API/</loc>
+    <lastmod>2018-05-12T16:22:34.999Z</lastmod>
+    <data>
+        <display>
+        <title>TensorFlow-API</title>
+        <pubTime>2018-05-11T07:36:01.000Z</pubTime>
+        
+        <tag>TensorFlow</tag>
+         
+         
+           
+             
+              <breadCrumb title="TensorFlow" url="http://wonius.top/categories/TensorFlow/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://wonius.top/2018/03/17/%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2018-05-12T14:12:32.574Z</lastmod>
+    <data>
+        <display>
+        <title>技能图谱-机器学习</title>
+        <pubTime>2018-03-17T13:21:44.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>技能图谱</tag>
+         
+         
+           
+             
+              <breadCrumb title="技能图谱" url="http://wonius.top/categories/%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://wonius.top/2018/05/12/ML%E4%B8%AD%E7%9A%84Loss%E5%87%BD%E6%95%B0/</loc>
+    <lastmod>2018-05-12T14:09:51.344Z</lastmod>
+    <data>
+        <display>
+        <title>ML中的Loss函数</title>
+        <pubTime>2018-05-12T14:09:12.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+         
+           
+             
+              <breadCrumb title="ML" url="http://wonius.top/categories/ML/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://wonius.top/2018/05/12/TensorFlow%E5%9B%9B%E7%A7%8DCross-Entropy%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%E4%B8%8E%E5%BA%94%E7%94%A8/</loc>
+    <lastmod>2018-05-12T14:08:29.677Z</lastmod>
+    <data>
+        <display>
+        <title>TensorFlow四种Cross_Entropy算法实现与应用</title>
+        <pubTime>2018-05-12T14:07:24.000Z</pubTime>
+        
+        <tag>TensorFlow</tag>
+         
+         
+           
+             
+              <breadCrumb title="TensorFlow" url="http://wonius.top/categories/TensorFlow/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wonius.top/2018/05/06/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAshadowsocks%E6%9C%8D%E5%8A%A1/</loc>
     <lastmod>2018-05-06T07:23:35.690Z</lastmod>
     <data>
@@ -583,28 +665,6 @@
 
     
   <url>
-    <loc>http://wonius.top/2018/03/17/%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2018-03-24T09:47:19.079Z</lastmod>
-    <data>
-        <display>
-        <title>技能图谱-机器学习</title>
-        <pubTime>2018-03-17T13:21:44.000Z</pubTime>
-        
-        <tag>技能图谱</tag>
-         
-        <tag>机器学习</tag>
-         
-         
-           
-             
-              <breadCrumb title="技能图谱" url="http://wonius.top/categories/%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://wonius.top/2018/03/17/%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1-%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2018-03-24T09:47:12.714Z</lastmod>
     <data>
@@ -612,9 +672,9 @@
         <title>技能图谱-前端</title>
         <pubTime>2018-03-17T13:16:18.000Z</pubTime>
         
-        <tag>技能图谱</tag>
-         
         <tag>前端</tag>
+         
+        <tag>技能图谱</tag>
          
          
            
@@ -634,9 +694,9 @@
         <title>技能图谱-Apollo自动驾驶</title>
         <pubTime>2018-03-17T13:22:29.000Z</pubTime>
         
-        <tag>Apollo</tag>
-         
         <tag>技能图谱</tag>
+         
+        <tag>Apollo</tag>
          
          
            
