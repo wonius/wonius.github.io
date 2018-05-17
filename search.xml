@@ -478,7 +478,7 @@
   <entry>
     <title><![CDATA[技术栈]]></title>
     <url>%2F2017%2F08%2F13%2F%E6%8A%80%E6%9C%AF%E6%A0%88%2F</url>
-    <content type="text"><![CDATA[NjllNDIyZm 名称 语言 领域 说明 Solr java 搜索引擎 Freemarker 模板 模板引擎，java端生成模板 Shiro java 安全框架 Rhino.js 基于Java的javascript实现。可以再java中调js，也可以在js中调用java growingio 无埋点 用户行为埋点 mybatis-plus 简化mybatis语句模板 Echarts、AntV（G2） js 图表 walle 部署 Android-Things IoT TensorFlow DL Google家的 PaddlePaddle DL Baidu家的 Docsify、Docute、Showdoc、MinDoc、apidoc API文档 WebAssembly https://blog.csdn.net/garfielder007/article/details/68215694]]></content>
+    <content type="text"><![CDATA[名称 语言 领域 说明 Solr lucene 搜索引擎 支持多种格式 ElasticSearch lucene 实时性好；只支持json；分布式易扩展https://www.cnblogs.com/wenbronk/p/6432990.htmlhttps://www.jianshu.com/p/8bb84384566a Freemarker 模板 模板引擎，java端生成模板 Shiro java 安全框架 Rhino.js 基于Java的javascript实现。可以再java中调js，也可以在js中调用java growingio 无埋点 用户行为埋点 mybatis-plus 简化mybatis语句模板 Echarts、AntV（G2） js 图表 walle 部署 Android-Things IoT TensorFlow DL Google家的 PaddlePaddle DL Baidu家的 Docsify、Docute、Showdoc、MinDoc、apidoc API文档 WebAssembly js中运行Chttps://blog.csdn.net/garfielder007/article/details/68215694 Web3.js js 以太坊Dapp http://web3.tryblockchain.org/]]></content>
       <categories>
         <category>技术栈</category>
       </categories>
