@@ -302,7 +302,7 @@
   <entry>
     <title><![CDATA[工欲善其事，必先利其器]]></title>
     <url>%2F2018%2F01%2F20%2F%E5%B7%A5%E6%AC%B2%E5%96%84%E5%85%B6%E4%BA%8B%EF%BC%8C%E5%BF%85%E5%85%88%E5%88%A9%E5%85%B6%E5%99%A8%2F</url>
-    <content type="text"><![CDATA[MacOS 软件 简介 Typora md编辑利器，MacWeb也不错 番茄土豆(Pomotodo) 番茄钟+todoList，全平台支持 CheatSheet 所有软件快捷键，一查便知 IINA 视频播放器 ShadowsocksX 科学上网软件，需配置ss服务器 CleanMyMac 相当于电脑管家 VSSH、 SecureCRT for mac、 ssh tunnel mac、 SSH Shell for Mac ssh客户端 XMind ZEN 思维导图 PDF Expert PDF工具 HazeOver 专注办公软件。简而言之可以让你专注在激活窗口 Fliqlo 数字时钟屏保 截图 如其名，其实自带的快捷键也很好用，不过不能编辑 iOS App 简介 AppSo App推荐平台，而且经常会有iOS限免通知 XMind 思维导图软件 SsrConnectPro 科学上网软件，需配置ss服务器。之前用openwingy，可惜中国区下架了 Seed 英文资讯App，可以一键翻译中文 Podcasts iOS自带 Lingvist 英语单词学习软件 Seed 英文资讯软件，一键中英文对照 行程助手 旅游行程软件，可以帮助生成行程单，而且可以加好友共享 Android App 简介 影梭(shadowsocks) 科学上网软件，需配置ss服务器 AirDroid（多平台） 跨平台文件传输工具 滴答清单 清单类App Win App 简介 everything 本地文件搜索软件，自带搜索秒成渣 Chrome App 简介 Secure Shell SSH插件 Vimium 通过vim方式控制浏览器 剪藏 使用印象笔记的都有吧 公众号 App 简介 36氪 互联网资讯 差评 比较杂，什么专题都有 鼠绘漫画网 漫画 混子曰 漫画看历史、聊车。不过现在好久才推一篇文章 旅行雷达 旅行类 少数派 会推一些App、以及使用文章 AI前线 AI类文章]]></content>
+    <content type="text"><![CDATA[MacOS 软件 简介 Typora md编辑利器，MacWeb也不错 番茄土豆(Pomotodo) 番茄钟+todoList，全平台支持 CheatSheet 所有软件快捷键，一查便知 IINA 视频播放器 ShadowsocksX 科学上网软件，需配置ss服务器 CleanMyMac 相当于电脑管家 VSSH、 SecureCRT for mac、 ssh tunnel mac、 SSH Shell for Mac ssh客户端 XMind ZEN 思维导图 PDF Expert PDF工具 HazeOver 专注办公软件。简而言之可以让你专注在激活窗口 Fliqlo 数字时钟屏保 截图 如其名，其实自带的快捷键也很好用，不过不能编辑 Franz 多通讯工具整合软件，支持微信、twitter、telegram、github、steam等。均为网页版登录。 iOS App 简介 AppSo App推荐平台，而且经常会有iOS限免通知 XMind 思维导图软件 SsrConnectPro 科学上网软件，需配置ss服务器。之前用openwingy，可惜中国区下架了 Seed 英文资讯App，可以一键翻译中文 Podcasts iOS自带 Lingvist 英语单词学习软件 Seed 英文资讯软件，一键中英文对照 行程助手 旅游行程软件，可以帮助生成行程单，而且可以加好友共享 Android App 简介 影梭(shadowsocks) 科学上网软件，需配置ss服务器 AirDroid（多平台） 跨平台文件传输工具 滴答清单 清单类App Win App 简介 everything 本地文件搜索软件，自带搜索秒成渣 Chrome App 简介 Secure Shell SSH插件 Vimium 通过vim方式控制浏览器 剪藏 使用印象笔记的都有吧 公众号 App 简介 36氪 互联网资讯 差评 比较杂，什么专题都有 鼠绘漫画网 漫画 混子曰 漫画看历史、聊车。不过现在好久才推一篇文章 旅行雷达 旅行类 少数派 会推一些App、以及使用文章 AI前线 AI类文章]]></content>
       <categories>
         <category>工具</category>
       </categories>
@@ -404,8 +404,8 @@
         <category>DB</category>
       </categories>
       <tags>
-        <tag>Mysql</tag>
         <tag>CentOS</tag>
+        <tag>Mysql</tag>
       </tags>
   </entry>
   <entry>
