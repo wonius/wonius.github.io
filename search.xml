@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[MacOS安装Matlab]]></title>
+    <url>%2F2018%2F05%2F20%2FMacOS%E5%AE%89%E8%A3%85Matlab%2F</url>
+    <content type="text"><![CDATA[下载​ 百度网盘链接: https://pan.baidu.com/s/1Y1llTPxRa55ojXotTkg6eQ 密码: wchd ​ 如果下载速度过慢，可参考本博客搭建Aria2，享受会员版的下载速度。 ##安装 ​ 下载后是一个iso文件，打开，断开网络连接，双击InstallForMacOSX.app，点下一步。 ​ 选择“使用文件安装秘钥”，点击“下一步“，同意条款，然后将5442240402238172080830933拷贝到许可证秘钥窗口，一直”下一步“，等待安装完成。]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>matlab</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[ML中的Loss函数]]></title>
     <url>%2F2018%2F05%2F12%2FML%E4%B8%AD%E7%9A%84Loss%E5%87%BD%E6%95%B0%2F</url>
     <content type="text"><![CDATA[原文]]></content>
@@ -393,8 +404,8 @@
         <category>DB</category>
       </categories>
       <tags>
-        <tag>CentOS</tag>
         <tag>Mysql</tag>
+        <tag>CentOS</tag>
       </tags>
   </entry>
   <entry>
@@ -478,7 +489,7 @@
   <entry>
     <title><![CDATA[技术栈]]></title>
     <url>%2F2017%2F08%2F13%2F%E6%8A%80%E6%9C%AF%E6%A0%88%2F</url>
-    <content type="text"><![CDATA[名称 语言 领域 说明 Solr lucene 搜索引擎 支持多种格式 ElasticSearch lucene 实时性好；只支持json；分布式易扩展https://www.cnblogs.com/wenbronk/p/6432990.htmlhttps://www.jianshu.com/p/8bb84384566a Freemarker 模板 模板引擎，java端生成模板 Shiro java 安全框架 Rhino.js 基于Java的javascript实现。可以再java中调js，也可以在js中调用java growingio 无埋点 用户行为埋点 mybatis-plus 简化mybatis语句模板 Echarts、AntV（G2） js 图表 walle 部署 Android-Things IoT TensorFlow DL Google家的 PaddlePaddle DL Baidu家的 Docsify、Docute、Showdoc、MinDoc、apidoc API文档 WebAssembly js中运行Chttps://blog.csdn.net/garfielder007/article/details/68215694 Web3.js js 以太坊Dapp http://web3.tryblockchain.org/]]></content>
+    <content type="text"><![CDATA[名称 语言 领域 说明 Solr lucene 搜索引擎 支持多种格式 ElasticSearch lucene 实时性好；只支持json；分布式易扩展https://www.cnblogs.com/wenbronk/p/6432990.htmlhttps://www.jianshu.com/p/8bb84384566a Freemarker 模板 模板引擎，java端生成模板 Shiro java 安全框架 Rhino.js 基于Java的javascript实现。可以再java中调js，也可以在js中调用java growingio 无埋点 用户行为埋点 mybatis-plus 简化mybatis语句模板 Echarts、AntV（G2） js 图表 walle 部署 Android-Things IoT TensorFlow DL Google家的 PaddlePaddle DL Baidu家的 Docsify、Docute、Showdoc、MinDoc、apidoc API文档 WebAssembly js中运行Chttps://blog.csdn.net/garfielder007/article/details/68215694 Web3.js js 以太坊Dapp http://web3.tryblockchain.org/ 区块链 http://me.tryblockchain.org/getting-up-to-speed-on-ethereum.html]]></content>
       <categories>
         <category>技术栈</category>
       </categories>
@@ -542,17 +553,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[SpringCloud相关资料]]></title>
-    <url>%2F2017%2F07%2F29%2FSpringCloud%2F</url>
-    <content type="text"><![CDATA[Spring CloudBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 周立|Spring Cloud 方志朋 Spring Cloud 专栏 许进 跟我学Spring Cloud Website Spring Cloud 官网 Code spring-cloud-starter SpringCloud-Learning]]></content>
-      <categories>
-        <category>Spring</category>
-      </categories>
-      <tags>
-        <tag>SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[SpringBoot相关资料]]></title>
     <url>%2F2017%2F07%2F29%2FSpringBoot%2F</url>
     <content type="text"><![CDATA[Spring BootBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 Spring Boot 揭秘与实战 系列 catoop的专栏 方志朋 Spring Boot 专栏 Spring-boot集成 Website Spring Boot 官网 Spring Boot参考指南-中文版 Gradle 中文参考指南 慕课网视频 spring-boot-tutorials Code spring boot官方例子 spring-boot-starter SpringBoot-Learning favorites-web springboot-learning-example spring-boot-all]]></content>
@@ -561,6 +561,17 @@
       </categories>
       <tags>
         <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SpringCloud相关资料]]></title>
+    <url>%2F2017%2F07%2F29%2FSpringCloud%2F</url>
+    <content type="text"><![CDATA[Spring CloudBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 周立|Spring Cloud 方志朋 Spring Cloud 专栏 许进 跟我学Spring Cloud Website Spring Cloud 官网 Code spring-cloud-starter SpringCloud-Learning]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>SpringCloud</tag>
       </tags>
   </entry>
   <entry>

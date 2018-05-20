@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>http://wonius.top/2018/05/20/MacOS%E5%AE%89%E8%A3%85Matlab/</loc>
+    <lastmod>2018-05-20T15:59:07.236Z</lastmod>
+    <data>
+        <display>
+        <title>MacOS安装Matlab</title>
+        <pubTime>2018-05-20T15:45:43.000Z</pubTime>
+        
+        <tag>matlab</tag>
+         
+         
+           
+             
+              <breadCrumb title="工具" url="http://wonius.top/categories/%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wonius.top/2017/08/13/%E6%8A%80%E6%9C%AF%E6%A0%88/</loc>
-    <lastmod>2018-05-17T07:35:05.792Z</lastmod>
+    <lastmod>2018-05-20T06:18:28.439Z</lastmod>
     <data>
         <display>
         <title>技术栈</title>
@@ -758,9 +778,9 @@
         <title>CentOS彻底删除并重装、升级Mysql</title>
         <pubTime>2017-12-18T14:05:18.000Z</pubTime>
         
-        <tag>CentOS</tag>
-         
         <tag>Mysql</tag>
+         
+        <tag>CentOS</tag>
          
          
            
