@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[pip2与pip3无法并存共用]]></title>
+    <url>%2F2018%2F05%2F23%2Fpip2%E4%B8%8Epip3%E6%97%A0%E6%B3%95%E5%B9%B6%E5%AD%98%E5%85%B1%E7%94%A8%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[环境OS： ​ MacOS 10.13.4 Python： ​ python2.7(系统自带)：/System/Library/Frameworks/Python.framework/Versions/2.7 ​ python3.6.5(后来安装)：/usr/local/Cellar/python/3.6.5/ pip： ​ pip2：/usr/local/bin/pip ​ pip3：/usr/local/bin/pip3 升级​ 当我安装python3.6.5之后，python3中自带pip3，且将原来装的pip覆盖，导致pip无法使用。虽然不用pip命令也可以使用pip功能（python -m pip install XXXX），可以通过重新安装pip方法，使pip生效。 12345678sudo python -m pip install --upgrade pip --force-reinstall# 查看pip信息pip -V# 如果pip3也有问题，重新安装一遍pip3sudo python3 -m pip install --upgrade pip --force-reinstall# 查看pip3信息pip3 -V ​]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[BlockChain入门]]></title>
     <url>%2F2018%2F05%2F21%2FBlockChain%E5%85%A5%E9%97%A8%2F</url>
     <content type="text"><![CDATA[智能合约首先要理解智能合约，下面这篇比较通俗易懂 http://www.figurefinance.com/news/shownews.php?lang=cn&amp;id=4827 这篇比较官方： http://www.8btc.com/what-are-smart-contracts-in-search-of-a-consensus 以太坊入门http://me.tryblockchain.org/getting-up-to-speed-on-ethereum.html]]></content>
