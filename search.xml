@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Python基础知识]]></title>
+    <url>%2F2018%2F05%2F24%2FPython%E8%A7%84%E8%8C%83%2F</url>
+    <content type="text"><![CDATA[Python规范规范]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python2与Python3差异]]></title>
+    <url>%2F2018%2F05%2F23%2FPython2%E4%B8%8EPython3%E5%B7%AE%E5%BC%82%2F</url>
+    <content type="text"><![CDATA[方法 方法 Python2 Python3 file.write() file.write(str) file.write(str.encode()) # 需转为byte self.cf.read() self.cf.read(file_path) self.cf.read(file_path, encoding=””) #需指定编码]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[pip2与pip3无法并存共用]]></title>
     <url>%2F2018%2F05%2F23%2Fpip2%E4%B8%8Epip3%E6%97%A0%E6%B3%95%E5%B9%B6%E5%AD%98%E5%85%B1%E7%94%A8%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[环境OS： ​ MacOS 10.13.4 Python： ​ python2.7(系统自带)：/System/Library/Frameworks/Python.framework/Versions/2.7 ​ python3.6.5(后来安装)：/usr/local/Cellar/python/3.6.5/ pip： ​ pip2：/usr/local/bin/pip ​ pip3：/usr/local/bin/pip3 升级​ 当我安装python3.6.5之后，python3中自带pip3，且将原来装的pip覆盖，导致pip无法使用。虽然不用pip命令也可以使用pip功能（python -m pip install XXXX），可以通过重新安装pip方法，使pip生效。 12345678sudo python -m pip install --upgrade pip --force-reinstall# 查看pip信息pip -V# 如果pip3也有问题，重新安装一遍pip3sudo python3 -m pip install --upgrade pip --force-reinstall# 查看pip3信息pip3 -V ​]]></content>
       <categories>
-        <category>python</category>
+        <category>Python</category>
       </categories>
       <tags>
-        <tag>python</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -202,8 +224,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>Apollo</tag>
         <tag>技能图谱</tag>
+        <tag>Apollo</tag>
       </tags>
   </entry>
   <entry>
@@ -214,8 +236,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>技能图谱</tag>
         <tag>大数据</tag>
+        <tag>技能图谱</tag>
       </tags>
   </entry>
   <entry>
@@ -427,8 +449,8 @@
         <category>DB</category>
       </categories>
       <tags>
-        <tag>CentOS</tag>
         <tag>Mysql</tag>
+        <tag>CentOS</tag>
       </tags>
   </entry>
   <entry>
@@ -576,17 +598,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[SpringCloud相关资料]]></title>
-    <url>%2F2017%2F07%2F29%2FSpringCloud%2F</url>
-    <content type="text"><![CDATA[Spring CloudBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 周立|Spring Cloud 方志朋 Spring Cloud 专栏 许进 跟我学Spring Cloud Website Spring Cloud 官网 Code spring-cloud-starter SpringCloud-Learning]]></content>
-      <categories>
-        <category>Spring</category>
-      </categories>
-      <tags>
-        <tag>SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[SpringBoot相关资料]]></title>
     <url>%2F2017%2F07%2F29%2FSpringBoot%2F</url>
     <content type="text"><![CDATA[Spring BootBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 Spring Boot 揭秘与实战 系列 catoop的专栏 方志朋 Spring Boot 专栏 Spring-boot集成 Website Spring Boot 官网 Spring Boot参考指南-中文版 Gradle 中文参考指南 慕课网视频 spring-boot-tutorials Code spring boot官方例子 spring-boot-starter SpringBoot-Learning favorites-web springboot-learning-example spring-boot-all]]></content>
@@ -595,6 +606,17 @@
       </categories>
       <tags>
         <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SpringCloud相关资料]]></title>
+    <url>%2F2017%2F07%2F29%2FSpringCloud%2F</url>
+    <content type="text"><![CDATA[Spring CloudBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 周立|Spring Cloud 方志朋 Spring Cloud 专栏 许进 跟我学Spring Cloud Website Spring Cloud 官网 Code spring-cloud-starter SpringCloud-Learning]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>SpringCloud</tag>
       </tags>
   </entry>
   <entry>

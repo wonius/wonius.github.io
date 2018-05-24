@@ -4,19 +4,59 @@
 
     
   <url>
+    <loc>http://wonius.top/2018/05/24/Python%E8%A7%84%E8%8C%83/</loc>
+    <lastmod>2018-05-24T08:45:19.563Z</lastmod>
+    <data>
+        <display>
+        <title>Python基础知识</title>
+        <pubTime>2018-05-24T08:43:36.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python" url="http://wonius.top/categories/Python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://wonius.top/2018/05/23/Python2%E4%B8%8EPython3%E5%B7%AE%E5%BC%82/</loc>
+    <lastmod>2018-05-23T08:39:53.200Z</lastmod>
+    <data>
+        <display>
+        <title>Python2与Python3差异</title>
+        <pubTime>2018-05-23T08:31:59.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python" url="http://wonius.top/categories/Python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wonius.top/2018/05/23/pip2%E4%B8%8Epip3%E6%97%A0%E6%B3%95%E5%B9%B6%E5%AD%98%E5%85%B1%E7%94%A8%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2018-05-23T03:36:35.696Z</lastmod>
+    <lastmod>2018-05-23T08:32:36.964Z</lastmod>
     <data>
         <display>
         <title>pip2与pip3无法并存共用</title>
         <pubTime>2018-05-23T02:23:24.000Z</pubTime>
         
-        <tag>python</tag>
+        <tag>Python</tag>
          
          
            
              
-              <breadCrumb title="python" url="http://wonius.top/categories/python/"/>
+              <breadCrumb title="Python" url="http://wonius.top/categories/Python/"/>
           
         </display>
     </data>
@@ -712,9 +752,9 @@
         <title>技能图谱-大数据</title>
         <pubTime>2018-03-17T13:22:00.000Z</pubTime>
         
-        <tag>技能图谱</tag>
-         
         <tag>大数据</tag>
+         
+        <tag>技能图谱</tag>
          
          
            
@@ -756,9 +796,9 @@
         <title>技能图谱-Apollo自动驾驶</title>
         <pubTime>2018-03-17T13:22:29.000Z</pubTime>
         
-        <tag>Apollo</tag>
-         
         <tag>技能图谱</tag>
+         
+        <tag>Apollo</tag>
          
          
            
@@ -820,9 +860,9 @@
         <title>CentOS彻底删除并重装、升级Mysql</title>
         <pubTime>2017-12-18T14:05:18.000Z</pubTime>
         
-        <tag>CentOS</tag>
-         
         <tag>Mysql</tag>
+         
+        <tag>CentOS</tag>
          
          
            
