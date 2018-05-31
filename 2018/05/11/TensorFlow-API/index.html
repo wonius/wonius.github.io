@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="XAjyGM_RdYQ515WACIvHUFKjx2jNXvMVZRRDYZGRo4Q" />
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="2VdSGon0Dp" />
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon-logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="TensorFlow" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="TensorFlow常用API">
+<meta name="keywords" content="TensorFlow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TensorFlow-API">
+<meta property="og:url" content="http://wonius.top/2018/05/11/TensorFlow-API/index.html">
+<meta property="og:site_name" content="Gavin&#39;s Notes">
+<meta property="og:description" content="TensorFlow常用API">
+<meta property="og:updated_time" content="2018-05-12T16:32:20.432Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TensorFlow-API">
+<meta name="twitter:description" content="TensorFlow常用API">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wonius.top/2018/05/11/TensorFlow-API/"/>
+
+
+
+
+
+  <title>TensorFlow-API | Gavin's Notes</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-102902020-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8cfc05493126c4fa21cfa198c7007a37";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Gavin's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wonius.top/2018/05/11/TensorFlow-API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gavin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gavin's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TensorFlow-API</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-11T15:36:01+08:00">
+                2018-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TensorFlow/" itemprop="url" rel="index">
+                    <span itemprop="name">TensorFlow</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/05/11/TensorFlow-API/" class="leancloud_visitors" data-flag-title="TensorFlow-API">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,404
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  24
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  TensorFlow常用API
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="tf-constant"><a href="#tf-constant" class="headerlink" title="tf.constant"></a>tf.constant</h2><p><strong>根据value的值，生成一个shape维度的张量常量</strong></p>
+<h3 id="Define"><a href="#Define" class="headerlink" title="Define"></a>Define</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">constant(value, <span class="attribute">dtype</span>=None, <span class="attribute">shape</span>=None, <span class="attribute">name</span>=<span class="string">'Const'</span>, <span class="attribute">verify_shape</span>=<span class="literal">False</span>)</div></pre></td></tr></table></figure>
+<h3 id="Parameter"><a href="#Parameter" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必须</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>Y</td>
+<td>常量、list</td>
+<td>张量的值</td>
+</tr>
+<tr>
+<td>dtype</td>
+<td>N</td>
+<td>dtype</td>
+<td>张量的元素类型</td>
+</tr>
+<tr>
+<td>shape</td>
+<td>N</td>
+<td>1维整型张量、array</td>
+<td>张量的维度</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>张量的名称</td>
+</tr>
+<tr>
+<td>verify_shape</td>
+<td>N</td>
+<td>boolean</td>
+<td>检测shape是否和value的shape一致。<br>若值为False，当不一致时，会用最后一个元素将shape补全</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line">import tensorflow as tf</div><div class="line">import numpy as np</div><div class="line"></div><div class="line"><span class="string">""</span><span class="string">"</span></div><div class="line">@version: ??</div><div class="line">@author: Gavin</div><div class="line">@license: Apache Licence </div><div class="line">@contact: woniuyf@gmail.com</div><div class="line">@site: https://wonius.top/</div><div class="line">@software: PyCharm</div><div class="line">@file: constant.py</div><div class="line">@time: 2018/5/11 10:00</div><div class="line">"<span class="string">""</span></div><div class="line"></div><div class="line">a = tf.constant([1,2,3,4,5,6], shape=[2,3])</div><div class="line">b = tf.constant(-1, shape=[3,2])</div><div class="line">c = tf.matmul(a,b)</div><div class="line"></div><div class="line">e = tf.constant(np.arange(1,13,<span class="attribute">dtype</span>=np.int32), shape=[2,2,3])</div><div class="line">f = tf.constant(np.arange(13,25, <span class="attribute">dtype</span>=np.int32), shape=[2,3,2])</div><div class="line">g = tf.matmul(e,f)</div><div class="line"></div><div class="line">with tf.Session() as sess:</div><div class="line">    <span class="builtin-name">print</span> (<span class="string">"-----------------"</span>)</div><div class="line">    <span class="builtin-name">print</span> (a.get_shape())</div><div class="line">    <span class="builtin-name">print</span> (sess.<span class="builtin-name">run</span>(a))</div><div class="line">    <span class="builtin-name">print</span> (<span class="string">"-----------------"</span>)</div><div class="line">    <span class="builtin-name">print</span> (b.get_shape())</div><div class="line">    <span class="builtin-name">print</span> (sess.<span class="builtin-name">run</span>(b))</div><div class="line">    <span class="builtin-name">print</span> (<span class="string">"-----------------"</span>)</div><div class="line">    <span class="builtin-name">print</span> (c.get_shape())</div><div class="line">    <span class="builtin-name">print</span> (sess.<span class="builtin-name">run</span>(c))</div><div class="line">    <span class="builtin-name">print</span> (<span class="string">"-----------------"</span>)</div><div class="line">    <span class="builtin-name">print</span> (e.get_shape())</div><div class="line">    <span class="builtin-name">print</span> (sess.<span class="builtin-name">run</span>(e))</div><div class="line">    <span class="builtin-name">print</span> (<span class="string">"-----------------"</span>)</div><div class="line">    <span class="builtin-name">print</span> (f.get_shape())</div><div class="line">    <span class="builtin-name">print</span> (sess.<span class="builtin-name">run</span>(f))</div><div class="line">    <span class="builtin-name">print</span> (<span class="string">"-----------------"</span>)</div><div class="line">    <span class="builtin-name">print</span> (g.get_shape())</div><div class="line">    <span class="builtin-name">print</span> (sess.<span class="builtin-name">run</span>(g))</div><div class="line">    </div><div class="line"><span class="comment"># 执行结果</span></div><div class="line"><span class="comment"># -----------------</span></div><div class="line"><span class="comment"># (2, 3)</span></div><div class="line"><span class="comment"># [[1 2 3]</span></div><div class="line"><span class="comment">#  [4 5 6]]</span></div><div class="line"><span class="comment"># -----------------</span></div><div class="line"><span class="comment"># (3, 2)</span></div><div class="line"><span class="comment"># [[-1 -1]</span></div><div class="line"><span class="comment">#  [-1 -1]</span></div><div class="line"><span class="comment">#  [-1 -1]]</span></div><div class="line"><span class="comment"># -----------------</span></div><div class="line"><span class="comment"># (2, 2)</span></div><div class="line"><span class="comment"># [[ -6  -6]</span></div><div class="line"><span class="comment">#  [-15 -15]]</span></div><div class="line"><span class="comment"># -----------------</span></div><div class="line"><span class="comment"># (2, 2, 3)</span></div><div class="line"><span class="comment"># [[[ 1  2  3]</span></div><div class="line"><span class="comment">#   [ 4  5  6]]</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#  [[ 7  8  9]</span></div><div class="line"><span class="comment">#   [10 11 12]]]</span></div><div class="line"><span class="comment"># -----------------</span></div><div class="line"><span class="comment"># (2, 3, 2)</span></div><div class="line"><span class="comment"># [[[13 14]</span></div><div class="line"><span class="comment">#   [15 16]</span></div><div class="line"><span class="comment">#   [17 18]]</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#  [[19 20]</span></div><div class="line"><span class="comment">#   [21 22]</span></div><div class="line"><span class="comment">#   [23 24]]]</span></div><div class="line"><span class="comment"># -----------------</span></div><div class="line"><span class="comment"># (2, 2, 2)</span></div><div class="line"><span class="comment"># [[[ 94 100]</span></div><div class="line"><span class="comment">#   [229 244]]</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#  [[508 532]</span></div><div class="line"><span class="comment">#   [697 730]]]</span></div></pre></td></tr></table></figure>
+<h2 id="tf-placeholder"><a href="#tf-placeholder" class="headerlink" title="tf.placeholder"></a>tf.placeholder</h2><p><strong>一种占位符，在执行时填入具体值</strong></p>
+<p>###Define</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">placeholder(dtype, <span class="built_in">shape</span>=<span class="keyword">None</span>, <span class="keyword">name</span>=<span class="keyword">None</span>)</div></pre></td></tr></table></figure>
+<h3 id="Parameter-1"><a href="#Parameter-1" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dtype</td>
+<td>Y</td>
+<td>dtype</td>
+<td>占位符的数据类型</td>
+</tr>
+<tr>
+<td>shape</td>
+<td>N</td>
+<td>1维整型张量、array</td>
+<td>占位符的维度</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>占位符的名称</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Demo-1"><a href="#Demo-1" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line"><span class="string">"""</span></div><div class="line">@version: ??</div><div class="line">@author: Gavin</div><div class="line">@license: Apache Licence </div><div class="line">@contact: woniuyf@gmail.com</div><div class="line">@site: https://wonius.top/</div><div class="line">@software: PyCharm</div><div class="line">@file: placeholder.py</div><div class="line">@time: 2018/5/11 10:57</div><div class="line">"""</div><div class="line"></div><div class="line">x = tf.placeholder(tf.float32, [<span class="keyword">None</span>, <span class="number">3</span>])</div><div class="line">y = tf.matmul(x, x)</div><div class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</div><div class="line">    rand_array = np.random.rand(<span class="number">3</span>,<span class="number">3</span>)</div><div class="line">    <span class="keyword">print</span> (sess.run(y, feed_dict=&#123;x:rand_array&#125;))</div><div class="line"></div><div class="line"><span class="comment"># 执行结果</span></div><div class="line"><span class="comment"># [[ 0.88505751  0.79640609  0.46087515]</span></div><div class="line"><span class="comment">#  [ 0.36539319  0.41709256  0.16832483]</span></div><div class="line"><span class="comment">#  [ 0.75206953  0.90277183  0.37584797]]</span></div></pre></td></tr></table></figure>
+<h2 id="tf-nn-conv2d"><a href="#tf-nn-conv2d" class="headerlink" title="tf.nn.conv2d"></a>tf.nn.conv2d</h2><p><strong>卷积运算</strong></p>
+<h3 id="Define-1"><a href="#Define-1" class="headerlink" title="Define"></a>Define</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">conv2d(input, filter, strides, padding, </div><div class="line">		<span class="attribute">use_cudnn_on_gpu</span>=<span class="literal">True</span>, <span class="attribute">data_format</span>=<span class="string">'NHWC'</span>, <span class="attribute">name</span>=None)</div></pre></td></tr></table></figure>
+<h3 id="Parameter-2"><a href="#Parameter-2" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td>Y</td>
+<td>tensor</td>
+<td>4维的tensor，即[batch, in_height, in_width, in_channels]<br>(若input是图像，即[训练时一个batch的图片数量，图片高度，图片宽度，图片的通道数])<br>类型需为float32、float64</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>Y</td>
+<td>tensor</td>
+<td>4维的tensor，即[filter_height, filter_width, in_channels, out_channels]<br>(若input是图像，即[卷积核的高度，卷积核的宽度，图像通道数，卷积核个数])<br>filter的in_channels必须与input的in_channels相等</td>
+</tr>
+<tr>
+<td>strides</td>
+<td>Y</td>
+<td>list</td>
+<td>长度为4的list，卷积时在input上每一维的步长，一般strides[0]=strides[3]=1</td>
+</tr>
+<tr>
+<td>padding</td>
+<td>Y</td>
+<td>string</td>
+<td>卷积方式，只能为”SAME”、”VALID”其中之一。SAME：补全方式；VALID：丢弃方式</td>
+</tr>
+<tr>
+<td>use_cudnn_on_gpu</td>
+<td>N</td>
+<td>boolean</td>
+<td>是否使用cudnn加速，默认为true</td>
+</tr>
+<tr>
+<td>data_format</td>
+<td>N</td>
+<td>string</td>
+<td>只能为”NHWC”、”NCHW”，默认”NHWC”</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>N</td>
+<td>string</td>
+<td>运算名称</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Demo-2"><a href="#Demo-2" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">import tensorflow as tf</div><div class="line"></div><div class="line"><span class="string">""</span><span class="string">"</span></div><div class="line">@version: ??</div><div class="line">@author: Gavin</div><div class="line">@license: Apache Licence </div><div class="line">@contact: woniuyf@gmail.com</div><div class="line">@site: https://wonius.top/</div><div class="line">@software: PyCharm</div><div class="line">@file: conv2d.py</div><div class="line">@time: 2018/5/9 20:48</div><div class="line">"<span class="string">""</span></div><div class="line"></div><div class="line">a = tf.constant([1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,1,1,0,0,1,1,0,0],<span class="attribute">dtype</span>=tf.float32,shape=[1,5,5,1])</div><div class="line">b = tf.constant([1,0,1,0,1,0,1,0,1],<span class="attribute">dtype</span>=tf.float32,shape=[3,3,1,1])</div><div class="line">c = tf.nn.conv2d(a,b,strides=[1, 2, 2, 1],<span class="attribute">padding</span>=<span class="string">'VALID'</span>)</div><div class="line">d = tf.nn.conv2d(a,b,strides=[1, 2, 2, 1],<span class="attribute">padding</span>=<span class="string">'SAME'</span>)</div><div class="line">with tf.Session() as sess:</div><div class="line">    <span class="builtin-name">print</span> (<span class="string">"c shape:"</span>)</div><div class="line">    <span class="builtin-name">print</span> (c.get_shape())</div><div class="line">    <span class="builtin-name">print</span> (<span class="string">"c value:"</span>)</div><div class="line">    <span class="builtin-name">print</span> (sess.<span class="builtin-name">run</span>(c))</div><div class="line">    <span class="builtin-name">print</span> (<span class="string">"d shape:"</span>)</div><div class="line">    <span class="builtin-name">print</span> (d.get_shape())</div><div class="line">    <span class="builtin-name">print</span> (<span class="string">"d value:"</span>)</div><div class="line">    <span class="builtin-name">print</span> (sess.<span class="builtin-name">run</span>(d))</div><div class="line"></div><div class="line"><span class="comment"># 运算结果</span></div><div class="line"><span class="comment"># c shape:</span></div><div class="line"><span class="comment"># (1, 2, 2, 1)</span></div><div class="line"><span class="comment"># c value:</span></div><div class="line"><span class="comment"># [[[[ 4.]</span></div><div class="line"><span class="comment">#    [ 4.]]</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#   [[ 2.]</span></div><div class="line"><span class="comment">#    [ 4.]]]]</span></div><div class="line"><span class="comment"># d shape:</span></div><div class="line"><span class="comment"># (1, 3, 3, 1)</span></div><div class="line"><span class="comment"># d value:</span></div><div class="line"><span class="comment"># [[[[ 2.]</span></div><div class="line"><span class="comment">#    [ 3.]</span></div><div class="line"><span class="comment">#    [ 1.]]</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#   [[ 1.]</span></div><div class="line"><span class="comment">#    [ 4.]</span></div><div class="line"><span class="comment">#    [ 3.]]</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#   [[ 0.]</span></div><div class="line"><span class="comment">#    [ 2.]</span></div><div class="line"><span class="comment">#    [ 1.]]]]</span></div></pre></td></tr></table></figure>
+<h2 id="tf-nn-relu"><a href="#tf-nn-relu" class="headerlink" title="tf.nn.relu"></a>tf.nn.relu</h2><p><strong>激活函数</strong></p>
+<h3 id="Define-2"><a href="#Define-2" class="headerlink" title="Define"></a>Define</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">relu</span><span class="params">(features, name=None)</span></span></div></pre></td></tr></table></figure>
+<h3 id="Parameter-3"><a href="#Parameter-3" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>features</td>
+<td>Y</td>
+<td>tensor</td>
+<td>float32、float64、int8、int16、int32、int64、uint8、unit16、half</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>运算名称</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Demo-3"><a href="#Demo-3" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div><div class="line"></div><div class="line"><span class="string">"""</span></div><div class="line">@version: ??</div><div class="line">@author: Gavin</div><div class="line">@license: Apache Licence </div><div class="line">@contact: woniuyf@gmail.com</div><div class="line">@site: https://wonius.top/</div><div class="line">@software: PyCharm</div><div class="line">@file: relu.py</div><div class="line">@time: 2018/5/9 21:30</div><div class="line">"""</div><div class="line"></div><div class="line">a = tf.constant([<span class="number">1</span>,<span class="number">-2</span>,<span class="number">0</span>,<span class="number">4</span>,<span class="number">-5</span>,<span class="number">6</span>])</div><div class="line">b = tf.nn.relu(a)</div><div class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</div><div class="line">    <span class="keyword">print</span> (sess.run(b))</div><div class="line"></div><div class="line"><span class="comment"># 运算结果</span></div><div class="line"><span class="comment"># [1 0 0 4 0 6]</span></div></pre></td></tr></table></figure>
+<h2 id="tf-nn-max-pool"><a href="#tf-nn-max-pool" class="headerlink" title="tf.nn.max_pool"></a>tf.nn.max_pool</h2><p><strong>池化</strong></p>
+<h3 id="Define-3"><a href="#Define-3" class="headerlink" title="Define"></a>Define</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">max_pool(value, ksize, strides, padding,</div><div class="line">		<span class="attribute">data_format</span>=<span class="string">'NHWC'</span>, <span class="attribute">name</span>=None)</div></pre></td></tr></table></figure>
+<h3 id="Parameter-4"><a href="#Parameter-4" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>Y</td>
+<td>tensor</td>
+<td>4维的张量，即[batch, height, width, channels]，类型为tf.float32</td>
+</tr>
+<tr>
+<td>ksize</td>
+<td>Y</td>
+<td>list</td>
+<td>池化窗口的大小，长度为4的list，一般是[1，height，width，1]，因为不在batch和channels上做池化，所以第一个和最后一个维度为1</td>
+</tr>
+<tr>
+<td>strides</td>
+<td>Y</td>
+<td>list</td>
+<td>池化窗口在每一个维度上的步长。一般strides[0]=strides[3]=1</td>
+</tr>
+<tr>
+<td>padding</td>
+<td>Y</td>
+<td>string</td>
+<td>只能为”VALID”、”SAME”其中之一，这个值决定了不同的池化方式。VALID：丢弃方式；SAME：补全方式</td>
+</tr>
+<tr>
+<td>data_format</td>
+<td>N</td>
+<td>string</td>
+<td>只能为”NHWC”、”NCHW”。默认”NHWC”</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>运算名称</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Demo-4"><a href="#Demo-4" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">import tensorflow as tf</div><div class="line"></div><div class="line"><span class="string">""</span><span class="string">"</span></div><div class="line">@version: ??</div><div class="line">@author: Gavin</div><div class="line">@license: Apache Licence </div><div class="line">@contact: woniuyf@gmail.com</div><div class="line">@site: https://wonius.top/</div><div class="line">@software: PyCharm</div><div class="line">@file: max_pool.py</div><div class="line">@time: 2018/5/10 20:38</div><div class="line">"<span class="string">""</span></div><div class="line"></div><div class="line">a = tf.constant([1,3,2,1,2,9,1,1,1,3,2,3,5,6,1,2], <span class="attribute">dtype</span>=tf.float32, shape=[1,4,4,1])</div><div class="line">b = tf.nn.max_pool(a, ksize=[1,2,2,1], strides=[1, 2, 2, 1], <span class="attribute">padding</span>=<span class="string">'SAME'</span>)</div><div class="line">c = tf.nn.max_pool(a, ksize=[1,2,2,1], strides=[1,2,2,1], <span class="attribute">padding</span>=<span class="string">'VALID'</span>)</div><div class="line">with tf.Session() as sess:</div><div class="line">    <span class="builtin-name">print</span> (<span class="string">"b.shape"</span>)</div><div class="line">    <span class="builtin-name">print</span> (b.get_shape())</div><div class="line">    <span class="builtin-name">print</span> (<span class="string">"b.value"</span>)</div><div class="line">    <span class="builtin-name">print</span> (sess.<span class="builtin-name">run</span>(b))</div><div class="line"></div><div class="line">    <span class="builtin-name">print</span> (<span class="string">"c.shape"</span>)</div><div class="line">    <span class="builtin-name">print</span> (c.get_shape())</div><div class="line">    <span class="builtin-name">print</span> (<span class="string">"c.value"</span>)</div><div class="line">    <span class="builtin-name">print</span> (sess.<span class="builtin-name">run</span>(c))</div><div class="line"></div><div class="line"><span class="comment"># 运算结果</span></div><div class="line"><span class="comment"># b.shape</span></div><div class="line"><span class="comment"># (1, 2, 2, 1)</span></div><div class="line"><span class="comment"># b.value</span></div><div class="line"><span class="comment"># [[[[ 9.]</span></div><div class="line"><span class="comment">#    [ 2.]]</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#   [[ 6.]</span></div><div class="line"><span class="comment">#    [ 3.]]]]</span></div><div class="line"><span class="comment"># c.shape</span></div><div class="line"><span class="comment"># (1, 2, 2, 1)</span></div><div class="line"><span class="comment"># c.value</span></div><div class="line"><span class="comment"># [[[[ 9.]</span></div><div class="line"><span class="comment">#    [ 2.]]</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#   [[ 6.]</span></div><div class="line"><span class="comment">#    [ 3.]]]]</span></div></pre></td></tr></table></figure>
+<h2 id="tf-nn-dropout"><a href="#tf-nn-dropout" class="headerlink" title="tf.nn.dropout"></a>tf.nn.dropout</h2><p><strong>丢弃函数。在训练过程中，按照一定概率将一部分神经网络单元暂时从网络中丢弃，相当于从原始网络中找到一个更瘦的网络</strong></p>
+<h3 id="Define-4"><a href="#Define-4" class="headerlink" title="Define"></a>Define</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dropout(x, keep_prob, <span class="attribute">noise_shape</span>=None, <span class="attribute">seed</span>=None, <span class="attribute">name</span>=None)</div></pre></td></tr></table></figure>
+<h3 id="Parameter-5"><a href="#Parameter-5" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x</td>
+<td>Y</td>
+<td>tensor</td>
+<td>x中keep_prob概率的元素，除以keep_prob。或者为0</td>
+</tr>
+<tr>
+<td>keep_prob</td>
+<td>Y</td>
+<td>scalar</td>
+<td>dropout的概率，一般先用占位符</td>
+</tr>
+<tr>
+<td>noise_shape</td>
+<td>N</td>
+<td>tensor</td>
+<td>默认情况下，每个元素是否dropout是相互独立的。<br>如果noise_shape[i]==shape(x)[i]，该维度元素相互独立；<br>如果noise_shape[i]!=shape(x)[i]，该维度元素不相互独立，即要么一起dropout，要么一起保留</td>
+</tr>
+<tr>
+<td>seed</td>
+<td>N</td>
+<td>数值</td>
+<td>如果指定该值，每次dropout结果相同</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>运算名称</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Demo-5"><a href="#Demo-5" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">import tensorflow <span class="keyword">as</span> <span class="keyword">tf</span></div><div class="line"></div><div class="line"><span class="string">""</span><span class="comment">"</span></div><div class="line">@version: ??</div><div class="line">@author: Gavin</div><div class="line">@license: Apache Licence </div><div class="line">@contac<span class="variable">t:</span> woniuyf@gmail.<span class="keyword">com</span></div><div class="line">@site: http<span class="variable">s:</span>//wonius.top/</div><div class="line">@software: PyCharm</div><div class="line">@file: dropout.<span class="keyword">py</span></div><div class="line">@time: <span class="number">2018</span>/<span class="number">5</span>/<span class="number">10</span> <span class="number">20</span>:<span class="number">58</span></div><div class="line"><span class="string">""</span><span class="comment">"</span></div><div class="line"></div><div class="line"><span class="keyword">a</span> = <span class="keyword">tf</span>.constant([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>], shape=[<span class="number">2</span>,<span class="number">3</span>], dtype=<span class="keyword">tf</span>.float32)</div><div class="line"><span class="keyword">b</span> = <span class="keyword">tf</span>.placeholder(<span class="keyword">tf</span>.float32)</div><div class="line"><span class="keyword">c</span> = <span class="keyword">tf</span>.<span class="keyword">nn</span>.dropout(<span class="keyword">a</span>, <span class="keyword">b</span>, [<span class="number">2</span>,<span class="number">1</span>], <span class="number">1</span>)</div><div class="line">with <span class="keyword">tf</span>.Session() <span class="keyword">as</span> ses<span class="variable">s:</span></div><div class="line">    sess.run(<span class="keyword">tf</span>.global_variables_initializer())</div><div class="line">    <span class="keyword">print</span> (sess.run(<span class="keyword">c</span>, feed_dict=&#123;<span class="variable">b:0</span>.<span class="number">75</span>&#125;))</div><div class="line"></div><div class="line"># 运算结果</div><div class="line"># [[ <span class="number">0</span>.          <span class="number">0</span>.          <span class="number">0</span>.        ]</div><div class="line">#  [ <span class="number">5.33333349</span>  <span class="number">6.66666651</span>  <span class="number">8</span>.        ]]</div></pre></td></tr></table></figure>
+<h2 id="tf-nn-sigmoid-cross-entropy-with-logits"><a href="#tf-nn-sigmoid-cross-entropy-with-logits" class="headerlink" title="tf.nn.sigmoid_cross_entropy_with_logits"></a>tf.nn.sigmoid_cross_entropy_with_logits</h2><p><strong>计算交叉熵函数。先对 logits 进行 sigmoid 计算，再计算交叉熵</strong></p>
+<p>交叉熵：Loss函数的一种。常见的Loss函数为均方平方差；</p>
+<p>sigmoid：激活函数的一种；</p>
+<p>另外除了tf.nn.sigmoid_cross_entropy_with_logits以外，还有</p>
+<p>tf.nn.softmax_cross_entropy_with_logits（参数logits必须为未经缩放的，函数中会对logits进行sigmoid运算）</p>
+<p>tf.nn.sparse_softmax_cross_entropy_with_logits</p>
+<p>tf.nn.weighted_cross_entropy_with_logits三种交叉熵函数</p>
+<h3 id="Define-5"><a href="#Define-5" class="headerlink" title="Define"></a>Define</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sigmoid_cross_entropy_with_logits(<span class="attribute">_sentinel</span>=None, <span class="attribute">labels</span>=None, <span class="attribute">logits</span>=None, <span class="attribute">name</span>=None)</div></pre></td></tr></table></figure>
+<h3 id="Parameter-6"><a href="#Parameter-6" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_sentinel</td>
+<td>N</td>
+<td>None</td>
+<td>一般不使用</td>
+</tr>
+<tr>
+<td>logits</td>
+<td>N</td>
+<td>tensor</td>
+<td>float32、float64</td>
+</tr>
+<tr>
+<td>labels</td>
+<td>N</td>
+<td>tensor</td>
+<td>shape与logits相同</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>运算名称</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Demo-6"><a href="#Demo-6" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">import tensorflow <span class="keyword">as</span> <span class="keyword">tf</span></div><div class="line"></div><div class="line"><span class="string">""</span><span class="comment">"</span></div><div class="line">@version: ??</div><div class="line">@author: Gavin</div><div class="line">@license: Apache Licence </div><div class="line">@contac<span class="variable">t:</span> woniuyf@gmail.<span class="keyword">com</span></div><div class="line">@site: http<span class="variable">s:</span>//wonius.top/</div><div class="line">@software: PyCharm</div><div class="line">@file: sigmod_cross_entropy_with_logits.<span class="keyword">py</span>.<span class="keyword">py</span></div><div class="line">@time: <span class="number">2018</span>/<span class="number">5</span>/<span class="number">11</span> <span class="number">09</span>:<span class="number">27</span></div><div class="line"><span class="string">""</span><span class="comment">"</span></div><div class="line"></div><div class="line"><span class="keyword">x</span> = <span class="keyword">tf</span>.constant([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>], dtype=<span class="keyword">tf</span>.float64)</div><div class="line"><span class="keyword">y</span> = <span class="keyword">tf</span>.constant([<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>], dtype=<span class="keyword">tf</span>.float64)</div><div class="line">loss = <span class="keyword">tf</span>.<span class="keyword">nn</span>.sigmoid_cross_entropy_with_logits(logits=<span class="keyword">x</span>, labels=<span class="keyword">y</span>)</div><div class="line"></div><div class="line">with <span class="keyword">tf</span>.Session() <span class="keyword">as</span> ses<span class="variable">s:</span></div><div class="line">    <span class="keyword">print</span> (sess.run(loss))</div><div class="line"></div><div class="line"># 运算结果</div><div class="line"># [<span class="number">3.13261688</span><span class="keyword">e</span>-<span class="number">01</span>   <span class="number">1.26928011</span><span class="keyword">e</span>-<span class="number">01</span>   <span class="number">4.85873516</span><span class="keyword">e</span>-<span class="number">02</span>   <span class="number">4.01814993</span><span class="keyword">e</span>+<span class="number">00</span></div><div class="line">#  <span class="number">5.00671535</span><span class="keyword">e</span>+<span class="number">00</span>   <span class="number">2.47568514</span><span class="keyword">e</span>-<span class="number">03</span>   <span class="number">7.00091147</span><span class="keyword">e</span>+<span class="number">00</span>]</div></pre></td></tr></table></figure>
+<p><strong>该函数返回值是一个向量，并不是一个数。</strong></p>
+<p><strong>如果要求交叉熵，需要进一步做tf.reduce_sum操作，即对向量里所有元素求和；</strong></p>
+<p><strong>如果要求Loss（常见），需要进一步做tf.reduce_mean操作，对向量求平均值；</strong></p>
+<h2 id="tf-nn-bias-add"><a href="#tf-nn-bias-add" class="headerlink" title="tf.nn.bias_add"></a>tf.nn.bias_add</h2><p><strong>将偏差项 bias 加到 value 上面，可以看做是 tf.add 的一个特例。其中 bias 必须是一维的，并且维度和 value 的最后一维相同，数据类型必须和 value 相同</strong></p>
+<h3 id="Define-6"><a href="#Define-6" class="headerlink" title="Define"></a>Define</h3><figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bias_add(<span class="keyword">value</span>, bias, data_format=<span class="keyword">None</span>, <span class="keyword">name</span>=<span class="keyword">None</span>)</div></pre></td></tr></table></figure>
+<h3 id="Parameter-7"><a href="#Parameter-7" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>Y</td>
+<td>tensor</td>
+<td>Float、double、int64、int32、int16、int8、uint8、complex64、complex128</td>
+</tr>
+<tr>
+<td>bias</td>
+<td>Y</td>
+<td>1维tensor</td>
+<td>维度必须和value最后一维维度相等</td>
+</tr>
+<tr>
+<td>data_format</td>
+<td>N</td>
+<td>string</td>
+<td>支持”NHWC”、”NCHW”</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>运算名称</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Demo-7"><a href="#Demo-7" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">import tensorflow as tf</div><div class="line"></div><div class="line"><span class="string">""</span><span class="string">"</span></div><div class="line">@version: ??</div><div class="line">@author: Gavin</div><div class="line">@license: Apache Licence </div><div class="line">@contact: woniuyf@gmail.com</div><div class="line">@site: https://wonius.top/</div><div class="line">@software: PyCharm</div><div class="line">@file: bias_add.py</div><div class="line">@time: 2018/5/11 11:45</div><div class="line">"<span class="string">""</span></div><div class="line"></div><div class="line">a = tf.constant([[1.0, 2.0],[1.0, 2.0],[1.0, 2.0]])</div><div class="line">b = tf.constant([2.0,1.0])</div><div class="line">c = tf.constant([1.0])</div><div class="line">with tf.Session() as sess:</div><div class="line">    <span class="builtin-name">print</span> (<span class="string">"bias_add(a, b)"</span>)</div><div class="line">    <span class="builtin-name">print</span> (sess.<span class="builtin-name">run</span>(tf.nn.bias_add(a, b)))</div><div class="line">    # <span class="builtin-name">print</span> (sess.<span class="builtin-name">run</span>(tf.nn.bias_add(a, c))) <span class="builtin-name">error</span></div><div class="line">    <span class="builtin-name">print</span> (<span class="string">"-----------------"</span>)</div><div class="line">    <span class="builtin-name">print</span> (<span class="string">"tf.add(a, b)"</span>)</div><div class="line">    <span class="builtin-name">print</span> (sess.<span class="builtin-name">run</span>(tf.<span class="builtin-name">add</span>(a, b)))</div><div class="line">    <span class="builtin-name">print</span> (<span class="string">"-----------------"</span>)</div><div class="line">    <span class="builtin-name">print</span> (<span class="string">"tf.add(a, c"</span>)</div><div class="line">    <span class="builtin-name">print</span> (sess.<span class="builtin-name">run</span>(tf.<span class="builtin-name">add</span>(a, c)))</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># bias_add(a, b)</span></div><div class="line"><span class="comment"># [[ 3.  3.]</span></div><div class="line"><span class="comment">#  [ 3.  3.]</span></div><div class="line"><span class="comment">#  [ 3.  3.]]</span></div><div class="line"><span class="comment"># -----------------</span></div><div class="line"><span class="comment"># tf.add(a, b)</span></div><div class="line"><span class="comment"># [[ 3.  3.]</span></div><div class="line"><span class="comment">#  [ 3.  3.]</span></div><div class="line"><span class="comment">#  [ 3.  3.]]</span></div><div class="line"><span class="comment"># -----------------</span></div><div class="line"><span class="comment"># tf.add(a, c</span></div><div class="line"><span class="comment"># [[ 2.  3.]</span></div><div class="line"><span class="comment">#  [ 2.  3.]</span></div><div class="line"><span class="comment">#  [ 2.  3.]]</span></div></pre></td></tr></table></figure>
+<h2 id="tf-truncated-normal"><a href="#tf-truncated-normal" class="headerlink" title="tf.truncated_normal"></a>tf.truncated_normal</h2><p><strong>在截断的正态分布中输出随机数，取值范围[ mean - 2 <em> stddev, mean + 2 </em> stddev ]</strong></p>
+<h3 id="Define-7"><a href="#Define-7" class="headerlink" title="Define"></a>Define</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">truncated_normal(shape, <span class="attribute">mean</span>=0.0, <span class="attribute">stddev</span>=1.0, <span class="attribute">dtype</span>=tf.float32, <span class="attribute">seed</span>=None, <span class="attribute">name</span>=None)</div></pre></td></tr></table></figure>
+<h3 id="Parameter-8"><a href="#Parameter-8" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>shape</td>
+<td>Y</td>
+<td>1维整型张量、array</td>
+<td>输出张量的维度</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>N</td>
+<td>0维张量、数值</td>
+<td>均值</td>
+</tr>
+<tr>
+<td>stddev</td>
+<td>N</td>
+<td>0维张量、数值</td>
+<td>标准差</td>
+</tr>
+<tr>
+<td>dtype</td>
+<td>N</td>
+<td>dtype</td>
+<td>输出类型</td>
+</tr>
+<tr>
+<td>seed</td>
+<td>N</td>
+<td>数值</td>
+<td>随机种子，若seed复制，每次产生相同随机数</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>运算名称</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Demo-8"><a href="#Demo-8" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">import tensorflow as tf</div><div class="line"></div><div class="line"><span class="string">""</span><span class="string">"</span></div><div class="line">@version: ??</div><div class="line">@author: Gavin</div><div class="line">@license: Apache Licence </div><div class="line">@contact: woniuyf@gmail.com</div><div class="line">@site: https://wonius.top/</div><div class="line">@software: PyCharm</div><div class="line">@file: truncated_nomal.py</div><div class="line">@time: 2018/5/11 09:52</div><div class="line">"<span class="string">""</span></div><div class="line"></div><div class="line">initial = tf.truncated_normal(shape=[<span class="number">3</span>,<span class="number">3</span>], mean=<span class="number">0</span>, stddev=<span class="number">1</span>)</div><div class="line"><span class="keyword">print</span> (tf.Session().run(initial))</div><div class="line"></div><div class="line"><span class="comment"># 运算结果</span></div><div class="line"><span class="comment"># [[-0.49039015  0.67874366  1.00580561]</span></div><div class="line"><span class="comment">#  [ 0.97545707  0.15845388 -0.73228759]</span></div><div class="line"><span class="comment">#  [-0.60446167 -0.87802863  0.24452373]]</span></div></pre></td></tr></table></figure>
+<h2 id="tf-reduce-mean"><a href="#tf-reduce-mean" class="headerlink" title="tf.reduce_mean"></a>tf.reduce_mean</h2><p><strong>计算张量input_tensor的平均值</strong></p>
+<h3 id="Define-8"><a href="#Define-8" class="headerlink" title="Define"></a>Define</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">reduce_mean(input_tensor, <span class="attribute">axis</span>=None, <span class="attribute">keep_dims</span>=<span class="literal">False</span>, <span class="attribute">name</span>=None, <span class="attribute">reduction_indices</span>=None)</div></pre></td></tr></table></figure>
+<h3 id="Parameter-9"><a href="#Parameter-9" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input_tensor</td>
+<td>Y</td>
+<td>张量</td>
+<td>待求平均值的张量</td>
+</tr>
+<tr>
+<td>axis</td>
+<td>N</td>
+<td>None、0、1</td>
+<td>None：全局球平均值<br>0：求每一列平均值<br>1：求每一行平均值</td>
+</tr>
+<tr>
+<td>keep_dims</td>
+<td>N</td>
+<td>boolean</td>
+<td>保留原来的维度（例如不会从二维矩阵降为一维）</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>运算名称</td>
+</tr>
+<tr>
+<td>reduction_indices</td>
+<td>N</td>
+<td>None</td>
+<td>和axis等价，已弃用</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Demo-9"><a href="#Demo-9" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div><div class="line"></div><div class="line"><span class="string">"""</span></div><div class="line">@version: ??</div><div class="line">@author: Gavin</div><div class="line">@license: Apache Licence </div><div class="line">@contact: woniuyf@gmail.com</div><div class="line">@site: https://wonius.top/</div><div class="line">@software: PyCharm</div><div class="line">@file: reduce_mean.py</div><div class="line">@time: 2018/5/11 13:46</div><div class="line">"""</div><div class="line"></div><div class="line">initial = [[<span class="number">1.</span>,<span class="number">1.</span>],[<span class="number">2.</span>,<span class="number">2.</span>]]</div><div class="line">x = tf.Variable(initial, dtype=tf.float32)</div><div class="line">init_op = tf.global_variables_initializer()</div><div class="line"></div><div class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</div><div class="line">    sess.run(init_op)</div><div class="line">    <span class="keyword">print</span> (sess.run(tf.reduce_mean(x)))</div><div class="line">    <span class="keyword">print</span> (sess.run(tf.reduce_mean(x, <span class="number">0</span>)))  <span class="comment">#column</span></div><div class="line">    <span class="keyword">print</span> (sess.run(tf.reduce_mean(x, <span class="number">1</span>)))  <span class="comment">#row</span></div><div class="line"></div><div class="line"><span class="comment"># 运算结果</span></div><div class="line"><span class="comment"># 1.5</span></div><div class="line"><span class="comment"># [ 1.5  1.5]</span></div><div class="line"><span class="comment"># [ 1.  2.]</span></div></pre></td></tr></table></figure>
+<h2 id="tf-square"><a href="#tf-square" class="headerlink" title="tf.square"></a>tf.square</h2><p><strong>计算张量对应元素的平方</strong></p>
+<h3 id="Define-9"><a href="#Define-9" class="headerlink" title="Define"></a>Define</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">square</span><span class="params">(x, name=None)</span></span></div></pre></td></tr></table></figure>
+<h3 id="Parameter-10"><a href="#Parameter-10" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x</td>
+<td>Y</td>
+<td>tensor</td>
+<td>half、float32、float64、int32、int64、complex64、complex128</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>运算名称</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Demo-10"><a href="#Demo-10" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div><div class="line"></div><div class="line"><span class="string">"""</span></div><div class="line">@version: ??</div><div class="line">@author: Gavin</div><div class="line">@license: Apache Licence </div><div class="line">@contact: woniuyf@gmail.com</div><div class="line">@site: https://wonius.top/</div><div class="line">@software: PyCharm</div><div class="line">@file: square.py</div><div class="line">@time: 2018/5/11 13:59</div><div class="line">"""</div><div class="line"></div><div class="line">initial_x = [[<span class="number">1.</span>,<span class="number">1.</span>], [<span class="number">2.</span>,<span class="number">2.</span>]]</div><div class="line">x = tf.Variable(initial_x, dtype=tf.float32)</div><div class="line">x_2 = tf.square(initial_x)</div><div class="line"></div><div class="line">init_op = tf.global_variables_initializer()</div><div class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</div><div class="line">    sess.run(init_op)</div><div class="line">    <span class="keyword">print</span> (sess.run(x_2))</div><div class="line"></div><div class="line"><span class="comment"># 运算结果</span></div><div class="line"><span class="comment"># [[ 1.  1.]</span></div><div class="line"><span class="comment">#  [ 4.  4.]]</span></div></pre></td></tr></table></figure>
+<h2 id="tf-squared-difference"><a href="#tf-squared-difference" class="headerlink" title="tf.squared_difference"></a>tf.squared_difference</h2><p><strong>计算张量x、y对应元素差平方</strong></p>
+<h3 id="Define-10"><a href="#Define-10" class="headerlink" title="Define"></a>Define</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">squared_difference</span><span class="params">(x, y, name=None)</span></span></div></pre></td></tr></table></figure>
+<h3 id="Parameter-11"><a href="#Parameter-11" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x</td>
+<td>Y</td>
+<td>tensor</td>
+<td>half、float32、float64、int32、int64、complex64、complex128</td>
+</tr>
+<tr>
+<td>y</td>
+<td>Y</td>
+<td>tensor</td>
+<td>half、float32、float64、int32、int64、complex64、complex128</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>运算名称</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Demo-11"><a href="#Demo-11" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">import tensorflow <span class="keyword">as</span> <span class="keyword">tf</span></div><div class="line"></div><div class="line"><span class="string">""</span><span class="comment">"</span></div><div class="line">@version: ??</div><div class="line">@author: Gavin</div><div class="line">@license: Apache Licence </div><div class="line">@contac<span class="variable">t:</span> woniuyf@gmail.<span class="keyword">com</span></div><div class="line">@site: http<span class="variable">s:</span>//wonius.top/</div><div class="line">@software: PyCharm</div><div class="line">@file: squared_difference.<span class="keyword">py</span></div><div class="line">@time: <span class="number">2018</span>/<span class="number">5</span>/<span class="number">11</span> <span class="number">13</span>:<span class="number">54</span></div><div class="line"><span class="string">""</span><span class="comment">"</span></div><div class="line"></div><div class="line">initial_x = [[<span class="number">1</span>.,<span class="number">1</span>.], [<span class="number">2</span>.,<span class="number">2</span>.]]</div><div class="line"><span class="keyword">x</span> = <span class="keyword">tf</span>.Variable(initial_x, dtype=<span class="keyword">tf</span>.float32)</div><div class="line">initial_y = [[<span class="number">3</span>.,<span class="number">3</span>.], [<span class="number">4</span>.,<span class="number">4</span>.]]</div><div class="line"><span class="keyword">y</span> = <span class="keyword">tf</span>.Variable(initial_y, dtype=<span class="keyword">tf</span>.float32)</div><div class="line"></div><div class="line">diff = <span class="keyword">tf</span>.squared_difference(<span class="keyword">x</span>, <span class="keyword">y</span>)</div><div class="line">init_op = <span class="keyword">tf</span>.global_variables_initializer()</div><div class="line"></div><div class="line">with <span class="keyword">tf</span>.Session() <span class="keyword">as</span> ses<span class="variable">s:</span></div><div class="line">    sess.run(init_op)</div><div class="line">    <span class="keyword">print</span> (sess.run(diff))</div><div class="line"></div><div class="line"># 运算名称</div><div class="line"># [[ <span class="number">4</span>.  <span class="number">4</span>.]</div><div class="line">#  [ <span class="number">4</span>.  <span class="number">4</span>.]]</div></pre></td></tr></table></figure>
+<h2 id="tf-Variable"><a href="#tf-Variable" class="headerlink" title="tf.Variable"></a>tf.Variable</h2><p><strong>类，维护图在执行过程中的状态信息，例如神经网络权重值的变化</strong></p>
+<h3 id="Define-11"><a href="#Define-11" class="headerlink" title="Define"></a>Define</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">__init__(<span class="attribute">initial_value</span>=None, <span class="attribute">trainable</span>=<span class="literal">True</span>, <span class="attribute">collections</span>=None, <span class="attribute">validate_shape</span>=<span class="literal">True</span>,</div><div class="line">		<span class="attribute">caching_device</span>=None, <span class="attribute">name</span>=None, <span class="attribute">variable_def</span>=None, <span class="attribute">dtype</span>=None, <span class="attribute">expected_shape</span>=None,</div><div class="line">		<span class="attribute">import_scope</span>=None)</div></pre></td></tr></table></figure>
+<h3 id="Parameter-12"><a href="#Parameter-12" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>initial_value</td>
+<td>tensor</td>
+<td>Variable类的初始值。这个张量必须制定shape信息，否则后面validate_shape需设为False</td>
+</tr>
+<tr>
+<td>trainable</td>
+<td>boolean</td>
+<td>是否把变量添加到 GraphKeys.TRAINABLE_VARIABLES中。<br>（ collection 是一种全局存储，不受变量名生存空间影响，一处保存，到处可取）</td>
+</tr>
+<tr>
+<td>collections</td>
+<td>Graph collections</td>
+<td>全局存储，默认是 GraphKeys.GLOBAL_VARIABLES</td>
+</tr>
+<tr>
+<td>validate_shape</td>
+<td>boolean</td>
+<td>是否允许被位置维度的initial_value初始化</td>
+</tr>
+<tr>
+<td>caching_device</td>
+<td>string</td>
+<td>指明哪个device用来缓存变量</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>变量名</td>
+</tr>
+<tr>
+<td>dtype</td>
+<td>dtype</td>
+<td>如果设置，初始化的值按照该类型初始化</td>
+</tr>
+<tr>
+<td>expected_shape</td>
+<td>tensorShape</td>
+<td>要是设置了，那么初始的值会是这种维度</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Demo-12"><a href="#Demo-12" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div></pre></td><td class="code"><pre><div class="line">import tensorflow as tf</div><div class="line"></div><div class="line">"""</div><div class="line">@version: ??</div><div class="line">@author: Gavin</div><div class="line">@license: Apache Licence </div><div class="line">@contact: woniuyf@gmail.com</div><div class="line">@site: https://wonius.top/</div><div class="line">@software: PyCharm</div><div class="line">@file: Variable.py</div><div class="line">@time: 2018/5/11 14:46</div><div class="line">"""</div><div class="line"></div><div class="line"></div><div class="line">initial = tf.truncated_normal(shape=[10, 10], mean=0, stddev=1)</div><div class="line">W = tf.Variable(initial)</div><div class="line"></div><div class="line">list = [[1.,1.], [2.,2.]]</div><div class="line">X = tf.Variable(list, dtype=tf.float32)</div><div class="line"></div><div class="line">init_op = tf.global_variables_initializer()</div><div class="line">with tf.Session() as sess:</div><div class="line">    sess.run(init_op)</div><div class="line">    print ("------------------------------------------------------------")</div><div class="line">    print (sess.run(W))</div><div class="line"></div><div class="line">    print ("------------------------------------------------------------")</div><div class="line">    print (sess.run(W[:2,:2]))</div><div class="line">    op = W[:2,:2].assign(22.*tf.ones((2,2)))</div><div class="line"></div><div class="line">    print ("------------------------------------------------------------")</div><div class="line">    print (sess.run(op))</div><div class="line"></div><div class="line">    print ("------------------------------------------------------------")</div><div class="line">    print (W.eval(sess)) # computes and returns the value of this variable</div><div class="line">    print (W.eval())    # user with the default session</div><div class="line"></div><div class="line">    print ("------------------------------------------------------------")</div><div class="line">    print (W.dtype)</div><div class="line">    print (sess.run(W.initial_value))</div><div class="line">    print (sess.run(W.op))</div><div class="line">    print (W.shape)</div><div class="line"></div><div class="line">    print ("------------------------------------------------------------")</div><div class="line">    print (sess.run(X))</div><div class="line"></div><div class="line"># 运算结果</div><div class="line"># ------------------------------------------------------------</div><div class="line"># [[ <span class="string">-1</span>.36460924e<span class="string">+00</span>  <span class="string">-8</span>.78410161e<span class="string">-01</span>   1.87626636e<span class="string">+00</span>   1.27253577e<span class="string">-01</span></div><div class="line">#     1.77748889e<span class="string">-01</span>  <span class="string">-2</span>.79777735e<span class="string">-01</span>  <span class="string">-1</span>.29324961e<span class="string">+00</span>   1.18464601e<span class="string">+00</span></div><div class="line">#     5.91014000e<span class="string">-03</span>   3.91639054e<span class="string">-01</span>]</div><div class="line">#  [  1.09924674e<span class="string">+00</span>  <span class="string">-1</span>.08868659e<span class="string">+00</span>  <span class="string">-1</span>.12289786e<span class="string">+00</span>  <span class="string">-6</span>.78496242e<span class="string">-01</span></div><div class="line">#     4.25694019e<span class="string">-01</span>   1.06920172e<span class="string">-02</span>   8.05350840e<span class="string">-01</span>  <span class="string">-7</span>.63205171e<span class="string">-01</span></div><div class="line">#     3.23375136e<span class="string">-01</span>   4.49576497e<span class="string">-01</span>]</div><div class="line">#  [ <span class="string">-1</span>.05841234e<span class="string">-01</span>  <span class="string">-2</span>.85442650e<span class="string">-01</span>   1.01552248e<span class="string">+00</span>  <span class="string">-1</span>.69130695e<span class="string">+00</span></div><div class="line">#    <span class="string">-1</span>.15725782e<span class="string">-03</span>   1.47837210e<span class="string">+00</span>   6.69513494e<span class="string">-02</span>   4.84152675e<span class="string">-01</span></div><div class="line">#    <span class="string">-3</span>.82478178e<span class="string">-01</span>  <span class="string">-1</span>.20722222e<span class="string">+00</span>]</div><div class="line">#  [  3.09620090e<span class="string">-02</span>  <span class="string">-7</span>.98057988e<span class="string">-02</span>   5.60789108e<span class="string">-01</span>  <span class="string">-1</span>.78828037e<span class="string">+00</span></div><div class="line">#     1.95968688e<span class="string">-01</span>  <span class="string">-2</span>.27404922e<span class="string">-01</span>  <span class="string">-1</span>.72476351e<span class="string">+00</span>  <span class="string">-1</span>.23355138e<span class="string">+00</span></div><div class="line">#    <span class="string">-9</span>.63081241e<span class="string">-01</span>  <span class="string">-1</span>.60457373e<span class="string">+00</span>]</div><div class="line">#  [  3.23699638e<span class="string">-02</span>  <span class="string">-5</span>.90677261e<span class="string">-01</span>  <span class="string">-1</span>.92470342e<span class="string">-01</span>  <span class="string">-4</span>.10615206e<span class="string">-01</span></div><div class="line">#     3.35628651e<span class="string">-02</span>  <span class="string">-1</span>.41288012e<span class="string">-01</span>  <span class="string">-3</span>.40104014e<span class="string">-01</span>   1.13289797e<span class="string">+00</span></div><div class="line">#     6.52421772e<span class="string">-01</span>   9.17639136e<span class="string">-01</span>]</div><div class="line">#  [  5.11528432e<span class="string">-01</span>   1.64260656e<span class="string">-01</span>  <span class="string">-7</span>.84879684e<span class="string">-01</span>  <span class="string">-2</span>.26418376e<span class="string">-01</span></div><div class="line">#    <span class="string">-8</span>.90385628e<span class="string">-01</span>  <span class="string">-3</span>.38358462e<span class="string">-01</span>   1.96581781e<span class="string">+00</span>  <span class="string">-7</span>.17314780e<span class="string">-02</span></div><div class="line">#     1.23814851e<span class="string">-01</span>   7.64766455e<span class="string">-01</span>]</div><div class="line">#  [  2.22003132e<span class="string">-01</span>  <span class="string">-1</span>.70102561e<span class="string">+00</span>  <span class="string">-1</span>.60155982e<span class="string">-01</span>   1.10927892e<span class="string">+00</span></div><div class="line">#    <span class="string">-1</span>.14349496e<span class="string">+00</span>  <span class="string">-6</span>.86953589e<span class="string">-02</span>  <span class="string">-3</span>.56495827e<span class="string">-01</span>  <span class="string">-5</span>.14335275e<span class="string">-01</span></div><div class="line">#     1.98457405e<span class="string">-01</span>  <span class="string">-2</span>.56361932e<span class="string">-01</span>]</div><div class="line">#  [ <span class="string">-6</span>.98417068e<span class="string">-01</span>  <span class="string">-1</span>.91254735e<span class="string">-01</span>   2.43045017e<span class="string">-01</span>   1.62485635e<span class="string">+00</span></div><div class="line">#     1.34399071e<span class="string">-01</span>   4.48576242e<span class="string">-01</span>   9.65317804e<span class="string">-03</span>   2.63324082e<span class="string">-01</span></div><div class="line">#     1.71964037e<span class="string">+00</span>   1.81242809e<span class="string">-01</span>]</div><div class="line">#  [ <span class="string">-3</span>.06579232e<span class="string">-01</span>   6.82186067e<span class="string">-01</span>  <span class="string">-1</span>.34259194e<span class="string">-01</span>   8.21067274e<span class="string">-01</span></div><div class="line">#     2.75264233e<span class="string">-01</span>   2.36507237e<span class="string">-01</span>  <span class="string">-5</span>.18465579e<span class="string">-01</span>   2.66540438e<span class="string">-01</span></div><div class="line">#    <span class="string">-4</span>.08049405e<span class="string">-01</span>   4.00008321e<span class="string">-01</span>]</div><div class="line">#  [  6.39303386e<span class="string">-01</span>  <span class="string">-3</span>.73077720e<span class="string">-01</span>  <span class="string">-3</span>.93441260e<span class="string">-01</span>   1.44391823e<span class="string">+00</span></div><div class="line">#    <span class="string">-4</span>.43163812e<span class="string">-01</span>  <span class="string">-2</span>.28796184e<span class="string">-01</span>  <span class="string">-9</span>.21004534e<span class="string">-01</span>  <span class="string">-6</span>.29425883e<span class="string">-01</span></div><div class="line">#    <span class="string">-1</span>.04850844e<span class="string">-01</span>   5.76163709e<span class="string">-01</span>]]</div><div class="line"># ------------------------------------------------------------</div><div class="line"># [[<span class="string">-1</span>.36460924 <span class="string">-0</span>.87841016]</div><div class="line">#  [ 1.09924674 <span class="string">-1</span>.08868659]]</div><div class="line"># ------------------------------------------------------------</div><div class="line"># [[  2.20000000e<span class="string">+01</span>   2.20000000e<span class="string">+01</span>   1.87626636e<span class="string">+00</span>   1.27253577e<span class="string">-01</span></div><div class="line">#     1.77748889e<span class="string">-01</span>  <span class="string">-2</span>.79777735e<span class="string">-01</span>  <span class="string">-1</span>.29324961e<span class="string">+00</span>   1.18464601e<span class="string">+00</span></div><div class="line">#     5.91014000e<span class="string">-03</span>   3.91639054e<span class="string">-01</span>]</div><div class="line">#  [  2.20000000e<span class="string">+01</span>   2.20000000e<span class="string">+01</span>  <span class="string">-1</span>.12289786e<span class="string">+00</span>  <span class="string">-6</span>.78496242e<span class="string">-01</span></div><div class="line">#     4.25694019e<span class="string">-01</span>   1.06920172e<span class="string">-02</span>   8.05350840e<span class="string">-01</span>  <span class="string">-7</span>.63205171e<span class="string">-01</span></div><div class="line">#     3.23375136e<span class="string">-01</span>   4.49576497e<span class="string">-01</span>]</div><div class="line">#  [ <span class="string">-1</span>.05841234e<span class="string">-01</span>  <span class="string">-2</span>.85442650e<span class="string">-01</span>   1.01552248e<span class="string">+00</span>  <span class="string">-1</span>.69130695e<span class="string">+00</span></div><div class="line">#    <span class="string">-1</span>.15725782e<span class="string">-03</span>   1.47837210e<span class="string">+00</span>   6.69513494e<span class="string">-02</span>   4.84152675e<span class="string">-01</span></div><div class="line">#    <span class="string">-3</span>.82478178e<span class="string">-01</span>  <span class="string">-1</span>.20722222e<span class="string">+00</span>]</div><div class="line">#  [  3.09620090e<span class="string">-02</span>  <span class="string">-7</span>.98057988e<span class="string">-02</span>   5.60789108e<span class="string">-01</span>  <span class="string">-1</span>.78828037e<span class="string">+00</span></div><div class="line">#     1.95968688e<span class="string">-01</span>  <span class="string">-2</span>.27404922e<span class="string">-01</span>  <span class="string">-1</span>.72476351e<span class="string">+00</span>  <span class="string">-1</span>.23355138e<span class="string">+00</span></div><div class="line">#    <span class="string">-9</span>.63081241e<span class="string">-01</span>  <span class="string">-1</span>.60457373e<span class="string">+00</span>]</div><div class="line">#  [  3.23699638e<span class="string">-02</span>  <span class="string">-5</span>.90677261e<span class="string">-01</span>  <span class="string">-1</span>.92470342e<span class="string">-01</span>  <span class="string">-4</span>.10615206e<span class="string">-01</span></div><div class="line">#     3.35628651e<span class="string">-02</span>  <span class="string">-1</span>.41288012e<span class="string">-01</span>  <span class="string">-3</span>.40104014e<span class="string">-01</span>   1.13289797e<span class="string">+00</span></div><div class="line">#     6.52421772e<span class="string">-01</span>   9.17639136e<span class="string">-01</span>]</div><div class="line">#  [  5.11528432e<span class="string">-01</span>   1.64260656e<span class="string">-01</span>  <span class="string">-7</span>.84879684e<span class="string">-01</span>  <span class="string">-2</span>.26418376e<span class="string">-01</span></div><div class="line">#    <span class="string">-8</span>.90385628e<span class="string">-01</span>  <span class="string">-3</span>.38358462e<span class="string">-01</span>   1.96581781e<span class="string">+00</span>  <span class="string">-7</span>.17314780e<span class="string">-02</span></div><div class="line">#     1.23814851e<span class="string">-01</span>   7.64766455e<span class="string">-01</span>]</div><div class="line">#  [  2.22003132e<span class="string">-01</span>  <span class="string">-1</span>.70102561e<span class="string">+00</span>  <span class="string">-1</span>.60155982e<span class="string">-01</span>   1.10927892e<span class="string">+00</span></div><div class="line">#    <span class="string">-1</span>.14349496e<span class="string">+00</span>  <span class="string">-6</span>.86953589e<span class="string">-02</span>  <span class="string">-3</span>.56495827e<span class="string">-01</span>  <span class="string">-5</span>.14335275e<span class="string">-01</span></div><div class="line">#     1.98457405e<span class="string">-01</span>  <span class="string">-2</span>.56361932e<span class="string">-01</span>]</div><div class="line">#  [ <span class="string">-6</span>.98417068e<span class="string">-01</span>  <span class="string">-1</span>.91254735e<span class="string">-01</span>   2.43045017e<span class="string">-01</span>   1.62485635e<span class="string">+00</span></div><div class="line">#     1.34399071e<span class="string">-01</span>   4.48576242e<span class="string">-01</span>   9.65317804e<span class="string">-03</span>   2.63324082e<span class="string">-01</span></div><div class="line">#     1.71964037e<span class="string">+00</span>   1.81242809e<span class="string">-01</span>]</div><div class="line">#  [ <span class="string">-3</span>.06579232e<span class="string">-01</span>   6.82186067e<span class="string">-01</span>  <span class="string">-1</span>.34259194e<span class="string">-01</span>   8.21067274e<span class="string">-01</span></div><div class="line">#     2.75264233e<span class="string">-01</span>   2.36507237e<span class="string">-01</span>  <span class="string">-5</span>.18465579e<span class="string">-01</span>   2.66540438e<span class="string">-01</span></div><div class="line">#    <span class="string">-4</span>.08049405e<span class="string">-01</span>   4.00008321e<span class="string">-01</span>]</div><div class="line">#  [  6.39303386e<span class="string">-01</span>  <span class="string">-3</span>.73077720e<span class="string">-01</span>  <span class="string">-3</span>.93441260e<span class="string">-01</span>   1.44391823e<span class="string">+00</span></div><div class="line">#    <span class="string">-4</span>.43163812e<span class="string">-01</span>  <span class="string">-2</span>.28796184e<span class="string">-01</span>  <span class="string">-9</span>.21004534e<span class="string">-01</span>  <span class="string">-6</span>.29425883e<span class="string">-01</span></div><div class="line">#    <span class="string">-1</span>.04850844e<span class="string">-01</span>   5.76163709e<span class="string">-01</span>]]</div><div class="line"># ------------------------------------------------------------</div><div class="line"># [[  2.20000000e<span class="string">+01</span>   2.20000000e<span class="string">+01</span>   1.87626636e<span class="string">+00</span>   1.27253577e<span class="string">-01</span></div><div class="line">#     1.77748889e<span class="string">-01</span>  <span class="string">-2</span>.79777735e<span class="string">-01</span>  <span class="string">-1</span>.29324961e<span class="string">+00</span>   1.18464601e<span class="string">+00</span></div><div class="line">#     5.91014000e<span class="string">-03</span>   3.91639054e<span class="string">-01</span>]</div><div class="line">#  [  2.20000000e<span class="string">+01</span>   2.20000000e<span class="string">+01</span>  <span class="string">-1</span>.12289786e<span class="string">+00</span>  <span class="string">-6</span>.78496242e<span class="string">-01</span></div><div class="line">#     4.25694019e<span class="string">-01</span>   1.06920172e<span class="string">-02</span>   8.05350840e<span class="string">-01</span>  <span class="string">-7</span>.63205171e<span class="string">-01</span></div><div class="line">#     3.23375136e<span class="string">-01</span>   4.49576497e<span class="string">-01</span>]</div><div class="line">#  [ <span class="string">-1</span>.05841234e<span class="string">-01</span>  <span class="string">-2</span>.85442650e<span class="string">-01</span>   1.01552248e<span class="string">+00</span>  <span class="string">-1</span>.69130695e<span class="string">+00</span></div><div class="line">#    <span class="string">-1</span>.15725782e<span class="string">-03</span>   1.47837210e<span class="string">+00</span>   6.69513494e<span class="string">-02</span>   4.84152675e<span class="string">-01</span></div><div class="line">#    <span class="string">-3</span>.82478178e<span class="string">-01</span>  <span class="string">-1</span>.20722222e<span class="string">+00</span>]</div><div class="line">#  [  3.09620090e<span class="string">-02</span>  <span class="string">-7</span>.98057988e<span class="string">-02</span>   5.60789108e<span class="string">-01</span>  <span class="string">-1</span>.78828037e<span class="string">+00</span></div><div class="line">#     1.95968688e<span class="string">-01</span>  <span class="string">-2</span>.27404922e<span class="string">-01</span>  <span class="string">-1</span>.72476351e<span class="string">+00</span>  <span class="string">-1</span>.23355138e<span class="string">+00</span></div><div class="line">#    <span class="string">-9</span>.63081241e<span class="string">-01</span>  <span class="string">-1</span>.60457373e<span class="string">+00</span>]</div><div class="line">#  [  3.23699638e<span class="string">-02</span>  <span class="string">-5</span>.90677261e<span class="string">-01</span>  <span class="string">-1</span>.92470342e<span class="string">-01</span>  <span class="string">-4</span>.10615206e<span class="string">-01</span></div><div class="line">#     3.35628651e<span class="string">-02</span>  <span class="string">-1</span>.41288012e<span class="string">-01</span>  <span class="string">-3</span>.40104014e<span class="string">-01</span>   1.13289797e<span class="string">+00</span></div><div class="line">#     6.52421772e<span class="string">-01</span>   9.17639136e<span class="string">-01</span>]</div><div class="line">#  [  5.11528432e<span class="string">-01</span>   1.64260656e<span class="string">-01</span>  <span class="string">-7</span>.84879684e<span class="string">-01</span>  <span class="string">-2</span>.26418376e<span class="string">-01</span></div><div class="line">#    <span class="string">-8</span>.90385628e<span class="string">-01</span>  <span class="string">-3</span>.38358462e<span class="string">-01</span>   1.96581781e<span class="string">+00</span>  <span class="string">-7</span>.17314780e<span class="string">-02</span></div><div class="line">#     1.23814851e<span class="string">-01</span>   7.64766455e<span class="string">-01</span>]</div><div class="line">#  [  2.22003132e<span class="string">-01</span>  <span class="string">-1</span>.70102561e<span class="string">+00</span>  <span class="string">-1</span>.60155982e<span class="string">-01</span>   1.10927892e<span class="string">+00</span></div><div class="line">#    <span class="string">-1</span>.14349496e<span class="string">+00</span>  <span class="string">-6</span>.86953589e<span class="string">-02</span>  <span class="string">-3</span>.56495827e<span class="string">-01</span>  <span class="string">-5</span>.14335275e<span class="string">-01</span></div><div class="line">#     1.98457405e<span class="string">-01</span>  <span class="string">-2</span>.56361932e<span class="string">-01</span>]</div><div class="line">#  [ <span class="string">-6</span>.98417068e<span class="string">-01</span>  <span class="string">-1</span>.91254735e<span class="string">-01</span>   2.43045017e<span class="string">-01</span>   1.62485635e<span class="string">+00</span></div><div class="line">#     1.34399071e<span class="string">-01</span>   4.48576242e<span class="string">-01</span>   9.65317804e<span class="string">-03</span>   2.63324082e<span class="string">-01</span></div><div class="line">#     1.71964037e<span class="string">+00</span>   1.81242809e<span class="string">-01</span>]</div><div class="line">#  [ <span class="string">-3</span>.06579232e<span class="string">-01</span>   6.82186067e<span class="string">-01</span>  <span class="string">-1</span>.34259194e<span class="string">-01</span>   8.21067274e<span class="string">-01</span></div><div class="line">#     2.75264233e<span class="string">-01</span>   2.36507237e<span class="string">-01</span>  <span class="string">-5</span>.18465579e<span class="string">-01</span>   2.66540438e<span class="string">-01</span></div><div class="line">#    <span class="string">-4</span>.08049405e<span class="string">-01</span>   4.00008321e<span class="string">-01</span>]</div><div class="line">#  [  6.39303386e<span class="string">-01</span>  <span class="string">-3</span>.73077720e<span class="string">-01</span>  <span class="string">-3</span>.93441260e<span class="string">-01</span>   1.44391823e<span class="string">+00</span></div><div class="line">#    <span class="string">-4</span>.43163812e<span class="string">-01</span>  <span class="string">-2</span>.28796184e<span class="string">-01</span>  <span class="string">-9</span>.21004534e<span class="string">-01</span>  <span class="string">-6</span>.29425883e<span class="string">-01</span></div><div class="line">#    <span class="string">-1</span>.04850844e<span class="string">-01</span>   5.76163709e<span class="string">-01</span>]]</div><div class="line"># [[  2.20000000e<span class="string">+01</span>   2.20000000e<span class="string">+01</span>   1.87626636e<span class="string">+00</span>   1.27253577e<span class="string">-01</span></div><div class="line">#     1.77748889e<span class="string">-01</span>  <span class="string">-2</span>.79777735e<span class="string">-01</span>  <span class="string">-1</span>.29324961e<span class="string">+00</span>   1.18464601e<span class="string">+00</span></div><div class="line">#     5.91014000e<span class="string">-03</span>   3.91639054e<span class="string">-01</span>]</div><div class="line">#  [  2.20000000e<span class="string">+01</span>   2.20000000e<span class="string">+01</span>  <span class="string">-1</span>.12289786e<span class="string">+00</span>  <span class="string">-6</span>.78496242e<span class="string">-01</span></div><div class="line">#     4.25694019e<span class="string">-01</span>   1.06920172e<span class="string">-02</span>   8.05350840e<span class="string">-01</span>  <span class="string">-7</span>.63205171e<span class="string">-01</span></div><div class="line">#     3.23375136e<span class="string">-01</span>   4.49576497e<span class="string">-01</span>]</div><div class="line">#  [ <span class="string">-1</span>.05841234e<span class="string">-01</span>  <span class="string">-2</span>.85442650e<span class="string">-01</span>   1.01552248e<span class="string">+00</span>  <span class="string">-1</span>.69130695e<span class="string">+00</span></div><div class="line">#    <span class="string">-1</span>.15725782e<span class="string">-03</span>   1.47837210e<span class="string">+00</span>   6.69513494e<span class="string">-02</span>   4.84152675e<span class="string">-01</span></div><div class="line">#    <span class="string">-3</span>.82478178e<span class="string">-01</span>  <span class="string">-1</span>.20722222e<span class="string">+00</span>]</div><div class="line">#  [  3.09620090e<span class="string">-02</span>  <span class="string">-7</span>.98057988e<span class="string">-02</span>   5.60789108e<span class="string">-01</span>  <span class="string">-1</span>.78828037e<span class="string">+00</span></div><div class="line">#     1.95968688e<span class="string">-01</span>  <span class="string">-2</span>.27404922e<span class="string">-01</span>  <span class="string">-1</span>.72476351e<span class="string">+00</span>  <span class="string">-1</span>.23355138e<span class="string">+00</span></div><div class="line">#    <span class="string">-9</span>.63081241e<span class="string">-01</span>  <span class="string">-1</span>.60457373e<span class="string">+00</span>]</div><div class="line">#  [  3.23699638e<span class="string">-02</span>  <span class="string">-5</span>.90677261e<span class="string">-01</span>  <span class="string">-1</span>.92470342e<span class="string">-01</span>  <span class="string">-4</span>.10615206e<span class="string">-01</span></div><div class="line">#     3.35628651e<span class="string">-02</span>  <span class="string">-1</span>.41288012e<span class="string">-01</span>  <span class="string">-3</span>.40104014e<span class="string">-01</span>   1.13289797e<span class="string">+00</span></div><div class="line">#     6.52421772e<span class="string">-01</span>   9.17639136e<span class="string">-01</span>]</div><div class="line">#  [  5.11528432e<span class="string">-01</span>   1.64260656e<span class="string">-01</span>  <span class="string">-7</span>.84879684e<span class="string">-01</span>  <span class="string">-2</span>.26418376e<span class="string">-01</span></div><div class="line">#    <span class="string">-8</span>.90385628e<span class="string">-01</span>  <span class="string">-3</span>.38358462e<span class="string">-01</span>   1.96581781e<span class="string">+00</span>  <span class="string">-7</span>.17314780e<span class="string">-02</span></div><div class="line">#     1.23814851e<span class="string">-01</span>   7.64766455e<span class="string">-01</span>]</div><div class="line">#  [  2.22003132e<span class="string">-01</span>  <span class="string">-1</span>.70102561e<span class="string">+00</span>  <span class="string">-1</span>.60155982e<span class="string">-01</span>   1.10927892e<span class="string">+00</span></div><div class="line">#    <span class="string">-1</span>.14349496e<span class="string">+00</span>  <span class="string">-6</span>.86953589e<span class="string">-02</span>  <span class="string">-3</span>.56495827e<span class="string">-01</span>  <span class="string">-5</span>.14335275e<span class="string">-01</span></div><div class="line">#     1.98457405e<span class="string">-01</span>  <span class="string">-2</span>.56361932e<span class="string">-01</span>]</div><div class="line">#  [ <span class="string">-6</span>.98417068e<span class="string">-01</span>  <span class="string">-1</span>.91254735e<span class="string">-01</span>   2.43045017e<span class="string">-01</span>   1.62485635e<span class="string">+00</span></div><div class="line">#     1.34399071e<span class="string">-01</span>   4.48576242e<span class="string">-01</span>   9.65317804e<span class="string">-03</span>   2.63324082e<span class="string">-01</span></div><div class="line">#     1.71964037e<span class="string">+00</span>   1.81242809e<span class="string">-01</span>]</div><div class="line">#  [ <span class="string">-3</span>.06579232e<span class="string">-01</span>   6.82186067e<span class="string">-01</span>  <span class="string">-1</span>.34259194e<span class="string">-01</span>   8.21067274e<span class="string">-01</span></div><div class="line">#     2.75264233e<span class="string">-01</span>   2.36507237e<span class="string">-01</span>  <span class="string">-5</span>.18465579e<span class="string">-01</span>   2.66540438e<span class="string">-01</span></div><div class="line">#    <span class="string">-4</span>.08049405e<span class="string">-01</span>   4.00008321e<span class="string">-01</span>]</div><div class="line">#  [  6.39303386e<span class="string">-01</span>  <span class="string">-3</span>.73077720e<span class="string">-01</span>  <span class="string">-3</span>.93441260e<span class="string">-01</span>   1.44391823e<span class="string">+00</span></div><div class="line">#    <span class="string">-4</span>.43163812e<span class="string">-01</span>  <span class="string">-2</span>.28796184e<span class="string">-01</span>  <span class="string">-9</span>.21004534e<span class="string">-01</span>  <span class="string">-6</span>.29425883e<span class="string">-01</span></div><div class="line">#    <span class="string">-1</span>.04850844e<span class="string">-01</span>   5.76163709e<span class="string">-01</span>]]</div><div class="line"># ------------------------------------------------------------</div><div class="line"># &lt;dtype: 'float32_ref'&gt;</div><div class="line"># [[<span class="string">-1</span>.26520741  0.15191878 <span class="string">-0</span>.20875564 <span class="string">-1</span>.3333143  <span class="string">-1</span>.2195878   1.98078632</div><div class="line">#   <span class="string">-0</span>.37404546 <span class="string">-0</span>.08800519  1.59779143  0.43416482]</div><div class="line">#  [<span class="string">-0</span>.49763143  1.67703199 <span class="string">-0</span>.75461388  1.39778709 <span class="string">-0</span>.59904957  1.07046878</div><div class="line">#   <span class="string">-0</span>.66246015  1.20341682 <span class="string">-0</span>.91598368  0.02659398]</div><div class="line">#  [ 0.15760519  1.58692122 <span class="string">-1</span>.64905691 <span class="string">-0</span>.82413578 <span class="string">-1</span>.35249043 <span class="string">-0</span>.05494672</div><div class="line">#    0.1835352  <span class="string">-1</span>.16055572  0.06633712 <span class="string">-0</span>.60654968]</div><div class="line">#  [ 0.44664332  1.32015193  1.19064319  1.04832637 <span class="string">-1</span>.35440087  1.46269107</div><div class="line">#   <span class="string">-0</span>.73073471  1.79925811 <span class="string">-0</span>.81201482 <span class="string">-0</span>.52865958]</div><div class="line">#  [ 0.86693144  0.58485049  0.74763191  0.16709246  0.87199962 <span class="string">-0</span>.01152798</div><div class="line">#   <span class="string">-0</span>.45584357  1.63553476 <span class="string">-0</span>.97385317  0.22666731]</div><div class="line">#  [ 0.88356006  0.02941392  0.48637423  0.6196385   0.72364163  0.73068076</div><div class="line">#    0.24449067 <span class="string">-1</span>.82126474  0.43334225 <span class="string">-0</span>.57979202]</div><div class="line">#  [ 0.90533078 <span class="string">-0</span>.46376067  1.15587556 <span class="string">-0</span>.83500886  0.61234719  0.32427955</div><div class="line">#    1.49570584 <span class="string">-0</span>.48938131 <span class="string">-1</span>.18225038  0.19612415]</div><div class="line">#  [ 0.66482532  1.62603843  0.83715767  0.93517244 <span class="string">-1</span>.04942799  1.2456522</div><div class="line">#    1.45724511  0.82795757 <span class="string">-0</span>.39859715 <span class="string">-1</span>.37503803]</div><div class="line">#  [ 0.84474677 <span class="string">-0</span>.97584003 <span class="string">-0</span>.23359941  0.02022619  0.15871523  0.07553232</div><div class="line">#   <span class="string">-0</span>.58795238 <span class="string">-1</span>.66832328 <span class="string">-1</span>.08443391 <span class="string">-0</span>.25014412]</div><div class="line">#  [ 0.00373921  0.82514638 <span class="string">-0</span>.06235779  0.58550674 <span class="string">-0</span>.90887821 <span class="string">-0</span>.91024882</div><div class="line">#    0.57362115 <span class="string">-1</span>.92959452  1.00629067 <span class="string">-0</span>.69716936]]</div><div class="line"># None</div><div class="line"># (10, 10)</div><div class="line"># ------------------------------------------------------------</div><div class="line"># [[ 1.  1.]</div><div class="line">#  [ 2.  2.]]</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+
+
+    
+      <div>
+      
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/05/11/TensorFlow-API/">TensorFlow-API</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Gavin 的个人博客">Gavin</a></p>
+  <p><span>发布时间:</span>2018年05月11日 - 15:05</p>
+  <p><span>最后更新:</span>2018年05月13日 - 00:05</p>
+  <p><span>原始链接:</span><a href="/2018/05/11/TensorFlow-API/" title="TensorFlow-API">http://wonius.top/2018/05/11/TensorFlow-API/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://wonius.top/2018/05/11/TensorFlow-API/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>
+</div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          icon: "success",
+          showConfirmButton: true
+          });
+        });
+    });
+</script>
+
+
+      </div>
+    
+
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Gavin 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Gavin 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TensorFlow/" rel="tag"><i class="fa fa-tag"></i> TensorFlow</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/06/服务器搭建shadowsocks服务/" rel="next" title="服务器搭建shadowsocks服务">
+                <i class="fa fa-chevron-left"></i> 服务器搭建shadowsocks服务
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/12/TensorFlow四种Cross-Entropy算法实现与应用/" rel="prev" title="TensorFlow四种Cross_Entropy算法实现与应用">
+                TensorFlow四种Cross_Entropy算法实现与应用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTAwMS81NTcw"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Gavin" />
+            
+              <p class="site-author-name" itemprop="name">Gavin</p>
+              <p class="site-description motion-element" itemprop="description">自留地儿</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wonius" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/GavinGogoing" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/woniuyf" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:woniuyf@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-constant"><span class="nav-number">1.</span> <span class="nav-text">tf.constant</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define"><span class="nav-number">1.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter"><span class="nav-number">1.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo"><span class="nav-number">1.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-placeholder"><span class="nav-number">2.</span> <span class="nav-text">tf.placeholder</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-1"><span class="nav-number">2.1.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-1"><span class="nav-number">2.2.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-nn-conv2d"><span class="nav-number">3.</span> <span class="nav-text">tf.nn.conv2d</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-1"><span class="nav-number">3.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-2"><span class="nav-number">3.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-2"><span class="nav-number">3.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-nn-relu"><span class="nav-number">4.</span> <span class="nav-text">tf.nn.relu</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-2"><span class="nav-number">4.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-3"><span class="nav-number">4.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-3"><span class="nav-number">4.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-nn-max-pool"><span class="nav-number">5.</span> <span class="nav-text">tf.nn.max_pool</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-3"><span class="nav-number">5.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-4"><span class="nav-number">5.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-4"><span class="nav-number">5.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-nn-dropout"><span class="nav-number">6.</span> <span class="nav-text">tf.nn.dropout</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-4"><span class="nav-number">6.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-5"><span class="nav-number">6.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-5"><span class="nav-number">6.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-nn-sigmoid-cross-entropy-with-logits"><span class="nav-number">7.</span> <span class="nav-text">tf.nn.sigmoid_cross_entropy_with_logits</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-5"><span class="nav-number">7.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-6"><span class="nav-number">7.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-6"><span class="nav-number">7.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-nn-bias-add"><span class="nav-number">8.</span> <span class="nav-text">tf.nn.bias_add</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-6"><span class="nav-number">8.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-7"><span class="nav-number">8.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-7"><span class="nav-number">8.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-truncated-normal"><span class="nav-number">9.</span> <span class="nav-text">tf.truncated_normal</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-7"><span class="nav-number">9.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-8"><span class="nav-number">9.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-8"><span class="nav-number">9.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-reduce-mean"><span class="nav-number">10.</span> <span class="nav-text">tf.reduce_mean</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-8"><span class="nav-number">10.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-9"><span class="nav-number">10.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-9"><span class="nav-number">10.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-square"><span class="nav-number">11.</span> <span class="nav-text">tf.square</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-9"><span class="nav-number">11.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-10"><span class="nav-number">11.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-10"><span class="nav-number">11.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-squared-difference"><span class="nav-number">12.</span> <span class="nav-text">tf.squared_difference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-10"><span class="nav-number">12.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-11"><span class="nav-number">12.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-11"><span class="nav-number">12.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-Variable"><span class="nav-number">13.</span> <span class="nav-text">tf.Variable</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-11"><span class="nav-number">13.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-12"><span class="nav-number">13.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-12"><span class="nav-number">13.3.</span> <span class="nav-text">Demo</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gavin</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">28.3k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("OYA4UGzj3dzmj5MFV4mwgM8H-gzGzoHsz", "Wq3VXnF9PYeghJRNMKBTkOzd");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
