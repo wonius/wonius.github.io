@@ -127,7 +127,7 @@
 <meta property="og:url" content="http://wonius.top/2017/07/14/Git笔记/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="Git常用命令">
-<meta property="og:updated_time" content="2018-04-26T11:40:05.214Z">
+<meta property="og:updated_time" content="2018-06-05T02:16:49.007Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git学习笔记">
 <meta name="twitter:description" content="Git常用命令">
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  779
+                  840
                 </span>
               
 
@@ -446,7 +446,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  4
                 </span>
               
             </div>
@@ -503,11 +503,22 @@
 <h2 id="代码提交到不同仓库"><a href="#代码提交到不同仓库" class="headerlink" title="代码提交到不同仓库"></a>代码提交到不同仓库</h2><ol>
 <li>手动分别推送（如果需要两个库代码不同）</li>
 </ol>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//添加仓库，并设置别名</span></div><div class="line">git remote add github <span class="string">https:</span><span class="comment">//*****.git</span></div><div class="line">git remote add gitlab <span class="string">https:</span><span class="comment">//*****.git</span></div><div class="line"></div><div class="line"><span class="comment">//推送</span></div><div class="line">git push github <span class="string">master:</span>master</div><div class="line"><span class="comment">//如果是新建的仓库，需要加-f参数</span></div><div class="line">git push -f github <span class="string">master:</span>master</div></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//添加仓库，并设置别名</span></div><div class="line">git remote add github <span class="string">https:</span><span class="comment">//*****.git</span></div><div class="line">git remote add gitlab <span class="string">https:</span><span class="comment">//*****.git</span></div><div class="line"></div><div class="line"><span class="comment">// 删除别名</span></div><div class="line">git remote remove github</div><div class="line"></div><div class="line"><span class="comment">//推送</span></div><div class="line">git push github <span class="string">master:</span>master</div><div class="line"><span class="comment">//如果是新建的仓库，需要加-f参数</span></div><div class="line">git push -f github <span class="string">master:</span>master</div></pre></td></tr></table></figure>
 <ol>
 <li>一键push所有库（两个库代码完全一样）</li>
 </ol>
 <figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//将新仓库<span class="string">URL绑</span>定到<span class="string">origin上</span></div><div class="line"><span class="string">git </span><span class="string">remote </span><span class="built_in">set-url</span> <span class="built_in">--add</span> <span class="string">origin </span><span class="string">https:</span>//*****.<span class="string">git</span></div><div class="line">//<span class="string">push</span></div><div class="line"><span class="string">git </span><span class="string">push</span></div><div class="line"></div><div class="line">//查看<span class="string">git中</span>配置的<span class="string">url</span></div><div class="line"><span class="string">git </span><span class="string">config </span>-e</div></pre></td></tr></table></figure>
+<h2 id="修改远程仓库地址"><a href="#修改远程仓库地址" class="headerlink" title="修改远程仓库地址"></a>修改远程仓库地址</h2><ol>
+<li><p>命令修改</p>
+<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">git </span><span class="string">remote </span><span class="built_in">set-url</span> <span class="string">origin </span><span class="string">http:</span>//*****.<span class="string">git</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>先删除再添加</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote rm origin</div><div class="line">git remote <span class="keyword">add</span> origin http:<span class="comment">//*****.git</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>配置文件修改</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd ***/.git</div><div class="line">vim<span class="built_in"> config</span></div><div class="line"><span class="comment"># 然后修改</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
 <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p><a href="https://git-scm.com/docs" target="_blank" rel="external">Git常用命令</a></p>
 
       
@@ -530,7 +541,7 @@
   <p><span>本文标题:</span><a href="/2017/07/14/Git笔记/">Git学习笔记</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gavin 的个人博客">Gavin</a></p>
   <p><span>发布时间:</span>2017年07月14日 - 00:07</p>
-  <p><span>最后更新:</span>2018年04月26日 - 19:04</p>
+  <p><span>最后更新:</span>2018年06月05日 - 10:06</p>
   <p><span>原始链接:</span><a href="/2017/07/14/Git笔记/" title="Git学习笔记">http://wonius.top/2017/07/14/Git笔记/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://wonius.top/2017/07/14/Git笔记/"  aria-label="复制成功！"></i></span>
   </p>
@@ -788,7 +799,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本地代码初始化到远程仓库"><span class="nav-number">1.</span> <span class="nav-text">本地代码初始化到远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新代码时，本地冲突无法更新"><span class="nav-number">2.</span> <span class="nav-text">更新代码时，本地冲突无法更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回退到某个历史版本"><span class="nav-number">3.</span> <span class="nav-text">回退到某个历史版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用git-stash命令进行代码暂存"><span class="nav-number">4.</span> <span class="nav-text">使用git stash命令进行代码暂存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支命令"><span class="nav-number">5.</span> <span class="nav-text">分支命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fatal-refusing-to-merge-unrelated-histories"><span class="nav-number">6.</span> <span class="nav-text">fatal: refusing to merge unrelated histories</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码提交到不同仓库"><span class="nav-number">7.</span> <span class="nav-text">代码提交到不同仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">8.</span> <span class="nav-text">常用命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本地代码初始化到远程仓库"><span class="nav-number">1.</span> <span class="nav-text">本地代码初始化到远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新代码时，本地冲突无法更新"><span class="nav-number">2.</span> <span class="nav-text">更新代码时，本地冲突无法更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回退到某个历史版本"><span class="nav-number">3.</span> <span class="nav-text">回退到某个历史版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用git-stash命令进行代码暂存"><span class="nav-number">4.</span> <span class="nav-text">使用git stash命令进行代码暂存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支命令"><span class="nav-number">5.</span> <span class="nav-text">分支命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fatal-refusing-to-merge-unrelated-histories"><span class="nav-number">6.</span> <span class="nav-text">fatal: refusing to merge unrelated histories</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码提交到不同仓库"><span class="nav-number">7.</span> <span class="nav-text">代码提交到不同仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改远程仓库地址"><span class="nav-number">8.</span> <span class="nav-text">修改远程仓库地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">9.</span> <span class="nav-text">常用命令</span></a></li></ol></div>
             
 
           </div>
@@ -822,7 +833,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">28.3k</span>
+    <span title="Site words total count">28.4k</span>
   
 </div>
 
