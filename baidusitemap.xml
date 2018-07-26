@@ -4,6 +4,105 @@
 
     
   <url>
+    <loc>http://wonius.top/2017/07/14/Git%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2018-07-26T01:34:12.981Z</lastmod>
+    <data>
+        <display>
+        <title>Git学习笔记</title>
+        <pubTime>2017-07-13T16:06:02.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+         
+           
+             
+              <breadCrumb title="Git" url="http://wonius.top/categories/Git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://wonius.top/2018/07/26/Spring%E6%B3%A8%E5%85%A5static%E5%8F%98%E9%87%8F/</loc>
+    <lastmod>2018-07-26T01:32:49.211Z</lastmod>
+    <data>
+        <display>
+        <title>Spring注入static变量</title>
+        <pubTime>2018-07-26T01:29:49.000Z</pubTime>
+        
+        <tag>[object Object]</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://wonius.top/2018/07/21/kubectl%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2018-07-25T03:02:35.870Z</lastmod>
+    <data>
+        <display>
+        <title>kubectl常用命令</title>
+        <pubTime>2018-07-21T12:08:00.000Z</pubTime>
+        
+        <tag>Kubernetes</tag>
+         
+         
+           
+             
+              <breadCrumb title="k8s" url="http://wonius.top/categories/k8s/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://wonius.top/2018/07/13/Redis-Session%E7%AE%A1%E7%90%86/</loc>
+    <lastmod>2018-07-16T13:24:27.456Z</lastmod>
+    <data>
+        <display>
+        <title>Redis-Session管理</title>
+        <pubTime>2018-07-13T02:33:41.000Z</pubTime>
+        
+        <tag>Redis</tag>
+         
+         
+           
+             
+              <breadCrumb title="DB" url="http://wonius.top/categories/DB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://wonius.top/2018/03/30/MacOS%E6%90%AD%E5%BB%BAAria2/</loc>
+    <lastmod>2018-07-14T12:47:42.735Z</lastmod>
+    <data>
+        <display>
+        <title>MacOS搭建Aria2</title>
+        <pubTime>2018-03-30T06:09:16.000Z</pubTime>
+        
+        <tag>MacOS</tag>
+         
+        <tag>Aria2</tag>
+         
+         
+           
+             
+              <breadCrumb title="MacOS" url="http://wonius.top/categories/MacOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wonius.top/2018/06/15/Spring%E9%9B%86%E6%88%90HanLP%E5%88%86%E8%AF%8D/</loc>
     <lastmod>2018-06-29T02:47:15.209Z</lastmod>
     <data>
@@ -130,26 +229,6 @@
            
              
               <breadCrumb title="iOS" url="http://wonius.top/categories/iOS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://wonius.top/2017/07/14/Git%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2018-06-05T02:16:49.007Z</lastmod>
-    <data>
-        <display>
-        <title>Git学习笔记</title>
-        <pubTime>2017-07-13T16:06:02.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-         
-           
-             
-              <breadCrumb title="Git" url="http://wonius.top/categories/Git/"/>
           
         </display>
     </data>
@@ -836,28 +915,6 @@
 
     
   <url>
-    <loc>http://wonius.top/2018/03/30/MacOS%E6%90%AD%E5%BB%BAAria2/</loc>
-    <lastmod>2018-04-11T15:34:15.824Z</lastmod>
-    <data>
-        <display>
-        <title>MacOS搭建Aria2</title>
-        <pubTime>2018-03-30T06:09:16.000Z</pubTime>
-        
-        <tag>MacOS</tag>
-         
-        <tag>Aria2</tag>
-         
-         
-           
-             
-              <breadCrumb title="MacOS" url="http://wonius.top/categories/MacOS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://wonius.top/2018/01/06/01Pico-Pro-Maker-Kit-%E5%88%B7%E5%85%A5Android-Things/</loc>
     <lastmod>2018-03-24T09:48:15.834Z</lastmod>
     <data>
@@ -1033,9 +1090,9 @@
         <title>CentOS彻底删除并重装、升级Mysql</title>
         <pubTime>2017-12-18T14:05:18.000Z</pubTime>
         
-        <tag>CentOS</tag>
-         
         <tag>Mysql</tag>
+         
+        <tag>CentOS</tag>
          
          
            

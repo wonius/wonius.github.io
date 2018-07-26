@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Spring注入static变量]]></title>
+    <url>%2F2018%2F07%2F26%2FSpring%E6%B3%A8%E5%85%A5static%E5%8F%98%E9%87%8F%2F</url>
+    <content type="text"><![CDATA[使用setter方法1234567891011@Service("userService")public class UserService implements IUserService &#123; public static String hello; @Value("$&#123;hello.value&#125;") public void setHello(String hello) &#123; hello = hello; &#125;&#125; 在spring容器中注入对象时赋值1234567891011121314@Service("userService")public class UserService implements IUserService &#123; public static String hello; @Value("$&#123;hello.value&#125;") private String pHello; @PostConstruct public void init() &#123; hello = pHello; &#125; &#125;]]></content>
+      <tags>
+        <tag>[object Object]</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[kubectl常用命令]]></title>
+    <url>%2F2018%2F07%2F21%2Fkubectl%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[查看pod1kubectl get po -o wide 获取pod日志12//写到文件中更方便查看kubectl logs **** &gt; ***.log 编辑pod1kubectl edit deployments *** -o yaml]]></content>
+      <categories>
+        <category>k8s</category>
+      </categories>
+      <tags>
+        <tag>Kubernetes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Redis-Session管理]]></title>
+    <url>%2F2018%2F07%2F13%2FRedis-Session%E7%AE%A1%E7%90%86%2F</url>
+    <content type="text"><![CDATA[背景​ 项目中使用redis存储session]]></content>
+      <categories>
+        <category>DB</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Spring集成HanLP分词]]></title>
     <url>%2F2018%2F06%2F15%2FSpring%E9%9B%86%E6%88%90HanLP%E5%88%86%E8%AF%8D%2F</url>
     <content type="text"><![CDATA[配置pom文件12345&lt;dependency&gt; &lt;groupId&gt;com.hankcs&lt;/groupId&gt; &lt;artifactId&gt;hanlp&lt;/artifactId&gt; &lt;version&gt;portable-1.6.4&lt;/version&gt;&lt;/dependency&gt; 当前最新版本为1.6.4。可以在这里查看最新版本。 添加自定义字典文件在resources下面建立目录，存放自定义字典。 我的目录是resources/hanlp/custom/CustomDic.txt 编写Java类1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980public class WordUtil &#123; public static final String CUSTOM_DICTIONARY_PATH = "/hanlp/custom/CustomDic.txt"; public static final String SYNONYM_WORD_PATH = "/hanlp/synonym/SynonDic.txt"; private static List&lt;Term&gt; list; private static Segment segment; private static Map synonymMap; public static void main(String[] args) &#123;// refreshDictionary(); segmentSentence("你是柴犬狗狗吧"); &#125; /** * 刷新用户自定义词典 */ public static void refreshDictionary() &#123; HanLP.Config.CustomDictionaryPath = new String[] &#123; WordUtil.class.getResource(CUSTOM_DICTIONARY_PATH).getPath() &#125;; CustomDictionary.reload(); segment = HanLP.newSegment().enableCustomDictionary(true); &#125; /** * 分词 * @param text * @return */ public static String segmentSentence(String text) &#123; segment = HanLP.newSegment().enableCustomDictionary(true); list = segment.seg(text); String result = list.get(0).word; for(int i =1; i &lt; list.size(); i++) &#123; result+=" "+list.get(i).word; &#125; System.out.println(result); return result; &#125; /** * 刷新同义词字典 */ public static void refreshSynonym() &#123; String path = WordUtil.class.getResource(SYNONYM_WORD_PATH).getPath(); File file = new File(path); BufferedReader reader; synonymMap = new HashMap(); try &#123; reader = new BufferedReader(new FileReader(file)); String line; while ((line = reader.readLine()) != null) &#123; String[] words = line.split(" "); for (String word: words) &#123; synonymMap.put(word, words[0]); &#125; &#125; &#125; catch (FileNotFoundException e) &#123; e.printStackTrace(); &#125; catch (IOException e) &#123; e.printStackTrace(); &#125; &#125; /** * 获取同义词 * @param word * @return */ public static String getSynonym(String word) &#123; return (String) synonymMap.get(word); &#125;&#125; 为了提高效率，HanLP会将字典文件转义成bin文件，每次从bin文件中读取单词。 所以当字典更新时，需要删除bin文件，重新生成，官方提供reload方法，但是需要指定自定义字典的位置。 当调用segment()方法时会先从对应的bin文件中读取，如果没有bin文件，先重新生成bin文件，再读取。]]></content>
@@ -536,8 +566,8 @@
         <category>DB</category>
       </categories>
       <tags>
-        <tag>CentOS</tag>
         <tag>Mysql</tag>
+        <tag>CentOS</tag>
       </tags>
   </entry>
   <entry>
@@ -734,7 +764,7 @@
   <entry>
     <title><![CDATA[Git学习笔记]]></title>
     <url>%2F2017%2F07%2F14%2FGit%E7%AC%94%E8%AE%B0%2F</url>
-    <content type="text"><![CDATA[本地代码初始化到远程仓库12345678910//create a new repository on the command linegit initgit add README.mdgit commit -m "first commit"git remote add origin https://github.com/wonius/XXXXXX.gitgit push -u origin master//push an existing repository from the command linegit remote add origin https://github.com/wonius/MySpringBootDemo.gitgit push -u origin master 更新代码时，本地冲突无法更新错误信息： error: Your local changes to the following files would be overwritten by merge: laravel/app/Services/ExpressService.php Please commit your changes or stash them before you merge. 解决办法： 12345git stashgit pullgit stash pop 如果希望更新时覆盖本地文件，命令如下： 12git reset --hardgit pull 回退到某个历史版本 首先查看要回退到哪个历史版本id： 1git log 回退。比如id为784dd834b250d634a7686f28a7c323d5c6402e90 12//该回退动作会将本地所有改动回退，所以一定要记得stash。git reset --hard 784dd834b250d634a7686f28a7c323d5c6402e90 如果想将回退的版本推送到远程服务器，再用push。只回退本地不用此操作: 1git push -f origin master 使用git stash命令进行代码暂存​ 当我们开发过程中，经常会遇到开发进行了一半，需要切换到另外一个分支的情况。stash命令可以将你现在所有变动进行暂存，后续切换回来时，从暂存中恢复就可以了。stash真的是很好用的工具。 123456789101112131415//暂存git stash//查看所有的暂存，暂存信息中包含分支名、stash版本号(形如stash@&#123;0&#125;)git stash list//恢复git stash apply //恢复到最近一次stash版本git stash pop //恢复到最近一次stash版本，并将栈中stash版本删掉git stash apply stash@&#123;0&#125; //恢复到stash@&#123;0&#125;版本git stash pop stash@&#123;0&#125; //恢复到stash@&#123;0&#125;版本，并将栈中stash@&#123;0&#125;版本删掉//删除git stash drop stash@&#123;0&#125; //将栈中stash@&#123;0&#125;版本删除git stash clear //清楚栈中所有stash版本 为了保持git栈的清洁，推荐大家使用git stash pop相关命令 分支命令12345678910111213141516171819202122232425#查看远程分支git branch -a#查看本地分支git branch / git br#创建本地分支git branch test#本地分支推送到远程git push origin test#创建本地分支test1，并跟踪远程分支cigit checkout -b test1 origin/ci#推送到远程仓库git push origin test1#切换分支git checkout test#删除本地分支git br -d test#删除远程分支git branch -r -d origin/testgit push origin :test fatal: refusing to merge unrelated histories通常是因为本地仓库的历史记录，与远程仓库的历史记录不同，git认为是两个完全无关的项目，无法pull 解决办法： 1git pull origin master ----allow-unrelated-histories 代码提交到不同仓库 手动分别推送（如果需要两个库代码不同） 123456789101112//添加仓库，并设置别名git remote add github https://*****.gitgit remote add gitlab https://*****.git// 删除别名git remote remove github//推送git push github master:master//如果是新建的仓库，需要加-f参数git push -f github master:master 一键push所有库（两个库代码完全一样） 1234567//将新仓库URL绑定到origin上git remote set-url --add origin https://*****.git//pushgit push//查看git中配置的urlgit config -e 修改远程仓库地址 命令修改 1git remote set-url origin http://*****.git 先删除再添加 12git remote rm origingit remote add origin http://*****.git 配置文件修改 123cd ***/.gitvim config# 然后修改 常用命令Git常用命令]]></content>
+    <content type="text"><![CDATA[本地代码初始化到远程仓库12345678910//create a new repository on the command linegit initgit add README.mdgit commit -m "first commit"git remote add origin https://github.com/wonius/XXXXXX.gitgit push -u origin master//push an existing repository from the command linegit remote add origin https://github.com/wonius/MySpringBootDemo.gitgit push -u origin master 更新代码时，本地冲突无法更新错误信息： error: Your local changes to the following files would be overwritten by merge: laravel/app/Services/ExpressService.php Please commit your changes or stash them before you merge. 解决办法： 12345git stashgit pullgit stash pop 如果希望更新时覆盖本地文件，命令如下： 12git reset --hardgit pull 回退到某个历史版本 首先查看要回退到哪个历史版本id： 1git log 回退。比如id为784dd834b250d634a7686f28a7c323d5c6402e90 12//该回退动作会将本地所有改动回退，所以一定要记得stash。git reset --hard 784dd834b250d634a7686f28a7c323d5c6402e90 如果想将回退的版本推送到远程服务器，再用push。只回退本地不用此操作: 1git push -f origin master 使用git stash命令进行代码暂存​ 当我们开发过程中，经常会遇到开发进行了一半，需要切换到另外一个分支的情况。stash命令可以将你现在所有变动进行暂存，后续切换回来时，从暂存中恢复就可以了。stash真的是很好用的工具。 123456789101112131415//暂存git stash//查看所有的暂存，暂存信息中包含分支名、stash版本号(形如stash@&#123;0&#125;)git stash list//恢复git stash apply //恢复到最近一次stash版本git stash pop //恢复到最近一次stash版本，并将栈中stash版本删掉git stash apply stash@&#123;0&#125; //恢复到stash@&#123;0&#125;版本git stash pop stash@&#123;0&#125; //恢复到stash@&#123;0&#125;版本，并将栈中stash@&#123;0&#125;版本删掉//删除git stash drop stash@&#123;0&#125; //将栈中stash@&#123;0&#125;版本删除git stash clear //清楚栈中所有stash版本 为了保持git栈的清洁，推荐大家使用git stash pop相关命令 分支命令12345678910111213141516171819202122232425#查看远程分支git branch -a#查看本地分支git branch / git br#创建本地分支git branch test#本地分支推送到远程git push origin test#创建本地分支test1，并跟踪远程分支cigit checkout -b test1 origin/ci#推送到远程仓库git push origin test1#切换分支git checkout test#删除本地分支git br -d test#删除远程分支git branch -r -d origin/testgit push origin :test fatal: refusing to merge unrelated histories通常是因为本地仓库的历史记录，与远程仓库的历史记录不同，git认为是两个完全无关的项目，无法pull 解决办法： 1git pull origin master ----allow-unrelated-histories 代码提交到不同仓库 手动分别推送（如果需要两个库代码不同） 123456789101112//添加仓库，并设置别名git remote add github https://*****.gitgit remote add gitlab https://*****.git// 删除别名git remote remove github//推送git push github master:master//如果是新建的仓库，需要加-f参数git push -f github master:master 一键push所有库（两个库代码完全一样） 1234567//将新仓库URL绑定到origin上git remote set-url --add origin https://*****.git//pushgit push//查看git中配置的urlgit config -e 修改远程仓库地址 命令修改 1git remote set-url origin http://*****.git 先删除再添加 12git remote rm origingit remote add origin http://*****.git 配置文件修改 123cd ***/.gitvim config# 然后修改 rebase提交通常我们都会拉取分支，提交代码时从自己分支往主分支上merge，当分支比较多时，分支树会显得很乱。 使用rebase，将自己分支每次重置为主分支记录，再提交，全程只有主分支的提交历史，比较清晰 12345git rebase master(主分支)git add .git commit -m '***'git rebase --continuegit push 常用命令Git常用命令]]></content>
       <categories>
         <category>Git</category>
       </categories>
