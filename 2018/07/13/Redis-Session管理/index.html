@@ -127,7 +127,7 @@
 <meta property="og:url" content="http://wonius.top/2018/07/13/Redis-Session管理/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="项目中使用redis存储session">
-<meta property="og:updated_time" content="2018-07-16T13:24:27.456Z">
+<meta property="og:updated_time" content="2018-08-06T14:49:24.431Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis-Session管理">
 <meta name="twitter:description" content="项目中使用redis存储session">
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  10
+                  462
                 </span>
               
 
@@ -446,7 +446,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -471,7 +471,13 @@
       
 
       
-        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>​    项目中使用redis存储session</p>
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>​    项目中使用redis存储session，写了个session切面用于维护session，当用户调用接口时，会先检验redis中是否有session（有效期为30min，调用接口刷新有效期），如果没有，创建session。在并发的场景下，需要用锁避免重复写。StringRedisTemplate中没有对锁的封装，所以自己简单封装了两个取锁的方法。</p>
+<h1 id="tryLock"><a href="#tryLock" class="headerlink" title="tryLock"></a>tryLock</h1><figure class="highlight zephir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 尝试获取锁，如果获取到，并设置过期时间</div><div class="line"> * <span class="doctag">@param</span> keyName</div><div class="line"> * <span class="doctag">@param</span> seconds</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">boolean</span> tryLock(String keyName, <span class="keyword">Long</span> seconds) &#123;</div><div class="line">    RedisConnection connection = redisTemplate.getConnectionFactory().getConnection();</div><div class="line">    <span class="keyword">boolean</span> lockReturn = connection.setNX(keyName.getBytes(), LOCK_TRUE.getBytes());</div><div class="line">    connection.close();</div><div class="line">    <span class="keyword">if</span> (lockReturn) &#123;</div><div class="line">        redisTemplate.expire(keyName, seconds, TimeUnit.SECONDS);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> lockReturn;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="getLock"><a href="#getLock" class="headerlink" title="getLock"></a>getLock</h1><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 一定会获取到锁，并设置过期时间</div><div class="line"> * <span class="doctag">@param</span> keyName</div><div class="line"> * <span class="doctag">@param</span> seconds</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> * <span class="doctag">@throws</span> InterruptedException</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">boolean</span> <span class="title">getLock</span><span class="params">(String keyName, Long seconds)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</div><div class="line">    RedisConnection connection = redisTemplate.getConnectionFactory().getConnection();</div><div class="line">    <span class="keyword">boolean</span> lockReturn = connection.setNX(keyName.getBytes(), LOCK_TRUE.getBytes());</div><div class="line">    <span class="keyword">while</span> (!lockReturn) &#123;</div><div class="line">        Thread.sleep(<span class="number">10</span>);</div><div class="line">        lockReturn = connection.setNX(keyName.getBytes(), LOCK_TRUE.getBytes());</div><div class="line">    &#125;</div><div class="line">    connection.expire(keyName.getBytes(), seconds);</div><div class="line">    connection.close();</div><div class="line">    <span class="keyword">return</span> lockReturn;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="releaseLock"><a href="#releaseLock" class="headerlink" title="releaseLock"></a>releaseLock</h1><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 释放锁</div><div class="line"> * <span class="doctag">@param</span> keyName</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">boolean</span> <span class="title">releaseLock</span><span class="params">(String keyName)</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">return</span> redisTemplate.<span class="title">delete</span><span class="params">(keyName)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>在投产后，发现效果并不好，实例经常会跑着跑着，突然卡死。分析原因应该是redis连接池资源耗尽，导致服务器所有线程阻塞，整台实例不可用（一般跑2、3天才会出现）。因为项目已经使用了StringRedisTemplate，本身它会管理自己的连接池。而我通过getConnection获取到的连接，相当于脱离于连接池，有可能导致与StringRedisTemplate不兼容。如果有同学自己通过jedis实现了jedispool进行管理，应该没有这个问题，感兴趣的小伙伴可以试一下。</p>
+<p>后来，发现了redisson，专门用于解决分布式问题，也提供了锁的实现，小伙伴可以用一下。</p>
+<p>顺便再吐槽下StringRedisTemplate，感觉就是对redis的命令做了简单的封装，而且开启事务时还有坑…</p>
 
       
     </div>
@@ -493,7 +499,7 @@
   <p><span>本文标题:</span><a href="/2018/07/13/Redis-Session管理/">Redis-Session管理</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gavin 的个人博客">Gavin</a></p>
   <p><span>发布时间:</span>2018年07月13日 - 10:07</p>
-  <p><span>最后更新:</span>2018年07月16日 - 21:07</p>
+  <p><span>最后更新:</span>2018年08月06日 - 22:08</p>
   <p><span>原始链接:</span><a href="/2018/07/13/Redis-Session管理/" title="Redis-Session管理">http://wonius.top/2018/07/13/Redis-Session管理/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://wonius.top/2018/07/13/Redis-Session管理/"  aria-label="复制成功！"></i></span>
   </p>
@@ -751,7 +757,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tryLock"><span class="nav-number">2.</span> <span class="nav-text">tryLock</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#getLock"><span class="nav-number">3.</span> <span class="nav-text">getLock</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#releaseLock"><span class="nav-number">4.</span> <span class="nav-text">releaseLock</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后记"><span class="nav-number">5.</span> <span class="nav-text">后记</span></a></li></ol></div>
             
 
           </div>
@@ -785,7 +791,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">30.1k</span>
+    <span title="Site words total count">30.6k</span>
   
 </div>
 
