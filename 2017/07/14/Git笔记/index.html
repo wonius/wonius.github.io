@@ -504,7 +504,7 @@
 <li>手动分别推送（如果需要两个库代码不同）</li>
 </ol>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//添加仓库，并设置别名</span></div><div class="line">git remote add github <span class="string">https:</span><span class="comment">//*****.git</span></div><div class="line">git remote add gitlab <span class="string">https:</span><span class="comment">//*****.git</span></div><div class="line"></div><div class="line"><span class="comment">// 删除别名</span></div><div class="line">git remote remove github</div><div class="line"></div><div class="line"><span class="comment">//推送</span></div><div class="line">git push github <span class="string">master:</span>master</div><div class="line"><span class="comment">//如果是新建的仓库，需要加-f参数</span></div><div class="line">git push -f github <span class="string">master:</span>master</div></pre></td></tr></table></figure>
-<ol>
+<ol start="2">
 <li>一键push所有库（两个库代码完全一样）</li>
 </ol>
 <figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//将新仓库<span class="string">URL绑</span>定到<span class="string">origin上</span></div><div class="line"><span class="string">git </span><span class="string">remote </span><span class="built_in">set-url</span> <span class="built_in">--add</span> <span class="string">origin </span><span class="string">https:</span>//*****.<span class="string">git</span></div><div class="line">//<span class="string">push</span></div><div class="line"><span class="string">git </span><span class="string">push</span></div><div class="line"></div><div class="line">//查看<span class="string">git中</span>配置的<span class="string">url</span></div><div class="line"><span class="string">git </span><span class="string">config </span>-e</div></pre></td></tr></table></figure>
@@ -836,7 +836,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">33.1k</span>
+    <span title="Site words total count">33.2k</span>
   
 </div>
 
