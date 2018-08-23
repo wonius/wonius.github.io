@@ -127,7 +127,7 @@
 <meta property="og:url" content="http://wonius.top/2017/07/14/Git笔记/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="Git常用命令">
-<meta property="og:updated_time" content="2018-07-30T13:58:22.461Z">
+<meta property="og:updated_time" content="2018-08-15T09:35:52.408Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git学习笔记">
 <meta name="twitter:description" content="Git常用命令">
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  937
+                  953
                 </span>
               
 
@@ -522,6 +522,7 @@
 <h2 id="rebase提交"><a href="#rebase提交" class="headerlink" title="rebase提交"></a>rebase提交</h2><p>通常我们都会拉取分支，提交代码时从自己分支往主分支上merge，当分支比较多时，分支树会显得很乱。</p>
 <p>使用rebase，将自己分支每次重置为主分支记录，再提交，全程只有主分支的提交历史，比较清晰</p>
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git <span class="keyword">add</span><span class="bash"> .</span></div><div class="line">git commit -m <span class="string">"*****"</span></div><div class="line">git rebase master(主分支)</div><div class="line">git rebase --continue</div><div class="line">git push</div></pre></td></tr></table></figure>
+<h2 id="修改commit内容"><a href="#修改commit内容" class="headerlink" title="修改commit内容"></a>修改commit内容</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git commit <span class="comment">--amend</span></div><div class="line"><span class="comment"># 修改内容</span></div><div class="line">git push -f</div></pre></td></tr></table></figure>
 <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p><a href="https://git-scm.com/docs" target="_blank" rel="external">Git常用命令</a></p>
 
       
@@ -544,7 +545,7 @@
   <p><span>本文标题:</span><a href="/2017/07/14/Git笔记/">Git学习笔记</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gavin 的个人博客">Gavin</a></p>
   <p><span>发布时间:</span>2017年07月14日 - 00:07</p>
-  <p><span>最后更新:</span>2018年07月30日 - 21:07</p>
+  <p><span>最后更新:</span>2018年08月15日 - 17:08</p>
   <p><span>原始链接:</span><a href="/2017/07/14/Git笔记/" title="Git学习笔记">http://wonius.top/2017/07/14/Git笔记/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://wonius.top/2017/07/14/Git笔记/"  aria-label="复制成功！"></i></span>
   </p>
@@ -719,7 +720,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -802,7 +803,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本地代码初始化到远程仓库"><span class="nav-number">1.</span> <span class="nav-text">本地代码初始化到远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新代码时，本地冲突无法更新"><span class="nav-number">2.</span> <span class="nav-text">更新代码时，本地冲突无法更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回退到某个历史版本"><span class="nav-number">3.</span> <span class="nav-text">回退到某个历史版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用git-stash命令进行代码暂存"><span class="nav-number">4.</span> <span class="nav-text">使用git stash命令进行代码暂存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支命令"><span class="nav-number">5.</span> <span class="nav-text">分支命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fatal-refusing-to-merge-unrelated-histories"><span class="nav-number">6.</span> <span class="nav-text">fatal: refusing to merge unrelated histories</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码提交到不同仓库"><span class="nav-number">7.</span> <span class="nav-text">代码提交到不同仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改远程仓库地址"><span class="nav-number">8.</span> <span class="nav-text">修改远程仓库地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rebase提交"><span class="nav-number">9.</span> <span class="nav-text">rebase提交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">10.</span> <span class="nav-text">常用命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本地代码初始化到远程仓库"><span class="nav-number">1.</span> <span class="nav-text">本地代码初始化到远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新代码时，本地冲突无法更新"><span class="nav-number">2.</span> <span class="nav-text">更新代码时，本地冲突无法更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回退到某个历史版本"><span class="nav-number">3.</span> <span class="nav-text">回退到某个历史版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用git-stash命令进行代码暂存"><span class="nav-number">4.</span> <span class="nav-text">使用git stash命令进行代码暂存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支命令"><span class="nav-number">5.</span> <span class="nav-text">分支命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fatal-refusing-to-merge-unrelated-histories"><span class="nav-number">6.</span> <span class="nav-text">fatal: refusing to merge unrelated histories</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码提交到不同仓库"><span class="nav-number">7.</span> <span class="nav-text">代码提交到不同仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改远程仓库地址"><span class="nav-number">8.</span> <span class="nav-text">修改远程仓库地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rebase提交"><span class="nav-number">9.</span> <span class="nav-text">rebase提交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改commit内容"><span class="nav-number">10.</span> <span class="nav-text">修改commit内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">11.</span> <span class="nav-text">常用命令</span></a></li></ol></div>
             
 
           </div>
@@ -836,7 +837,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">33.2k</span>
+    <span title="Site words total count">33.6k</span>
   
 </div>
 
