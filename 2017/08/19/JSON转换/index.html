@@ -120,17 +120,17 @@
 
 
 
-<meta name="description" content="JSON.parse(data)转换 当data为 ‘undefined’ 时，转换异常。为 ‘null’ 时，转换正常； 如果data不是key、value形式的字符串，是 ‘1234’ 这种只有一个值的字符串，也可以转换，转换后还是原值；">
+<meta name="description" content="json-lib（性能差）json-lib最开始的也是应用最广泛的json解析工具，json-lib 不好的地方确实是依赖于很多第三方包，包括commons-beanutils.jar，commons-collections-3.2.jar，commons-lang-2.6.jar，commons-logging-1.1.1.jar，ezmorph-1.0.6.jar，对于复杂类型的转换，json">
 <meta name="keywords" content="JSON">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JSON转换">
 <meta property="og:url" content="http://wonius.top/2017/08/19/JSON转换/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
-<meta property="og:description" content="JSON.parse(data)转换 当data为 ‘undefined’ 时，转换异常。为 ‘null’ 时，转换正常； 如果data不是key、value形式的字符串，是 ‘1234’ 这种只有一个值的字符串，也可以转换，转换后还是原值；">
-<meta property="og:updated_time" content="2018-03-24T09:43:40.740Z">
+<meta property="og:description" content="json-lib（性能差）json-lib最开始的也是应用最广泛的json解析工具，json-lib 不好的地方确实是依赖于很多第三方包，包括commons-beanutils.jar，commons-collections-3.2.jar，commons-lang-2.6.jar，commons-logging-1.1.1.jar，ezmorph-1.0.6.jar，对于复杂类型的转换，json">
+<meta property="og:updated_time" content="2018-08-23T03:29:24.217Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JSON转换">
-<meta name="twitter:description" content="JSON.parse(data)转换 当data为 ‘undefined’ 时，转换异常。为 ‘null’ 时，转换正常； 如果data不是key、value形式的字符串，是 ‘1234’ 这种只有一个值的字符串，也可以转换，转换后还是原值；">
+<meta name="twitter:description" content="json-lib（性能差）json-lib最开始的也是应用最广泛的json解析工具，json-lib 不好的地方确实是依赖于很多第三方包，包括commons-beanutils.jar，commons-collections-3.2.jar，commons-lang-2.6.jar，commons-logging-1.1.1.jar，ezmorph-1.0.6.jar，对于复杂类型的转换，json">
 
 
 
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  60
+                  1,067
                 </span>
               
 
@@ -446,7 +446,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  4
                 </span>
               
             </div>
@@ -467,7 +467,33 @@
       
 
       
-        <h2 id="JSON-parse-data-转换"><a href="#JSON-parse-data-转换" class="headerlink" title="JSON.parse(data)转换"></a>JSON.parse(data)转换</h2><ol>
+        <h1 id="json-lib（性能差）"><a href="#json-lib（性能差）" class="headerlink" title="json-lib（性能差）"></a>json-lib（性能差）</h1><p>json-lib最开始的也是应用最广泛的json解析工具，json-lib 不好的地方确实是依赖于很多第三方包，<br>包括commons-beanutils.jar，commons-collections-3.2.jar，commons-lang-2.6.jar，commons-logging-1.1.1.jar，ezmorph-1.0.6.jar，<br>对于复杂类型的转换，json-lib对于json转换成bean还有缺陷，比如一个类里面会出现另一个类的list或者map集合，json-lib从json到bean的转换就会出现问题。<br>json-lib在功能和性能上面都不能满足现在互联网化的需求。</p>
+<h1 id="Jackson"><a href="#Jackson" class="headerlink" title="Jackson"></a>Jackson</h1><p>相比json-lib框架，Jackson所依赖的jar包较少，简单易用并且性能也要相对高些。<br>而且Jackson社区相对比较活跃，更新速度也比较快。<br>Jackson对于复杂类型的json转换bean会出现问题，一些集合Map，List的转换出现问题。<br>Jackson对于复杂类型的bean转换Json，转换的json格式不是标准的Json格式</p>
+<h1 id="Gson"><a href="#Gson" class="headerlink" title="Gson"></a>Gson</h1><p>Gson是目前功能最全的Json解析神器，Gson当初是为因应Google公司内部需求而由Google自行研发而来，<br>但自从在2008年五月公开发布第一版后已被许多公司或用户应用。<br>Gson的应用主要为toJson与fromJson两个转换函数，无依赖，不需要例外额外的jar，能够直接跑在JDK上。<br>而在使用这种对象转换之前需先创建好对象的类型以及其成员才能成功的将JSON字符串成功转换成相对应的对象。<br>类里面只要有get和set方法，Gson完全可以将复杂类型的json到bean或bean到json的转换，是JSON解析的神器。<br>Gson在功能上面无可挑剔，但是性能上面比FastJson有所差距。</p>
+<h1 id="fastjson"><a href="#fastjson" class="headerlink" title="fastjson"></a>fastjson</h1><p>Fastjson是一个Java语言编写的高性能的JSON处理器,由阿里巴巴公司开发。<br>无依赖，不需要例外额外的jar，能够直接跑在JDK上。<br>FastJson在复杂类型的Bean转换Json上会出现一些问题，可能会出现引用的类型，导致Json转换出错，需要制定引用。<br>FastJson采用独创的算法，将parse的速度提升到极致，超过所有json库。</p>
+<p><a href="https://www.zhihu.com/question/44199956" target="_blank" rel="external">fastjson这么快老外为啥还是热衷 jackson?</a></p>
+<h1 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h1><p>选择一个合适的JSON库要从多个方面进行考虑：</p>
+<ol>
+<li>字符串解析成JSON性能</li>
+<li>字符串解析成JavaBean性能</li>
+<li>JavaBean构造JSON性能</li>
+<li>集合构造JSON性能</li>
+<li>易用性</li>
+</ol>
+<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><ol>
+<li>字符串解析成JavaBean（反序列化）：当数据量较少时首选FastJson，数据量较大使用Jackson。但是Jackson无法堆一个对象集合进行解析，只能转成一个Map集合，这点Gson和FastJson处理的比较好。</li>
+<li>字符串解析成JSON：当数据量较少时首选FastJson，数据量较大使用Jackson。</li>
+<li>JavaBean构造JSON（序列化）：当数据量较少时选择Gson，数据量较大可使用Jackson。</li>
+<li>集合构造JSON（序列化）：首先Jackson，其次Fastjson。</li>
+</ol>
+<h2 id="易用性"><a href="#易用性" class="headerlink" title="易用性"></a>易用性</h2><ol>
+<li>FastJson的API设计的最简单，最方便使用，直接使用JSON的两个静态方法即可完成四种操作；</li>
+<li>Gson和Jackson都需要new一个对象，虽然这个对象可以复用，但是在实际使用过程中还需要用一个全局变量来保存改变量，同时API设计的也不是很好理解，对于FastJson来说复杂的API是因为他支持流式解析，适合对JSON进行大量且复杂的操作，但是实际应用中对于JSON的操作都是简单的解析成JavaBean，然后JavaBean序列化成JSON字符串即可，复杂的操作很少；</li>
+</ol>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>综上4种Json技术的比较，在项目选型的时候，如果性能没有什么要求，可以使用Jackson；</p>
+<p>如果性能上有要求，可以Jackson（或Gson）与FastJson两种并行使用，使用Jackson（或Gson）将bean转换成json，使用FastJson将Json转换Bean。</p>
+<h1 id="one-more-thing"><a href="#one-more-thing" class="headerlink" title="one more thing"></a>one more thing</h1><p>在使用JS的JSON.parse(data)转换时：</p>
+<ol>
 <li>当data为 ‘undefined’ 时，转换异常。为 ‘null’ 时，转换正常；</li>
 <li>如果data不是key、value形式的字符串，是 ‘1234’ 这种只有一个值的字符串，也可以转换，转换后还是原值；</li>
 </ol>
@@ -492,7 +518,7 @@
   <p><span>本文标题:</span><a href="/2017/08/19/JSON转换/">JSON转换</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gavin 的个人博客">Gavin</a></p>
   <p><span>发布时间:</span>2017年08月19日 - 21:08</p>
-  <p><span>最后更新:</span>2018年03月24日 - 17:03</p>
+  <p><span>最后更新:</span>2018年08月23日 - 11:08</p>
   <p><span>原始链接:</span><a href="/2017/08/19/JSON转换/" title="JSON转换">http://wonius.top/2017/08/19/JSON转换/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://wonius.top/2017/08/19/JSON转换/"  aria-label="复制成功！"></i></span>
   </p>
@@ -750,7 +776,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON-parse-data-转换"><span class="nav-number">1.</span> <span class="nav-text">JSON.parse(data)转换</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#json-lib（性能差）"><span class="nav-number">1.</span> <span class="nav-text">json-lib（性能差）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Jackson"><span class="nav-number">2.</span> <span class="nav-text">Jackson</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Gson"><span class="nav-number">3.</span> <span class="nav-text">Gson</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fastjson"><span class="nav-number">4.</span> <span class="nav-text">fastjson</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#比较"><span class="nav-number">5.</span> <span class="nav-text">比较</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#性能"><span class="nav-number">5.1.</span> <span class="nav-text">性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#易用性"><span class="nav-number">5.2.</span> <span class="nav-text">易用性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结论"><span class="nav-number">6.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#one-more-thing"><span class="nav-number">7.</span> <span class="nav-text">one more thing</span></a></li></ol></div>
             
 
           </div>
@@ -784,7 +810,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">33.7k</span>
+    <span title="Site words total count">34.7k</span>
   
 </div>
 
