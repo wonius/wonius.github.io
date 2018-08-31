@@ -127,7 +127,7 @@
 <meta property="og:url" content="http://wonius.top/2018/08/30/Java-lombok应用/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="lombok应用">
-<meta property="og:updated_time" content="2018-08-30T06:52:00.789Z">
+<meta property="og:updated_time" content="2018-08-30T06:53:22.452Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="lombok应用">
 <meta name="twitter:description" content="lombok应用">
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  114
+                  131
                 </span>
               
 
@@ -471,7 +471,7 @@
       
 
       
-        <p>lombok确实好用，节省时间。</p>
+        <p>lombok的方面之处就不多说了，这里列一下使用中遇到的一些问题。</p>
 <h1 id="Builder继承"><a href="#Builder继承" class="headerlink" title="@Builder继承"></a>@Builder继承</h1><p>@Builder无法继承。所以当我们同时有父类、子类，无法都使用@Builder。</p>
 <p>解决方案：父类不用@Builder，子类构造函数上加@Builder</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@AllArgsConstructor</span></div><div class="line"><span class="meta">@NoArgsConstructor</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> Father &#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="built_in">String</span> fatherName;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> Children &#123;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> <span class="built_in">String</span> childName;</div><div class="line">    </div><div class="line">    <span class="meta">@Builder</span></div><div class="line">    <span class="keyword">public</span> Children(<span class="built_in">String</span> fatherName, <span class="built_in">String</span> childName) &#123;</div><div class="line">        <span class="keyword">super</span>(fatherName);</div><div class="line">        <span class="keyword">this</span>.childName = childName;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -790,7 +790,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.8k</span>
+    <span title="Site words total count">35.9k</span>
   
 </div>
 

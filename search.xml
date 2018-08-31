@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[lombok应用]]></title>
     <url>%2F2018%2F08%2F30%2FJava-lombok%E5%BA%94%E7%94%A8%2F</url>
-    <content type="text"><![CDATA[lombok确实好用，节省时间。 @Builder继承@Builder无法继承。所以当我们同时有父类、子类，无法都使用@Builder。 解决方案：父类不用@Builder，子类构造函数上加@Builder 1234567891011121314151617@AllArgsConstructor@NoArgsConstructorpublic class Father &#123; private String fatherName;&#125;public class Children &#123; private String childName; @Builder public Children(String fatherName, String childName) &#123; super(fatherName); this.childName = childName; &#125;&#125; 缺点： 父类无法使用builder()； 子类的构造得是全参构造； @Data继承子类继承时，需加@EqualsAndHashCode(callSuper=true)]]></content>
+    <content type="text"><![CDATA[lombok的方面之处就不多说了，这里列一下使用中遇到的一些问题。 @Builder继承@Builder无法继承。所以当我们同时有父类、子类，无法都使用@Builder。 解决方案：父类不用@Builder，子类构造函数上加@Builder 1234567891011121314151617@AllArgsConstructor@NoArgsConstructorpublic class Father &#123; private String fatherName;&#125;public class Children &#123; private String childName; @Builder public Children(String fatherName, String childName) &#123; super(fatherName); this.childName = childName; &#125;&#125; 缺点： 父类无法使用builder()； 子类的构造得是全参构造； @Data继承子类继承时，需加@EqualsAndHashCode(callSuper=true)]]></content>
       <categories>
         <category>JAVA</category>
       </categories>
@@ -25,7 +25,7 @@
   <entry>
     <title><![CDATA[Redisson遇到的坑]]></title>
     <url>%2F2018%2F08%2F30%2FRedisson%E5%BC%82%E5%B8%B8%2F</url>
-    <content type="text"><![CDATA[WRONGTYPE Operation against a key holding the wrong kind of value 12RLock lc = redisson.getLock("LOCK"); lc.lock(1000,TimeUnit.MILLISECONDS); 原因：redisson中的getLock为了保持原子性，使用Lua脚本一次提交。在设置锁时，使用hset。 当redis里面已经存在”LOCK”的变量，再调用getLock，使用hset(“LOCK”)，会报改异常。 处理：先确保redis中的”LOCK”参数删掉，在调用lock(); #unlock方法中的publish 12RLock lc = redisson.getLock("LOCK");lc.unlock(); 背景项目中使用psubscribe了”*“，订阅所有频道，在onMessage()中也用了Redisson锁，在最后有unlock释放锁操作。 现象代码运行时，发现会一直触发onMessage()，造成了死循环。 分析使用monitor实时监控redis执行的命令，发现在unlock时，会依次做下面的操作： 12345exists XXXXhexists XXXX ******hincrby XXXX ****** -1del XXXXpublish redisson_lock_channel:&#123;XXXX&#125; 0 可以看到在最后会向redisson_lock_channel:{XXXX} publish 一个0 处理在onMessage()中针对自己想订阅的频道处理，否则return;]]></content>
+    <content type="text"><![CDATA[WRONGTYPE Operation against a key holding the wrong kind of value 12RLock lc = redisson.getLock("LOCK"); lc.lock(1000,TimeUnit.MILLISECONDS); 原因：redisson中的getLock为了保持原子性，使用Lua脚本一次提交。在设置锁时，使用hset。 当redis里面已经存在”LOCK”的变量，调用getLock（内部实现为hset(“LOCK”)），会报该异常。 处理：先确保redis中的”LOCK”参数删掉，在调用lock(); unlock方法中的publish12RLock lc = redisson.getLock("LOCK");lc.unlock(); 背景项目中使用psubscribe &quot;*&quot;订阅了所有频道，在onMessage()监听处理中用到了Redisson锁，并且在函数最后有unlock()释放锁操作。 现象代码运行时，发现会一直触发onMessage()，造成了死循环。 分析使用monitor实时监控redis执行的命令，发现在unlock时，会依次做下面的操作： 12345exists XXXXhexists XXXX ******hincrby XXXX ****** -1del XXXXpublish redisson_lock_channel:&#123;XXXX&#125; 0 可以看到在最后会向redisson_lock_channel:{XXXX} publish 一个0 处理在onMessage()中针对自己想订阅的频道处理，否则return;]]></content>
       <categories>
         <category>DB</category>
       </categories>
@@ -47,7 +47,7 @@
   <entry>
     <title><![CDATA[柴犬养成]]></title>
     <url>%2F2018%2F08%2F23%2F%E6%9F%B4%E7%8A%AC%E5%85%BB%E6%88%90%2F</url>
-    <content type="text"><![CDATA[常用驱虫药主要分为内驱和外驱，每月一次。 身高体重参照表每只柴犬体质都不一样，我也遇到过3个月才4斤多，狗狗健康就好，不用非得逼着他多吃。]]></content>
+    <content type="text"><![CDATA[常用驱虫药主要分为内驱和外驱，每月一次。 夏天犬心宝、福来恩 。冬天内驱吃拜耳，偶尔穿插吃驱球虫的。有朋友这么搭配。 身高体重参照表每只柴犬体质都不一样，我也遇到过3个月才4斤多，狗狗健康就好，不用非得逼着他多吃。]]></content>
       <categories>
         <category>家有小柴</category>
       </categories>
@@ -643,8 +643,8 @@
         <category>DB</category>
       </categories>
       <tags>
-        <tag>CentOS</tag>
         <tag>Mysql</tag>
+        <tag>CentOS</tag>
       </tags>
   </entry>
   <entry>

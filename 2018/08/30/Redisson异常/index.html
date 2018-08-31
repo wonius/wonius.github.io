@@ -127,7 +127,7 @@
 <meta property="og:url" content="http://wonius.top/2018/08/30/Redisson异常/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="Redisson使用过程中遇到的一些坑">
-<meta property="og:updated_time" content="2018-08-30T02:20:56.220Z">
+<meta property="og:updated_time" content="2018-08-31T01:43:14.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redisson遇到的坑">
 <meta name="twitter:description" content="Redisson使用过程中遇到的一些坑">
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  234
+                  244
                 </span>
               
 
@@ -473,11 +473,10 @@
       
         <h1 id="WRONGTYPE-Operation-against-a-key-holding-the-wrong-kind-of-value"><a href="#WRONGTYPE-Operation-against-a-key-holding-the-wrong-kind-of-value" class="headerlink" title="WRONGTYPE Operation against a key holding the wrong kind of value"></a>WRONGTYPE Operation against a key holding the wrong kind of value</h1> <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">RLock lc = redisson.getLock(<span class="string">"LOCK"</span>)<span class="comment">; </span></div><div class="line">lc.lock(<span class="number">1000</span>,TimeUnit.MILLISECONDS)<span class="comment">;</span></div></pre></td></tr></table></figure>
 <h2 id="原因："><a href="#原因：" class="headerlink" title="原因："></a>原因：</h2><p>redisson中的getLock为了保持原子性，使用Lua脚本一次提交。在设置锁时，使用hset。</p>
-<p>当redis里面已经存在”LOCK”的变量，再调用getLock，使用hset(“LOCK”)，会报改异常。</p>
+<p>当redis里面已经存在”LOCK”的变量，调用getLock（内部实现为hset(“LOCK”)），会报该异常。</p>
 <h2 id="处理："><a href="#处理：" class="headerlink" title="处理："></a>处理：</h2><p>先确保redis中的”LOCK”参数删掉，在调用lock();</p>
-<p>#unlock方法中的publish</p>
-<figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">RLock lc = redisson.getLock(<span class="string">"LOCK"</span>)<span class="comment">;</span></div><div class="line">lc.unlock()<span class="comment">;</span></div></pre></td></tr></table></figure>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>项目中使用psubscribe了”*“，订阅所有频道，在onMessage()中也用了Redisson锁，在最后有unlock释放锁操作。</p>
+<h1 id="unlock方法中的publish"><a href="#unlock方法中的publish" class="headerlink" title="unlock方法中的publish"></a>unlock方法中的publish</h1><figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">RLock lc = redisson.getLock(<span class="string">"LOCK"</span>)<span class="comment">;</span></div><div class="line">lc.unlock()<span class="comment">;</span></div></pre></td></tr></table></figure>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>项目中使用<code>psubscribe &quot;*&quot;</code>订阅了所有频道，在onMessage()监听处理中用到了Redisson锁，并且在函数最后有unlock()释放锁操作。</p>
 <h2 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h2><p>代码运行时，发现会一直触发onMessage()，造成了死循环。</p>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>使用monitor实时监控redis执行的命令，发现在unlock时，会依次做下面的操作：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">exists XXXX</div><div class="line">hexists XXXX <span class="strong">*****</span>*</div><div class="line">hincrby XXXX <span class="strong">*****</span>* -1</div><div class="line">del XXXX</div><div class="line">publish redisson<span class="emphasis">_lock_</span>channel:&#123;XXXX&#125; 0</div></pre></td></tr></table></figure>
@@ -504,7 +503,7 @@
   <p><span>本文标题:</span><a href="/2018/08/30/Redisson异常/">Redisson遇到的坑</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gavin 的个人博客">Gavin</a></p>
   <p><span>发布时间:</span>2018年08月30日 - 09:08</p>
-  <p><span>最后更新:</span>2018年08月30日 - 10:08</p>
+  <p><span>最后更新:</span>2018年08月31日 - 09:08</p>
   <p><span>原始链接:</span><a href="/2018/08/30/Redisson异常/" title="Redisson遇到的坑">http://wonius.top/2018/08/30/Redisson异常/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://wonius.top/2018/08/30/Redisson异常/"  aria-label="复制成功！"></i></span>
   </p>
@@ -762,7 +761,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WRONGTYPE-Operation-against-a-key-holding-the-wrong-kind-of-value"><span class="nav-number">1.</span> <span class="nav-text">WRONGTYPE Operation against a key holding the wrong kind of value</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原因："><span class="nav-number">1.1.</span> <span class="nav-text">原因：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理："><span class="nav-number">1.2.</span> <span class="nav-text">处理：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.3.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#现象"><span class="nav-number">1.4.</span> <span class="nav-text">现象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">1.5.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理"><span class="nav-number">1.6.</span> <span class="nav-text">处理</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WRONGTYPE-Operation-against-a-key-holding-the-wrong-kind-of-value"><span class="nav-number">1.</span> <span class="nav-text">WRONGTYPE Operation against a key holding the wrong kind of value</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原因："><span class="nav-number">1.1.</span> <span class="nav-text">原因：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理："><span class="nav-number">1.2.</span> <span class="nav-text">处理：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unlock方法中的publish"><span class="nav-number">2.</span> <span class="nav-text">unlock方法中的publish</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">2.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#现象"><span class="nav-number">2.2.</span> <span class="nav-text">现象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.3.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理"><span class="nav-number">2.4.</span> <span class="nav-text">处理</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -796,7 +795,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.8k</span>
+    <span title="Site words total count">35.9k</span>
   
 </div>
 
