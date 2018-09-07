@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://wonius.top/2018/09/07/SpringRedisData%E4%B8%AD%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9D%91/</loc>
+    <lastmod>2018-09-07T01:45:42.127Z</lastmod>
+    <data>
+        <display>
+        <title>SpringRedisData中事务的坑</title>
+        <pubTime>2018-09-07T01:38:39.000Z</pubTime>
+        
+        <tag>Spring</tag>
+         
+         
+           
+             
+              <breadCrumb title="Spring" url="http://wonius.top/categories/Spring/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wonius.top/2018/08/26/%E6%9F%B4%E7%8A%AC%E7%96%AB%E8%8B%97%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/</loc>
     <lastmod>2018-09-03T01:44:13.566Z</lastmod>
     <data>
@@ -421,9 +441,9 @@
         <title>技能图谱-后端</title>
         <pubTime>2018-05-29T13:26:29.000Z</pubTime>
         
-        <tag>大数据</tag>
-         
         <tag>技能图谱</tag>
+         
+        <tag>大数据</tag>
          
          
            
@@ -1162,9 +1182,9 @@
         <title>技能图谱-大数据</title>
         <pubTime>2018-03-17T13:22:00.000Z</pubTime>
         
-        <tag>大数据</tag>
-         
         <tag>技能图谱</tag>
+         
+        <tag>大数据</tag>
          
          
            
@@ -1184,9 +1204,9 @@
         <title>技能图谱-前端</title>
         <pubTime>2018-03-17T13:16:18.000Z</pubTime>
         
-        <tag>技能图谱</tag>
-         
         <tag>前端</tag>
+         
+        <tag>技能图谱</tag>
          
          
            
