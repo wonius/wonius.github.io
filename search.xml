@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[狗狗不能吃的那些好吃的]]></title>
+    <url>%2F2018%2F09%2F09%2F%E6%9F%B4%E7%8A%AC%E4%B8%8D%E8%83%BD%E5%90%83%E7%9A%84%E7%9A%84%E9%82%A3%E4%BA%9B%E5%A5%BD%E5%90%83%E7%9A%84%2F</url>
+    <content type="text"><![CDATA[禁忌食物 巧克力。有些犬食用后振奋不安，且巧克力中富含许多的糖分，对犬的安康有害无宜。 葱、洋葱等类食物。有些犬食入此类食物可致使细胞溶血，呈现尿血的表象。 肝脏。长时间食用可形成维生素A过量乃至中毒。 海鲜等易过敏的食物。 高糖、高脂肪、高盐分的食物。高脂肪、高糖食物易使犬发胖而诱发一系列疾病；过量的盐分，必然加剧肾脏的分泌的担负，影响肾脏安康，打破体液平衡，形成各种肌肤疾病。 牛奶。许多狗狗有乳糖不适应症，若是狗喝了牛奶后呈现放屁、腹泄、脱水或肌肤发炎等。 生鸡蛋。生蛋白富含一种卵白素的蛋白质，它会耗尽狗狗体内的维生素H，会致使肌肤病及背毛疑问。 肥肉。致使胰腺炎。 含酒精的饮料、热可可、咖啡、茶。 葡萄、梅子、李子、樱桃、枇杷、菠萝（生物碱和菠萝蛋白简单形成过敏，PH值过酸）、桃子、芒果、未成熟的西红柿等生的水果。 芹菜、香菜、甘薯、大麦、小麦、玉米（含蛋白酶按捺物）、带皮与发芽的马铃薯、油菜等蔬菜。 碎骨头。尤其是鸡鸭一类尖利的骨头，可能对狗狗肠胃造成损害。 冷藏的牛奶、冰淇淋和其它乳制品。特别是对发育未彻底的幼犬影响最大，一般几口冷牛奶就会形成幼犬腹泄，长时间如此会形成习气性腹泄，致使犬体衰弱，犬的肠胃不适应此类食物。 猪肉。猪肉内的脂肪球比其它肉类大，能够堵塞狗狗的微血管。防止猪制品，尤其是含硝酸钠的火腿。]]></content>
+      <categories>
+        <category>家有小柴</category>
+      </categories>
+      <tags>
+        <tag>柴犬</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Solr演练]]></title>
     <url>%2F2018%2F09%2F09%2FSolr%E6%BC%94%E7%BB%83%2F</url>
     <content type="text"><![CDATA[下载 访问官网进行下载； 解压即可； 启动 进到solr目录，执行bin/solr start -e cloud，多节点运行； 分别提示创建几个节点、第一个节点端口、第二个节点端口，按enter默认就可以； 输入集合名称，这里我们可以设置为techproducts； 然后提示创建几个分片、创建几个副本，这些默认2就可以； 然后选择使用哪组配置文件，总共有_default、sample_techproducts_configs两个选项，我们选后者； 创建完成，可以通过localhost:8983进入solr管理页面，在cloud中查看集合的结构； 如果第一步时报错： 使用普通用户： ERROR: Logs directory /etc/solr-7.4.0/example/cloud/node1/solr/../logs is not writable. Exiting 或者 使用root用户： ERROR: Failed to start Solr using command: &quot;bin/solr&quot; start -cloud -p 8983 -s &quot;example/cloud/node1/solr&quot; Exception : org.apache.commons.exec.ExecuteException: Process exited with an error: 1 (Exit value: 1) 是因为用户访问权限不对，修改下权限就可以。我这里直接开了所有权限 1sudo chmod -R 777 /etc/solr-7.4.0 索引数据Solr目录中的example提供了基础数据，我们可以把这些基础数据加载到刚才创建的techproducts集合，并建立索引： bin/post -c techproducts example/exampledocs/* 搜索在Solr Admin中可以自己定义查询条件进行查询。 先选中创建的techproducts集合，然后选择Query； 在q中输入自己的查询条件，默认*:*查询所有。比如id:123，就是查询id为123的内容； 多条件查询，中间用+连接，如：+(features:&quot;CAS latency&quot;)+(id:&quot;VDBDB1A16&quot;)；相反，如果希望结果中过滤掉某个属性的内容，用-连接，如：+(features:&quot;CAS latency&quot;)-(id:&quot;VDBDB1A16&quot;) fl对查询结果进行过滤，仅显示fl中的属性。多个属性,间隔； Solr其他命令删除集合1bin/solr delete -c techproducts 创建新集合1bin/solr create -c &lt;yourCollection&gt; -s 2 -rf 2 停止1bin/solr stop -all 重新启动12./bin/solr start -c -p 8983 -s example/cloud/node1/solr./bin/solr start -c -p 7574 -s example/cloud/node2/solr -z localhost:9983]]></content>
@@ -69,7 +80,7 @@
   <entry>
     <title><![CDATA[柴犬养成]]></title>
     <url>%2F2018%2F08%2F23%2F%E6%9F%B4%E7%8A%AC%E5%85%BB%E6%88%90%2F</url>
-    <content type="text"><![CDATA[常用驱虫药主要分为内驱和外驱，每月一次。不同品牌的驱虫药时效不同，有的一个季度一次，有的一个月一次，根据说明书使用。 夏天犬心宝、福来恩 。冬天内驱吃拜耳，偶尔穿插吃驱球虫的。有朋友这么搭配。 身高体重参照表每只柴犬体质都不一样，我也遇到过3个月才4斤多，狗狗健康就好，不用非得逼着他多吃。]]></content>
+    <content type="text"><![CDATA[常用驱虫药主要分为内驱和外驱，每月一次。不同品牌的驱虫药时效不同，有的一个季度一次，有的一个月一次，根据说明书使用。 我目前的组合是福来恩+犬心保。主要狗子经常去草地，所以可能有蜱虫，福来恩可以驱蜱虫。 如果不经常去草地，可以直接用大宠爱。 另外有朋友的组合是夏天犬心宝，冬天拜宠清，偶尔穿插吃驱球虫的。 不要只用一种驱虫药，因为有些覆盖不到，可以穿插使用。 身高体重参照表每只柴犬体质都不一样，我也遇到过3个月才4斤多，狗狗健康就好，不用非得逼着他多吃。]]></content>
       <categories>
         <category>家有小柴</category>
       </categories>
@@ -121,7 +132,7 @@
   <entry>
     <title><![CDATA[Redis-Session管理]]></title>
     <url>%2F2018%2F07%2F13%2FRedis-Session%E7%AE%A1%E7%90%86%2F</url>
-    <content type="text"><![CDATA[背景​ 项目中使用redis存储session，写了个session切面用于维护session，当用户调用接口时，会先检验redis中是否有session（有效期为30min，调用接口刷新有效期），如果没有，创建session。在并发的场景下，需要用锁避免重复写。StringRedisTemplate中没有对锁的封装，所以自己简单封装了两个取锁的方法。 tryLock12345678910111213141516/** * 尝试获取锁，如果获取到，并设置过期时间 * @param keyName * @param seconds * @return */public boolean tryLock(String keyName, Long seconds) &#123; RedisConnection connection = redisTemplate.getConnectionFactory().getConnection(); boolean lockReturn = connection.setNX(keyName.getBytes(), LOCK_TRUE.getBytes()); connection.close(); if (lockReturn) &#123; redisTemplate.expire(keyName, seconds, TimeUnit.SECONDS); &#125; return lockReturn;&#125; getLock123456789101112131415161718/** * 一定会获取到锁，并设置过期时间 * @param keyName * @param seconds * @return * @throws InterruptedException */public boolean getLock(String keyName, Long seconds) throws InterruptedException &#123; RedisConnection connection = redisTemplate.getConnectionFactory().getConnection(); boolean lockReturn = connection.setNX(keyName.getBytes(), LOCK_TRUE.getBytes()); while (!lockReturn) &#123; Thread.sleep(10); lockReturn = connection.setNX(keyName.getBytes(), LOCK_TRUE.getBytes()); &#125; connection.expire(keyName.getBytes(), seconds); connection.close(); return lockReturn;&#125; releaseLock12345678/** * 释放锁 * @param keyName * @return */public boolean releaseLock(String keyName) &#123; return redisTemplate.delete(keyName);&#125; 后记在投产后，发现效果并不好，实例经常会跑着跑着，突然卡死。分析原因应该是redis连接池资源耗尽，导致服务器所有线程阻塞，整台实例不可用（一般跑2、3天才会出现）。因为项目已经使用了StringRedisTemplate，本身它会管理自己的连接池。而我通过getConnection获取到的连接，相当于脱离于连接池，有可能导致与StringRedisTemplate不兼容。 如果有同学自己通过jedis实现了jedispool进行管理，应该没有这个问题，感兴趣的小伙伴可以试一下。jedis无法自动关闭连接，当使用完之后，别忘了手动关闭。 后来，发现了redisson，专门用于解决分布式问题，也提供了锁的实现，小伙伴可以用一下。 顺便再吐槽下StringRedisTemplate，感觉就是对redis的命令做了简单的封装，而且开启事务时还有坑…]]></content>
+    <content type="text"><![CDATA[背景​ 项目中使用redis存储session，写了个session切面用于维护session，当用户调用接口时，会先检验redis中是否有session（有效期为30min，调用接口刷新有效期），如果没有，创建session。在并发的场景下，需要用锁避免重复写。StringRedisTemplate中没有对锁的封装，所以自己简单封装了两个取锁的方法。 tryLock12345678910111213141516/** * 尝试获取锁，如果获取到，并设置过期时间 * @param keyName * @param seconds * @return */public boolean tryLock(String keyName, Long seconds) &#123; RedisConnection connection = redisTemplate.getConnectionFactory().getConnection(); boolean lockReturn = connection.setNX(keyName.getBytes(), LOCK_TRUE.getBytes()); connection.close(); if (lockReturn) &#123; redisTemplate.expire(keyName, seconds, TimeUnit.SECONDS); &#125; return lockReturn;&#125; getLock123456789101112131415161718/** * 一定会获取到锁，并设置过期时间 * @param keyName * @param seconds * @return * @throws InterruptedException */public boolean getLock(String keyName, Long seconds) throws InterruptedException &#123; RedisConnection connection = redisTemplate.getConnectionFactory().getConnection(); boolean lockReturn = connection.setNX(keyName.getBytes(), LOCK_TRUE.getBytes()); while (!lockReturn) &#123; Thread.sleep(10); lockReturn = connection.setNX(keyName.getBytes(), LOCK_TRUE.getBytes()); &#125; connection.expire(keyName.getBytes(), seconds); connection.close(); return lockReturn;&#125; releaseLock12345678/** * 释放锁 * @param keyName * @return */public boolean releaseLock(String keyName) &#123; return redisTemplate.delete(keyName);&#125; 后记在投产后，发现效果并不好，实例经常会跑着跑着，突然卡死。分析原因应该是redis连接池资源耗尽，导致服务器所有线程阻塞，整台实例不可用（一般跑2、3天才会出现）。因为项目已经使用了StringRedisTemplate，本身它会管理自己的连接池。而我通过getConnection获取到的连接，相当于脱离于连接池，有可能导致与StringRedisTemplate不兼容。 如果有同学自己通过jedis实现了jedispool进行管理，应该没有这个问题，感兴趣的小伙伴可以试一下。jedis无法自动关闭连接，当使用完之后，别忘了手动关闭。 后来，发现了Redisson，专门用于解决分布式问题，也提供了锁的实现，小伙伴可以用一下。 顺便再吐槽下StringRedisTemplate，感觉就是对redis的命令做了简单的封装，而且开启事务时还有坑…]]></content>
       <categories>
         <category>DB</category>
       </categories>
@@ -814,18 +825,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[SpringBoot相关资料]]></title>
-    <url>%2F2017%2F07%2F29%2FSpringBoot%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%2F</url>
-    <content type="text"><![CDATA[Spring BootBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 Spring Boot 揭秘与实战 系列 catoop的专栏 方志朋 Spring Boot 专栏 Spring-boot集成 Website Spring Boot 官网 Spring Boot参考指南-中文版 Gradle 中文参考指南 慕课网视频 spring-boot-tutorials Code spring boot官方例子 spring-boot-starter SpringBoot-Learning favorites-web springboot-learning-example spring-boot-all]]></content>
-      <categories>
-        <category>Spring</category>
-        <category>SpringBoot</category>
-      </categories>
-      <tags>
-        <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[SpringCloud相关资料]]></title>
     <url>%2F2017%2F07%2F29%2FSpringCloud%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%2F</url>
     <content type="text"><![CDATA[Spring CloudBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 周立|Spring Cloud 方志朋 Spring Cloud 专栏 许进 跟我学Spring Cloud Website Spring Cloud 官网 Spring Cloud中文网 Code spring-cloud-starter SpringCloud-Learning]]></content>
@@ -835,6 +834,18 @@
       </categories>
       <tags>
         <tag>SpringCloud</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SpringBoot相关资料]]></title>
+    <url>%2F2017%2F07%2F29%2FSpringBoot%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%2F</url>
+    <content type="text"><![CDATA[Spring BootBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 Spring Boot 揭秘与实战 系列 catoop的专栏 方志朋 Spring Boot 专栏 Spring-boot集成 Website Spring Boot 官网 Spring Boot参考指南-中文版 Gradle 中文参考指南 慕课网视频 spring-boot-tutorials Code spring boot官方例子 spring-boot-starter SpringBoot-Learning favorites-web springboot-learning-example spring-boot-all]]></content>
+      <categories>
+        <category>Spring</category>
+        <category>SpringBoot</category>
+      </categories>
+      <tags>
+        <tag>SpringBoot</tag>
       </tags>
   </entry>
   <entry>
