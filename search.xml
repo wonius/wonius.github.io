@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Solr演练]]></title>
+    <url>%2F2018%2F09%2F09%2FSolr%E6%BC%94%E7%BB%83%2F</url>
+    <content type="text"><![CDATA[下载 访问官网进行下载； 解压即可； 启动 进到solr目录，执行bin/solr start -e cloud，多节点运行； 分别提示创建几个节点、第一个节点端口、第二个节点端口，按enter默认就可以； 输入集合名称，这里我们可以设置为techproducts； 然后提示创建几个分片、创建几个副本，这些默认2就可以； 然后选择使用哪组配置文件，总共有_default、sample_techproducts_configs两个选项，我们选后者； 创建完成，可以通过localhost:8983进入solr管理页面，在cloud中查看集合的结构； 如果第一步时报错： 使用普通用户： ERROR: Logs directory /etc/solr-7.4.0/example/cloud/node1/solr/../logs is not writable. Exiting 或者 使用root用户： ERROR: Failed to start Solr using command: &quot;bin/solr&quot; start -cloud -p 8983 -s &quot;example/cloud/node1/solr&quot; Exception : org.apache.commons.exec.ExecuteException: Process exited with an error: 1 (Exit value: 1) 是因为用户访问权限不对，修改下权限就可以。我这里直接开了所有权限 1sudo chmod -R 777 /etc/solr-7.4.0 索引数据Solr目录中的example提供了基础数据，我们可以把这些基础数据加载到刚才创建的techproducts集合，并建立索引： bin/post -c techproducts example/exampledocs/* 搜索在Solr Admin中可以自己定义查询条件进行查询。 先选中创建的techproducts集合，然后选择Query； 在q中输入自己的查询条件，默认*:*查询所有。比如id:123，就是查询id为123的内容； 多条件查询，中间用+连接，如：+(features:&quot;CAS latency&quot;)+(id:&quot;VDBDB1A16&quot;)；相反，如果希望结果中过滤掉某个属性的内容，用-连接，如：+(features:&quot;CAS latency&quot;)-(id:&quot;VDBDB1A16&quot;) fl对查询结果进行过滤，仅显示fl中的属性。多个属性,间隔； Solr其他命令删除集合1bin/solr delete -c techproducts 创建新集合1bin/solr create -c &lt;yourCollection&gt; -s 2 -rf 2 停止1bin/solr stop -all 重新启动12./bin/solr start -c -p 8983 -s example/cloud/node1/solr./bin/solr start -c -p 7574 -s example/cloud/node2/solr -z localhost:9983]]></content>
+      <categories>
+        <category>中间件</category>
+      </categories>
+      <tags>
+        <tag>Solr</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[SpringRedisData中事务的坑]]></title>
     <url>%2F2018%2F09%2F07%2FSpringRedisData%E4%B8%AD%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9D%91%2F</url>
     <content type="text"><![CDATA[https://blog.csdn.net/liuhanfanshuang/article/details/52136438 https://blog.csdn.net/qq_34021712/article/details/79606551]]></content>
