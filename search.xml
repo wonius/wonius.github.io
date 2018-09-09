@@ -125,8 +125,11 @@
     <title><![CDATA[Spring注入static变量]]></title>
     <url>%2F2018%2F07%2F26%2FSpring%E6%B3%A8%E5%85%A5static%E5%8F%98%E9%87%8F%2F</url>
     <content type="text"><![CDATA[使用setter方法1234567891011@Service("userService")public class UserService implements IUserService &#123; public static String hello; @Value("$&#123;hello.value&#125;") public void setHello(String hello) &#123; hello = hello; &#125;&#125; 在spring容器中注入对象时赋值1234567891011121314@Service("userService")public class UserService implements IUserService &#123; public static String hello; @Value("$&#123;hello.value&#125;") private String pHello; @PostConstruct public void init() &#123; hello = pHello; &#125; &#125;]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
       <tags>
-        <tag>[object Object]</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -462,8 +465,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>Apollo</tag>
         <tag>技能图谱</tag>
+        <tag>Apollo</tag>
       </tags>
   </entry>
   <entry>
@@ -498,8 +501,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>技能图谱</tag>
         <tag>前端</tag>
+        <tag>技能图谱</tag>
       </tags>
   </entry>
   <entry>
@@ -836,18 +839,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[SpringBoot相关资料]]></title>
-    <url>%2F2017%2F07%2F29%2FSpringBoot%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%2F</url>
-    <content type="text"><![CDATA[Spring BootBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 Spring Boot 揭秘与实战 系列 catoop的专栏 方志朋 Spring Boot 专栏 Spring-boot集成 Website Spring Boot 官网 Spring Boot参考指南-中文版 Gradle 中文参考指南 慕课网视频 spring-boot-tutorials Code spring boot官方例子 spring-boot-starter SpringBoot-Learning favorites-web springboot-learning-example spring-boot-all]]></content>
-      <categories>
-        <category>Spring</category>
-        <category>SpringBoot</category>
-      </categories>
-      <tags>
-        <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[SpringCloud相关资料]]></title>
     <url>%2F2017%2F07%2F29%2FSpringCloud%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%2F</url>
     <content type="text"><![CDATA[Spring CloudBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 周立|Spring Cloud 方志朋 Spring Cloud 专栏 许进 跟我学Spring Cloud Website Spring Cloud 官网 Spring Cloud中文网 Code spring-cloud-starter SpringCloud-Learning]]></content>
@@ -857,6 +848,18 @@
       </categories>
       <tags>
         <tag>SpringCloud</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SpringBoot相关资料]]></title>
+    <url>%2F2017%2F07%2F29%2FSpringBoot%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%2F</url>
+    <content type="text"><![CDATA[Spring BootBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 Spring Boot 揭秘与实战 系列 catoop的专栏 方志朋 Spring Boot 专栏 Spring-boot集成 Website Spring Boot 官网 Spring Boot参考指南-中文版 Gradle 中文参考指南 慕课网视频 spring-boot-tutorials Code spring boot官方例子 spring-boot-starter SpringBoot-Learning favorites-web springboot-learning-example spring-boot-all]]></content>
+      <categories>
+        <category>Spring</category>
+        <category>SpringBoot</category>
+      </categories>
+      <tags>
+        <tag>SpringBoot</tag>
       </tags>
   </entry>
   <entry>

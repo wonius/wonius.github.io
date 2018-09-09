@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://wonius.top/2018/07/26/Spring%E6%B3%A8%E5%85%A5static%E5%8F%98%E9%87%8F/</loc>
+    <lastmod>2018-09-09T08:45:28.115Z</lastmod>
+    <data>
+        <display>
+        <title>Spring注入static变量</title>
+        <pubTime>2018-07-26T01:29:49.000Z</pubTime>
+        
+        <tag>Spring</tag>
+         
+         
+           
+             
+              <breadCrumb title="Spring" url="http://wonius.top/categories/Spring/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wonius.top/2018/08/26/%E6%9F%B4%E7%8A%AC%E7%96%AB%E8%8B%97%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/</loc>
     <lastmod>2018-09-09T08:38:22.885Z</lastmod>
     <data>
@@ -338,23 +358,6 @@
              
               <breadCrumb title="Git" url="http://wonius.top/categories/Git/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://wonius.top/2018/07/26/Spring%E6%B3%A8%E5%85%A5static%E5%8F%98%E9%87%8F/</loc>
-    <lastmod>2018-07-26T01:32:49.211Z</lastmod>
-    <data>
-        <display>
-        <title>Spring注入static变量</title>
-        <pubTime>2018-07-26T01:29:49.000Z</pubTime>
-        
-        <tag>[object Object]</tag>
-         
-         
-           
         </display>
     </data>
     </url>
@@ -1264,9 +1267,9 @@
         <title>技能图谱-前端</title>
         <pubTime>2018-03-17T13:16:18.000Z</pubTime>
         
-        <tag>技能图谱</tag>
-         
         <tag>前端</tag>
+         
+        <tag>技能图谱</tag>
          
          
            
@@ -1286,9 +1289,9 @@
         <title>技能图谱-Apollo自动驾驶</title>
         <pubTime>2018-03-17T13:22:29.000Z</pubTime>
         
-        <tag>Apollo</tag>
-         
         <tag>技能图谱</tag>
+         
+        <tag>Apollo</tag>
          
          
            
