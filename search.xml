@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Json处理时需要注意的那些事儿]]></title>
+    <url>%2F2018%2F09%2F12%2Fjson%2F</url>
+    <content type="text"><![CDATA[@JsonIgnore12345678910111213@Datapublic class Student &#123; private String name; private String age; private String gender; …… @JsonIgnore public boolean isName() &#123; …… &#125;&#125; 忽略命名规范，上述代码在序列化、反序列化时，都会导致name属性被忽略。 除非在属性上添加@JsonProperty。]]></content>
+      <categories>
+        <category>积累</category>
+      </categories>
+      <tags>
+        <tag>JSON</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[养犬有道の驱虫篇]]></title>
     <url>%2F2018%2F09%2F09%2F%E6%9F%B4%E7%8A%AC%E9%A9%B1%E8%99%AB%2F</url>
     <content type="text"><![CDATA[常用驱虫药主要分为内驱和外驱，每月一次。不同品牌的驱虫药时效不同，有的一个季度一次，有的一个月一次，根据说明书使用。 我目前的组合是福来恩+犬心保。主要狗子经常去草地，所以可能有蜱虫，福来恩可以驱蜱虫。 如果不经常去草地，可以直接用大宠爱。 另外有朋友的组合是夏天犬心宝，冬天拜宠清，偶尔穿插吃驱球虫的。 不要只用一种驱虫药，因为有些覆盖不到，可以穿插使用。]]></content>
@@ -25,7 +36,7 @@
   <entry>
     <title><![CDATA[Solr演练]]></title>
     <url>%2F2018%2F09%2F09%2FSolr%E6%BC%94%E7%BB%83%2F</url>
-    <content type="text"><![CDATA[下载 访问官网进行下载； 解压即可； 启动 进到solr目录，执行bin/solr start -e cloud，多节点运行； 分别提示创建几个节点、第一个节点端口、第二个节点端口，按enter默认就可以； 输入集合名称，这里我们可以设置为techproducts； 然后提示创建几个分片、创建几个副本，这些默认2就可以； 然后选择使用哪组配置文件，总共有_default、sample_techproducts_configs两个选项，我们选后者； 创建完成，可以通过localhost:8983进入solr管理页面，在cloud中查看集合的结构； 如果第一步时报错： 使用普通用户： ERROR: Logs directory /etc/solr-7.4.0/example/cloud/node1/solr/../logs is not writable. Exiting 或者 使用root用户： ERROR: Failed to start Solr using command: &quot;bin/solr&quot; start -cloud -p 8983 -s &quot;example/cloud/node1/solr&quot; Exception : org.apache.commons.exec.ExecuteException: Process exited with an error: 1 (Exit value: 1) 是因为用户访问权限不对，修改下权限就可以。我这里直接开了所有权限 1sudo chmod -R 777 /etc/solr-7.4.0 索引数据Solr目录中的example提供了基础数据，我们可以把这些基础数据加载到刚才创建的techproducts集合，并建立索引： bin/post -c techproducts example/exampledocs/* 搜索在Solr Admin中可以自己定义查询条件进行查询。 先选中创建的techproducts集合，然后选择Query； 在q中输入自己的查询条件，默认*:*查询所有。比如id:123，就是查询id为123的内容； 多条件查询，中间用+连接，如：+(features:&quot;CAS latency&quot;)+(id:&quot;VDBDB1A16&quot;)；相反，如果希望结果中过滤掉某个属性的内容，用-连接，如：+(features:&quot;CAS latency&quot;)-(id:&quot;VDBDB1A16&quot;) fl对查询结果进行过滤，仅显示fl中的属性。多个属性,间隔； Solr其他命令删除集合1bin/solr delete -c techproducts 创建新集合1bin/solr create -c &lt;yourCollection&gt; -s 2 -rf 2 停止1bin/solr stop -all 重新启动12./bin/solr start -c -p 8983 -s example/cloud/node1/solr./bin/solr start -c -p 7574 -s example/cloud/node2/solr -z localhost:9983]]></content>
+    <content type="text"><![CDATA[下载 访问官网进行下载； 解压即可； 启动 进到solr目录，执行bin/solr start -e cloud，多节点运行； 分别提示创建几个节点、第一个节点端口、第二个节点端口，按enter默认就可以； 输入集合名称，这里我们可以设置为techproducts； 然后提示创建几个分片、创建几个副本，这些默认2就可以； 然后选择使用哪组配置文件，总共有_default、sample_techproducts_configs两个选项，我们选后者； 创建完成，可以通过localhost:8983进入solr管理页面，在cloud中查看集合的结构； 如果第一步时报错： 使用普通用户： ERROR: Logs directory /etc/solr-7.4.0/example/cloud/node1/solr/../logs is not writable. Exiting 或者 使用root用户： ERROR: Failed to start Solr using command: &quot;bin/solr&quot; start -cloud -p 8983 -s &quot;example/cloud/node1/solr&quot; Exception : org.apache.commons.exec.ExecuteException: Process exited with an error: 1 (Exit value: 1) 是因为用户访问权限不对，修改下权限就可以。我这里直接开了所有权限 1sudo chmod -R 777 /etc/solr-7.4.0 索引数据Solr目录中的example提供了基础数据，我们可以把这些基础数据加载到刚才创建的techproducts集合，并建立索引： bin/post -c techproducts example/exampledocs/* 搜索在Solr Admin中可以自己定义查询条件进行查询。 先选中创建的techproducts集合，然后选择Query； 在q中输入自己的查询条件，默认*:*查询所有。比如id:123，就是查询id为123的内容； 多条件查询，中间用+连接，如：+(features:&quot;CAS latency&quot;)+(id:&quot;VDBDB1A16&quot;)；相反，如果希望结果中过滤掉某个属性的内容，用-连接，如：+(features:&quot;CAS latency&quot;)-(id:&quot;VDBDB1A16&quot;) fl对查询结果进行过滤，仅显示fl中的属性。多个属性,间隔； Solr其他命令删除集合1bin/solr delete -c techproducts 创建新集合1bin/solr create -c &lt;yourCollection&gt; -s 2 -rf 2 停止1bin/solr stop -all 重新启动12bin/solr start -c -p 8983 -s example/cloud/node1/solrbin/solr start -c -p 7574 -s example/cloud/node2/solr -z localhost:9983]]></content>
       <categories>
         <category>中间件</category>
       </categories>
@@ -729,7 +740,7 @@
   </entry>
   <entry>
     <title><![CDATA[JSON类库对比]]></title>
-    <url>%2F2017%2F08%2F19%2FJSON%E8%BD%AC%E6%8D%A2%2F</url>
+    <url>%2F2017%2F08%2F19%2FJSON%E7%B1%BB%E5%BA%93%E5%AF%B9%E6%AF%94%2F</url>
     <content type="text"><![CDATA[json-lib（性能差）json-lib最开始的也是应用最广泛的json解析工具，json-lib 不好的地方确实是依赖于很多第三方包，包括commons-beanutils.jar，commons-collections-3.2.jar，commons-lang-2.6.jar，commons-logging-1.1.1.jar，ezmorph-1.0.6.jar，对于复杂类型的转换，json-lib对于json转换成bean还有缺陷，比如一个类里面会出现另一个类的list或者map集合，json-lib从json到bean的转换就会出现问题。json-lib在功能和性能上面都不能满足现在互联网化的需求。 Jackson相比json-lib框架，Jackson所依赖的jar包较少，简单易用并且性能也要相对高些。而且Jackson社区相对比较活跃，更新速度也比较快。Jackson对于复杂类型的json转换bean会出现问题，一些集合Map，List的转换出现问题。Jackson对于复杂类型的bean转换Json，转换的json格式不是标准的Json格式 GsonGson是目前功能最全的Json解析神器，Gson当初是为因应Google公司内部需求而由Google自行研发而来，但自从在2008年五月公开发布第一版后已被许多公司或用户应用。Gson的应用主要为toJson与fromJson两个转换函数，无依赖，不需要例外额外的jar，能够直接跑在JDK上。而在使用这种对象转换之前需先创建好对象的类型以及其成员才能成功的将JSON字符串成功转换成相对应的对象。类里面只要有get和set方法，Gson完全可以将复杂类型的json到bean或bean到json的转换，是JSON解析的神器。Gson在功能上面无可挑剔，但是性能上面比FastJson有所差距。 fastjsonFastjson是一个Java语言编写的高性能的JSON处理器,由阿里巴巴公司开发。无依赖，不需要例外额外的jar，能够直接跑在JDK上。FastJson在复杂类型的Bean转换Json上会出现一些问题，可能会出现引用的类型，导致Json转换出错，需要制定引用。FastJson采用独创的算法，将parse的速度提升到极致，超过所有json库。 fastjson这么快老外为啥还是热衷 jackson? 比较选择一个合适的JSON库要从多个方面进行考虑： 字符串解析成JSON性能 字符串解析成JavaBean性能 JavaBean构造JSON性能 集合构造JSON性能 易用性 性能 字符串解析成JavaBean（反序列化）：当数据量较少时首选FastJson，数据量较大使用Jackson。但是Jackson无法堆一个对象集合进行解析，只能转成一个Map集合，这点Gson和FastJson处理的比较好。 字符串解析成JSON：当数据量较少时首选FastJson，数据量较大使用Jackson。 JavaBean构造JSON（序列化）：当数据量较少时选择Gson，数据量较大可使用Jackson。 集合构造JSON（序列化）：首先Jackson，其次Fastjson。 易用性 FastJson的API设计的最简单，最方便使用，直接使用JSON的两个静态方法即可完成四种操作； Gson和Jackson都需要new一个对象，虽然这个对象可以复用，但是在实际使用过程中还需要用一个全局变量来保存改变量，同时API设计的也不是很好理解，对于FastJson来说复杂的API是因为他支持流式解析，适合对JSON进行大量且复杂的操作，但是实际应用中对于JSON的操作都是简单的解析成JavaBean，然后JavaBean序列化成JSON字符串即可，复杂的操作很少； 结论综上4种Json技术的比较，在项目选型的时候，如果性能没有什么要求，可以使用Jackson； 如果性能上有要求，可以Jackson（或Gson）与FastJson两种并行使用，使用Jackson（或Gson）将bean转换成json，使用FastJson将Json转换Bean。 one more thing在使用JS的JSON.parse(data)转换时： 当data为 ‘undefined’ 时，转换异常。为 ‘null’ 时，转换正常； 如果data不是key、value形式的字符串，是 ‘1234’ 这种只有一个值的字符串，也可以转换，转换后还是原值；]]></content>
       <categories>
         <category>积累</category>
@@ -775,12 +786,12 @@
   <entry>
     <title><![CDATA[技术栈]]></title>
     <url>%2F2017%2F08%2F13%2F%E6%8A%80%E6%9C%AF%E6%A0%88%2F</url>
-    <content type="text"><![CDATA[名称 语言 领域 说明 Solr lucene 搜索引擎 支持多种格式 ElasticSearch lucene 实时性好；只支持json；分布式易扩展https://www.cnblogs.com/wenbronk/p/6432990.htmlhttps://www.jianshu.com/p/8bb84384566a Freemarker 模板 模板引擎，java端生成模板 Shiro java 安全框架 Rhino.js 基于Java的javascript实现。可以再java中调js，也可以在js中调用java growingio 无埋点 用户行为埋点 mybatis-plus 简化mybatis语句模板 Echarts、AntV（G2） js 图表 walle 部署 Android-Things IoT TensorFlow DL Google家的 PaddlePaddle DL Baidu家的 Docsify、Docute、Showdoc、MinDoc、apidoc API文档 WebAssembly js中运行Chttps://blog.csdn.net/garfielder007/article/details/68215694 Web3.js js 以太坊Dapp http://web3.tryblockchain.org/ 区块链 http://me.tryblockchain.org/getting-up-to-speed-on-ethereum.html Redisson redis]]></content>
+    <content type="text"><![CDATA[名称 语言 领域 说明 Solr lucene 搜索引擎 支持多种格式 ElasticSearch lucene 实时性好；只支持json；分布式易扩展https://www.cnblogs.com/wenbronk/p/6432990.htmlhttps://www.jianshu.com/p/8bb84384566a Freemarker 模板 模板引擎，java端生成模板 Shiro java 安全框架 Rhino.js 基于Java的javascript实现。可以再java中调js，也可以在js中调用java growingio 无埋点 用户行为埋点 mybatis-plus 简化mybatis语句模板 Echarts、AntV（G2） js 图表 walle 部署 Android-Things IoT TensorFlow DL Google家的 PaddlePaddle DL Baidu家的 Docsify、Docute、Showdoc、MinDoc、apidoc API文档 WebAssembly js中运行Chttps://blog.csdn.net/garfielder007/article/details/68215694 Web3.js js 以太坊Dapp http://web3.tryblockchain.org/ Solidity 区块链 http://me.tryblockchain.org/getting-up-to-speed-on-ethereum.html Redisson redis]]></content>
       <categories>
         <category>技术栈</category>
       </categories>
       <tags>
-        <tag>web</tag>
+        <tag>技术栈</tag>
       </tags>
   </entry>
   <entry>
@@ -839,18 +850,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[SpringCloud相关资料]]></title>
-    <url>%2F2017%2F07%2F29%2FSpringCloud%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%2F</url>
-    <content type="text"><![CDATA[Spring CloudBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 周立|Spring Cloud 方志朋 Spring Cloud 专栏 许进 跟我学Spring Cloud Website Spring Cloud 官网 Spring Cloud中文网 Code spring-cloud-starter SpringCloud-Learning]]></content>
-      <categories>
-        <category>Spring</category>
-        <category>SpringCloud</category>
-      </categories>
-      <tags>
-        <tag>SpringCloud</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[SpringBoot相关资料]]></title>
     <url>%2F2017%2F07%2F29%2FSpringBoot%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%2F</url>
     <content type="text"><![CDATA[Spring BootBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 Spring Boot 揭秘与实战 系列 catoop的专栏 方志朋 Spring Boot 专栏 Spring-boot集成 Website Spring Boot 官网 Spring Boot参考指南-中文版 Gradle 中文参考指南 慕课网视频 spring-boot-tutorials Code spring boot官方例子 spring-boot-starter SpringBoot-Learning favorites-web springboot-learning-example spring-boot-all]]></content>
@@ -860,6 +859,18 @@
       </categories>
       <tags>
         <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SpringCloud相关资料]]></title>
+    <url>%2F2017%2F07%2F29%2FSpringCloud%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%2F</url>
+    <content type="text"><![CDATA[Spring CloudBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 周立|Spring Cloud 方志朋 Spring Cloud 专栏 许进 跟我学Spring Cloud Website Spring Cloud 官网 Spring Cloud中文网 Code spring-cloud-starter SpringCloud-Learning]]></content>
+      <categories>
+        <category>Spring</category>
+        <category>SpringCloud</category>
+      </categories>
+      <tags>
+        <tag>SpringCloud</tag>
       </tags>
   </entry>
   <entry>
