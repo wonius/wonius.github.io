@@ -146,7 +146,7 @@
   <entry>
     <title><![CDATA[kubectl常用命令]]></title>
     <url>%2F2018%2F07%2F21%2Fkubectl%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%2F</url>
-    <content type="text"><![CDATA[查看pod1kubectl get po -o wide 获取pod日志12//写到文件中更方便查看kubectl logs **** &gt; ***.log 编辑pod1kubectl edit deployments *** -o yaml]]></content>
+    <content type="text"><![CDATA[查看pod1kubectl get po -o wide 获取pod日志12//写到文件中更方便查看kubectl logs **** &gt; ***.log 编辑pod1kubectl edit deployments *** -o yaml 进入bash实例已经启动 1kubectl exec -it **** bash]]></content>
       <categories>
         <category>k8s</category>
       </categories>
@@ -476,8 +476,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>Apollo</tag>
         <tag>技能图谱</tag>
+        <tag>Apollo</tag>
       </tags>
   </entry>
   <entry>
@@ -512,8 +512,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>技能图谱</tag>
         <tag>前端</tag>
+        <tag>技能图谱</tag>
       </tags>
   </entry>
   <entry>

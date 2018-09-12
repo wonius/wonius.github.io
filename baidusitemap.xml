@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://wonius.top/2018/07/21/kubectl%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2018-09-12T08:28:09.396Z</lastmod>
+    <data>
+        <display>
+        <title>kubectl常用命令</title>
+        <pubTime>2018-07-21T12:08:00.000Z</pubTime>
+        
+        <tag>Kubernetes</tag>
+         
+         
+           
+             
+              <breadCrumb title="k8s" url="http://wonius.top/categories/k8s/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wonius.top/2018/09/12/json/</loc>
     <lastmod>2018-09-12T08:24:14.118Z</lastmod>
     <data>
@@ -377,26 +397,6 @@
            
              
               <breadCrumb title="Git" url="http://wonius.top/categories/Git/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://wonius.top/2018/07/21/kubectl%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
-    <lastmod>2018-07-25T03:02:35.870Z</lastmod>
-    <data>
-        <display>
-        <title>kubectl常用命令</title>
-        <pubTime>2018-07-21T12:08:00.000Z</pubTime>
-        
-        <tag>Kubernetes</tag>
-         
-         
-           
-             
-              <breadCrumb title="k8s" url="http://wonius.top/categories/k8s/"/>
           
         </display>
     </data>
@@ -1287,9 +1287,9 @@
         <title>技能图谱-前端</title>
         <pubTime>2018-03-17T13:16:18.000Z</pubTime>
         
-        <tag>技能图谱</tag>
-         
         <tag>前端</tag>
+         
+        <tag>技能图谱</tag>
          
          
            
@@ -1309,9 +1309,9 @@
         <title>技能图谱-Apollo自动驾驶</title>
         <pubTime>2018-03-17T13:22:29.000Z</pubTime>
         
-        <tag>Apollo</tag>
-         
         <tag>技能图谱</tag>
+         
+        <tag>Apollo</tag>
          
          
            
