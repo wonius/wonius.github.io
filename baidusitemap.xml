@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://wonius.top/2018/09/21/Dockerfile%E8%AE%B0%E5%BD%95/</loc>
+    <lastmod>2018-09-21T04:20:05.869Z</lastmod>
+    <data>
+        <display>
+        <title>Dockerfile记录</title>
+        <pubTime>2018-09-21T04:04:05.000Z</pubTime>
+        
+        <tag>Docker</tag>
+         
+         
+           
+             
+              <breadCrumb title="Docker" url="http://wonius.top/categories/Docker/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wonius.top/2018/09/19/iTerm%E4%B8%BB%E9%A2%98%E9%85%8D%E8%89%B2/</loc>
     <lastmod>2018-09-19T12:31:54.316Z</lastmod>
     <data>
@@ -1347,9 +1367,9 @@
         <title>技能图谱-前端</title>
         <pubTime>2018-03-17T13:16:18.000Z</pubTime>
         
-        <tag>技能图谱</tag>
-         
         <tag>前端</tag>
+         
+        <tag>技能图谱</tag>
          
          
            
@@ -1369,9 +1389,9 @@
         <title>技能图谱-Apollo自动驾驶</title>
         <pubTime>2018-03-17T13:22:29.000Z</pubTime>
         
-        <tag>Apollo</tag>
-         
         <tag>技能图谱</tag>
+         
+        <tag>Apollo</tag>
          
          
            

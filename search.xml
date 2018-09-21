@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Dockerfile记录]]></title>
+    <url>%2F2018%2F09%2F21%2FDockerfile%E8%AE%B0%E5%BD%95%2F</url>
+    <content type="text"><![CDATA[dockerfile1123456789101112131415161718FROM hub.yun.paic.com.cn/library/tomcat:8.5-jre8ENV USER_NAME woniuENV USER_UID 789ENV ADMIN_NAME adminENV USER_GROUP_ID 5682ENV ADMIN_GROUP_ID 603RUN groupadd -g $USER_GROUP_ID $USER_NAME &amp;&amp; groupadd -g $ADMIN_GROUP_ID -u $ADMIN_NAME \&amp;&amp; useradd -l -r $USER_NAME -g $USER_NAME -u $USER_UID \&amp;&amp; usermod -a -G $ADMIN_NAME $USER_NAME \&amp;&amp; mkdir /usr/local/tomcat/hello &amp;&amp; chown -R $USER_NAME:$USER_NAME /usr/local/tomcatCOPY catalina.sh /usr/local/tomcat/bin/catalina.shRUN chown $USER_NAME:$USER_NAME /usr/local/tomcat/bin/catalina.shRUN chmod 750 /usr/local/tomcat/bin/catalina.shUSER $USER_NAME dockerfile2该dockerfile基于上一个，由于上一个dockerfile最后切换到用户woniu，没有mkdir权限，所以需要先切换到root用户。 123456789101112FROM hub.yun.paic.com.cn/library/tomcat:1.0USER rootRUN mkdir -p /wls/wls81/agentCOPY agent /wls/wls81/agentRUN chown -R $USER_NAME:$USER_NAME /wls/wls81COPY catalina.sh /usr/local/tomcat/bin/catalina.shRUN chown $USER_NAME:$USER_NAME /usr/local/tomcat/bin/catalina.shRUN chmod 750 /usr/local/tomcat/bin/catalina.shUSER $USER_NAME]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[iTerm主题配色]]></title>
     <url>%2F2018%2F09%2F19%2FiTerm%E4%B8%BB%E9%A2%98%E9%85%8D%E8%89%B2%2F</url>
     <content type="text"><![CDATA[效果图 配置链接:https://pan.baidu.com/s/1w64NLBLIyFnMRl4L5qaIJA 密码:c54h]]></content>
@@ -509,8 +520,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>Apollo</tag>
         <tag>技能图谱</tag>
+        <tag>Apollo</tag>
       </tags>
   </entry>
   <entry>
@@ -545,8 +556,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>技能图谱</tag>
         <tag>前端</tag>
+        <tag>技能图谱</tag>
       </tags>
   </entry>
   <entry>
@@ -883,18 +894,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[SpringBoot相关资料]]></title>
-    <url>%2F2017%2F07%2F29%2FSpringBoot%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%2F</url>
-    <content type="text"><![CDATA[Spring BootBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 Spring Boot 揭秘与实战 系列 catoop的专栏 方志朋 Spring Boot 专栏 Spring-boot集成 Website Spring Boot 官网 Spring Boot参考指南-中文版 Gradle 中文参考指南 慕课网视频 spring-boot-tutorials Code spring boot官方例子 spring-boot-starter SpringBoot-Learning favorites-web springboot-learning-example spring-boot-all]]></content>
-      <categories>
-        <category>Spring</category>
-        <category>SpringBoot</category>
-      </categories>
-      <tags>
-        <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[SpringCloud相关资料]]></title>
     <url>%2F2017%2F07%2F29%2FSpringCloud%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%2F</url>
     <content type="text"><![CDATA[Spring CloudBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 周立|Spring Cloud 方志朋 Spring Cloud 专栏 许进 跟我学Spring Cloud Website Spring Cloud 官网 Spring Cloud中文网 Code spring-cloud-starter SpringCloud-Learning]]></content>
@@ -904,6 +903,18 @@
       </categories>
       <tags>
         <tag>SpringCloud</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SpringBoot相关资料]]></title>
+    <url>%2F2017%2F07%2F29%2FSpringBoot%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%2F</url>
+    <content type="text"><![CDATA[Spring BootBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 Spring Boot 揭秘与实战 系列 catoop的专栏 方志朋 Spring Boot 专栏 Spring-boot集成 Website Spring Boot 官网 Spring Boot参考指南-中文版 Gradle 中文参考指南 慕课网视频 spring-boot-tutorials Code spring boot官方例子 spring-boot-starter SpringBoot-Learning favorites-web springboot-learning-example spring-boot-all]]></content>
+      <categories>
+        <category>Spring</category>
+        <category>SpringBoot</category>
+      </categories>
+      <tags>
+        <tag>SpringBoot</tag>
       </tags>
   </entry>
   <entry>
