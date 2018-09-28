@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Dockerfile与Maven参数间的那点事儿]]></title>
+    <url>%2F2018%2F09%2F28%2FDockerfile%E4%B8%8EMaven%E5%8F%82%E6%95%B0%E9%97%B4%E7%9A%84%E9%82%A3%E7%82%B9%E4%BA%8B%E5%84%BF%2F</url>
+    <content type="text"><![CDATA[Maven设置Dockerfile参数项目中需要根据不同环境，镜像里tomct中catalina.sh里某个参数值也要不同。 项目中用了docker-maven-plugin插件管理docker，所以想到通过maven参数进行设置。 pom配置123456789101112131415161718192021222324# 在docker-maven-plugin插件中增加配置&lt;plugin&gt; ... &lt;configuration&gt; ... &lt;buildArgs&gt; # 标签名为key，标签值为value &lt;APP_NAME&gt;$&#123;appName&#125;&lt;/APP_NAME&gt; &lt;/buildArgs&gt; ... &lt;/configuration&gt; ...&lt;/plugin&gt;# 环境配置&lt;profiles&gt; &lt;profile&gt; &lt;id&gt;ci&lt;/id&gt; &lt;properties&gt; &lt;appName&gt;hello-ci&lt;/appName&gt; &lt;/properties&gt; &lt;/profile&gt; ...&lt;/profiles&gt; dockerfile配置12345...# 定义参数ARG APP_NAME# 增加CATALINA的环境变量ENV CATALINA_OPTS -DapplicationName=$APP_NAME]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Dockerfile记录]]></title>
     <url>%2F2018%2F09%2F21%2FDockerfile%E8%AE%B0%E5%BD%95%2F</url>
     <content type="text"><![CDATA[dockerfile1123456789101112131415161718FROM hub.yun.paic.com.cn/library/tomcat:8.5-jre8ENV USER_NAME woniuENV USER_UID 789ENV ADMIN_NAME adminENV USER_GROUP_ID 5682ENV ADMIN_GROUP_ID 603RUN groupadd -g $USER_GROUP_ID $USER_NAME &amp;&amp; groupadd -g $ADMIN_GROUP_ID -u $ADMIN_NAME \&amp;&amp; useradd -l -r $USER_NAME -g $USER_NAME -u $USER_UID \&amp;&amp; usermod -a -G $ADMIN_NAME $USER_NAME \&amp;&amp; mkdir /usr/local/tomcat/hello &amp;&amp; chown -R $USER_NAME:$USER_NAME /usr/local/tomcatCOPY catalina.sh /usr/local/tomcat/bin/catalina.shRUN chown $USER_NAME:$USER_NAME /usr/local/tomcat/bin/catalina.shRUN chmod 750 /usr/local/tomcat/bin/catalina.shUSER $USER_NAME dockerfile2该dockerfile基于上一个，由于上一个dockerfile最后切换到用户woniu，没有mkdir权限，所以需要先切换到root用户。 123456789101112FROM hub.yun.paic.com.cn/library/tomcat:1.0USER rootRUN mkdir -p /wls/wls81/agentCOPY agent /wls/wls81/agentRUN chown -R $USER_NAME:$USER_NAME /wls/wls81COPY catalina.sh /usr/local/tomcat/bin/catalina.shRUN chown $USER_NAME:$USER_NAME /usr/local/tomcat/bin/catalina.shRUN chmod 750 /usr/local/tomcat/bin/catalina.shUSER $USER_NAME]]></content>
@@ -113,7 +124,7 @@
   <entry>
     <title><![CDATA[Redis常用命令]]></title>
     <url>%2F2018%2F08%2F30%2FRedis%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%2F</url>
-    <content type="text"><![CDATA[client list查看连接的客户端 monitor实时监控redis执行的命令 inforedis信息 配置密码找到对应的redis.conf文件，一般在/etc/目录下，然后找到requirepass，修改后面的值，并将前面的# 删掉 1# requirepass foobared]]></content>
+    <content type="text"><![CDATA[client list查看连接的客户端 monitor实时监控redis执行的命令 inforedis信息 配置密码找到对应的redis.conf文件，一般在/etc/目录下，然后找到requirepass，修改后面的值，并将前面的# 删掉 1# requirepass foobared pub/subpublish：发布； subscribe：监听某一频道； psubscribe：支持正则；]]></content>
       <categories>
         <category>DB</category>
       </categories>
@@ -493,7 +504,7 @@
   <entry>
     <title><![CDATA[Docker常用方法]]></title>
     <url>%2F2018%2F03%2F18%2FDocker%2F</url>
-    <content type="text"><![CDATA[安装Docker1234567891011//源中有，直接yum安装yum install docker-io -y//查看docker版本docker -v//启动service docker start//设置开机自启chkconfig docker on 配置Docker123456//设置腾讯云镜像源echo "OPTIONS='--registry-mirror=https://mirror.ccs.tencentyun.com'" &gt;&gt; /etc/sysconfig/docker//重新加载服务，重启systemctl daemon-reloadservice docker restart 安装镜像12345//拉取一个centos镜像docker pull centos//查看docker中有的镜像docker images 运行镜像1234567891011//运行docker容器中的centos，并使用bash shelldocker run -it centos /bin/bash//直接运行镜像docker run -it -p port:port centos//登录后可以按自己需要做操作······//退出镜像exit 保存镜像12345//查看容器信息，获取容器iddocker ps -a//保存docker commit -m="你的备注" 容器id 镜像id 打包镜像1234567docker build -t imageName .// 查看镜像docker images | grep imageName// 登录docker仓库docker login --username=**** [docker repository url] 删除镜像12345678910111213docker images docker rmi imageid// 如果已经运行，先删除容器iddocker ps -adocker rm containeriddocker rmi imageid// 如果有镜像from该镜像，先删除子镜像(报image has dependent child images)// 查看有哪些依赖子镜像docker image inspect --format='&#123;&#123;.RepoTags&#125;&#125; &#123;&#123;.Id&#125;&#125; &#123;&#123;.Parent&#125;&#125;' $(docker image ls -q --filter since=*****)// 删除子镜像docker rmi *** *** *** Dockerfile语法12345678910111213141516171819202122232425262728293031323334353637383940//拉取基础镜像FROM &lt;IMAGE&gt;//设置镜像作者MAINTAINER &lt;NAME&gt; &lt;EMAIL&gt;//为后续的 RUN 、 CMD 、 ENTRYPOINT 指定工作目录WORKDIR &lt;PATH&gt;//创建镜像时执行RUN &lt;COMMAND&gt;//镜像创建成功后，在镜像中执行。如果有多条，只执行最后一条。可被docker run覆盖CMD ["executable", "param1", "param2"]使用exec执行，推荐 CMD command param1 param2，在/bin/sh上执行 CMD ["param1", "param2"] 提供给ENTRYPOINT做默认参数。//与CMD类似。不可被docker run覆盖，除非加上--entrypointENTRYPOINT command param1 param2//复制，src可以为Dockerfile所在目录的相对路径，也可以是url。如果是url，会下载并复制到dest；可自动解压ADD &lt;SRC&gt; &lt;DEST&gt;//复制，src为Dockerfile所在目录的相对路径COPY &lt;SRC&gt; &lt;DEST&gt;//容器暴露的端口号。多个以空格间隔EXPOSE &lt;PORT&gt;//设置环境变量ENV &lt;KEY&gt; &lt;VALUE&gt;//指定运行容器时的用户名或UID，后续的RUN、CMD、ENTRYPOINT使用该用户USER daemon//在主机上创建一个挂载，挂载到容器的指定路径。不如docker run -v强大VOLUME &lt;PATH&gt;//其他镜像FROM该镜像时，执行ONBUILD [INSTRUCTION] 举个🌰 1234567891011FROM centosMAINTAINER nobody "xx@163.com"RUN mkdir -p /opt/jdk/RUN mkdir -p /opt/tomcat/ADD jdk1.7.0_79 /opt/jdk/ADD tomcat /opt/tomcat/ENV CATALINA_HOME /opt/tomcatENV JAVA_HOME /opt/jdkEXPOSE 8080ENV PATH $PATH:$JAVA_HOME/binCMD ["/opt/tomcat/bin/catalina.sh","run"]]]></content>
+    <content type="text"><![CDATA[安装Docker1234567891011//源中有，直接yum安装yum install docker-io -y//查看docker版本docker -v//启动service docker start//设置开机自启chkconfig docker on 配置Docker123456//设置腾讯云镜像源echo "OPTIONS='--registry-mirror=https://mirror.ccs.tencentyun.com'" &gt;&gt; /etc/sysconfig/docker//重新加载服务，重启systemctl daemon-reloadservice docker restart 安装镜像12345//拉取一个centos镜像docker pull centos//查看docker中有的镜像docker images 运行镜像1234567891011//运行docker容器中的centos，并使用bash shelldocker run -it centos /bin/bash//直接运行镜像docker run -it -p port:port centos//登录后可以按自己需要做操作······//退出镜像exit 保存镜像12345//查看容器信息，获取容器iddocker ps -a//保存docker commit -m="你的备注" 容器id 镜像id 打包镜像1234567docker build -t imageName .// 查看镜像docker images | grep imageName// 登录docker仓库docker login --username=**** [docker repository url] 删除镜像12345678910111213docker images docker rmi imageid// 如果已经运行，先删除容器iddocker ps -adocker rm containeriddocker rmi imageid// 如果有镜像from该镜像，先删除子镜像(报image has dependent child images)// 查看有哪些依赖子镜像docker image inspect --format='&#123;&#123;.RepoTags&#125;&#125; &#123;&#123;.Id&#125;&#125; &#123;&#123;.Parent&#125;&#125;' $(docker image ls -q --filter since=*****)// 删除子镜像docker rmi *** *** *** 镜像仓库123docker login -u hub.yun.*****docker push imageName Dockerfile语法12345678910111213141516171819202122232425262728293031323334353637383940//拉取基础镜像FROM &lt;IMAGE&gt;//设置镜像作者MAINTAINER &lt;NAME&gt; &lt;EMAIL&gt;//为后续的 RUN 、 CMD 、 ENTRYPOINT 指定工作目录WORKDIR &lt;PATH&gt;//创建镜像时执行RUN &lt;COMMAND&gt;//镜像创建成功后，在镜像中执行。如果有多条，只执行最后一条。可被docker run覆盖CMD ["executable", "param1", "param2"]使用exec执行，推荐 CMD command param1 param2，在/bin/sh上执行 CMD ["param1", "param2"] 提供给ENTRYPOINT做默认参数。//与CMD类似。不可被docker run覆盖，除非加上--entrypointENTRYPOINT command param1 param2//复制，src可以为Dockerfile所在目录的相对路径，也可以是url。如果是url，会下载并复制到dest；可自动解压ADD &lt;SRC&gt; &lt;DEST&gt;//复制，src为Dockerfile所在目录的相对路径COPY &lt;SRC&gt; &lt;DEST&gt;//容器暴露的端口号。多个以空格间隔EXPOSE &lt;PORT&gt;//设置环境变量ENV &lt;KEY&gt; &lt;VALUE&gt;//指定运行容器时的用户名或UID，后续的RUN、CMD、ENTRYPOINT使用该用户USER daemon//在主机上创建一个挂载，挂载到容器的指定路径。不如docker run -v强大VOLUME &lt;PATH&gt;//其他镜像FROM该镜像时，执行ONBUILD [INSTRUCTION] 举个🌰 1234567891011FROM centosMAINTAINER nobody "xx@163.com"RUN mkdir -p /opt/jdk/RUN mkdir -p /opt/tomcat/ADD jdk1.7.0_79 /opt/jdk/ADD tomcat /opt/tomcat/ENV CATALINA_HOME /opt/tomcatENV JAVA_HOME /opt/jdkEXPOSE 8080ENV PATH $PATH:$JAVA_HOME/binCMD ["/opt/tomcat/bin/catalina.sh","run"]]]></content>
       <categories>
         <category>Docker</category>
       </categories>
@@ -520,8 +531,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>技能图谱</tag>
         <tag>Apollo</tag>
+        <tag>技能图谱</tag>
       </tags>
   </entry>
   <entry>
@@ -556,8 +567,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>前端</tag>
         <tag>技能图谱</tag>
+        <tag>前端</tag>
       </tags>
   </entry>
   <entry>
@@ -665,7 +676,7 @@
   <entry>
     <title><![CDATA[Linux常用命令]]></title>
     <url>%2F2018%2F01%2F16%2FLinux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%2F</url>
-    <content type="text"><![CDATA[cat12345678910111213//查看前1000行head -n 1000 filename//查看后1000行tail -n 1000 filename//查看1000之后tail -n +1000 filename//实时查看tail -f filename//查看最后1000行数据cat filename | tail -n 1000//查看1000到3000行的数据cat file | head -n 3000 | tail -n +1000 grep12345678//匹配文件中所有foo关键字上下1000行grep -C 1000 foo filename//匹配文件中所有foo关键字及前1000行grep -B 1000 foo filename//匹配文件中所有foo关键字及后1000行grep -A 1000 foo filename sed12//显示第1000到3000行的数据sed -n '1000,3000p' filename 12//显示第1000到3000行的数据sed -n '1000,3000p' filename 12//显示第1000到3000行的数据sed -n '1000,3000p' filename 12//显示第1000到3000行的数据sed -n '1000,3000p' filename 12//显示第1000到3000行的数据sed -n '1000,3000p' filename find-文件搜索1find / -name filename ps-查找进程123ps -ef | grep XXXkill -9 pid scp-跨服务器拷贝1scp file user@localhost:dir tar-压缩、解压 压缩 12345678910111213#只打包tar -cvf file.tar file#使用gzip压缩，再打包tar -czf file.tar.gz file#使用bzip2压缩，再打包tar -cjf file.tar.bz2 file#使用compress压缩，再打包tar -cZf file.tar.Z file#rar压缩,需先安装rar服务rar a file.rar file#zip压缩，需先安装zip服务zip file.zip file 解压 12345678910111213#解压常规包tar -xvf file.tar#解压gzip包tar -xzvf file.tar.gz#解压bzip2包tar -xjvf file.tar.bz2#解压compress包tar -xZvf file.tar.Z#解压rarunrar e file.rar#解压zipunzip file.zip 参数解析 12345678910111213141516#必须参数，且只能选一个-c: 建立压缩文档-x: 解压-t: 查看文件-r: 压缩文件末尾追加文件-u: 更新原压缩文件中的文件#可选参数，根据需要添加-z: gzip-j: bz2-Z: compress-v: 显示所有过程-O: 将文件解开到标准输出#必选参数-f: 在所有参数最后，后面接文档名 创建软连接12#源文件指要被链接的文件，目标文件指新建的软连接ln -s 源文件 目标文件 匹配进程并kill12//查找hello相关进程并killps -ef |grep hello |awk '&#123;print $2&#125;'|xargs kill -9 sed: 替换文本12//将book替换为bookssed 's/book/books/g' file 查看文件大小1du -sh *]]></content>
+    <content type="text"><![CDATA[cat12345678910111213//查看前1000行head -n 1000 filename//查看后1000行tail -n 1000 filename//查看1000之后tail -n +1000 filename//实时查看tail -f filename//查看最后1000行数据cat filename | tail -n 1000//查看1000到3000行的数据cat file | head -n 3000 | tail -n +1000 grep12345678//匹配文件中所有foo关键字上下1000行grep -C 1000 foo filename//匹配文件中所有foo关键字及前1000行grep -B 1000 foo filename//匹配文件中所有foo关键字及后1000行grep -A 1000 foo filename sed12//显示第1000到3000行的数据sed -n '1000,3000p' filename find-文件搜索1find / -name filename ps-查找进程123ps -ef | grep XXXkill -9 pid scp-跨服务器拷贝1scp file user@localhost:dir tar-压缩、解压 压缩 12345678910111213#只打包tar -cvf file.tar file#使用gzip压缩，再打包tar -czf file.tar.gz file#使用bzip2压缩，再打包tar -cjf file.tar.bz2 file#使用compress压缩，再打包tar -cZf file.tar.Z file#rar压缩,需先安装rar服务rar a file.rar file#zip压缩，需先安装zip服务zip file.zip file 解压 12345678910111213#解压常规包tar -xvf file.tar#解压gzip包tar -xzvf file.tar.gz#解压bzip2包tar -xjvf file.tar.bz2#解压compress包tar -xZvf file.tar.Z#解压rarunrar e file.rar#解压zipunzip file.zip 参数解析 12345678910111213141516#必须参数，且只能选一个-c: 建立压缩文档-x: 解压-t: 查看文件-r: 压缩文件末尾追加文件-u: 更新原压缩文件中的文件#可选参数，根据需要添加-z: gzip-j: bz2-Z: compress-v: 显示所有过程-O: 将文件解开到标准输出#必选参数-f: 在所有参数最后，后面接文档名 创建软连接12#源文件指要被链接的文件，目标文件指新建的软连接ln -s 源文件 目标文件 匹配进程并kill12//查找hello相关进程并killps -ef |grep hello |awk '&#123;print $2&#125;'|xargs kill -9 sed: 替换文本12//将book替换为bookssed 's/book/books/g' file 查看文件大小1du -sh *]]></content>
       <categories>
         <category>Linux</category>
       </categories>
@@ -745,8 +756,8 @@
         <category>DB</category>
       </categories>
       <tags>
-        <tag>CentOS</tag>
         <tag>Mysql</tag>
+        <tag>CentOS</tag>
       </tags>
   </entry>
   <entry>
