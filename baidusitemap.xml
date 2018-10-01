@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>http://wonius.top/2018/01/06/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E7%94%A8%E6%9C%8D%E5%8A%A1/</loc>
+    <lastmod>2018-10-01T03:38:01.578Z</lastmod>
+    <data>
+        <display>
+        <title>CentOS定时服务、开启自启</title>
+        <pubTime>2018-01-06T12:54:56.000Z</pubTime>
+        
+        <tag>Shell</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>运维</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux" url="http://wonius.top/categories/Linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wonius.top/2018/03/18/Docker/</loc>
     <lastmod>2018-10-01T02:59:46.641Z</lastmod>
     <data>
@@ -1158,30 +1182,6 @@
         <tag>Shell</tag>
          
         <tag>zsh</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="http://wonius.top/categories/Linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://wonius.top/2018/01/06/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E7%94%A8%E6%9C%8D%E5%8A%A1/</loc>
-    <lastmod>2018-04-27T07:21:33.075Z</lastmod>
-    <data>
-        <display>
-        <title>Linux服务器常用服务</title>
-        <pubTime>2018-01-06T12:54:56.000Z</pubTime>
-        
-        <tag>Shell</tag>
-         
-        <tag>Linux</tag>
-         
-        <tag>运维</tag>
          
          
            

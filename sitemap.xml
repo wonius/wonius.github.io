@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://wonius.top/2018/01/06/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E7%94%A8%E6%9C%8D%E5%8A%A1/</loc>
+    
+    <lastmod>2018-10-01T03:38:01.578Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wonius.top/2018/03/18/Docker/</loc>
     
     <lastmod>2018-10-01T02:59:46.641Z</lastmod>
@@ -390,13 +397,6 @@
     <loc>http://wonius.top/2017/12/18/CentOs%E5%AE%89%E8%A3%85zsh%E5%92%8Coh-my-zsh/</loc>
     
     <lastmod>2018-04-27T07:22:02.447Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wonius.top/2018/01/06/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E7%94%A8%E6%9C%8D%E5%8A%A1/</loc>
-    
-    <lastmod>2018-04-27T07:21:33.075Z</lastmod>
     
   </url>
   

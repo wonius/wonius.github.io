@@ -697,7 +697,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux服务器常用服务]]></title>
+    <title><![CDATA[CentOS定时服务、开启自启]]></title>
     <url>%2F2018%2F01%2F06%2FLinux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E7%94%A8%E6%9C%8D%E5%8A%A1%2F</url>
     <content type="text"><![CDATA[加入定时任务1234567891011121314151617181920212223242526#创建shell脚本vim bakup.sh#赋予执行权限chmod -R 777 bakup.sh#加入定时任务vim /etc/crontab#最后一行加入。每天凌晨1点执行0 1 * * * root /usr/bakup.sh#重启crontab服务service crond restart#常用cron表达式 每五分钟执行 */5 * * * * 每小时执行 0 * * * * 每天执行 0 0 * * * 每周执行 0 0 * * 0 每月执行 0 0 1 * * 每年执行 0 0 1 1 * 加入自启动服务主要有两种方法，chkconfig命令和修改rc.local文件 chkconfig命令 12345678910111213//首先查看要启动的服务是否在chkconfig列表中chkconfig --list//如果列表中没有，需要单服务添加到列表chkconfig --add XX//打开自启动chkconfig mysqld on//取消自启动chkconfig mysqld offps:2~5为on，就是表明打开自启动开关了 修改/etc/rc.d/rc.local 12345//编辑rc.localvim /etc/rc.d/rc.local//添加服务/etc/rc.d/init.d/mysqld start ​]]></content>
       <categories>
