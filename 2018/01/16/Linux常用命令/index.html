@@ -127,7 +127,7 @@
 <meta property="og:url" content="http://wonius.top/2018/01/16/Linux常用命令/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="Linux常用命令">
-<meta property="og:updated_time" content="2018-10-01T03:43:10.679Z">
+<meta property="og:updated_time" content="2018-10-01T03:47:04.812Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux常用命令">
 <meta name="twitter:description" content="Linux常用命令">
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  499
+                  517
                 </span>
               
 
@@ -492,7 +492,7 @@
 <h2 id="创建软连接"><a href="#创建软连接" class="headerlink" title="创建软连接"></a>创建软连接</h2><figure class="highlight gauss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#源文件指要被链接的文件，目标文件指新建的软连接</span></div><div class="line"><span class="built_in">ln</span> -s 源文件 目标文件</div></pre></td></tr></table></figure>
 <h2 id="匹配进程并kill"><a href="#匹配进程并kill" class="headerlink" title="匹配进程并kill"></a>匹配进程并kill</h2><figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//查找hello相关进程并<span class="keyword">kill</span></div><div class="line">ps -ef |<span class="keyword">grep</span> hello |awk <span class="string">'&#123;print $2&#125;'</span>|xargs <span class="keyword">kill</span> -<span class="number">9</span></div></pre></td></tr></table></figure>
 <h2 id="sed-替换文本"><a href="#sed-替换文本" class="headerlink" title="sed: 替换文本"></a>sed: 替换文本</h2><figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//将book替换为books</span></div><div class="line">sed <span class="string">'s/book/books/g'</span> <span class="keyword">file</span></div></pre></td></tr></table></figure>
-<h2 id="查看文件大小"><a href="#查看文件大小" class="headerlink" title="查看文件大小"></a>查看文件大小</h2><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">du -<span class="keyword">sh </span>*</div><div class="line"></div><div class="line"><span class="comment"># 磁盘使用情况</span></div><div class="line">df -h</div></pre></td></tr></table></figure>
+<h2 id="查看文件大小"><a href="#查看文件大小" class="headerlink" title="查看文件大小"></a>查看文件大小</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 磁盘使用情况</span></div><div class="line">df -h</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 显示所有文件(包含子目录)</span></div><div class="line">du -ah</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 只显示</span></div><div class="line">du -ah /root</div><div class="line">du -sh *</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -808,7 +808,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">38.7k</span>
+    <span title="Site words total count">38.8k</span>
   
 </div>
 
