@@ -127,7 +127,7 @@
 <meta property="og:url" content="http://wonius.top/2018/09/28/Dockerfile与Maven参数间的那点事儿/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="Maven设置Dockerfile参数">
-<meta property="og:updated_time" content="2018-09-28T04:06:13.438Z">
+<meta property="og:updated_time" content="2018-10-17T08:34:23.289Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dockerfile与Maven参数间的那点事儿">
 <meta name="twitter:description" content="Maven设置Dockerfile参数">
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  129
+                  163
                 </span>
               
 
@@ -475,6 +475,8 @@
 <p>项目中用了docker-maven-plugin插件管理docker，所以想到通过maven参数进行设置。</p>
 <h2 id="pom配置"><a href="#pom配置" class="headerlink" title="pom配置"></a>pom配置</h2><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># 在docker-maven-plugin插件中增加配置</span></div><div class="line"><span class="params">&lt;plugin&gt;</span></div><div class="line">	...</div><div class="line">	<span class="params">&lt;configuration&gt;</span></div><div class="line">		...</div><div class="line">		<span class="params">&lt;buildArgs&gt;</span></div><div class="line">			<span class="meta"># 标签名为key，标签值为value</span></div><div class="line">			<span class="params">&lt;APP_NAME&gt;</span>$&#123;appName&#125;<span class="params">&lt;/APP_NAME&gt;</span></div><div class="line">		<span class="params">&lt;/buildArgs&gt;</span></div><div class="line">		...</div><div class="line">	<span class="params">&lt;/configuration&gt;</span></div><div class="line">	...</div><div class="line"><span class="params">&lt;/plugin&gt;</span></div><div class="line"></div><div class="line"><span class="meta"># 环境配置</span></div><div class="line"><span class="params">&lt;profiles&gt;</span></div><div class="line">	<span class="params">&lt;profile&gt;</span></div><div class="line">		<span class="params">&lt;id&gt;</span>ci<span class="params">&lt;/id&gt;</span></div><div class="line">		<span class="params">&lt;properties&gt;</span></div><div class="line">			<span class="params">&lt;appName&gt;</span>hello-ci<span class="params">&lt;/appName&gt;</span></div><div class="line">		<span class="params">&lt;/properties&gt;</span></div><div class="line">	<span class="params">&lt;/profile&gt;</span></div><div class="line">	...</div><div class="line"><span class="params">&lt;/profiles&gt;</span></div></pre></td></tr></table></figure>
 <h2 id="dockerfile配置"><a href="#dockerfile配置" class="headerlink" title="dockerfile配置"></a>dockerfile配置</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">..</span>.</div><div class="line"><span class="comment"># 定义参数</span></div><div class="line">ARG APP_NAME</div><div class="line"><span class="comment"># 增加CATALINA的环境变量</span></div><div class="line">ENV CATALINA_OPTS <span class="attribute">-DapplicationName</span>=<span class="variable">$APP_NAME</span></div></pre></td></tr></table></figure>
+<h2 id="one-more-thing"><a href="#one-more-thing" class="headerlink" title="one more thing"></a>one more thing</h2><p>除了用docker插件，还可以是用exec插件，运行shell脚本或java文件，这种方式更自由一点。</p>
+
       
     </div>
     
@@ -495,7 +497,7 @@
   <p><span>本文标题:</span><a href="/2018/09/28/Dockerfile与Maven参数间的那点事儿/">Dockerfile与Maven参数间的那点事儿</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gavin 的个人博客">Gavin</a></p>
   <p><span>发布时间:</span>2018年09月28日 - 11:09</p>
-  <p><span>最后更新:</span>2018年09月28日 - 12:09</p>
+  <p><span>最后更新:</span>2018年10月17日 - 16:10</p>
   <p><span>原始链接:</span><a href="/2018/09/28/Dockerfile与Maven参数间的那点事儿/" title="Dockerfile与Maven参数间的那点事儿">http://wonius.top/2018/09/28/Dockerfile与Maven参数间的那点事儿/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://wonius.top/2018/09/28/Dockerfile与Maven参数间的那点事儿/"  aria-label="复制成功！"></i></span>
   </p>
@@ -582,6 +584,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/10/18/Linux文件MD5生成/" rel="prev" title="文件MD5批量生成">
+                文件MD5批量生成 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -666,7 +672,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">89</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -677,7 +683,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -688,7 +694,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -749,7 +755,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Maven设置Dockerfile参数"><span class="nav-number">1.</span> <span class="nav-text">Maven设置Dockerfile参数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pom配置"><span class="nav-number">1.1.</span> <span class="nav-text">pom配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dockerfile配置"><span class="nav-number">1.2.</span> <span class="nav-text">dockerfile配置</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Maven设置Dockerfile参数"><span class="nav-number">1.</span> <span class="nav-text">Maven设置Dockerfile参数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pom配置"><span class="nav-number">1.1.</span> <span class="nav-text">pom配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dockerfile配置"><span class="nav-number">1.2.</span> <span class="nav-text">dockerfile配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#one-more-thing"><span class="nav-number">1.3.</span> <span class="nav-text">one more thing</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -783,7 +789,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">38.8k</span>
+    <span title="Site words total count">39.2k</span>
   
 </div>
 
