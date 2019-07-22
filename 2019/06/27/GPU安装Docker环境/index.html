@@ -127,7 +127,7 @@
 <meta property="og:url" content="http://wonius.top/2019/06/27/GPU安装Docker环境/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="GPU安装Docker、Nvidia-Docker环境">
-<meta property="og:updated_time" content="2019-07-10T01:23:42.711Z">
+<meta property="og:updated_time" content="2019-07-22T06:47:12.124Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GPU安装Docker环境">
 <meta name="twitter:description" content="GPU安装Docker、Nvidia-Docker环境">
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  330
+                  389
                 </span>
               
 
@@ -479,6 +479,12 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">tar -xvf cudnn-8.0-linux-x64-v6.0.tgz</div><div class="line"><span class="meta">#</span><span class="bash"> 进入cudamulu</span></div><div class="line">cd /usr/local/cuda</div><div class="line"><span class="meta">#</span><span class="bash"> 拷贝cudnn相关文件</span></div><div class="line">cp /xxx/cuda/include/cudnn.h include/</div><div class="line">cp /xxx/cuda/lib64/libcudnn* lib64/</div><div class="line"></div><div class="line">chmod a+r include/cudnn.h</div><div class="line">chmod a+r lib64/libcudnn*</div><div class="line"><span class="meta">#</span><span class="bash"> 验证</span></div><div class="line">cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2</div></pre></td></tr></table></figure>
 <h1 id="升级docker到18"><a href="#升级docker到18" class="headerlink" title="升级docker到18"></a>升级docker到18</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">yum remove docker</div><div class="line">rpm -ivh docker-ce-18.06.1.ce-3.el7.x86_64.rpm</div><div class="line"></div><div class="line">systemctl status docker.service</div><div class="line">docker --version</div></pre></td></tr></table></figure>
 <h1 id="安装nvidia-docker"><a href="#安装nvidia-docker" class="headerlink" title="安装nvidia-docker"></a>安装nvidia-docker</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">rpm -ivh libnvidia-container1-1.0.0-0.1.rc.2.x86_64.rpm</div><div class="line">rpm -ivh libnvidia-container-tools-1.0.0-0.1.rc.2.x86_64.rpm</div><div class="line">rpm -ivh nvidia-container-runtime-hook-1.4.0-2.x86_64.rpm</div><div class="line">rpm -ivh nvidia-container-runtime-2.0.0-1.docker18.06.1.x86_64.rpm</div><div class="line">rpm -ivh nvidia-docker2-2.0.3-1.docker18.06.1.ce.noarch.rpm</div></pre></td></tr></table></figure>
+<h1 id="nvidia驱动、cuda、cudnn、TensorFlow版本对应关系"><a href="#nvidia驱动、cuda、cudnn、TensorFlow版本对应关系" class="headerlink" title="nvidia驱动、cuda、cudnn、TensorFlow版本对应关系"></a>nvidia驱动、cuda、cudnn、TensorFlow版本对应关系</h1><p>nvidia驱动、cuda对应关系</p>
+<p><a href="https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html" target="_blank" rel="external">https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html</a></p>
+<p>cuda、cudnn对应关系</p>
+<p><a href="https://developer.nvidia.com/rdp/cudnn-archive" target="_blank" rel="external">https://developer.nvidia.com/rdp/cudnn-archive</a></p>
+<p>TensorFlow、cuda、cudnn、python对应关系</p>
+<p><a href="https://tensorflow.google.cn/install/source#linux" target="_blank" rel="external">https://tensorflow.google.cn/install/source#linux</a></p>
 
       
     </div>
@@ -500,7 +506,7 @@
   <p><span>本文标题:</span><a href="/2019/06/27/GPU安装Docker环境/">GPU安装Docker环境</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gavin 的个人博客">Gavin</a></p>
   <p><span>发布时间:</span>2019年06月27日 - 20:06</p>
-  <p><span>最后更新:</span>2019年07月10日 - 09:07</p>
+  <p><span>最后更新:</span>2019年07月22日 - 14:07</p>
   <p><span>原始链接:</span><a href="/2019/06/27/GPU安装Docker环境/" title="GPU安装Docker环境">http://wonius.top/2019/06/27/GPU安装Docker环境/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://wonius.top/2019/06/27/GPU安装Docker环境/"  aria-label="复制成功！"></i></span>
   </p>
@@ -754,7 +760,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装Python3"><span class="nav-number">1.</span> <span class="nav-text">安装Python3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装pip3"><span class="nav-number">2.</span> <span class="nav-text">安装pip3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装cuda"><span class="nav-number">3.</span> <span class="nav-text">安装cuda</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装cudnn"><span class="nav-number">4.</span> <span class="nav-text">安装cudnn</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#升级docker到18"><span class="nav-number">5.</span> <span class="nav-text">升级docker到18</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装nvidia-docker"><span class="nav-number">6.</span> <span class="nav-text">安装nvidia-docker</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装Python3"><span class="nav-number">1.</span> <span class="nav-text">安装Python3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装pip3"><span class="nav-number">2.</span> <span class="nav-text">安装pip3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装cuda"><span class="nav-number">3.</span> <span class="nav-text">安装cuda</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装cudnn"><span class="nav-number">4.</span> <span class="nav-text">安装cudnn</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#升级docker到18"><span class="nav-number">5.</span> <span class="nav-text">升级docker到18</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装nvidia-docker"><span class="nav-number">6.</span> <span class="nav-text">安装nvidia-docker</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nvidia驱动、cuda、cudnn、TensorFlow版本对应关系"><span class="nav-number">7.</span> <span class="nav-text">nvidia驱动、cuda、cudnn、TensorFlow版本对应关系</span></a></li></ol></div>
             
 
           </div>
@@ -788,7 +794,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">39.7k</span>
+    <span title="Site words total count">39.8k</span>
   
 </div>
 
