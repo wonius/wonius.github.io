@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://wonius.top/2019/07/25/K8S/</loc>
+    <lastmod>2019-07-25T12:21:46.227Z</lastmod>
+    <data>
+        <display>
+        <title>通过K8S传参创建Job</title>
+        <pubTime>2019-07-25T12:03:58.000Z</pubTime>
+        
+        <tag>K8S</tag>
+         
+         
+           
+             
+              <breadCrumb title="K8S" url="http://wonius.top/categories/K8S/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wonius.top/2019/06/27/GPU%E5%AE%89%E8%A3%85Docker%E7%8E%AF%E5%A2%83/</loc>
     <lastmod>2019-07-22T06:47:12.124Z</lastmod>
     <data>
@@ -1533,9 +1553,9 @@
         <title>CentOS彻底删除并重装、升级Mysql</title>
         <pubTime>2017-12-18T14:05:18.000Z</pubTime>
         
-        <tag>CentOS</tag>
-         
         <tag>Mysql</tag>
+         
+        <tag>CentOS</tag>
          
          
            
