@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://wonius.top/2019/06/27/GPU%E5%AE%89%E8%A3%85Docker%E7%8E%AF%E5%A2%83/</loc>
+    <lastmod>2019-08-06T13:08:17.677Z</lastmod>
+    <data>
+        <display>
+        <title>GPU安装Docker环境</title>
+        <pubTime>2019-06-27T12:41:56.000Z</pubTime>
+        
+        <tag>Docker</tag>
+         
+         
+           
+             
+              <breadCrumb title="Docker" url="http://wonius.top/categories/Docker/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wonius.top/2019/07/25/K8S/</loc>
     <lastmod>2019-07-25T12:21:46.227Z</lastmod>
     <data>
@@ -17,26 +37,6 @@
            
              
               <breadCrumb title="K8S" url="http://wonius.top/categories/K8S/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://wonius.top/2019/06/27/GPU%E5%AE%89%E8%A3%85Docker%E7%8E%AF%E5%A2%83/</loc>
-    <lastmod>2019-07-22T06:47:12.124Z</lastmod>
-    <data>
-        <display>
-        <title>GPU安装Docker环境</title>
-        <pubTime>2019-06-27T12:41:56.000Z</pubTime>
-        
-        <tag>Docker</tag>
-         
-         
-           
-             
-              <breadCrumb title="Docker" url="http://wonius.top/categories/Docker/"/>
           
         </display>
     </data>
