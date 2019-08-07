@@ -14,7 +14,7 @@
   <entry>
     <title><![CDATA[GPU安装Docker环境]]></title>
     <url>%2F2019%2F06%2F27%2FGPU%E5%AE%89%E8%A3%85Docker%E7%8E%AF%E5%A2%83%2F</url>
-    <content type="text"><![CDATA[nvidia驱动、cuda、cudnn、TensorFlow版本对应关系cuda、cudnn、docker、nvidia-docker版本一定看是否兼容。不同版本有兼容问题。 nvidia驱动、cuda对应关系 https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html cuda、cudnn对应关系 https://developer.nvidia.com/rdp/cudnn-archive TensorFlow、cuda、cudnn、python对应关系 https://tensorflow.google.cn/install/source#linux 升级驱动（非必须）如果已经安装低版本的驱动，需要升级，需要将所有使用nvidia的程序暂停（一般只有docker），再卸载。 12345678910111213# 先暂停dockerservice docker stop# 查看有哪些nvidia模块，依次卸载lsmod | grep nvidiarmmod nvidia-*rmmod nvidia# 安装nvidia-docker时，安装了一些与nvidia相关的包，一起卸载rpm -qa | grep nvidiarpm -e --nodeps *-nvidia-*# 然后安装nvidia驱动、nvidia-docker 安装Python31234567891011mkdir -p /usr/local/python3tar -zxvf Python-3.6.6.tgzcd Python-3.6.6./configure --prefix=/usr/local/python3make &amp;&amp; make installln -s /usr/local/python3/bin/python3 /usr/bin/python3vim ~/.bash_profile# 加入export PATH=$PATH:$HOME/bin:/usr/local/python3/bin# 验证python3 -V 安装pip312345tar -zxvf pip-9.0.1.tgzcd pip-9.0.1python3 setup.py installln -s /usr/local/bin/pip /usr/bin/pip3pip3 -V 安装cuda123456789./cuda_8.0.61_375.26_linux.runaccept一路y安装完成后，编辑/etc/profile添加下面两行export PATH=/usr/local/cuda-8.0/bin:$PATHexport LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH验证是否成功：cat /usr/local/cuda/version.txt 或 nvcc --version 安装cudnn直接将cudnn中相关文件，拷贝到cuda对应目录即可 1234567891011tar -xvf cudnn-8.0-linux-x64-v6.0.tgz# 进入cudamulucd /usr/local/cuda# 拷贝cudnn相关文件cp /xxx/cuda/include/cudnn.h include/cp /xxx/cuda/lib64/libcudnn* lib64/chmod a+r include/cudnn.hchmod a+r lib64/libcudnn*# 验证cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2 升级docker到1812345yum remove dockerrpm -ivh docker-ce-18.06.1.ce-3.el7.x86_64.rpmsystemctl status docker.servicedocker --version 安装nvidia-docker12345678rpm -ivh libnvidia-container1-1.0.0-0.1.rc.2.x86_64.rpmrpm -ivh libnvidia-container-tools-1.0.0-0.1.rc.2.x86_64.rpmrpm -ivh nvidia-container-runtime-hook-1.4.0-2.x86_64.rpmrpm -ivh nvidia-container-runtime-2.0.0-1.docker18.06.1.x86_64.rpmrpm -ivh nvidia-docker2-2.0.3-1.docker18.06.1.ce.noarch.rpm# 安装完成之后，重启docker、nvidia-docker# 另外修改daemon.json]]></content>
+    <content type="text"><![CDATA[nvidia驱动、cuda、cudnn、TensorFlow版本对应关系cuda、cudnn、docker、nvidia-docker版本一定看是否兼容。不同版本有兼容问题。 nvidia驱动、cuda对应关系 https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html cuda、cudnn对应关系 https://developer.nvidia.com/rdp/cudnn-archive TensorFlow、cuda、cudnn、python对应关系 https://tensorflow.google.cn/install/source#linux 升级驱动（非必须）如果已经安装低版本的驱动，需要升级，需要将所有使用nvidia的程序暂停（一般只有docker），再卸载。 123456789101112131415# 先暂停dockerservice docker stop# 查看有哪些nvidia模块，依次卸载lsmod | grep nvidiarmmod nvidia-*rmmod nvidia# 安装nvidia-docker时，安装了一些与nvidia相关的包，一起卸载rpm -qa | grep nvidiarpm -e --nodeps *-nvidia-*# 然后安装nvidia驱动、nvidia-docker# 查看驱动版本nvidia-smi 安装Python31234567891011mkdir -p /usr/local/python3tar -zxvf Python-3.6.6.tgzcd Python-3.6.6./configure --prefix=/usr/local/python3make &amp;&amp; make installln -s /usr/local/python3/bin/python3 /usr/bin/python3vim ~/.bash_profile# 加入export PATH=$PATH:$HOME/bin:/usr/local/python3/bin# 验证python3 -V 安装pip312345tar -zxvf pip-9.0.1.tgzcd pip-9.0.1python3 setup.py installln -s /usr/local/bin/pip /usr/bin/pip3pip3 -V 安装cuda12345678910111213141516# rpm安装wget http://mirrors.*******/cuda-repo-rhel7-9-0-local-9.0.176-1.x86_64.rpmrpm -ivh cuda-repo-*.rpmyum clean expire-cacheyum install -y cuda# 设置环境变量vim ~/.bashrcexport LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATHexport CUDA_HOME=/usr/local/cudaexport PATH=/usr/local/cuda/bin:$PATHsource ~/.bashrc# 验证是否成功：cat /usr/local/cuda/version.txt 或 nvcc --version 安装cudnn直接将cudnn中相关文件，拷贝到cuda对应目录即可 123456789101112131415161718192021tar -xvf cudnn-8.0-linux-x64-v6.0.tgz# 进入cudacd /usr/local/cuda# 拷贝cudnn相关文件cp /xxx/cuda/include/cudnn.h include/cp /xxx/cuda/lib64/libcudnn* lib64/chmod a+r include/cudnn.hchmod a+r lib64/libcudnn*# 设置环境变量vim ~/.bashrcexport LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATHexport CUDA_HOME=/usr/local/cudaexport PATH=/usr/local/cuda/bin:$PATHsource ~/.bashrc# 验证cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2# 查看so版本对不对ldconfig -v | grep cudnn / 升级docker到18123456789101112131415161718# 卸载原来docker# rpm安装，直接removeyum remove docker# 如果是二进制文件拷贝，需要手动删除cd /usr/local/binrm -rf docker*# 安装docker18rpm -ivh containerd.io-1.2.2-3.el7.x86_64.rpmrpm -ivh container-selinux-2.74-1.el7.noarch.rpmrpm -ivh docker-ce-cli-18.09.5-3.el7.x86_64.rpmrpm -ivh docker-ce-18.09.5-3.el7.x86_64.rpm# 默认是安装在/usr/bin目录下，根据个人需要看是否需要拷贝到/usr/local/bincd /usr/bincp docker* /usr/local/binsystemctl status docker.servicedocker --version 安装nvidia-docker12345678910111213141516171819202122232425rpm -ivh libnvidia-container1-1.0.2-1.x86_64.rpmrpm -ivh libnvidia-container-tools-1.0.2-1.x86_64.rpmrpm -ivh nvidia-container-runtime-hook-1.4.0-2.x86_64.rpmrpm -ivh nvidia-container-runtime-2.0.0-3.docker18.09.5.x86_64.rpmrpm -ivh nvidia-docker2-2.0.3-3.docker18.09.5.ce.noarch.rpm# 查看版本nvidia-docker --version# 另外修改daemon.json，使用docker run的时候默认使用nvidia-dockervim /etc/docker/daemon.json&#123; "default-runtime": "nvidia", "runtimes": &#123; "nvidia": &#123; "path": "/usr/bin/nvidia-container-runtime", "runtimeArgs": [] &#125; &#125;&#125;# 安装完成之后，重启docker、nvidia-dockersystemctl daemon-reloadsystemctl enable dockersystemctl restart docker]]></content>
       <categories>
         <category>Docker</category>
       </categories>
@@ -331,8 +331,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>技能图谱</tag>
         <tag>大数据</tag>
+        <tag>技能图谱</tag>
       </tags>
   </entry>
   <entry>
@@ -575,8 +575,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>Apollo</tag>
         <tag>技能图谱</tag>
+        <tag>Apollo</tag>
       </tags>
   </entry>
   <entry>
@@ -587,8 +587,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>技能图谱</tag>
         <tag>大数据</tag>
+        <tag>技能图谱</tag>
       </tags>
   </entry>
   <entry>
