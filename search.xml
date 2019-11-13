@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Nginx备忘录]]></title>
+    <url>%2F2019%2F11%2F12%2FNginx%E5%A4%87%E5%BF%98%E5%BD%95%2F</url>
+    <content type="text"><![CDATA[安装12345678910# centosyum install nginx# ubuntusudo apt-get install nginx;# macbrew install nginx# 或者编译源码包，不推荐。# 先下载，解压./configure # 可以通过-prefix=PATH 指定安装目录make &amp; make install 相关命令123456789101112# mac中nginx默认安装在/usr/local/Cellar/nginx，同时也会加入到/usr/local/bin，进入# 启动。默认加载conf中的nginx.conf配置文件./nginx 或 ./nginx -s start# 热启动(不down机更新配置)./nginx -s reload# 关闭./nginx -s stop# 修改*.conf配置文件后，检查语法是否正常nginx -t# http默认端口80# https默认端口443 目录结构123456# nginx目录下confg/ # 配置文件目录logs/ # 日志目录html/ # 网站文件目录sbin/ # 命令目录conf.d/ # 有些安装完成之后会有这个目录，也是配置目录。nginx启动时会优先去加载config/nginx.conf，如果没有，加载该目录中的配置。 nginx.conf配置使用mac的brew安装，目录在/usr/local/etc/nginx 1234567891011121314151617181920212223mainevents &#123; ....&#125;http &#123; .... upstream myproject &#123; ..... &#125; server &#123; .... location &#123; .... &#125; &#125; server &#123; .... location &#123; .... &#125; &#125; ....&#125; nginx配置文件主要分为六个区域：main(全局设置)、events(nginx工作模式)、http(http设置)、sever(主机设置)、location(URL匹配)、upstream(负载均衡服务器设置)。 main模块main是全局配置： 12345678user nobody nobody;worker_processes auto;# 根据情况自己制定日志目录error_log /usr/local/var/nginx/error.log notice;pid /usr/local/var/nginx/nginx.pid;worker_rlimit_nofile 100000; user 来指定Nginx Worker进程运行用户以及用户组，默认由nobody账号运行。 worker_processes来指定了Nginx要开启的子进程数。每个Nginx进程平均耗费10M~12M内存。最优值取决于许多因素，包括（但不限于）CPU核的数量、存储数据的硬盘数量及负载模式。不能确定的时候，将其设置为可用的CPU内核数将是一个好的开始（设置为“auto”将尝试自动检测它）。该值设置的是子进程worker数量，同时还有一个主进程master，比如设置值为2时，总共有3个进程。 error_log用来定义全局错误日志文件。日志输出级别有debug、info、notice、warn、error、crit可供选择，其中，debug输出日志最为最详细，而crit输出日志最少。 pid用来指定进程id的存储文件位置。 worker_rlimit_nofile用于指定一个nginx进程可以打开的最多文件描述符数目，受限于操作系统的配置。如果你的nginx报错“too many open files”，就是操作系统的值比你设置的值小。可以通过ulimit -n查看操作系统的值。通过ulimit -n 65535修改，该命令将操作系统修改为65535。 events模块events模块来用指定nginx的工作模式和工作模式及连接数上限： 1234events &#123; use kqueue; #mac平台 worker_connections 1024;&#125; use用来指定Nginx的工作模式。Nginx支持的工作模式有select、poll、kqueue、epoll、rtsig和/dev/poll。其中select和poll都是标准的工作模式，kqueue和epoll是高效的工作模式，不同的是epoll用在Linux平台上，而kqueue用在BSD系统中，因为Mac基于BSD,所以Mac也得用这个模式，对于Linux系统，epoll工作模式是首选。 worker_connections用于定义Nginx每个进程的最大连接数，即接收前端的最大请求数，默认是1024。最大客户端连接数由worker_processes和worker_connections决定,即Max_clients=worker_processes*worker_connections。在作为反向代理时，Max_clients变为：Max_clients = worker_processes * worker_connections/4。（关于max_clients值的计算，官方文档也没有给出明确公式，网上说法也不一。可以看下这个，我觉得还挺靠谱：Max_clients计算公式）进程的最大连接数受Linux系统进程的最大打开文件数限制（每个TCP连接都要创建一个socket句柄，每个socket句柄同时也是一个文件句柄），只有操作系统中的ulimit -n的值比worker_connections的值大，该设置才有效。 http模块http模块是最核心的模块，它负责HTTP服务器相关属性的配置，主要包含server和upstream子模块。 12345678910111213141516http&#123; include mime.types; default_type application/octet-stream; log_format myFormat '$remote_addr - $remote_user [$time_local] "$request" ' '$status $body_bytes_sent "$http_referer" ' '"$http_user_agent" "$http_x_forwarded_for"'; access_log /usr/local/var/nginx/access.log myFormat; server_tokens on; sendfile on; tcp_nopush on; tcp_nodelay on; ······&#125; include 可以用来加载其他配置文件，如include /etc/nginx/conf.d/*.conf。上例中用来引入设定文件的mime类型，类型在配置文件目录下的mime.type文件定义，来告诉nginx来识别文件类型。 default_type默认文件类型，当文件类型未定义时使用该值，值默认为text/plain。通常修改为application/octet-stream，使用二进制流的方式解析。 log_format设置日志的格式，myFormat相当于别名，配合access_log使用。 access_log 访问日志存放目录。nginx调优时可以关闭该功能，提高磁盘IO读写速度。 server_tokens 对于性能没有优化，当访问失败时，可以隐藏nginx版本信息。 sendfile 可以使用sendfile()，使文件传输更高效。传输文件涉及到将内容从磁盘读取，写到Tcp连接的过程。该项关闭时的流程是，Pre-sendfile是传送数据之前在用户空间申请数据缓冲区。之后用read()将数据从文件拷贝到这个缓冲区，write()将缓冲区数据写入网络。sendfile()可以在任意两个文件描述符之间互相拷贝数据，而sendfile()是可以立即将数据从磁盘读，经OS缓存，写入TCP socket。因为这种拷贝是在内核完成的（避免了内核缓冲区和用户缓冲区之间的数据拷贝），sendfile()要比组合read()和write()以及打开关闭丢弃缓冲更加有效。 tcp_nopush 告诉nginx在一个数据包里发送所有头文件，而不一个接一个的发送。 tcp_nodelay 告诉nginx不要缓存数据，而是一段一段的发送。当需要及时发送数据时，就应该给应用设置这个属性，这样发送一小块数据信息时就不能立即得到返回值。tcp_nopush和tcp_nodelay两个指令设置为on用于防止网络阻塞。 12345678910111213141516http&#123; ······ keepalive_timeout 10; client_header_timeout 10; client_body_timeout 10; reset_timedout_connection on; send_timeout 10; limit_conn_zone $binary_remote_addr zone=addr:5m; limit_conn addr 100; ······&#125; keepalive_timeout设置客户端连接保持活动的超时时间。在超过这个时间之后，服务器会关闭该连接。 client_header_timeout 请求头超时时间。 client_body_timeout 请求体超时时间。 reset_timeout_connection 关闭不响应的客户端连接。这将会释放那个客户端所占有的内存空间。 send_timeout 指定客户端的响应超时时间。这个设置不会用于整个转发器，而是在两次客户端读取操作之间。如果在这段时间内，客户端没有读取任何数据，nginx就会关闭连接。 limit_conn_zone 设置addr连接的共享内存为5m。$binary_remote_addr的长度为 4 bytes，会话信息的长度为 32 bytes，5m大约可以记录5*1k*32个会话信息（一个会话占用 32 bytes。如果一个会话占用64bytes，可保存5*1k*16个会话）。 limit_conn 设置addr的最大连接数为100，每个ip最多同时开100个连接。 12345678910111213141516http&#123; ······ # gzip配置，可根据情况关闭 gzip on; gzip_disable "msie6"; # gzip_static on; gzip_proxied any; gzip_min_length 1000; gzip_comp_level 4; gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript; ······&#125; gzip 采用gzip压缩的形式发送数据。可以减少发送的数据量。 gzip_disable为指定的客户端禁用gzip功能。我们设置成IE6或者更低版本以使我们的方案能够广泛兼容。 gzip_static告诉nginx在压缩资源之前，先查找是否有预先gzip处理过的资源。这要求你预先压缩你的文件（在这个例子中被注释掉了），从而允许你使用最高压缩比，这样nginx就不用再压缩这些文件了（想要更详尽的gzip_static的信息，请点击这里）。 gzip_proxied允许或者禁止压缩基于请求和响应的响应流。我们设置为any，意味着将会压缩所有的请求。 gzip_min_length设置对数据启用压缩的最少字节数。如果一个请求小于1000字节，我们最好不要压缩它，因为压缩这些小的数据会降低处理此请求的所有进程的速度。 gzip_comp_level设置数据的压缩等级。这个等级可以是1-9之间的任意数值，9是最慢但是压缩比最大的。我们设置为4，这是一个比较折中的设置。 gzip_types设置需要压缩的数据格式。 1234567891011http&#123; ······ # 文件配置，可根据情况配置，现在好多都不配置了，仅当了解吧 open_file_cache max=100000 inactive=20s; open_file_cache_valid 30s; open_file_cache_min_uses 2; open_file_cache_errors on; ······&#125; open_file_cache打开缓存的同时也指定了缓存最大数目，以及缓存的时间。我们可以设置一个相对高的最大时间，这样我们可以在它们不活动超过20秒后清除掉。 open_file_cache_valid 在open_file_cache中指定检测正确信息的间隔时间。 open_file_cache_min_uses 定义了open_file_cache中指令参数不活动时间期间里最小的文件数。 open_file_cache_errors指定了当搜索一个文件时是否缓存错误信息，也包括再次给配置中添加文件。我们也包括了服务器模块，这些是在不同文件中定义的。如果你的服务器模块不在这些位置，你就得修改这一行来指定正确的位置。 server模块server模块是http的子模块，用来定义虚拟主机的配置。一个http中可以有多个server。 1234567891011server &#123; listen 8080; server_name localhost 127.0.0.1 www.xxx.com; # 全局定义，如果都是这一个目录，这样定义最简单。 root /Users/xxx/www; index index.php index.html index.htm; charset utf-8; access_log usr/local/var/host.access.log main; aerror_log usr/local/var/host.error.log error; ....&#125; listen用于指定虚拟主机的服务端口。server_name用来指定IP地址或者域名，多个域名之间用空格分开。root 表示在这整个server虚拟主机内，全部的root web根目录。注意要和locate {}下面定义的区分开来。index 全局定义访问的默认首页地址。注意要和locate {}下面定义的区分开来。charset用于设置网页的默认编码格式。access_log用来指定此虚拟主机的访问日志存放路径，最后的main用于指定访问日志的输出格式。 location模块nginx中最核心的模块，用来配置请求的路由，以及各种页面的处理情况。支持正则表达式、条件判断]]></content>
+      <categories>
+        <category>中间件</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[通过K8S传参创建Job]]></title>
     <url>%2F2019%2F07%2F25%2FK8S%2F</url>
     <content type="text"><![CDATA[打包镜像编写Dockerfile 1234...# 我的镜像是python项目，需要传参进去，设置环境变量PARAMSENTRYPOINT python main.py -p $PARAMS 然后打包镜像 编写yaml我要跑的job是一个TensorFlow训练服务，只想跑在GPU的机子上，同时避免为了其他服务跑到GPU上 所以在GPU机子上打了标签、污点 在Job里需要选择标签、容忍 123456789101112131415161718192021222324252627282930313233apiVersion: batch/v1kind: Jobmetadata: name: myJobspec: template: metadata: name: myJob spec: restartPolicy: OnFailure # 设置容忍 tolerations: - key: "app" operator: "Equal" value: "GPU" effect: "NoSchedule" containers: - name: myJob # 设置环境变量，传值 env: - name: PARAMS value: "" # 镜像地址 image: hub.xxxxx/ volumeMounts: - name: nas mountPath: /nas volumes: - name: nas hostPath: path: /nas nodeSelector: app: "GPU" 然后运行该yaml kubectl apply -f myJob.yaml]]></content>
@@ -331,8 +342,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>大数据</tag>
         <tag>技能图谱</tag>
+        <tag>大数据</tag>
       </tags>
   </entry>
   <entry>
@@ -575,8 +586,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>技能图谱</tag>
         <tag>Apollo</tag>
+        <tag>技能图谱</tag>
       </tags>
   </entry>
   <entry>
@@ -587,8 +598,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>大数据</tag>
         <tag>技能图谱</tag>
+        <tag>大数据</tag>
       </tags>
   </entry>
   <entry>
@@ -800,8 +811,8 @@
         <category>DB</category>
       </categories>
       <tags>
-        <tag>CentOS</tag>
         <tag>Mysql</tag>
+        <tag>CentOS</tag>
       </tags>
   </entry>
   <entry>

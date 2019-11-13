@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://wonius.top/2019/11/12/Nginx%E5%A4%87%E5%BF%98%E5%BD%95/</loc>
+    <lastmod>2019-11-13T09:34:08.770Z</lastmod>
+    <data>
+        <display>
+        <title>Nginx备忘录</title>
+        <pubTime>2019-11-12T01:30:03.000Z</pubTime>
+        
+        <tag>nginx</tag>
+         
+         
+           
+             
+              <breadCrumb title="中间件" url="http://wonius.top/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wonius.top/2019/06/27/GPU%E5%AE%89%E8%A3%85Docker%E7%8E%AF%E5%A2%83/</loc>
     <lastmod>2019-08-07T03:15:10.888Z</lastmod>
     <data>
@@ -790,9 +810,9 @@
         <title>技能图谱-后端</title>
         <pubTime>2018-05-29T13:26:29.000Z</pubTime>
         
-        <tag>大数据</tag>
-         
         <tag>技能图谱</tag>
+         
+        <tag>大数据</tag>
          
          
            
@@ -1445,9 +1465,9 @@
         <title>技能图谱-大数据</title>
         <pubTime>2018-03-17T13:22:00.000Z</pubTime>
         
-        <tag>大数据</tag>
-         
         <tag>技能图谱</tag>
+         
+        <tag>大数据</tag>
          
          
            
@@ -1489,9 +1509,9 @@
         <title>技能图谱-Apollo自动驾驶</title>
         <pubTime>2018-03-17T13:22:29.000Z</pubTime>
         
-        <tag>技能图谱</tag>
-         
         <tag>Apollo</tag>
+         
+        <tag>技能图谱</tag>
          
          
            
@@ -1553,9 +1573,9 @@
         <title>CentOS彻底删除并重装、升级Mysql</title>
         <pubTime>2017-12-18T14:05:18.000Z</pubTime>
         
-        <tag>CentOS</tag>
-         
         <tag>Mysql</tag>
+         
+        <tag>CentOS</tag>
          
          
            
