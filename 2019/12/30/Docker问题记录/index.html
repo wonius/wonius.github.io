@@ -127,7 +127,7 @@
 <meta property="og:url" content="http://wonius.top/2019/12/30/Docker问题记录/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="Docker遇到的一些问题">
-<meta property="og:updated_time" content="2019-12-31T09:07:23.622Z">
+<meta property="og:updated_time" content="2019-12-31T09:09:04.617Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker问题记录">
 <meta name="twitter:description" content="Docker遇到的一些问题">
@@ -479,7 +479,7 @@
 <h3 id="排查过程"><a href="#排查过程" class="headerlink" title="排查过程"></a>排查过程</h3><ol>
 <li>首先排查镜像是否正常。在其他主机run镜像，进入容器，可以成功创建目录；</li>
 <li>对比两个环境的docker版本、配置等，通过调整docker配置等，还是无法解决问题，排除docker影响；</li>
-<li>对比两个环境系统内核，发现内核版本不一致，分别为3.10.x 和4.4.185；</li>
+<li>对比两个环境系统内核，发现内核版本不一致，分别为3.10.0 和4.4.185；</li>
 </ol>
 <h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>将内核版本有4.4.185降为3.10.0，运行容器，正常。</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>应该是docker在4.4.185上有bug，有待确认。</p>
