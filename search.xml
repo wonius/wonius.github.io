@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Docker问题记录]]></title>
     <url>%2F2019%2F12%2F30%2FDocker%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%2F</url>
-    <content type="text"><![CDATA[镜像内创建目录没有权限相关环境 Docker 18.09.5 kernel 4.4 问题容器内用户为某特定用户，比如woniu，容器内应用要在a目录下创建新目录，a目录属主为woniu，权限750。但是在创建时报错，权限不足。 排查过程 首先排查镜像是否正常。在其他主机run镜像，进入容器，可以成功创建目录； 对比两个环境的docker版本、配置等，通过调整docker配置等，还是无法解决问题，排除docker影响； 对比两个环境系统内核，发现内核版本不一致，分别为3.10.x 和4.4； 解决将内核版本有4.4降为3.10.0，运行容器，正常。 总结应该是docker的bug，但是4.4版本的内核已经出了很长时间了，按道理讲应该是支持的。后面有时间再研究下。]]></content>
+    <content type="text"><![CDATA[镜像内创建目录没有权限相关环境 Docker 18.09.07 kernel 4.4.185 问题容器内用户为某特定用户，比如woniu，容器内应用要在a目录下创建新目录，a目录属主为woniu，权限750。但是在创建时报错，权限不足。 排查过程 首先排查镜像是否正常。在其他主机run镜像，进入容器，可以成功创建目录； 对比两个环境的docker版本、配置等，通过调整docker配置等，还是无法解决问题，排除docker影响； 对比两个环境系统内核，发现内核版本不一致，分别为3.10.x 和4.4.185； 解决将内核版本有4.4.185降为3.10.0，运行容器，正常。 总结应该是docker在4.4.185上有bug，有待确认。]]></content>
       <categories>
         <category>Docker</category>
       </categories>
@@ -353,8 +353,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>技能图谱</tag>
         <tag>大数据</tag>
+        <tag>技能图谱</tag>
       </tags>
   </entry>
   <entry>
@@ -597,8 +597,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>Apollo</tag>
         <tag>技能图谱</tag>
+        <tag>Apollo</tag>
       </tags>
   </entry>
   <entry>
@@ -609,8 +609,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>技能图谱</tag>
         <tag>大数据</tag>
+        <tag>技能图谱</tag>
       </tags>
   </entry>
   <entry>
@@ -971,18 +971,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[SpringBoot相关资料]]></title>
-    <url>%2F2017%2F07%2F29%2FSpringBoot%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%2F</url>
-    <content type="text"><![CDATA[Spring BootBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 Spring Boot 揭秘与实战 系列 catoop的专栏 方志朋 Spring Boot 专栏 Spring-boot集成 Website Spring Boot 官网 Spring Boot参考指南-中文版 Gradle 中文参考指南 慕课网视频 spring-boot-tutorials Code spring boot官方例子 spring-boot-starter SpringBoot-Learning favorites-web springboot-learning-example spring-boot-all]]></content>
-      <categories>
-        <category>Spring</category>
-        <category>SpringBoot</category>
-      </categories>
-      <tags>
-        <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[SpringCloud相关资料]]></title>
     <url>%2F2017%2F07%2F29%2FSpringCloud%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%2F</url>
     <content type="text"><![CDATA[Spring CloudBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 周立|Spring Cloud 方志朋 Spring Cloud 专栏 许进 跟我学Spring Cloud Website Spring Cloud 官网 Spring Cloud中文网 Code spring-cloud-starter SpringCloud-Learning]]></content>
@@ -992,6 +980,18 @@
       </categories>
       <tags>
         <tag>SpringCloud</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SpringBoot相关资料]]></title>
+    <url>%2F2017%2F07%2F29%2FSpringBoot%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%2F</url>
+    <content type="text"><![CDATA[Spring BootBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 Spring Boot 揭秘与实战 系列 catoop的专栏 方志朋 Spring Boot 专栏 Spring-boot集成 Website Spring Boot 官网 Spring Boot参考指南-中文版 Gradle 中文参考指南 慕课网视频 spring-boot-tutorials Code spring boot官方例子 spring-boot-starter SpringBoot-Learning favorites-web springboot-learning-example spring-boot-all]]></content>
+      <categories>
+        <category>Spring</category>
+        <category>SpringBoot</category>
+      </categories>
+      <tags>
+        <tag>SpringBoot</tag>
       </tags>
   </entry>
   <entry>
