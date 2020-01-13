@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Jpa中使用@Scheduled报no transaction is in progress]]></title>
+    <url>%2F2020%2F01%2F13%2FJpa%E4%B8%AD%E4%BD%BF%E7%94%A8-Scheduled%E6%8A%A5no-transaction-is-in-progress%2F</url>
+    <content type="text"><![CDATA[问题环境：springboot+jpa 某个接口使用@Scheduled定时调度，内部方法中使用了jpa的saveandflush方法，方法执行时报异常’no transaction in progress’。 分析 查看saveandflush实现，发现jpa内部实现都添加了事务@Trainsactional； 不用@Scheduled注解时，直接调用方法正常； 所以基本确认通过@Scheduled创建的线程，没有继承上下文中的事务管理器。 解决在@Scheduled注解的地方注入事务管理器。 https://stackoverflow.com/questions/33248846/spring4-scheduled-transaction-throws-no-transaction-is-in-progress-at-flush-fo]]></content>
+      <categories>
+        <category>DB</category>
+      </categories>
+      <tags>
+        <tag>jpa</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Docker问题记录]]></title>
     <url>%2F2019%2F12%2F30%2FDocker%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%2F</url>
     <content type="text"><![CDATA[容器内创建目录没有权限相关环境 Docker 18.09.07 kernel 4.4.185 问题容器内用户为某特定用户，比如woniu，容器内应用要在a目录下创建新目录，a目录属主为woniu，权限750。但是在创建时报错，权限不足。 排查过程 首先排查镜像是否正常。在其他主机run镜像，进入容器，可以成功创建目录； 对比两个环境的docker版本、配置等，通过调整docker配置等，还是无法解决问题，排除docker影响； 对比两个环境系统内核，发现内核版本不一致，分别为3.10.0 和4.4.185； 解决将内核版本有4.4.185降为3.10.0，运行容器，正常。 总结应该是docker在4.4.185上有bug，有待确认。]]></content>
@@ -353,8 +364,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>大数据</tag>
         <tag>技能图谱</tag>
+        <tag>大数据</tag>
       </tags>
   </entry>
   <entry>
@@ -597,8 +608,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>技能图谱</tag>
         <tag>Apollo</tag>
+        <tag>技能图谱</tag>
       </tags>
   </entry>
   <entry>
@@ -609,8 +620,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>大数据</tag>
         <tag>技能图谱</tag>
+        <tag>大数据</tag>
       </tags>
   </entry>
   <entry>
