@@ -12,9 +12,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Docker问题记录]]></title>
+    <title><![CDATA[容器内权限正常，无权限创建目录]]></title>
     <url>%2F2019%2F12%2F30%2FDocker%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%2F</url>
-    <content type="text"><![CDATA[容器内创建目录没有权限相关环境 Docker 18.09.07 kernel 4.4.185 问题容器内用户为某特定用户，比如woniu，容器内应用要在a目录下创建新目录，a目录属主为woniu，权限750。但是在创建时报错，权限不足。 排查过程 首先排查镜像是否正常。在其他主机run镜像，进入容器，可以成功创建目录； 对比两个环境的docker版本、配置等，通过调整docker配置等，还是无法解决问题，排除docker影响； 对比两个环境系统内核，发现内核版本不一致，分别为3.10.0 和4.4.185； 解决将内核版本有4.4.185降为3.10.0，运行容器，正常。 总结应该是docker在4.4.185上有bug，有待确认。]]></content>
+    <content type="text"><![CDATA[容器内权限正常，无权限创建目录相关环境 Docker 18.09.07 kernel 4.4.185 问题容器内用户为某特定用户，比如woniu，容器内应用要在a目录下创建新目录，a目录属主为woniu，权限750。但是在创建时报错，权限不足。 排查过程 首先排查镜像是否正常。在其他主机run镜像，进入容器，可以成功创建目录； 对比两个环境的docker版本、配置等，通过调整docker配置等，还是无法解决问题，排除docker影响； 对比两个环境系统内核，发现内核版本不一致，分别为3.10.0 和4.4.185； 解决将内核版本有4.4.185降为3.10.0，运行容器，正常。 总结应该是docker在4.4.185上有bug，有待确认。 后来发现，貌似和tomcat版本有关，9.0版本普遍存在这个问题，跟镜像分层有关。 12345678910111213FROM centos:7.2.1511COPY apache-tomcat-9.0.30.tar.gz /opt/# 之前的dockerfile，解压与授权通过两条RUN执行，在不同层级，权限有问题RUN cd /opt \&amp;&amp; tar xvf apache-tomcat-9.0.30.tar.gz \RUN groupadd -g 5666 demo &amp;&amp; useradd -l -r demo -g demo -u 666 \&amp;&amp; chown -R demo:demo /opt/apache-tomcat-9.0.30# 之后的dockerfile，解压与授权在一条RUN，同一层级，正常RUN cd /opt \&amp;&amp; tar xvf apache-tomcat-9.0.30.tar.gz \&amp;&amp; groupadd -g 5666 demo &amp;&amp; useradd -l -r demo -g demo -u 666 \&amp;&amp; chown -R demo:demo /opt/apache-tomcat-9.0.30 https://github.com/docker-library/tomcat/issues/35]]></content>
       <categories>
         <category>Docker</category>
       </categories>
@@ -364,8 +364,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>技能图谱</tag>
         <tag>大数据</tag>
+        <tag>技能图谱</tag>
       </tags>
   </entry>
   <entry>
@@ -608,8 +608,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>Apollo</tag>
         <tag>技能图谱</tag>
+        <tag>Apollo</tag>
       </tags>
   </entry>
   <entry>
@@ -620,8 +620,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>技能图谱</tag>
         <tag>大数据</tag>
+        <tag>技能图谱</tag>
       </tags>
   </entry>
   <entry>
