@@ -127,7 +127,7 @@
 <meta property="og:url" content="http://wonius.top/2020/02/11/vps安装ss、bbr/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="vps安装ss、bbr">
-<meta property="og:updated_time" content="2020-02-11T02:55:52.081Z">
+<meta property="og:updated_time" content="2020-02-11T11:00:46.515Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vps安装ss、bbr">
 <meta name="twitter:description" content="vps安装ss、bbr">
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  148
+                  233
                 </span>
               
 
@@ -471,8 +471,10 @@
       
 
       
-        <h1 id="安装ss"><a href="#安装ss" class="headerlink" title="安装ss"></a>安装ss</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 安装wget</span></div><div class="line">yum install wget</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 下载ss脚本</span></div><div class="line">wget –no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 授权</span></div><div class="line">chmod +x shadowsocks.sh</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 执行ss脚本</span></div><div class="line">./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 输入密码、端口，选择加密方式。最后安装成功会有这些信息展示，将这些信息配置到客户端即可。</span></div></pre></td></tr></table></figure>
+        <h1 id="安装ss"><a href="#安装ss" class="headerlink" title="安装ss"></a>安装ss</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 安装wget</span></div><div class="line">yum install wget</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 下载ss脚本</span></div><div class="line">wget –no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 授权</span></div><div class="line">chmod +x shadowsocks.sh</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 执行ss脚本</span></div><div class="line">./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 输入密码、端口，选择加密方式。最后安装成功会有这些信息展示，将这些信息配置到客户端即可。</span></div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 验证ss服务是否正常启动</span></div><div class="line">ss -lntp | grep ssserver</div></pre></td></tr></table></figure>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 修改配置，如果更改，需重启。如果修改端口，需开通端口对应TCP/UDP防火墙</span></div><div class="line">vi /etc/shadowsocks.json</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 重启</span></div><div class="line">service shadowsocks restart</div><div class="line"><span class="meta">#</span><span class="bash"> 启动</span></div><div class="line">service shadowsocks start</div><div class="line"><span class="meta">#</span><span class="bash"> 停止</span></div><div class="line">service shadowsocks stop</div><div class="line"><span class="meta">#</span><span class="bash"> 状态</span></div><div class="line">service shadowsocks status</div></pre></td></tr></table></figure>
 <h1 id="安装bbr"><a href="#安装bbr" class="headerlink" title="安装bbr"></a>安装bbr</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 下载bbr脚本</span></div><div class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 授权</span></div><div class="line">chmod +x bbr.sh</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 执行bbr脚本</span></div><div class="line">./bbr.sh</div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 安装完成后提示是否重启，输入y</span></div><div class="line"><span class="meta"></span></div><div class="line">#<span class="bash"> 重启后验证bbr是否正常启动</span></div><div class="line">lsmod | grep bbr</div></pre></td></tr></table></figure>
+<h1 id="规则集"><a href="#规则集" class="headerlink" title="规则集"></a>规则集</h1><p><a href="https://raw.githubusercontent.com/h2y/Shadowrocket-ADBlock-Rules/master/sr_top500_banlist_ad.conf" target="_blank" rel="external">https://raw.githubusercontent.com/h2y/Shadowrocket-ADBlock-Rules/master/sr_top500_banlist_ad.conf</a></p>
 
       
     </div>
@@ -494,7 +496,7 @@
   <p><span>本文标题:</span><a href="/2020/02/11/vps安装ss、bbr/">vps安装ss、bbr</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gavin 的个人博客">Gavin</a></p>
   <p><span>发布时间:</span>2020年02月11日 - 10:02</p>
-  <p><span>最后更新:</span>2020年02月11日 - 10:02</p>
+  <p><span>最后更新:</span>2020年02月11日 - 19:02</p>
   <p><span>原始链接:</span><a href="/2020/02/11/vps安装ss、bbr/" title="vps安装ss、bbr">http://wonius.top/2020/02/11/vps安装ss、bbr/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://wonius.top/2020/02/11/vps安装ss、bbr/"  aria-label="复制成功！"></i></span>
   </p>
@@ -748,7 +750,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装ss"><span class="nav-number">1.</span> <span class="nav-text">安装ss</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装bbr"><span class="nav-number">2.</span> <span class="nav-text">安装bbr</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装ss"><span class="nav-number">1.</span> <span class="nav-text">安装ss</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">1.1.</span> <span class="nav-text">常用命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装bbr"><span class="nav-number">2.</span> <span class="nav-text">安装bbr</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#规则集"><span class="nav-number">3.</span> <span class="nav-text">规则集</span></a></li></ol></div>
             
 
           </div>
@@ -782,7 +784,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">46.5k</span>
+    <span title="Site words total count">46.6k</span>
   
   <div class=BbeiAn-info">
     沪ICP备 -

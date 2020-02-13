@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[vps安装ss、bbr]]></title>
     <url>%2F2020%2F02%2F11%2Fvps%E5%AE%89%E8%A3%85ss%E3%80%81bbr%2F</url>
-    <content type="text"><![CDATA[安装ss12345678910111213# 安装wgetyum install wget# 下载ss脚本wget –no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh# 授权chmod +x shadowsocks.sh# 执行ss脚本./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log# 输入密码、端口，选择加密方式。最后安装成功会有这些信息展示，将这些信息配置到客户端即可。 安装bbr12345678910111213# 下载bbr脚本wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh# 授权chmod +x bbr.sh# 执行bbr脚本./bbr.sh# 安装完成后提示是否重启，输入y# 重启后验证bbr是否正常启动lsmod | grep bbr]]></content>
+    <content type="text"><![CDATA[安装ss12345678910111213141516# 安装wgetyum install wget# 下载ss脚本wget –no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh# 授权chmod +x shadowsocks.sh# 执行ss脚本./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log# 输入密码、端口，选择加密方式。最后安装成功会有这些信息展示，将这些信息配置到客户端即可。# 验证ss服务是否正常启动ss -lntp | grep ssserver 常用命令1234567891011# 修改配置，如果更改，需重启。如果修改端口，需开通端口对应TCP/UDP防火墙vi /etc/shadowsocks.json# 重启service shadowsocks restart# 启动service shadowsocks start# 停止service shadowsocks stop# 状态service shadowsocks status 安装bbr12345678910111213# 下载bbr脚本wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh# 授权chmod +x bbr.sh# 执行bbr脚本./bbr.sh# 安装完成后提示是否重启，输入y# 重启后验证bbr是否正常启动lsmod | grep bbr 规则集https://raw.githubusercontent.com/h2y/Shadowrocket-ADBlock-Rules/master/sr_top500_banlist_ad.conf]]></content>
       <categories>
         <category>vps</category>
       </categories>
@@ -375,8 +375,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>技能图谱</tag>
         <tag>大数据</tag>
+        <tag>技能图谱</tag>
       </tags>
   </entry>
   <entry>
@@ -631,8 +631,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>技能图谱</tag>
         <tag>大数据</tag>
+        <tag>技能图谱</tag>
       </tags>
   </entry>
   <entry>
@@ -655,8 +655,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>前端</tag>
         <tag>技能图谱</tag>
+        <tag>前端</tag>
       </tags>
   </entry>
   <entry>
@@ -844,8 +844,8 @@
         <category>DB</category>
       </categories>
       <tags>
-        <tag>CentOS</tag>
         <tag>Mysql</tag>
+        <tag>CentOS</tag>
       </tags>
   </entry>
   <entry>
@@ -993,18 +993,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[SpringBoot相关资料]]></title>
-    <url>%2F2017%2F07%2F29%2FSpringBoot%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%2F</url>
-    <content type="text"><![CDATA[Spring BootBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 Spring Boot 揭秘与实战 系列 catoop的专栏 方志朋 Spring Boot 专栏 Spring-boot集成 Website Spring Boot 官网 Spring Boot参考指南-中文版 Gradle 中文参考指南 慕课网视频 spring-boot-tutorials Code spring boot官方例子 spring-boot-starter SpringBoot-Learning favorites-web springboot-learning-example spring-boot-all]]></content>
-      <categories>
-        <category>Spring</category>
-        <category>SpringBoot</category>
-      </categories>
-      <tags>
-        <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[SpringCloud相关资料]]></title>
     <url>%2F2017%2F07%2F29%2FSpringCloud%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%2F</url>
     <content type="text"><![CDATA[Spring CloudBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 周立|Spring Cloud 方志朋 Spring Cloud 专栏 许进 跟我学Spring Cloud Website Spring Cloud 官网 Spring Cloud中文网 Code spring-cloud-starter SpringCloud-Learning]]></content>
@@ -1014,6 +1002,18 @@
       </categories>
       <tags>
         <tag>SpringCloud</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SpringBoot相关资料]]></title>
+    <url>%2F2017%2F07%2F29%2FSpringBoot%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%2F</url>
+    <content type="text"><![CDATA[Spring BootBlog 程序员DD-翟永超 纯洁的微笑 liaokailin的专栏 Spring Boot 揭秘与实战 系列 catoop的专栏 方志朋 Spring Boot 专栏 Spring-boot集成 Website Spring Boot 官网 Spring Boot参考指南-中文版 Gradle 中文参考指南 慕课网视频 spring-boot-tutorials Code spring boot官方例子 spring-boot-starter SpringBoot-Learning favorites-web springboot-learning-example spring-boot-all]]></content>
+      <categories>
+        <category>Spring</category>
+        <category>SpringBoot</category>
+      </categories>
+      <tags>
+        <tag>SpringBoot</tag>
       </tags>
   </entry>
   <entry>
