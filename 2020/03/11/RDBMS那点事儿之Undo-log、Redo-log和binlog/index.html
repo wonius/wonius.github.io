@@ -120,17 +120,17 @@
 
 
 
-<meta name="description" content="Undo log、Redo log、binlog相关的一些知识点">
+<meta name="description" content="关系型数据库中Undo log、Redo log、binlog相关的一些知识点">
 <meta name="keywords" content="事务,binlog,undolog,redolog">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RDBMS那点事儿之Undo-log、Redo-log和binlog">
 <meta property="og:url" content="http://wonius.top/2020/03/11/RDBMS那点事儿之Undo-log、Redo-log和binlog/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
-<meta property="og:description" content="Undo log、Redo log、binlog相关的一些知识点">
-<meta property="og:updated_time" content="2020-03-12T00:55:44.383Z">
+<meta property="og:description" content="关系型数据库中Undo log、Redo log、binlog相关的一些知识点">
+<meta property="og:updated_time" content="2020-03-12T00:59:41.413Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RDBMS那点事儿之Undo-log、Redo-log和binlog">
-<meta name="twitter:description" content="Undo log、Redo log、binlog相关的一些知识点">
+<meta name="twitter:description" content="关系型数据库中Undo log、Redo log、binlog相关的一些知识点">
 
 
 
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  974
+                  1,015
                 </span>
               
 
@@ -454,7 +454,7 @@
 
           
               <div class="post-description">
-                  Undo log、Redo log、binlog相关的一些知识点
+                  关系型数据库中Undo log、Redo log、binlog相关的一些知识点
               </div>
           
 
@@ -485,6 +485,8 @@
 <h2 id="执行过程"><a href="#执行过程" class="headerlink" title="执行过程"></a>执行过程</h2><p>再完整的梳理一下完整的执行过程，当使用事务时：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">生成事务ID -&gt; 查询原值写到data buffer -&gt; undo log（包括buffer到file）-&gt; 事务开始 -&gt; redo log（包括buffer到file）-&gt; 执行操作（update或其他，操作过程中实时写redo log）-&gt; 事务完成 -&gt; binlog写入</div></pre></td></tr></table></figure>
 <p>中间任何环节出现问题，比如重启，以redo log中的事务状态为依据，判断是否需要回滚。</p>
+<p>以上说的是单个事务的流程。但是我们知道最头疼的永远是并发的场景。</p>
+<p>聊到这里了，顺便聊聊并发。</p>
 <h1 id="并发情况下产生的问题"><a href="#并发情况下产生的问题" class="headerlink" title="并发情况下产生的问题"></a>并发情况下产生的问题</h1><p>假设有两个事务T1、T2在同时进行。</p>
 <h2 id="脏读"><a href="#脏读" class="headerlink" title="脏读"></a>脏读</h2><p>当T1执行过程中，对某条数据做了update，T2读取了该数据，但是最终T1回滚，T2再读数据，发现两次数据不一致。</p>
 <p>关键点在于T1没有执行成功。</p>
