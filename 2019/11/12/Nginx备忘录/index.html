@@ -127,7 +127,7 @@
 <meta property="og:url" content="http://wonius.top/2019/11/12/Nginx备忘录/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="nginx的一些信息">
-<meta property="og:updated_time" content="2019-12-05T11:06:21.226Z">
+<meta property="og:updated_time" content="2020-03-17T09:43:45.297Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nginx备忘录">
 <meta name="twitter:description" content="nginx的一些信息">
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5,546
+                  5,583
                 </span>
               
 
@@ -495,7 +495,7 @@
 <p><code>log_format</code>设置日志的格式，<code>myFormat</code>相当于别名，配合<code>access_log</code>使用。</p>
 <p><code>access_log</code> 访问日志存放目录。nginx调优时可以关闭该功能，提高磁盘IO读写速度。</p>
 <p><code>server_tokens</code> 对于性能没有优化，当访问失败时，可以隐藏nginx版本信息。</p>
-<p><code>sendfile</code> 可以使用sendfile()，使文件传输更高效。传输文件涉及到将内容从磁盘读取，写到Tcp连接的过程。该项关闭时的流程是，Pre-sendfile是传送数据之前在用户空间申请数据缓冲区。之后用read()将数据从文件拷贝到这个缓冲区，write()将缓冲区数据写入网络。sendfile()可以在任意两个文件描述符之间互相拷贝数据，而sendfile()是可以立即将数据从磁盘读，经OS缓存，写入TCP socket。因为这种拷贝是在内核完成的（避免了内核缓冲区和用户缓冲区之间的数据拷贝），sendfile()要比组合read()和write()以及打开关闭丢弃缓冲更加有效。</p>
+<p><code>sendfile</code> 可以使用sendfile()，使文件传输更高效。传输文件涉及到将内容从磁盘读取，写到Tcp连接的过程。该项关闭时的流程是，Pre-sendfile是传送数据之前在用户空间申请数据缓冲区。之后用read()将数据从文件拷贝到内核读取缓冲区，再从内核读取缓冲区读到用户缓冲区，write()将用户缓冲区数据写到内核Socket缓冲区，再写入网络协议引擎，进行传输。sendfile()可以在任意两个文件描述符之间互相拷贝数据，而sendfile()是可以立即将数据从磁盘读，经OS缓存，写入TCP socket。因为这种拷贝是在内核完成的（避免了内核缓冲区和用户缓冲区之间的数据拷贝），sendfile()要比组合read()和write()以及打开关闭丢弃缓冲更加有效。</p>
 <p><code>tcp_nopush</code> 告诉nginx在一个数据包里发送所有头文件，而不一个接一个的发送。</p>
 <p><code>tcp_nodelay</code> 告诉nginx不要缓存数据，而是一段一段的发送。当需要及时发送数据时，就应该给应用设置这个属性，这样发送一小块数据信息时就不能立即得到返回值。<code>tcp_nopush</code>和<code>tcp_nodelay</code>两个指令设置为on用于防止网络阻塞。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">http&#123;</div><div class="line">	······</div><div class="line">	</div><div class="line">  keepalive_timeout  10;</div><div class="line">    </div><div class="line">  client_header_timeout 10;</div><div class="line">	client_body_timeout 10;</div><div class="line"></div><div class="line">	reset_timedout_connection on;</div><div class="line">	send_timeout 10;</div><div class="line">	</div><div class="line">	limit_conn_zone $binary_remote_addr zone=addr:5m;</div><div class="line">	limit_conn addr 100;</div><div class="line">	</div><div class="line">	······</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -571,7 +571,7 @@
   <p><span>本文标题:</span><a href="/2019/11/12/Nginx备忘录/">Nginx备忘录</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gavin 的个人博客">Gavin</a></p>
   <p><span>发布时间:</span>2019年11月12日 - 09:11</p>
-  <p><span>最后更新:</span>2019年12月05日 - 19:12</p>
+  <p><span>最后更新:</span>2020年03月17日 - 17:03</p>
   <p><span>原始链接:</span><a href="/2019/11/12/Nginx备忘录/" title="Nginx备忘录">http://wonius.top/2019/11/12/Nginx备忘录/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://wonius.top/2019/11/12/Nginx备忘录/"  aria-label="复制成功！"></i></span>
   </p>
