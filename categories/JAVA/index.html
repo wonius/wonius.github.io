@@ -123,7 +123,7 @@
 <meta name="keywords" content="Gavin&#39;s Notes, woniu, wonius, wonius.top">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Gavin&#39;s Notes">
-<meta property="og:url" content="http://wonius.top/categories/Java/index.html">
+<meta property="og:url" content="http://wonius.top/categories/JAVA/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gavin&#39;s Notes">
@@ -156,13 +156,13 @@
 
 
 
-  <link rel="canonical" href="http://wonius.top/categories/Java/"/>
+  <link rel="canonical" href="http://wonius.top/categories/JAVA/"/>
 
 
 
 
 
-  <title>分类: Java | Gavin's Notes</title>
+  <title>分类: JAVA | Gavin's Notes</title>
   
 
 
@@ -325,7 +325,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>Java<small>分类</small>
+        <h1>JAVA<small>分类</small>
         </h1>
       </div>
 
@@ -337,37 +337,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2018/08/30/Java-lombok应用/" itemprop="url">
+            <a class="post-title-link" href="/2017/09/18/错误-程序包com-sun-image-codec-jpeg不存在/" itemprop="url">
               
-                <span itemprop="name">lombok应用</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-30T14:28:17+08:00"
-              content="2018-08-30" >
-          08-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/06/Java常见报错/" itemprop="url">
-              
-                <span itemprop="name">Java常见报错</span>
+                <span itemprop="name">com.sun.image.codec.jpeg不存在</span>
               
             </a>
         
@@ -375,93 +347,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-06T20:07:22+08:00"
-              content="2018-03-06" >
-          03-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/19/JSON类库对比/" itemprop="url">
-              
-                <span itemprop="name">JSON类库对比</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-19T21:20:31+08:00"
-              content="2017-08-19" >
-          08-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/02/Java 常用Java程序片段/" itemprop="url">
-              
-                <span itemprop="name">常用Java程序片段</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-02T23:27:26+08:00"
-              content="2017-08-02" >
-          08-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/29/Java系列/" itemprop="url">
-              
-                <span itemprop="name">JVM</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-29T23:46:10+08:00"
-              content="2017-07-29" >
-          07-29
+              datetime="2017-09-18T17:51:00+08:00"
+              content="2017-09-18" >
+          09-18
         </time>
       </div>
 
@@ -627,7 +515,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">49.3k</span>
+    <span title="Site words total count">49.4k</span>
   
   <div class=BbeiAn-info">
     <a href="http://www.beian.miit.gov.cn/">沪ICP备18011513号</a>
@@ -1165,6 +1053,98 @@
     }
 
     function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+ addCount(Counter) {
       var $visitors = $(".leancloud_visitors");
       var url = $visitors.attr('id').trim();
       var title = $visitors.attr('data-flag-title').trim();

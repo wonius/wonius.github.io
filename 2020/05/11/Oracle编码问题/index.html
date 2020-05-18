@@ -127,7 +127,7 @@
 <meta property="og:url" content="http://wonius.top/2020/05/11/Oracle编码问题/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="Oracle编码问题">
-<meta property="og:updated_time" content="2020-05-12T03:03:14.216Z">
+<meta property="og:updated_time" content="2020-05-18T12:31:09.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle编码问题">
 <meta name="twitter:description" content="Oracle编码问题">
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  681
+                  744
                 </span>
               
 
@@ -446,7 +446,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -475,10 +475,11 @@
 <p>在Oracle搭建，以及初始化脚本过程中，共有4处涉及到编码问题。</p>
 <p>关于编码问题，实际上讲的是如何设置编码，保证中文不乱码。如果是仅是英文字符，不会有乱码问题的。</p>
 <p>有一点需要区分，命令执行环境是在shell，还是在sqlplus。</p>
-<h1 id="主机字符集"><a href="#主机字符集" class="headerlink" title="主机字符集"></a>主机字符集</h1><p>可通过locale和env | grep LANG命令查看。</p>
+<h1 id="操作系统字符集"><a href="#操作系统字符集" class="headerlink" title="操作系统字符集"></a>操作系统字符集</h1><p>可通过locale和env | grep LANG命令查看。</p>
 <p>该编码对于Oracle无影响，因为Oracle有自己的字符集，优先使用自己的字符集。</p>
 <p>就算两台主机的字符集不同，只要Oracle的字符集相同，也可以正常使用。</p>
 <p>只有在当前主机做调整时，才会依赖主机字符集。比如在shell中执行数据库的更新查改操作，其中涉及到主机编码与oracle编码互转的过程。如果两边编码不匹配，也会乱码。</p>
+<p>需要强调的一点是，sqlplus如果本身没有设置字符集，会默认使用操作系统的字符集。所以在使用sqlplus执行脚本的时候，要注意NLS_LANG设置为AMERICAN_AMERICA.ZHS16GBK，保证中文不乱码。</p>
 <h1 id="Oracle字符集"><a href="#Oracle字符集" class="headerlink" title="Oracle字符集"></a>Oracle字符集</h1><p>在建库(create database)时，可以设置该库的字符集，一般选择AL32UTF8。</p>
 <p>当登入sqlplus之后，执行sql语句做插入或者更新操作时，存入的数据以该字符为准。</p>
 <h1 id="脚本字符集"><a href="#脚本字符集" class="headerlink" title="脚本字符集"></a>脚本字符集</h1><p>这点指的是sql脚本文件中的编码字符集。</p>
@@ -514,7 +515,7 @@
   <p><span>本文标题:</span><a href="/2020/05/11/Oracle编码问题/">Oracle编码问题</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gavin 的个人博客">Gavin</a></p>
   <p><span>发布时间:</span>2020年05月11日 - 15:05</p>
-  <p><span>最后更新:</span>2020年05月12日 - 11:05</p>
+  <p><span>最后更新:</span>2020年05月18日 - 20:05</p>
   <p><span>原始链接:</span><a href="/2020/05/11/Oracle编码问题/" title="Oracle编码问题">http://wonius.top/2020/05/11/Oracle编码问题/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://wonius.top/2020/05/11/Oracle编码问题/"  aria-label="复制成功！"></i></span>
   </p>
@@ -772,7 +773,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#主机字符集"><span class="nav-number">1.</span> <span class="nav-text">主机字符集</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle字符集"><span class="nav-number">2.</span> <span class="nav-text">Oracle字符集</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#脚本字符集"><span class="nav-number">3.</span> <span class="nav-text">脚本字符集</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件格式"><span class="nav-number">4.</span> <span class="nav-text">文件格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh工具编码"><span class="nav-number">5.</span> <span class="nav-text">ssh工具编码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#操作系统字符集"><span class="nav-number">1.</span> <span class="nav-text">操作系统字符集</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle字符集"><span class="nav-number">2.</span> <span class="nav-text">Oracle字符集</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#脚本字符集"><span class="nav-number">3.</span> <span class="nav-text">脚本字符集</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件格式"><span class="nav-number">4.</span> <span class="nav-text">文件格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh工具编码"><span class="nav-number">5.</span> <span class="nav-text">ssh工具编码</span></a></li></ol></div>
             
 
           </div>
@@ -806,7 +807,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">49.3k</span>
+    <span title="Site words total count">49.4k</span>
   
   <div class=BbeiAn-info">
     <a href="http://www.beian.miit.gov.cn/">沪ICP备18011513号</a>

@@ -127,7 +127,7 @@
 <meta property="og:url" content="http://wonius.top/2018/07/21/kubectl常用命令/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="kubectl常用命令">
-<meta property="og:updated_time" content="2020-03-25T03:24:41.924Z">
+<meta property="og:updated_time" content="2020-05-12T06:41:53.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kubectl常用命令">
 <meta name="twitter:description" content="kubectl常用命令">
@@ -473,7 +473,7 @@
       
         <h1 id="查看pod"><a href="#查看pod" class="headerlink" title="查看pod"></a>查看pod</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kubectl <span class="builtin-name">get</span> po -o wide</div></pre></td></tr></table></figure>
 <h1 id="获取pod日志"><a href="#获取pod日志" class="headerlink" title="获取pod日志"></a>获取pod日志</h1><figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//写到文件中更方便查看</span></div><div class="line">kubectl logs **** &gt; ***.<span class="built_in">log</span></div></pre></td></tr></table></figure>
-<h1 id="编辑pod"><a href="#编辑pod" class="headerlink" title="编辑pod"></a>编辑pod</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kubectl <span class="builtin-name">edit</span> deployments *** -o yaml</div></pre></td></tr></table></figure>
+<h1 id="编辑deployment"><a href="#编辑deployment" class="headerlink" title="编辑deployment"></a>编辑deployment</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kubectl <span class="builtin-name">edit</span> deployments *** -o yaml</div></pre></td></tr></table></figure>
 <h1 id="进入bash"><a href="#进入bash" class="headerlink" title="进入bash"></a>进入bash</h1><p>实例已经启动</p>
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kubectl exec -<span class="keyword">it</span> **** bash</div></pre></td></tr></table></figure>
 
@@ -497,7 +497,7 @@
   <p><span>本文标题:</span><a href="/2018/07/21/kubectl常用命令/">kubectl常用命令</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gavin 的个人博客">Gavin</a></p>
   <p><span>发布时间:</span>2018年07月21日 - 20:07</p>
-  <p><span>最后更新:</span>2020年03月25日 - 11:03</p>
+  <p><span>最后更新:</span>2020年05月12日 - 14:05</p>
   <p><span>原始链接:</span><a href="/2018/07/21/kubectl常用命令/" title="kubectl常用命令">http://wonius.top/2018/07/21/kubectl常用命令/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://wonius.top/2018/07/21/kubectl常用命令/"  aria-label="复制成功！"></i></span>
   </p>
@@ -755,7 +755,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#查看pod"><span class="nav-number">1.</span> <span class="nav-text">查看pod</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#获取pod日志"><span class="nav-number">2.</span> <span class="nav-text">获取pod日志</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编辑pod"><span class="nav-number">3.</span> <span class="nav-text">编辑pod</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进入bash"><span class="nav-number">4.</span> <span class="nav-text">进入bash</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#查看pod"><span class="nav-number">1.</span> <span class="nav-text">查看pod</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#获取pod日志"><span class="nav-number">2.</span> <span class="nav-text">获取pod日志</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编辑deployment"><span class="nav-number">3.</span> <span class="nav-text">编辑deployment</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进入bash"><span class="nav-number">4.</span> <span class="nav-text">进入bash</span></a></li></ol></div>
             
 
           </div>
@@ -789,7 +789,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">49.3k</span>
+    <span title="Site words total count">49.4k</span>
   
   <div class=BbeiAn-info">
     <a href="http://www.beian.miit.gov.cn/">沪ICP备18011513号</a>

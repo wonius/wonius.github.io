@@ -127,7 +127,7 @@
 <meta property="og:url" content="http://wonius.top/2020/05/12/Oracle高可用架构/index.html">
 <meta property="og:site_name" content="Gavin&#39;s Notes">
 <meta property="og:description" content="Oracle高可用架构">
-<meta property="og:updated_time" content="2020-05-12T06:31:03.478Z">
+<meta property="og:updated_time" content="2020-05-12T06:33:19.128Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle高可用架构">
 <meta name="twitter:description" content="Oracle高可用架构">
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  609
+                  610
                 </span>
               
 
@@ -485,7 +485,7 @@
 <p>RAC架构需要与Oracle的另外一种技术，ASM（Automatic Storage Management），结合使用。基本原理是，不同Oracle主机共享同一块存储，就不需要数据同步了，而ASM是Oracle开发的管理存储的工具。</p>
 <p>该模式下需要先建立一个ASM实例，然后不同Oracle主机使用该ASM，创建表空间时指定该ASM。</p>
 <p>RAC、ASM对于硬件的要求更高，且由于共享数据，基本可以实时切换。一般核心系统</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- ASM模式，使用ASM存储，创建名为dbdata的表空间</span></div><div class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> dbdata</div><div class="line">  <span class="keyword">datafile</span> <span class="string">'+data_asm'</span> <span class="keyword">size</span> <span class="number">500</span>m</div><div class="line">  <span class="keyword">autoextend</span> <span class="keyword">on</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- ASM模式，ASM实例名为+data_asm，创建名为dbdata的表空间</span></div><div class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> dbdata</div><div class="line">  <span class="keyword">datafile</span> <span class="string">'+data_asm'</span> <span class="keyword">size</span> <span class="number">500</span>m</div><div class="line">  <span class="keyword">autoextend</span> <span class="keyword">on</span>;</div></pre></td></tr></table></figure>
 <h1 id="多机房架构"><a href="#多机房架构" class="headerlink" title="多机房架构"></a>多机房架构</h1><p>不论是DG架构，还是RAC架构，都在单一机房。</p>
 <p>当企业对于数据有更高要求时，就要考虑多机房架构了。</p>
 <p>根据是否同城又有同城备份，异城备份，以及两地三备份。</p>
@@ -803,7 +803,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">49.3k</span>
+    <span title="Site words total count">49.4k</span>
   
   <div class=BbeiAn-info">
     <a href="http://www.beian.miit.gov.cn/">沪ICP备18011513号</a>
