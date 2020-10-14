@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Redis主备自动切换高可用方案]]></title>
+    <url>%2F2020%2F10%2F14%2FRedis%E4%B8%BB%E5%A4%87%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88%2F</url>
+    <content type="text"><![CDATA[背景​ 某个客户购买了我们产品，需要到客户机房搭建高可用的redis，而且要求出现故障能够自动切换主备。考虑到节省机器，而且redis中数据也不会超过1G，决定用主从架构+keepalived实现。 搭建所需资源 2台主机 1个vip redis主从搭建 2台主机分别安装reids，并设置为开机自启动 修改redis.conf，设置主从 设置keepalived 2台主机分别安装keepalived，并设置为开机自启动 编写监听redis的脚本、修改master状态的脚本、修改slave状态的脚本 修改keepalived.conf，设置vip、各脚本 验证 先查看2台redis（A、B）的角色 手动将master（A）的redis关闭，然后查看slave（B）的角色是不是切换为master 在新的master（B）中设置一个值，比如hello 重新启动A，查看A的角色是否为slave，并验证A中是否将hello同步过来]]></content>
+      <categories>
+        <category>DB</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Solr高亮优化]]></title>
+    <url>%2F2020%2F10%2F14%2Fsolr%E9%AB%98%E4%BA%AE%E4%BC%98%E5%8C%96%2F</url>
+    <content type="text"><![CDATA[0729进展：删除了一些无用的过滤器，并打开httpcaching缓存。目前压测开20个线程（静态参数）1分钟，错误率约0.3%左右。20个线程（动态参数）1分钟，错误率约3.68%左右。后续优化方向： solr内存回收策略方面调整； solr查询优化参数调优； 查看高亮其他过滤器； PS：目前效率这么差，主要是因为高亮。因为使用高亮查询时，相当于在查询时重新索引，不会用之前构建的索引，所以比较消耗资源，也比较慢。能否跟业务沟通下，把高亮去掉？ 0730进展： 删除了查询逻辑中无用的字段 调整solr的jvm新生代内存分配，减少gc的次数 调整tomcat线程池这些调整都没什么较好的效果，目前效果：压测开20个线程（静态参数）1分钟，错误率0.1%左右。压测开20个线程（静态参数）1分钟，错误率25%左右。（昨天solr内部只有2w条数据，今天solr中有22w条数据） 明天的方向：再查些资料看看（这方面资料不多） 0731进展： 高亮组件改为FastVectorHighlighter 重新调整solr的jvm新生代内存分配 将solr中的collection改为2个分片效果：因为改了分片，目前在重建索引，solr中的数据5w左右压测开20个线程（动态参数）1分钟，错误率0.03%左右。压测开50个线程（动态参数）1分钟，错误率10%左右。（前50秒在0.02%，后10秒错误率突增，主要是因为由于压测的电脑线程跑满，无法创建新线程报的错） 优化成这样就差不多了吧 这几天做了如下优化： 调整全局搜索应用代码，删除不需要的查询字段和高亮字段； 将高亮字段类型改为持久化，可以持久化高亮字段的索引； 删除高亮字段所属的类型字段的过滤器（主要是同义词和停用词，我看了对应的文本文件，只有2条内容，应该是搭建solr时从别的地方拷贝过来的） 优化启动solr时jvm的内存分配 默认高亮组件效率较低，改为FastVectorHighter高亮组件 之前uat环境数据只有1个分片，现在改为了2个分片 调整了solr的配置，打开了httpcaching缓存]]></content>
+      <categories>
+        <category>中间件</category>
+      </categories>
+      <tags>
+        <tag>Solr</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Oracle高可用架构]]></title>
     <url>%2F2020%2F05%2F12%2FOracle%E9%AB%98%E5%8F%AF%E7%94%A8%E6%9E%B6%E6%9E%84%2F</url>
     <content type="text"><![CDATA[最近了解了一些Oracle方面的高可用架构，记录一下。 有时间补上架构图。 DG架构该架构是传统的主备架构，也是最常用的架构，满足一般系统的要求。 首先，申请两台完全同构的主机，挂载相同的NAS，并安装Oracle，修改设置。一般primary机对外提供服务，其他standby机备份。 每台Oracle主机都是独立的主机与存储，通过同步归档日志和在线日志实现数据同步。 一般DG架构中每台主机都会挂载一块NAS，Oracle数据和日志存放在NAS上。 建tablespace时指定datafile到NAS上。 当异常情况时，切换备机，切换时间一般为几分钟。 1234567-- 常规模式，创建名为dbdata的表空间create tablespace dbdata logging datafile '/xxx/xxx/data.dbf' size 500m autoextend on extent management local autoallocate segment space management auto ; PS：这里讲下DG和OGG主要的区别。DG效率更高、更稳定、占用资源少，但是只支持Oracle间同步。OGG效率、稳定性、资源占用都要差一点，但是支持不同数据库间同步。 RAC架构DG只使用Oracle就可以完成。 RAC架构需要与Oracle的另外一种技术，ASM（Automatic Storage Management），结合使用。基本原理是，不同Oracle主机共享同一块存储，就不需要数据同步了，而ASM是Oracle开发的管理存储的工具。 该模式下需要先建立一个ASM实例，然后不同Oracle主机使用该ASM，创建表空间时指定该ASM。 RAC、ASM对于硬件的要求更高，且由于共享数据，基本可以实时切换。一般核心系统 1234-- ASM模式，ASM实例名为+data_asm，创建名为dbdata的表空间create tablespace dbdata datafile '+data_asm' size 500m autoextend on; 多机房架构不论是DG架构，还是RAC架构，都在单一机房。 当企业对于数据有更高要求时，就要考虑多机房架构了。 根据是否同城又有同城备份，异城备份，以及两地三备份。 就说两地三备份吧，总共涉及3个机房，主机房A，同城机房B，异地机房C。 在主机房A中Oracle可以选择DG或者RAC架构（对于数据要求这么高，应该得用RAC了吧）。 同城机房B和异地机房C，视要求搭建。不同库间使用DG同步，同步链路为A-&gt;B，A-&gt;C。]]></content>
@@ -664,8 +686,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>技能图谱</tag>
         <tag>Apollo</tag>
+        <tag>技能图谱</tag>
       </tags>
   </entry>
   <entry>
@@ -700,8 +722,8 @@
         <category>技能图谱</category>
       </categories>
       <tags>
-        <tag>前端</tag>
         <tag>技能图谱</tag>
+        <tag>前端</tag>
       </tags>
   </entry>
   <entry>
