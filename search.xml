@@ -4203,4 +4203,16 @@
         <tag>TensorFlow</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Hexo升级记录</title>
+    <url>/2020/10/19/Hexo%E5%8D%87%E7%BA%A7%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>​    最近因为某些原因，升级了本机电脑上Node，然后引发了一连串的连锁反应，其中就包括Hexo。前后也花了点时间，mark下。</p>
+<h1 id="先升级node"><a href="#先升级node" class="headerlink" title="先升级node"></a>先升级node</h1><h1 id="再升级Hexo"><a href="#再升级Hexo" class="headerlink" title="再升级Hexo"></a>再升级Hexo</h1><h1 id="再修改主题"><a href="#再修改主题" class="headerlink" title="再修改主题"></a>再修改主题</h1>]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
 </search>
