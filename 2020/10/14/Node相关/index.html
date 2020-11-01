@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
   
-  <title>Node相关 | Gavin&#39;s Notes</title>
+  <title>NodeJs相关 | Gavin&#39;s Notes</title>
 
   
     <link rel="apple-touch-icon" href="/images/favicon.png">
@@ -100,7 +100,7 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">Node相关</div>
+      <div class="post-title">NodeJs相关</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime" title="Update time"></i>
@@ -111,8 +111,8 @@
                 <i class="iconfont icon-tags" title="Tags"></i>
                 
                 <span class="span--tag">
-                  <a href="/tags/Node/" title="Node">
-                    <b>#</b> Node
+                  <a href="/tags/NodeJs/" title="NodeJs">
+                    <b>#</b> NodeJs
                   </a>
                 </span>
                 
@@ -120,10 +120,10 @@
           
       </div>
       <div class="markdown-body">
-        <h1 id="node安装"><a href="#node安装" class="headerlink" title="node安装"></a>node安装</h1><p>首先安装homebrew</p>
+        <h1 id="NodeJs安装"><a href="#NodeJs安装" class="headerlink" title="NodeJs安装"></a>NodeJs安装</h1><p>首先安装homebrew</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 使用brew安装node</span></span><br><span class="line">brew install node</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 然后查看版本</span></span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
 
-<h1 id="node升级"><a href="#node升级" class="headerlink" title="node升级"></a>node升级</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清楚node的缓存</span></span><br><span class="line">sudo npm cache clean -f</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装n</span></span><br><span class="line">sudo npm install -g n</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 用n安装最新的稳定版本</span></span><br><span class="line">sudo n stable</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 升级npm</span></span><br><span class="line">sudo npm install npm -g</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看版本</span></span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<h1 id="NodeJs升级"><a href="#NodeJs升级" class="headerlink" title="NodeJs升级"></a>NodeJs升级</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清楚node的缓存</span></span><br><span class="line">sudo npm cache clean -f</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装n</span></span><br><span class="line">sudo npm install -g n</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 用n安装最新的稳定版本</span></span><br><span class="line">sudo n stable</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 升级npm</span></span><br><span class="line">sudo npm install npm -g</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看版本</span></span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
 
 <p>其他命令</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> node所有版本</span></span><br><span class="line">npm view node versions </span><br><span class="line"><span class="meta">#</span><span class="bash"> npm所有版本</span></span><br><span class="line">npm view npm versions </span><br><span class="line"><span class="meta">#</span><span class="bash"> 已安装插件</span></span><br><span class="line">npm list</span><br></pre></td></tr></table></figure>
@@ -150,8 +150,8 @@
                     <i class="iconfont icon-tags" title="Tags"></i>
                     
                     <span class="span--tag">
-                      <a href="/tags/Node/" title="Node">
-                        <b>#</b> Node
+                      <a href="/tags/NodeJs/" title="NodeJs">
+                        <b>#</b> NodeJs
                       </a>
                     </span>
                     
@@ -173,7 +173,7 @@
   <div class="post-catalog" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#node%E5%AE%89%E8%A3%85"><span class="toc-text">node安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#node%E5%8D%87%E7%BA%A7"><span class="toc-text">node升级</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NodeJs%E5%AE%89%E8%A3%85"><span class="toc-text">NodeJs安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NodeJs%E5%8D%87%E7%BA%A7"><span class="toc-text">NodeJs升级</span></a></li></ol>
     </div>
   </div>
 
