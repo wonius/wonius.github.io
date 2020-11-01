@@ -1,37 +1,491 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="author" content="zchengsite, 1451426471@qq.com" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  
+  <title>Hexo中的Next主题常用设置 | Gavin&#39;s Notes</title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 
-{% block page_class %}page-post-detail{% endblock %}
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
 
 
-{% block content %}
+  
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+<meta name="generator" content="Hexo 5.2.0"></head>
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Hexo中的Next主题常用设置</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2017-07-21
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="Tags"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Hexo/" title="Hexo">
+                    <b>#</b> Hexo
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h2 id="设置favicon-ico（网站logo）"><a href="#设置favicon-ico（网站logo）" class="headerlink" title="设置favicon.ico（网站logo）"></a>设置favicon.ico（网站logo）</h2><p>&emsp;&emsp;使用主题为next，按照主题内_config.yml所说，将icon放到hexo-site/source/目录下，没有生效。查了些资料，终于好了，设置如下：</p>
+<ol>
+<li>找一副自己中意的图片，尽量简单，因为会缩成很小。利用<a target="_blank" rel="noopener" href="http://tool.lu/favicon/">在线工具</a>制作icon，保存。我的大小是32*32，加载时大多时候很流畅，有时也会转啊转；</li>
+<li>将保存的favicon.ico移动至hexo-site/themes/next/source/images目录下；</li>
+<li>修改next配置文件_config.yml，如下：<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">favicon:</span> images/favicon.ico</span><br></pre></td></tr></table></figure></li>
+<li>hexo g &amp;&amp; hexo s，就可以在本地看到效果了。调试满意后，hexo d发布；</li>
+</ol>
+<h2 id="利用Leancloud实现阅读统计，请求异常401"><a href="#利用Leancloud实现阅读统计，请求异常401" class="headerlink" title="利用Leancloud实现阅读统计，请求异常401"></a>利用Leancloud实现阅读统计，请求异常401</h2><p>&emsp;&emsp;如何配置leancloud在此不做赘述，next作者文档中写的已经很清晰了，可以先移步到<a target="_blank" rel="noopener" href="http://theme-next.iissnan.com/getting-started.html#third-party-services">NEXT</a>看看。笔者的情况是，博客在github上，在万网买了个域名，绑定到github。</p>
+<p>&emsp;&emsp;配置完成之后，发现阅读统计不能正常使用，开始以为缓存原因，过了两天，还是没好，打算解决这个问题。</p>
+<p>&emsp;&emsp;分析过程：</p>
+<ol>
+<li>接口报错401：Unauthorized，再次检查了一下AppKey、Web安全域名配置，都正常。比较纳闷，开始研究。</li>
+<li>用chrome看了下counter的请求，Request URL竟然是<a target="_blank" rel="noopener" href="https://api.us.leancloud.cn/****">https://api.us.leancloud.cn/****</a>。看起来比较诡异，us不是美国吗。难道访问的url错了？</li>
+<li>重新登录leancloud，发现域名是<a target="_blank" rel="noopener" href="https://leancloud.cn/">https://leancloud.cn/</a>，没有us。新开tab页，访问<a target="_blank" rel="noopener" href="https://us.leancloud.cn/">https://us.leancloud.cn/</a>，也可以成功登录。登录后仔细对比，才发现原来leancloud右上角有个选项，可以选择国内节点、美国节点。两个节点中的应用是相互隔离的。我的next中配置的是国内节点中应用的配置，请求到美国节点认证，所以认证不通过。明白之后，我在美国节点中也创建了应用，把next中的相关配置更新，部署，果然可以正常显示。</li>
+</ol>
+<p>&emsp;&emsp;个人猜测，由于github服务器在美国，所以当请求leancloud时，请求被分发到了美国节点上的服务器上。</p>
+<p>补充：后来更新了NexT代码，又必须配置成国内节点才可以访问。</p>
+<h2 id="增加关键字、摘要"><a href="#增加关键字、摘要" class="headerlink" title="增加关键字、摘要"></a>增加关键字、摘要</h2><p>&emsp;&emsp;建议通过在模板中增加属性的方式，添加关键字、摘要。</p>
+<ol>
+<li>修改next/_config.yml配置文件:<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">auto_excerpt:</span></span><br><span class="line"><span class="comment">//开启摘要</span></span><br><span class="line"><span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="comment">//默认文章的前150个字符作为摘要</span></span><br><span class="line"><span class="attr">length:</span> <span class="number">150</span></span><br></pre></td></tr></table></figure></li>
+<li>修改hexo-site/scaffolds/post.md文件，增加keywords、description。<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> &#123;&#123; <span class="string">title</span> &#125;&#125;</span><br><span class="line"><span class="attr">date:</span> &#123;&#123; <span class="string">date</span> &#125;&#125;</span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line"><span class="attr">categories:</span> </span><br><span class="line"><span class="attr">keywords:</span> </span><br><span class="line"><span class="string">//摘要，填写后显示该字段的值。没有该地段，自动取文章前150个字符作为摘要</span></span><br><span class="line"><span class="attr">description:</span> </span><br><span class="line"><span class="meta">---</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="修改文章宽度"><a href="#修改文章宽度" class="headerlink" title="修改文章宽度"></a>修改文章宽度</h2><p>&emsp;&emsp; 修改/next/source/css/_custom/custom.styl。该文件提供给用户配置自定义的样式，用户尽量避免对源代码的改动，以免牵一发而动全身。<br>针对Mist、Muse风格，可以用如下配置</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> 修改成你期望的宽度</span><br><span class="line"><span class="variable">$content</span>-desktop = <span class="number">1080</span>px</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span> 当视窗超过 <span class="number">1600</span>px 后的宽度</span><br><span class="line"><span class="variable">$content</span>-desktop-large = <span class="number">1200</span>px</span><br></pre></td></tr></table></figure>
+<p>如果是Pisces风格，则需要</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">header</span>&#123; <span class="attribute">width</span>: <span class="number">90%</span>; &#125;</span><br><span class="line"><span class="selector-class">.container</span> <span class="selector-class">.main-inner</span> &#123; <span class="attribute">width</span>: <span class="number">90%</span>; &#125;</span><br><span class="line"><span class="selector-class">.content-wrap</span> &#123; <span class="attribute">width</span>: <span class="built_in">calc</span>(<span class="number">100%</span> - <span class="number">260px</span>); &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="新建文章时同时建立同名目录，保存图片"><a href="#新建文章时同时建立同名目录，保存图片" class="headerlink" title="新建文章时同时建立同名目录，保存图片"></a>新建文章时同时建立同名目录，保存图片</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span>编辑hexo目录下的_config.yml，修改如下配置</span><br><span class="line">post_asset_folder:true</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span>新建文件</span><br><span class="line">hexo new <span class="string">&#x27;helloworld&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span>将图片移动到helloworld目录中，并且在md中引用</span><br><span class="line">&#123;% asset_img <span class="number">2</span>.JPG 这是描述 %&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改模板"><a href="#修改模板" class="headerlink" title="修改模板"></a>修改模板</h2><p>默认新建文档的模板是hexo/scaffolds/post.md，所以如果修改模板，直接在该文件中修改。</p>
+<p>比如增加页脚，直接在post.md中增加。</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2017/07/15/%E4%BD%BF%E7%94%A8Mybatis%E6%97%B6%E5%AF%B9%E4%BA%8EOracle%E4%B8%ADboolean%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%A4%84%E7%90%86/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2017-07-21
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="Tags"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Hexo/" title="Hexo">
+                        <b>#</b> Hexo
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2017/07/29/SpringCloud%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div class="post-catalog" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AEfavicon-ico%EF%BC%88%E7%BD%91%E7%AB%99logo%EF%BC%89"><span class="toc-text">设置favicon.ico（网站logo）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8Leancloud%E5%AE%9E%E7%8E%B0%E9%98%85%E8%AF%BB%E7%BB%9F%E8%AE%A1%EF%BC%8C%E8%AF%B7%E6%B1%82%E5%BC%82%E5%B8%B8401"><span class="toc-text">利用Leancloud实现阅读统计，请求异常401</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%91%98%E8%A6%81"><span class="toc-text">增加关键字、摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%96%87%E7%AB%A0%E5%AE%BD%E5%BA%A6"><span class="toc-text">修改文章宽度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0%E6%97%B6%E5%90%8C%E6%97%B6%E5%BB%BA%E7%AB%8B%E5%90%8C%E5%90%8D%E7%9B%AE%E5%BD%95%EF%BC%8C%E4%BF%9D%E5%AD%98%E5%9B%BE%E7%89%87"><span class="toc-text">新建文章时同时建立同名目录，保存图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%A8%A1%E6%9D%BF"><span class="toc-text">修改模板</span></a></li></ol>
     </div>
   </div>
 
-{% endblock %}
+  
+<script src="/js/catalog.js"></script>
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="facebook" href="">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="twitter" href="">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="wechat" href="">
+            <i class="iconfont icon-wechat"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="weibo" href="">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © Oranges 2020</a>
+    </div>
+  
+    <div class="footer-more">
+      <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+      
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+    </div>
+  </body>
+</html>

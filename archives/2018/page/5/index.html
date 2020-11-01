@@ -1,62 +1,1445 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post-collapse.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
 
-{% block title %}{{ __('title.archive') }} | {{ config.title }}{% endblock %}
+  <head>
+  <meta charset="utf-8">
+  <meta name="author" content="zchengsite, 1451426471@qq.com" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  
+  <title>归档: 2018 | Gavin&#39;s Notes</title>
 
-{% block page_class %}page-archive{% endblock %}
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
 
-{% block content %}
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 
-  {#####################}
-  {### ARCHIVE BLOCK ###}
-  {#####################}
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
 
-      <span class="archive-page-counter">
-        {% set cheers %}
-        {% set posts_length = site.posts.length %}
-        {% if posts_length > 210 %} {% set cheers = 'excellent' %}
-          {% elif posts_length > 130 %} {% set cheers = 'great' %}
-          {% elif posts_length > 80 %} {% set cheers = 'good' %}
-          {% elif posts_length > 50 %} {% set cheers = 'nice' %}
-          {% elif posts_length > 30 %} {% set cheers = 'ok' %}
-        {% else %}
-          {% set cheers = 'um' %}
-        {% endif %}
-        {{ __('cheers.' + cheers) }}! {{ _p("counter.archive_posts", site.posts.length) }} {{ __('keep_on') }}
-      </span>
 
-      {% for post in page.posts %}
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 
-        {# Show year #}
-        {% set year %}
-        {% set post.year = date(post.date, 'YYYY') %}
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
 
-        {% if post.year !== year %}
-          {% set year = post.year %}
-          <div class="collection-title">
-            <{% if theme.seo %}h2{% else %}h1{% endif %} class="archive-year" id="archive-year-{{ year }}">{{ year }}</{% if theme.seo %}h2{% else %}h1{% endif %}>
-          </div>
-        {% endif %}
-        {# endshow #}
 
-        {{ post_template.render(post) }}
+  
 
-      {% endfor %}
+<meta name="generator" content="Hexo 5.2.0"></head>
 
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+
+<!-- last: 按年份把文章分组，当前遍历到的年份 -->
+<!-- now: 当前遍历到的文章的发布年份 -->
+
+<div class="container archives">
+  <div class="post-list">
+    
+    
+      
+        <!-- 第一篇文章的发布年份呈现 -->
+        <div class="content-title">
+          <h2>
+            <span>2020</span>
+          </h2>
+        </div>
+      
+      <div class="post-item" title="华硕TUF-AX3000配置梅林固件">
+        <div class="time-m-d">10-27</div>
+        <div class="title">
+          <a href="/2020/10/27/%E5%8D%8E%E7%A1%95TUF-AX3000%E9%85%8D%E7%BD%AE%E6%A2%85%E6%9E%97%E5%9B%BA%E4%BB%B6/">
+            <span>华硕TUF-AX3000配置梅林固件</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="configMap的应用">
+        <div class="time-m-d">10-21</div>
+        <div class="title">
+          <a href="/2020/10/21/configMap%E4%BD%BF%E7%94%A8/">
+            <span>configMap的应用</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Hexo升级记录">
+        <div class="time-m-d">10-19</div>
+        <div class="title">
+          <a href="/2020/10/19/Hexo%E5%8D%87%E7%BA%A7%E8%AE%B0%E5%BD%95/">
+            <span>Hexo升级记录</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Node相关">
+        <div class="time-m-d">10-14</div>
+        <div class="title">
+          <a href="/2020/10/14/Node%E7%9B%B8%E5%85%B3/">
+            <span>Node相关</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Redis主备自动切换高可用方案">
+        <div class="time-m-d">10-14</div>
+        <div class="title">
+          <a href="/2020/10/14/Redis%E4%B8%BB%E5%A4%87%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88/">
+            <span>Redis主备自动切换高可用方案</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Solr高亮优化">
+        <div class="time-m-d">10-14</div>
+        <div class="title">
+          <a href="/2020/10/14/solr%E9%AB%98%E4%BA%AE%E4%BC%98%E5%8C%96/">
+            <span>Solr高亮优化</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Oracle高可用架构">
+        <div class="time-m-d">05-12</div>
+        <div class="title">
+          <a href="/2020/05/12/Oracle%E9%AB%98%E5%8F%AF%E7%94%A8%E6%9E%B6%E6%9E%84/">
+            <span>Oracle高可用架构</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Oracle编码问题">
+        <div class="time-m-d">05-11</div>
+        <div class="title">
+          <a href="/2020/05/11/Oracle%E7%BC%96%E7%A0%81%E9%97%AE%E9%A2%98/">
+            <span>Oracle编码问题</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Oracle彻底删除某database">
+        <div class="time-m-d">05-11</div>
+        <div class="title">
+          <a href="/2020/05/11/Oracle%E5%BD%BB%E5%BA%95%E5%88%A0%E9%99%A4%E6%9F%90database/">
+            <span>Oracle彻底删除某database</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="ZK那点事儿">
+        <div class="time-m-d">03-25</div>
+        <div class="title">
+          <a href="/2020/03/25/ZK%E9%82%A3%E7%82%B9%E4%BA%8B%E5%84%BF/">
+            <span>ZK那点事儿</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="RDBMS那点事儿之Undo-log、Redo-log和binlog">
+        <div class="time-m-d">03-11</div>
+        <div class="title">
+          <a href="/2020/03/11/RDBMS%E9%82%A3%E7%82%B9%E4%BA%8B%E5%84%BF%E4%B9%8BUndo-log%E3%80%81Redo-log%E5%92%8Cbinlog/">
+            <span>RDBMS那点事儿之Undo-log、Redo-log和binlog</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Jpa中使用@Scheduled报no transaction is in progress">
+        <div class="time-m-d">01-13</div>
+        <div class="title">
+          <a href="/2020/01/13/Jpa%E4%B8%AD%E4%BD%BF%E7%94%A8-Scheduled%E6%8A%A5no-transaction-is-in-progress/">
+            <span>Jpa中使用@Scheduled报no transaction is in progress</span>
+          </a>
+        </div>
+      </div>
+    
+      
+        <!-- 后续文章的发布年份呈现 -->
+        <div class="content-title">
+          <h2>
+            <span>2019</span>
+          </h2>
+        </div>
+      
+      <div class="post-item" title="容器内权限正常，无权限创建目录">
+        <div class="time-m-d">12-30</div>
+        <div class="title">
+          <a href="/2019/12/30/Docker%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">
+            <span>容器内权限正常，无权限创建目录</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Nginx备忘录">
+        <div class="time-m-d">11-12</div>
+        <div class="title">
+          <a href="/2019/11/12/Nginx%E5%A4%87%E5%BF%98%E5%BD%95/">
+            <span>Nginx备忘录</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="通过K8S传参创建Job">
+        <div class="time-m-d">07-25</div>
+        <div class="title">
+          <a href="/2019/07/25/K8S/">
+            <span>通过K8S传参创建Job</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="GPU安装Docker环境">
+        <div class="time-m-d">06-27</div>
+        <div class="title">
+          <a href="/2019/06/27/GPU%E5%AE%89%E8%A3%85Docker%E7%8E%AF%E5%A2%83/">
+            <span>GPU安装Docker环境</span>
+          </a>
+        </div>
+      </div>
+    
+      
+        <!-- 后续文章的发布年份呈现 -->
+        <div class="content-title">
+          <h2>
+            <span>2018</span>
+          </h2>
+        </div>
+      
+      <div class="post-item" title="Maven的那些事儿">
+        <div class="time-m-d">10-22</div>
+        <div class="title">
+          <a href="/2018/10/22/Maven%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+            <span>Maven的那些事儿</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="文件MD5批量生成">
+        <div class="time-m-d">10-18</div>
+        <div class="title">
+          <a href="/2018/10/18/Linux%E6%96%87%E4%BB%B6MD5%E7%94%9F%E6%88%90/">
+            <span>文件MD5批量生成</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Dockerfile与Maven参数间的那点事儿">
+        <div class="time-m-d">09-28</div>
+        <div class="title">
+          <a href="/2018/09/28/Dockerfile%E4%B8%8EMaven%E5%8F%82%E6%95%B0%E9%97%B4%E7%9A%84%E9%82%A3%E7%82%B9%E4%BA%8B%E5%84%BF/">
+            <span>Dockerfile与Maven参数间的那点事儿</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Dockerfile记录">
+        <div class="time-m-d">09-21</div>
+        <div class="title">
+          <a href="/2018/09/21/Dockerfile%E8%AE%B0%E5%BD%95/">
+            <span>Dockerfile记录</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="iTerm主题配色">
+        <div class="time-m-d">09-19</div>
+        <div class="title">
+          <a href="/2018/09/19/iTerm%E4%B8%BB%E9%A2%98%E9%85%8D%E8%89%B2/">
+            <span>iTerm主题配色</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="GDD China 2018">
+        <div class="time-m-d">09-19</div>
+        <div class="title">
+          <a href="/2018/09/19/GDD2018/">
+            <span>GDD China 2018</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="养犬有道の准备篇">
+        <div class="time-m-d">09-12</div>
+        <div class="title">
+          <a href="/2018/09/12/%E6%9F%B4%E7%8A%AC%E5%9B%9E%E5%AE%B6%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87/">
+            <span>养犬有道の准备篇</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Json处理时需要注意的那些事儿">
+        <div class="time-m-d">09-12</div>
+        <div class="title">
+          <a href="/2018/09/12/json/">
+            <span>Json处理时需要注意的那些事儿</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="养犬有道の驱虫篇">
+        <div class="time-m-d">09-09</div>
+        <div class="title">
+          <a href="/2018/09/09/%E6%9F%B4%E7%8A%AC%E9%A9%B1%E8%99%AB/">
+            <span>养犬有道の驱虫篇</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="养犬有道の禁忌食物篇">
+        <div class="time-m-d">09-09</div>
+        <div class="title">
+          <a href="/2018/09/09/%E6%9F%B4%E7%8A%AC%E4%B8%8D%E8%83%BD%E5%90%83%E7%9A%84%E7%9A%84%E9%82%A3%E4%BA%9B%E5%A5%BD%E5%90%83%E7%9A%84/">
+            <span>养犬有道の禁忌食物篇</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Solr演练">
+        <div class="time-m-d">09-09</div>
+        <div class="title">
+          <a href="/2018/09/09/Solr%E6%BC%94%E7%BB%83/">
+            <span>Solr演练</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="SpringRedisData中事务的坑">
+        <div class="time-m-d">09-07</div>
+        <div class="title">
+          <a href="/2018/09/07/SpringRedisData%E4%B8%AD%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9D%91/">
+            <span>SpringRedisData中事务的坑</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="lombok应用">
+        <div class="time-m-d">08-30</div>
+        <div class="title">
+          <a href="/2018/08/30/Java-lombok%E5%BA%94%E7%94%A8/">
+            <span>lombok应用</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Redis常用命令">
+        <div class="time-m-d">08-30</div>
+        <div class="title">
+          <a href="/2018/08/30/Redis%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+            <span>Redis常用命令</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Redisson遇到的坑">
+        <div class="time-m-d">08-30</div>
+        <div class="title">
+          <a href="/2018/08/30/Redisson%E5%BC%82%E5%B8%B8/">
+            <span>Redisson遇到的坑</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="养犬有道の疫苗篇">
+        <div class="time-m-d">08-26</div>
+        <div class="title">
+          <a href="/2018/08/26/%E6%9F%B4%E7%8A%AC%E7%96%AB%E8%8B%97%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/">
+            <span>养犬有道の疫苗篇</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="家有小柴の柴犬身高体重参照表">
+        <div class="time-m-d">08-23</div>
+        <div class="title">
+          <a href="/2018/08/23/%E6%9F%B4%E7%8A%AC%E5%85%BB%E6%88%90/">
+            <span>家有小柴の柴犬身高体重参照表</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="腾讯云+Hexo支持https协议">
+        <div class="time-m-d">08-23</div>
+        <div class="title">
+          <a href="/2018/08/23/Hexo-%E8%85%BE%E8%AE%AF%E4%BA%91%E5%BC%80%E5%90%AFhttps/">
+            <span>腾讯云+Hexo支持https协议</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="家有小柴の柴犬挑选篇">
+        <div class="time-m-d">08-07</div>
+        <div class="title">
+          <a href="/2018/08/07/%E6%9F%B4%E7%8A%AC%E6%8C%91%E9%80%89/">
+            <span>家有小柴の柴犬挑选篇</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Spring注入static变量">
+        <div class="time-m-d">07-26</div>
+        <div class="title">
+          <a href="/2018/07/26/Spring%E6%B3%A8%E5%85%A5static%E5%8F%98%E9%87%8F/">
+            <span>Spring注入static变量</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="kubectl常用命令">
+        <div class="time-m-d">07-21</div>
+        <div class="title">
+          <a href="/2018/07/21/kubectl%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+            <span>kubectl常用命令</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Redis-Session管理">
+        <div class="time-m-d">07-13</div>
+        <div class="title">
+          <a href="/2018/07/13/Redis-Session%E7%AE%A1%E7%90%86/">
+            <span>Redis-Session管理</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Spring集成HanLP分词">
+        <div class="time-m-d">06-15</div>
+        <div class="title">
+          <a href="/2018/06/15/Spring%E9%9B%86%E6%88%90HanLP%E5%88%86%E8%AF%8D/">
+            <span>Spring集成HanLP分词</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="iOS12_Beta升级">
+        <div class="time-m-d">06-06</div>
+        <div class="title">
+          <a href="/2018/06/06/iOS12-Beta%E5%8D%87%E7%BA%A7/">
+            <span>iOS12_Beta升级</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="SpringBoot多台实例监控redis-key失效事件">
+        <div class="time-m-d">06-06</div>
+        <div class="title">
+          <a href="/2018/06/06/SpringBoot%E5%A4%9A%E5%AE%9E%E4%BE%8B%E7%9B%91%E6%8E%A7redis-key%E5%A4%B1%E6%95%88%E4%BA%8B%E4%BB%B6/">
+            <span>SpringBoot多台实例监控redis-key失效事件</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="SpringCloud项目搭建">
+        <div class="time-m-d">05-31</div>
+        <div class="title">
+          <a href="/2018/05/31/SpringCloud%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/">
+            <span>SpringCloud项目搭建</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="vim键位介绍">
+        <div class="time-m-d">05-29</div>
+        <div class="title">
+          <a href="/2018/05/29/vim%E9%94%AE%E4%BD%8D%E4%BB%8B%E7%BB%8D/">
+            <span>vim键位介绍</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="技能图谱-后端">
+        <div class="time-m-d">05-29</div>
+        <div class="title">
+          <a href="/2018/05/29/%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1-%E5%90%8E%E7%AB%AF/">
+            <span>技能图谱-后端</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="SpringCloud概述">
+        <div class="time-m-d">05-29</div>
+        <div class="title">
+          <a href="/2018/05/29/SpringCloud%E6%A6%82%E8%BF%B0/">
+            <span>SpringCloud概述</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Python基础知识">
+        <div class="time-m-d">05-24</div>
+        <div class="title">
+          <a href="/2018/05/24/Python%E8%A7%84%E8%8C%83/">
+            <span>Python基础知识</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Python2与Python3差异">
+        <div class="time-m-d">05-23</div>
+        <div class="title">
+          <a href="/2018/05/23/Python2%E4%B8%8EPython3%E5%B7%AE%E5%BC%82/">
+            <span>Python2与Python3差异</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="pip2与pip3无法并存共用">
+        <div class="time-m-d">05-23</div>
+        <div class="title">
+          <a href="/2018/05/23/pip2%E4%B8%8Epip3%E6%97%A0%E6%B3%95%E5%B9%B6%E5%AD%98%E5%85%B1%E7%94%A8%E9%97%AE%E9%A2%98/">
+            <span>pip2与pip3无法并存共用</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="BlockChain入门">
+        <div class="time-m-d">05-21</div>
+        <div class="title">
+          <a href="/2018/05/21/BlockChain%E5%85%A5%E9%97%A8/">
+            <span>BlockChain入门</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="MacOS安装Matlab">
+        <div class="time-m-d">05-20</div>
+        <div class="title">
+          <a href="/2018/05/20/MacOS%E5%AE%89%E8%A3%85Matlab/">
+            <span>MacOS安装Matlab</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="ML中的Loss函数">
+        <div class="time-m-d">05-12</div>
+        <div class="title">
+          <a href="/2018/05/12/ML%E4%B8%AD%E7%9A%84Loss%E5%87%BD%E6%95%B0/">
+            <span>ML中的Loss函数</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="TensorFlow四种Cross_Entropy算法实现与应用">
+        <div class="time-m-d">05-12</div>
+        <div class="title">
+          <a href="/2018/05/12/TensorFlow%E5%9B%9B%E7%A7%8DCross-Entropy%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%E4%B8%8E%E5%BA%94%E7%94%A8/">
+            <span>TensorFlow四种Cross_Entropy算法实现与应用</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="TensorFlow-API">
+        <div class="time-m-d">05-11</div>
+        <div class="title">
+          <a href="/2018/05/11/TensorFlow-API/">
+            <span>TensorFlow-API</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="搭建shadowsocks服务">
+        <div class="time-m-d">05-06</div>
+        <div class="title">
+          <a href="/2018/05/06/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAshadowsocks%E6%9C%8D%E5%8A%A1/">
+            <span>搭建shadowsocks服务</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Vimium快捷键">
+        <div class="time-m-d">05-03</div>
+        <div class="title">
+          <a href="/2018/05/03/Vimium%E5%BF%AB%E6%8D%B7%E9%94%AE/">
+            <span>Vimium快捷键</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="SpringBoot集成Swagger2">
+        <div class="time-m-d">04-27</div>
+        <div class="title">
+          <a href="/2018/04/27/SpringBoot%E9%9B%86%E6%88%90Swagger2/">
+            <span>SpringBoot集成Swagger2</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="SpringBoot集成TestNG">
+        <div class="time-m-d">04-27</div>
+        <div class="title">
+          <a href="/2018/04/27/SpringBoot%E9%9B%86%E6%88%90TestNG/">
+            <span>SpringBoot集成TestNG</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="SpringBoot集成MockServer">
+        <div class="time-m-d">04-25</div>
+        <div class="title">
+          <a href="/2018/04/25/SpringBoot%E9%9B%86%E6%88%90MockServer/">
+            <span>SpringBoot集成MockServer</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="SpringBoot常见报错">
+        <div class="time-m-d">04-18</div>
+        <div class="title">
+          <a href="/2018/04/18/SpringBoot%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99/">
+            <span>SpringBoot常见报错</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Redis批量改名key">
+        <div class="time-m-d">04-13</div>
+        <div class="title">
+          <a href="/2018/04/13/Redis%E6%89%B9%E9%87%8F%E6%94%B9%E5%90%8Dkey/">
+            <span>Redis批量改名key</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="MacOS搭建Aria2">
+        <div class="time-m-d">03-30</div>
+        <div class="title">
+          <a href="/2018/03/30/MacOS%E6%90%AD%E5%BB%BAAria2/">
+            <span>MacOS搭建Aria2</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="SSH通过Key登录服务器">
+        <div class="time-m-d">03-18</div>
+        <div class="title">
+          <a href="/2018/03/18/SSH%E9%80%9A%E8%BF%87Key%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+            <span>SSH通过Key登录服务器</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Docker常用方法">
+        <div class="time-m-d">03-18</div>
+        <div class="title">
+          <a href="/2018/03/18/Docker/">
+            <span>Docker常用方法</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Node更换npm源">
+        <div class="time-m-d">03-17</div>
+        <div class="title">
+          <a href="/2018/03/17/Node%E6%9B%B4%E6%8D%A2npm%E9%95%9C%E5%83%8F/">
+            <span>Node更换npm源</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="技能图谱-Apollo自动驾驶">
+        <div class="time-m-d">03-17</div>
+        <div class="title">
+          <a href="/2018/03/17/%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1-Apollo%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/">
+            <span>技能图谱-Apollo自动驾驶</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="技能图谱-大数据">
+        <div class="time-m-d">03-17</div>
+        <div class="title">
+          <a href="/2018/03/17/%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1-%E5%A4%A7%E6%95%B0%E6%8D%AE/">
+            <span>技能图谱-大数据</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="技能图谱-机器学习">
+        <div class="time-m-d">03-17</div>
+        <div class="title">
+          <a href="/2018/03/17/%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+            <span>技能图谱-机器学习</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="技能图谱-前端">
+        <div class="time-m-d">03-17</div>
+        <div class="title">
+          <a href="/2018/03/17/%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1-%E5%89%8D%E7%AB%AF/">
+            <span>技能图谱-前端</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="AWS免费EC2创建记录">
+        <div class="time-m-d">03-17</div>
+        <div class="title">
+          <a href="/2018/03/17/AWS%E5%85%8D%E8%B4%B9EC2%E5%88%9B%E5%BB%BA%E8%AE%B0%E5%BD%95/">
+            <span>AWS免费EC2创建记录</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Java常见报错">
+        <div class="time-m-d">03-06</div>
+        <div class="title">
+          <a href="/2018/03/06/Java%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99/">
+            <span>Java常见报错</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="CentOS安装NodeJS">
+        <div class="time-m-d">02-06</div>
+        <div class="title">
+          <a href="/2018/02/06/CentOS%E5%AE%89%E8%A3%85NodeJS/">
+            <span>CentOS安装NodeJS</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="阿里云ECS升级HTTPS">
+        <div class="time-m-d">02-06</div>
+        <div class="title">
+          <a href="/2018/02/06/%E9%98%BF%E9%87%8C%E4%BA%91ECS%E5%8D%87%E7%BA%A7HTTPS/">
+            <span>阿里云ECS升级HTTPS</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="SSH连接保持会话">
+        <div class="time-m-d">02-03</div>
+        <div class="title">
+          <a href="/2018/02/03/SSH%E8%BF%9E%E6%8E%A5%E4%BF%9D%E6%8C%81%E4%BC%9A%E8%AF%9D/">
+            <span>SSH连接保持会话</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Mysql常见问题">
+        <div class="time-m-d">01-30</div>
+        <div class="title">
+          <a href="/2018/01/30/Mysql%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+            <span>Mysql常见问题</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Mysql迁移">
+        <div class="time-m-d">01-24</div>
+        <div class="title">
+          <a href="/2018/01/24/Mysql%E8%BF%81%E7%A7%BB/">
+            <span>Mysql迁移</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="工欲善其事，必先利其器">
+        <div class="time-m-d">01-20</div>
+        <div class="title">
+          <a href="/2018/01/20/%E5%B7%A5%E6%AC%B2%E5%96%84%E5%85%B6%E4%BA%8B%EF%BC%8C%E5%BF%85%E5%85%88%E5%88%A9%E5%85%B6%E5%99%A8/">
+            <span>工欲善其事，必先利其器</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Mysql重装后无法正常启动">
+        <div class="time-m-d">01-17</div>
+        <div class="title">
+          <a href="/2018/01/17/Mysql%E9%87%8D%E8%A3%85%E5%90%8E%E6%97%A0%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%90%AF%E5%8A%A8/">
+            <span>Mysql重装后无法正常启动</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Linux常用命令">
+        <div class="time-m-d">01-16</div>
+        <div class="title">
+          <a href="/2018/01/16/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+            <span>Linux常用命令</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="02创建Android Things工程">
+        <div class="time-m-d">01-16</div>
+        <div class="title">
+          <a href="/2018/01/16/02%E5%88%9B%E5%BB%BAAndroid-Things%E5%B7%A5%E7%A8%8B/">
+            <span>02创建Android Things工程</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="CentOS定时服务、开启自启">
+        <div class="time-m-d">01-06</div>
+        <div class="title">
+          <a href="/2018/01/06/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E7%94%A8%E6%9C%8D%E5%8A%A1/">
+            <span>CentOS定时服务、开启自启</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="01Pico Pro Maker Kit 刷入Android-Things">
+        <div class="time-m-d">01-06</div>
+        <div class="title">
+          <a href="/2018/01/06/01Pico-Pro-Maker-Kit-%E5%88%B7%E5%85%A5Android-Things/">
+            <span>01Pico Pro Maker Kit 刷入Android-Things</span>
+          </a>
+        </div>
+      </div>
+    
+      
+        <!-- 后续文章的发布年份呈现 -->
+        <div class="content-title">
+          <h2>
+            <span>2017</span>
+          </h2>
+        </div>
+      
+      <div class="post-item" title="setTimeOut()与jQuery中的$.ajax合用，导致内存泄漏">
+        <div class="time-m-d">12-18</div>
+        <div class="title">
+          <a href="/2017/12/18/setTimeOut-%E4%B8%8EjQuery%E4%B8%AD%E7%9A%84-ajax%E5%90%88%E7%94%A8%EF%BC%8C%E5%AF%BC%E8%87%B4%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/">
+            <span>setTimeOut()与jQuery中的$.ajax合用，导致内存泄漏</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Hexo相关配置">
+        <div class="time-m-d">12-18</div>
+        <div class="title">
+          <a href="/2017/12/18/Hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+            <span>Hexo相关配置</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="CentOS安装zsh和oh-my-zsh">
+        <div class="time-m-d">12-18</div>
+        <div class="title">
+          <a href="/2017/12/18/CentOs%E5%AE%89%E8%A3%85zsh%E5%92%8Coh-my-zsh/">
+            <span>CentOS安装zsh和oh-my-zsh</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="CentOS彻底删除并重装、升级Mysql">
+        <div class="time-m-d">12-18</div>
+        <div class="title">
+          <a href="/2017/12/18/CentOs%E5%BD%BB%E5%BA%95%E5%88%A0%E9%99%A4%E5%B9%B6%E9%87%8D%E8%A3%85Mysql/">
+            <span>CentOS彻底删除并重装、升级Mysql</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Mybatis使用association，结果返回数组">
+        <div class="time-m-d">10-14</div>
+        <div class="title">
+          <a href="/2017/10/14/Mybatis%E4%BD%BF%E7%94%A8association%EF%BC%8C%E7%BB%93%E6%9E%9C%E8%BF%94%E5%9B%9E%E6%95%B0%E7%BB%84-1/">
+            <span>Mybatis使用association，结果返回数组</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="com.sun.image.codec.jpeg不存在">
+        <div class="time-m-d">09-18</div>
+        <div class="title">
+          <a href="/2017/09/18/%E9%94%99%E8%AF%AF-%E7%A8%8B%E5%BA%8F%E5%8C%85com-sun-image-codec-jpeg%E4%B8%8D%E5%AD%98%E5%9C%A8/">
+            <span>com.sun.image.codec.jpeg不存在</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="IE8遇到的坑">
+        <div class="time-m-d">08-23</div>
+        <div class="title">
+          <a href="/2017/08/23/IE8%E5%9D%91/">
+            <span>IE8遇到的坑</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="JSON类库对比">
+        <div class="time-m-d">08-19</div>
+        <div class="title">
+          <a href="/2017/08/19/JSON%E7%B1%BB%E5%BA%93%E5%AF%B9%E6%AF%94/">
+            <span>JSON类库对比</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Node对session的处理、进程间通信">
+        <div class="time-m-d">08-19</div>
+        <div class="title">
+          <a href="/2017/08/19/Node%E5%AF%B9session%E7%9A%84%E5%A4%84%E7%90%86%E3%80%81%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/">
+            <span>Node对session的处理、进程间通信</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="MacOS常用命令">
+        <div class="time-m-d">08-15</div>
+        <div class="title">
+          <a href="/2017/08/15/Mac%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+            <span>MacOS常用命令</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Sql优化">
+        <div class="time-m-d">08-13</div>
+        <div class="title">
+          <a href="/2017/08/13/Sql%E4%BC%98%E5%8C%96/">
+            <span>Sql优化</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="技术栈">
+        <div class="time-m-d">08-13</div>
+        <div class="title">
+          <a href="/2017/08/13/%E6%8A%80%E6%9C%AF%E6%A0%88/">
+            <span>技术栈</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="IE8下，a标签触发onbeforeunload事件">
+        <div class="time-m-d">08-03</div>
+        <div class="title">
+          <a href="/2017/08/03/IE8%E4%B8%8B%EF%BC%8Ca%E6%A0%87%E7%AD%BE%E8%A7%A6%E5%8F%91onbeforeunload%E4%BA%8B%E4%BB%B6/">
+            <span>IE8下，a标签触发onbeforeunload事件</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="常用Java程序片段">
+        <div class="time-m-d">08-02</div>
+        <div class="title">
+          <a href="/2017/08/02/Java%20%E5%B8%B8%E7%94%A8Java%E7%A8%8B%E5%BA%8F%E7%89%87%E6%AE%B5/">
+            <span>常用Java程序片段</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Websocket+Stomp+RabbitMQ应用">
+        <div class="time-m-d">08-02</div>
+        <div class="title">
+          <a href="/2017/08/02/Websocket-Stomp-RabbitMQ/">
+            <span>Websocket+Stomp+RabbitMQ应用</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Mysql常用操作">
+        <div class="time-m-d">07-30</div>
+        <div class="title">
+          <a href="/2017/07/30/Mysql%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">
+            <span>Mysql常用操作</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="JVM">
+        <div class="time-m-d">07-29</div>
+        <div class="title">
+          <a href="/2017/07/29/Java%E7%B3%BB%E5%88%97/">
+            <span>JVM</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="SpringBoot相关资料">
+        <div class="time-m-d">07-29</div>
+        <div class="title">
+          <a href="/2017/07/29/SpringBoot%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/">
+            <span>SpringBoot相关资料</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="SpringCloud相关资料">
+        <div class="time-m-d">07-29</div>
+        <div class="title">
+          <a href="/2017/07/29/SpringCloud%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/">
+            <span>SpringCloud相关资料</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Hexo中的Next主题常用设置">
+        <div class="time-m-d">07-21</div>
+        <div class="title">
+          <a href="/2017/07/21/Hexo%E4%B8%AD%E7%9A%84NexT%E4%B8%BB%E9%A2%98%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/">
+            <span>Hexo中的Next主题常用设置</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="使用Mybatis时，对于Oracle中boolean类型的处理">
+        <div class="time-m-d">07-15</div>
+        <div class="title">
+          <a href="/2017/07/15/%E4%BD%BF%E7%94%A8Mybatis%E6%97%B6%E5%AF%B9%E4%BA%8EOracle%E4%B8%ADboolean%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%A4%84%E7%90%86/">
+            <span>使用Mybatis时，对于Oracle中boolean类型的处理</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Git学习笔记">
+        <div class="time-m-d">07-14</div>
+        <div class="title">
+          <a href="/2017/07/14/Git%E7%AC%94%E8%AE%B0/">
+            <span>Git学习笔记</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="外地驾照更换上海驾照">
+        <div class="time-m-d">06-05</div>
+        <div class="title">
+          <a href="/2017/06/05/%E5%A4%96%E5%9C%B0%E9%A9%BE%E7%85%A7%E6%9B%B4%E6%8D%A2%E4%B8%8A%E6%B5%B7%E9%A9%BE%E7%85%A7/">
+            <span>外地驾照更换上海驾照</span>
+          </a>
+        </div>
+      </div>
+    
+      
+      <div class="post-item" title="Hello World">
+        <div class="time-m-d">06-04</div>
+        <div class="title">
+          <a href="/2017/06/04/hello-world/">
+            <span>Hello World</span>
+          </a>
+        </div>
+      </div>
+    
+  </div>
+</div>
+
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="facebook" href="">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="twitter" href="">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="wechat" href="">
+            <i class="iconfont icon-wechat"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="weibo" href="">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © Oranges 2020</a>
+    </div>
+  
+    <div class="footer-more">
+      <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+      
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
     </div>
   </div>
-  {#########################}
-  {### END ARCHIVE BLOCK ###}
-  {#########################}
 
-  {% include '_partials/pagination.swig' %}
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
 
-{% endblock %}
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+    </div>
+  </body>
+</html>

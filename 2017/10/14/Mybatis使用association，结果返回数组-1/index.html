@@ -1,37 +1,476 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="author" content="zchengsite, 1451426471@qq.com" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  
+  <title>Mybatis使用association，结果返回数组 | Gavin&#39;s Notes</title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 
-{% block page_class %}page-post-detail{% endblock %}
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
 
 
-{% block content %}
+  
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+<meta name="generator" content="Hexo 5.2.0"></head>
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Mybatis使用association，结果返回数组</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2017-10-14
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="Tags"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Mybatis/" title="Mybatis">
+                    <b>#</b> Mybatis
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <p>关于association、collection标签网上很多帖子，这里就不赘述，直接讲问题。</p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>我DAO接口返回的数据格式为 <code>List&lt;Map&lt;String, Object&gt;&gt;</code>，Map中的数据对象为如下，Book是一个实体。</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;resultMap <span class="keyword">type</span>=&quot;HashMap&quot; id=&quot;PushInfo&quot;&gt;</span><br><span class="line">       &lt;result column=&quot;id&quot; property=&quot;id&quot;/&gt;</span><br><span class="line">       &lt;result column=&quot;pushDate&quot; property=&quot;pushDate&quot;/&gt;</span><br><span class="line">       &lt;association property=&quot;book&quot; <span class="keyword">select</span>=&quot;selectBookById&quot; column=&quot;book_id&quot; javaType=&quot;Book&quot;/&gt;</span><br><span class="line">   &lt;/resultMap&gt;</span><br><span class="line">   </span><br><span class="line">   &lt;<span class="keyword">select</span> id=&quot;selectBookById&quot; resultType=&quot;Book&quot;&gt;</span><br><span class="line">	<span class="keyword">SELECT</span> book.*,<span class="keyword">user</span>.nickName <span class="keyword">AS</span> `createUser.nickName` <span class="keyword">FROM</span> book </span><br><span class="line">	<span class="keyword">LEFT JOIN</span> `<span class="keyword">user</span>` <span class="keyword">ON</span> <span class="keyword">user</span>.id = book.createUser</span><br><span class="line">	<span class="keyword">WHERE</span> book.id = #&#123;bookId&#125;</span><br><span class="line">&lt;/<span class="keyword">select</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>实际返回的结果，出现了格式不一致的问题:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">	&#123;</span><br><span class="line">        <span class="attr">&quot;pushDate&quot;:</span> <span class="number">1494645459000</span>,</span><br><span class="line">        <span class="attr">&quot;book&quot;:</span> &#123;			<span class="string">//该处，book是实体对象，是正常的</span></span><br><span class="line">            <span class="attr">&quot;status&quot;:</span> <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">&quot;createUser&quot;:</span> <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">&quot;tags&quot;:</span> <span class="string">&quot;[唐家三少, 斗罗大陆, 玄幻, 网络小说, 小说, 三少的书，很经典, 奇幻, 魔幻小说]&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;imgUrl&quot;:</span> <span class="string">&quot;https://img3.doubanio.com/lpic/s6847563.jpg&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;enable&quot;:</span> <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;author&quot;:</span> <span class="string">&quot;唐家三少&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;doubanScore&quot;:</span> <span class="number">7.5</span>,</span><br><span class="line">            <span class="attr">&quot;createDate&quot;:</span> <span class="number">1420038859000</span>,</span><br><span class="line">            <span class="attr">&quot;name&quot;:</span> <span class="string">&quot;斗罗大陆（全14卷）&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;content&quot;:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;book_id&quot;:</span> <span class="number">3249</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="string">,</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;pushDate&quot;:</span> <span class="number">1494571741000</span>,</span><br><span class="line">        <span class="attr">&quot;book&quot;:</span> [			<span class="string">//此时，却变成了book实体的数组对象</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;status&quot;:</span> <span class="literal">null</span>,</span><br><span class="line">                <span class="attr">&quot;createUser&quot;:</span> <span class="literal">null</span>,</span><br><span class="line">                <span class="attr">&quot;tags&quot;:</span> <span class="string">&quot;[唐家三少, 斗罗大陆, 玄幻, 网络小说, 小说, 三少的书，很经典, 奇幻, 魔幻小说]&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;imgUrl&quot;:</span> <span class="string">&quot;https://img3.doubanio.com/lpic/s6847563.jpg&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;enable&quot;:</span> <span class="literal">true</span>,</span><br><span class="line">                <span class="attr">&quot;author&quot;:</span> <span class="string">&quot;唐家三少&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;doubanScore&quot;:</span> <span class="number">7.5</span>,</span><br><span class="line">                <span class="attr">&quot;createDate&quot;:</span> <span class="number">1420038859000</span>,</span><br><span class="line">                <span class="attr">&quot;name&quot;:</span> <span class="string">&quot;斗罗大陆（全14卷）&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;content&quot;:</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;book_id&quot;:</span> <span class="number">3249</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line"><span class="string">···········</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>新建了BookPush实体类，指定book类型。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;resultMap type=<span class="string">&quot;BookPush&quot;</span> <span class="built_in">id</span>=<span class="string">&quot;PushInfo&quot;</span>&gt;</span><br><span class="line">       &lt;<span class="literal">result</span> column=<span class="string">&quot;id&quot;</span> <span class="keyword">property</span>=<span class="string">&quot;id&quot;</span>/&gt;</span><br><span class="line">       &lt;<span class="literal">result</span> column=<span class="string">&quot;pushDate&quot;</span> <span class="keyword">property</span>=<span class="string">&quot;pushDate&quot;</span>/&gt;</span><br><span class="line">       &lt;association <span class="keyword">property</span>=<span class="string">&quot;book&quot;</span> select=<span class="string">&quot;selectBookById&quot;</span> column=<span class="string">&quot;book_id&quot;</span> javaType=<span class="string">&quot;Book&quot;</span>/&gt;</span><br><span class="line">   &lt;/resultMap&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>仔细核查数据可以发现，当父查询返回的book_id有重复时，第二个book_id查出来的数据，返回的一定是一个数组。比如上面，book_id都为3249，第一个结果为实体，第二个结果为数组。</p>
+<p>我猜测association标签在执行时，会将同一个事务中的数据缓存。先在缓存中查，发现有一个实体，所以就创建了数组，然后再执行sql，查出来的结果与缓存中的一样，所以数组中只有一个元素。</p>
+<p>但是感觉跟数据类型也有关系</p>
+<p>以后有空看看这部分的源码</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2017/09/18/%E9%94%99%E8%AF%AF-%E7%A8%8B%E5%BA%8F%E5%8C%85com-sun-image-codec-jpeg%E4%B8%8D%E5%AD%98%E5%9C%A8/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2017-10-14
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="Tags"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Mybatis/" title="Mybatis">
+                        <b>#</b> Mybatis
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2017/12/18/CentOs%E5%BD%BB%E5%BA%95%E5%88%A0%E9%99%A4%E5%B9%B6%E9%87%8D%E8%A3%85Mysql/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div class="post-catalog" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-text">分析</span></a></li></ol>
     </div>
   </div>
 
-{% endblock %}
+  
+<script src="/js/catalog.js"></script>
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="facebook" href="">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="twitter" href="">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="wechat" href="">
+            <i class="iconfont icon-wechat"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="weibo" href="">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © Oranges 2020</a>
+    </div>
+  
+    <div class="footer-more">
+      <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+      
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+    </div>
+  </body>
+</html>

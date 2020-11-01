@@ -1,37 +1,512 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="author" content="zchengsite, 1451426471@qq.com" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  
+  <title>家有小柴の柴犬挑选篇 | Gavin&#39;s Notes</title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 
-{% block page_class %}page-post-detail{% endblock %}
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
 
 
-{% block content %}
+  
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+<meta name="generator" content="Hexo 5.2.0"></head>
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">家有小柴の柴犬挑选篇</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2018-08-07
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="Tags"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/%E6%9F%B4%E7%8A%AC/" title="柴犬">
+                    <b>#</b> 柴犬
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <p>​    大概在5月份，朋友的朋友，打算到别的城市发展，家里有一只雪纳瑞，打算送给别人领养。朋友知道我比较喜欢🐶，所以告诉了我，当时开心的睡不着，第二天请了半天假，开车过去接狗子，到小区门口被告知，有情况，不送了。当时别提多郁闷，但是也没办法┐(ﾟ～ﾟ)┌。经这事儿一撩，大学时就萌生的养狗的念头，再也憋不住，把这事提上了日程。</p>
+<h1 id="关于领养"><a href="#关于领养" class="headerlink" title="关于领养"></a>关于领养</h1><p>​    写在最前面，也是鼓励大家领养代替购买，领养的渠道有很多，当地的流浪狗/流浪猫收容所，救助站等，或者自己小区，或者朋友家。我本身有一些强迫症，如果养狗就一定要从头开始，自己带，所以选择了买小狗。我朋友领养了一只被遗弃的德牧串串，长得也很可爱，现在也特别乖。狗狗只要你对他好，他一定会对你好的。少一些买卖，多一些关爱。</p>
+<p>​    不管是领养，还是购买，在领回家之前，一定要考虑清楚。如果你不清楚是否做好准备，可以问自己下面几个问题：​</p>
+<ul>
+<li>家人是否同意接纳你的新成员？如果遇到了家庭阻力，你是否有能力对抗邪恶势力，保护他？</li>
+<li>是否准备好捡屎擦尿？狗狗在没学会定点之前，家里任何一个地方都是🚾；</li>
+<li>是否有耐心陪他成长？在他懂事之前，他是个小淘气，会乱叫、咬东西，大型犬还会拆家；</li>
+<li>是否可以为了他学习，了解之前未曾涉及的领域？比如狗粮成分、如何训练、疾病知识等；</li>
+<li>是否有时间、有精力陪他玩耍，带他出去遛狗？好动是狗的天性，无处发泄的精力只能用在破坏家具上；</li>
+<li>是否有经济基础？疫苗、看病、狗粮、零食、玩具、尿片、装备等，都是money；</li>
+</ul>
+<p>考虑清楚，能满足条件的，可以打个勾。如果还不到一半的，可以放弃了。</p>
+<p>​    一旦领回家，就要担负起照顾他一生的责任。</p>
+<h1 id="购买渠道"><a href="#购买渠道" class="headerlink" title="购买渠道"></a>购买渠道</h1><p>​    购买的话，无外乎下面几种渠道：</p>
+<ol>
+<li><p>犬舍。价格通常较高，尤其是知名犬舍，稍微品相好一些的崽，上万是很正常的。这个渠道相对靠谱，而且有些还会带出生纸（注1）。<strong>适合不差钱、新手的同学</strong>。记得以前有一张图，国内12大柴犬犬舍合照，具体有哪些犬舍忘了，可以在当地打听打听。另外也有一些小犬舍，也有不错的狗子，尽量多看一些。我有朋友在柴多酱买的，也不错。犬舍价格至少5k起，上不封顶。</p>
+</li>
+<li><p>个人家养。一般是家养的狗配出来的，价格不会太高，毕竟不是专门做这个生意。通常在豆瓣、转转、闲鱼上发帖，不过比较少。豆瓣有个柴犬小组，还算靠谱。转转、闲鱼上大多是骗人的（注2），注意不要上当受骗。这个渠道风险较高，<strong>不适合新手</strong>。我是在研究、学习了1个多月之后，才专门找家养，并且现场挑狗买的。这就有点像逛古玩市场，好孬都有，眼力好才能捡漏。价格在3k~5k之间，太便宜的一定不要信！别人都卖3k以上，他卖几百、1k、2k，他傻嘛？</p>
+</li>
+<li><p><strong>正规</strong>宠物店。家养狗狗生的宝宝，因为没有渠道卖不出去，或者犬舍因为品相不好卖不出去，大多会送到宠物店，宠物店按批发价收。看到这你懂了吧，大多是别人挑剩下的才会在宠物店里。当然也不排除有些店做的比较好，有好的合作伙伴。所以这个渠道良莠不齐，也算考眼力，价格也比较贵。另外就是，有一些专门骗人的宠物店，专门卖病狗。之前在宠物医院碰到一个狗主人，以前在一家宠物店买过两只狗，都不到两个星期就死了。所以去宠物点的话也要注意点。接触比较少，价格也不太清楚，不过有朋友说也是上万起的。</p>
+</li>
+<li><p>贴吧。百度你懂的，几个大一点的柴犬吧，据说已经被各种狗商垄断，只有他们能发卖狗信息的帖子，一些小犬舍发帖直接被删。在贴吧看看别人家的狗子，学习些知识还是可以的，买狗就算了。不是说没有良心卖家，水太深，<strong>不适合新手</strong>。不过贴吧里还是有一些热心网友，会帮人鉴别真假。</p>
+</li>
+<li><p>买狗网站。这个了解不多，不过也不推荐。买狗注重实地挑选，最好在当地买。买狗网站上也充斥着大量无良卖家在卖假冒柴犬。</p>
+<p>说这么多，还是那句话，做足功课，不贪小便宜，就不怕上当。</p>
+</li>
+</ol>
+<p><u>注1：血统证明，只要父母双方都有血统证书，生的宝宝可以申请出生纸。等到一定年龄可以到机构换血统证书，换证费貌似200。一些犬舍会给狗子贴标签，“双血统带纸”，就是这个意思。自己家养的话，用处不大，一般参赛需要。另外的用处就是长大后配种成功，如果另外一只也有证书，宝宝就可以申请出生纸，出售价格会稍微高一些。另外补一句，这个出生纸也不绝对就是真的，某宝上就可以买</u>。</p>
+<p><u>注2：闲鱼、转转上，大多是一些骗子，放一些偷来的照片、视频，吸引你跟他聊天，没几句就说加微信，然后约你看狗。重点来了，等到时间你到指定地方，他一定说有事没时间，让朋友带你去看。而他朋友如果带你去宠物店，一定不要买！不出意外，这些都是星期狗。什么是星期狗？就是病狗，你带回家，1、2天就会生病，不到一个星期就死掉。去找宠物店理论也没用，他们会说给你换狗，你挑完了还让你补差价。举报也没用，人家证件齐全，有关部门也没办法。</u></p>
+<h1 id="挑选注意事项"><a href="#挑选注意事项" class="headerlink" title="挑选注意事项"></a>挑选注意事项</h1><p>​    挑选的时候呢，也有一些注意事项：</p>
+<ol>
+<li>最好在当地买，实地、现场挑选。之前给你发的视频是不是真的狗啊，犬舍环境怎么样啊，狗狗性格怎么样啊，身体有没有隐疾啊，具体长得怎么样啊，等等等等，都要现场看了才知道。而且现场挑选，一般会有一堆狗狗，你可以对比，哪个更合得来，选择也更多一点。如果实在无法现场挑，也一定要跟买家视频，确保狗真的在他那，而不是偷了别人的视频。另外也可以视频跟狗狗互动，进一步挑选。</li>
+<li>跟卖家要父母的照片、交配视频等，确保这只狗子真的是柴犬的崽。另一方面，看父母的样子，对于崽以后长什么样心里也有个数，小的基本上还是随父母的。</li>
+<li>北京、上海基本上都要4k起，上万很正常。南京等新一线城市也不便宜，二三线可能会便宜点。今年2018年是狗年，很多人养狗打算汪一下，而且柴犬黄色那种叫赤柴，又红又旺，寓意好，价格也就上来了。</li>
+<li>买幼犬的话，一般选择2~4个月之间。2个月之前，太小，断奶没多久，不好照顾。4个月之后性格基本养成，调教会麻烦些。不过也不是说一定要在这个区间内，主要还是主人要有耐心照顾他，陪他一起成长。我家花生，在他40多天断奶没多久我就抱回家了。</li>
+<li>柴犬小时候跟土狗特别相似，所以有很多“山寨”柴犬，尽量做好功课再去买，以免买到大黄，或者串串。</li>
+</ol>
+<h1 id="幼犬特征"><a href="#幼犬特征" class="headerlink" title="幼犬特征"></a>幼犬特征</h1><p>​    这里讲的是2个月左右的狗狗特征：</p>
+<ol>
+<li>头部。小狗的头部以大一点的为佳，后脑勺也要有适度地隆起较好。额头要适度地宽，幼犬时期带点圆弧，长大之后就会好了，但是若太突出就不大好了。小狗的鼻梁在幼犬时会比较深，考虑到这一点时就要注意选择幼犬时要选鼻梁不过深也不过浅者。（挑柴犬小狗，要以头大一点的好，额头要宽，后脑勺隆起的，鼻梁不深不浅的。）</li>
+<li>嘴巴。要粗而短，这样长大嘴巴不会太尖，不会像狐型脸。小时候很多黑嘴管，这是正常的，长大就会褪了。</li>
+<li>鼻子。鼻子要小而黑，稍微有些湿润，不是太湿，太湿可能生病了。</li>
+<li>眼睛。圆眼，眼睛不能过大或者眼球突出，要呈杏仁形，配合头部，眼色要乌黑，两眼的距离不能过开。</li>
+<li>耳朵。耳朵要小，耳位不能过低，两耳的距离不能太开。要挑耳朵呈三角形的，在小狗附近拍拍手，看看小狗的听力，耳朵的大小要和柴犬的头相匹配，耳朵要有适当的厚度，保持前倾的。</li>
+<li>颈部粗壮，两颊毛发旺盛。</li>
+<li>尾巴。大多是蜷缩型。</li>
+</ol>
+<p>这些特征都是局部最优，满足所有条件的柴犬很少。所以不必太过强求，只是让大家心里有个标准，重要的是狗子健健康康，就够了。</p>
+<h1 id="成犬特征"><a href="#成犬特征" class="headerlink" title="成犬特征"></a>成犬特征</h1><p>​    有些朋友买的是成犬，相对来说，比较好区分一点，下面也有一些特征：</p>
+<ol>
+<li>三角眼。眼睛要稍稍呈三角形，下眼帘要接近直线，上眼皮在离眼头三分之一处开始弧度较大，这种眼型才是正确的眼型。</li>
+<li>立耳。折耳一定是假的。</li>
+<li>毛发。柴犬有双层毛，外层刚毛直立，内层绒毛细软。</li>
+</ol>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2018/07/26/Spring%E6%B3%A8%E5%85%A5static%E5%8F%98%E9%87%8F/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2018-08-07
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="Tags"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/%E6%9F%B4%E7%8A%AC/" title="柴犬">
+                        <b>#</b> 柴犬
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2018/08/23/Hexo-%E8%85%BE%E8%AE%AF%E4%BA%91%E5%BC%80%E5%90%AFhttps/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div class="post-catalog" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E9%A2%86%E5%85%BB"><span class="toc-text">关于领养</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B4%AD%E4%B9%B0%E6%B8%A0%E9%81%93"><span class="toc-text">购买渠道</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8C%91%E9%80%89%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">挑选注意事项</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B9%BC%E7%8A%AC%E7%89%B9%E5%BE%81"><span class="toc-text">幼犬特征</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%88%90%E7%8A%AC%E7%89%B9%E5%BE%81"><span class="toc-text">成犬特征</span></a></li></ol>
     </div>
   </div>
 
-{% endblock %}
+  
+<script src="/js/catalog.js"></script>
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="facebook" href="">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="twitter" href="">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="wechat" href="">
+            <i class="iconfont icon-wechat"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="weibo" href="">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © Oranges 2020</a>
+    </div>
+  
+    <div class="footer-more">
+      <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+      
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+    </div>
+  </body>
+</html>

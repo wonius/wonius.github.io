@@ -1,37 +1,654 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="author" content="zchengsite, 1451426471@qq.com" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  
+  <title>SpringCloud概述 | Gavin&#39;s Notes</title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 
-{% block page_class %}page-post-detail{% endblock %}
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
 
 
-{% block content %}
+  
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+<meta name="generator" content="Hexo 5.2.0"></head>
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">SpringCloud概述</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2018-05-29
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="Tags"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/SpringCloud/" title="SpringCloud">
+                    <b>#</b> SpringCloud
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h1 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h1><p><img src="../SpringCloud%E6%A6%82%E8%BF%B0/SpringCloud.png" alt="组件关系图"></p>
+<h1 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h1><p><strong>Zuul 是在云平台上提供动态路由,监控,弹性,安全等边缘服务的框架。Zuul 相当于是设备和 Netflix 流应用的 Web 网站后端所有请求的前门。</strong></p>
+<p>​    服务网关是微服务架构中一个不可或缺的部分。通过服务网关统一向外系统提供REST API的过程中，除了具备服务路由、均衡负载功能之外，它还具备了权限控制等功能。Spring Cloud Netflix中的Zuul就担任了这样的一个角色，为微服务架构提供了前门保护的作用，同时将权限控制这些较重的非业务逻辑内容迁移到服务路由层面，使得服务集群主体能够具备更高的可复用性和可测试性。</p>
+<h1 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h1><p><strong>云端服务发现，一个基于 REST 的服务，用于定位服务，以实现云端中间层服务发现和故障转移。</strong></p>
+<p><img src="../SpringCloud%E6%A6%82%E8%BF%B0/Eureka.png" alt="Eureka"></p>
+<p><strong>三部分</strong>：服务注册中心、服务提供者、服务消费者；</p>
+<p><strong>两功能</strong>：服务注册、服务发现；</p>
+<p><strong>运行流程</strong>：</p>
+<ol>
+<li>两台<code>Eureka服务注册中心</code>组成主从注册中心集群（防止一台挂掉整个服务挂掉）；</li>
+<li><code>服务提供者</code>向<code>Eureka服务注册中心</code>进行注册、续约、下线服务等操作；</li>
+<li><code>服务消费者</code>从<code>Eureka服务注册中心</code>拉取服务列表，并维护在本地（这是客户端发现模式的机制体现）；</li>
+<li><code>服务消费者</code>根据服务列表找到对应服务提供者，进行消费；</li>
+</ol>
+<p><strong>注意</strong>：</p>
+<ol>
+<li><p>服务续约任务调用时间间隔，默认30s；</p>
+</li>
+<li><p>服务缓存清单更新机制，次/30s；</p>
+</li>
+<li><p>服务时效时间，默认90s；</p>
+</li>
+<li><p>默认每60s将当前清单中超过90s（没有续约）的服务踢出去；</p>
+</li>
+<li><p>自我保护机制，工作机制是如果15min内超过85%的客户端节点都没有正常的心跳，那么Eureka就认为客户端与注册中心出现了网络故障，Eureka Server自动进入自我保护机制。<em>（Eureka自我保护机制，通过配置eureka.server.enable-self-preservation，默认为打开状态，建议生产环境打开此配置）</em></p>
+<ul>
+<li>Eureka Server不再从注册列表中移除因为长时间没收到心跳检测的<code>过期服务</code>；</li>
+</ul>
+<ul>
+<li>Eureka Server仍然能够接受新服务的注册、查询请求，但是不会同步到其他节点上，保证当前节点依然可用；</li>
+<li>当网络稳定时，当前Eureka Server新的注册信息会被同步到其他节点上；</li>
+</ul>
+</li>
+</ol>
+<h1 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h1><p><strong>提供云端负载均衡，有多种负载均衡策略可供选择，可配合服务发现和断路器使用。</strong></p>
+<p><code>服务消费者</code>根据服务列表中的服务提供者，找到实际的<code>服务生产者</code>，通过Spring Cloud Ribbon实现。</p>
+<p><strong>负载均衡策略</strong>：</p>
+<ul>
+<li>RandomRule：从实例列表随机选取。选择逻辑在一个while(server == null)循环内，正常情况下会返回一个服务实例。如果出现死循环，取不到服务实例，则有可能存在并发的bug；</li>
+<li>RoundRobinRule（默认）：按照线性轮询选择一个实例。随机次数超过10次，结束尝试；</li>
+<li>WeightedResponseTimeRule：基于RoundRobinRule，增加了根据实例的运行情况计算权重，然后根据权重挑选实例。主要有三个核心内容：<ul>
+<li>定时任务<ul>
+<li>每30s执行一次权重计算；</li>
+</ul>
+</li>
+<li>权重计算<ul>
+<li>记录每个实例的统计信息，累加所有实例的平均响应时间，得到总平均响应时间，totalResponseTime；</li>
+<li>循环所有的实例，计算其权重，weightSoFar+=totalResponseTime - 实例平均响应时间，其中weightSoFar初始值为0。每个实例权重结果，保存到ArrayList currentWeights中；</li>
+</ul>
+</li>
+<li>实例选择<ul>
+<li>判断最后一个实例的权重，是否 &lt; 0.001d，若是，采用RoundRobbinRule策略；</li>
+<li>生成一个[0, 最大权重值) 区间内的随机数；</li>
+<li>遍历权重清单currentWeights，若权重 &gt;= 随机得到的数值，就选择这个实例；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>其他策略还有BestAvailableRule、AvaliablityFilteringRule、ZoneAvoidanceRule、RetryRule</li>
+</ul>
+<h1 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a>Feign</h1><p><strong>Feign是一种声明式、模板化的HTTP客户端。</strong></p>
+<p>​    Spring Cloud Feign 是一个声明web服务客户端，这使得编写Web服务客户端更容易，使用Feign 创建一个接口并对它进行注解，它具有可插拔的注解支持包括Feign注解与JAX-RS注解，Feign还支持可插拔的编码器与解码器，Spring Cloud 增加了对 Spring MVC的注解，Spring Web 默认使用了HttpMessageConverters, Spring Cloud 集成 Ribbon 和 Eureka 提供的负载均衡的HTTP客户端 Feign。</p>
+<h1 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h1><p><strong>熔断器，容错管理工具，旨在通过熔断机制控制服务和第三方库的节点,从而对延迟和故障提供更强大的容错能力。</strong></p>
+<p>​    在分布式架构中，当某个服务单元发生故障（类似电器发生短路）之后，通过断路器的故障监控（类似熔断保险丝）， 想调用方返回一个错误响应，而不是长时间等待，这样就不会使得线程因调用故障服务被长时间占用不放，避免了故障在分布式系统中的蔓延<br>​    针对这一机制，Spring Cloud Hystrix实现了断路器，线程隔离等一系列服务保护功能。它也是基于Netfix的开源框架Hystrix实现的，该框架的目标在于通过控制那些访问远程系统、服务和第三方库的节点，从而对延迟和故障提供更强大的容错能力。</p>
+<p>Hystrix具有：</p>
+<ul>
+<li><p>服务降级</p>
+</li>
+<li><p>服务熔断</p>
+<ul>
+<li>请求总数（默认20）</li>
+<li>错误百分比（默认50）</li>
+</ul>
+</li>
+<li><p>线程和信号隔离</p>
+</li>
+<li><p>请求缓存</p>
+</li>
+<li><p>请求合并</p>
+</li>
+<li><p>服务监控</p>
+<p><img src="../img/Hystrix.png" alt="Hystrix"></p>
+</li>
+<li><p>集群监控（Turbine）</p>
+</li>
+</ul>
+<h1 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h1><p><strong>配置管理工具包，让你可以把配置放到远程服务器，集中化管理集群配置，目前支持本地存储、Git以及Subversion。</strong></p>
+<p>​    分布式系统中，由于服务数量巨多，为了方便服务配置文件统一管理，实时更新，所以需要分布式配置中心组件。    在Spring Cloud中，有分布式配置中心组件Spring Cloud Config ，它支持配置服务放在配置服务的内存中（即本地），也支持放在远程Git仓库中。在Cpring Cloud Config 组件中，分两个角色，一是Config Server，二是Config Client。</p>
+<p>​    Config Server用于配置属性的存储，存储的位置可以为Git仓库、SVN仓库、本地文件等，Config Client用于服务属性的读取。</p>
+<h1 id="Bus"><a href="#Bus" class="headerlink" title="Bus"></a>Bus</h1><p><strong>事件、消息总线，用于在集群（例如，配置变化事件）中传播状态变化，可与Spring Cloud Config联合实现热部署。</strong></p>
+<p>​    在Spring Cloud Config中，我们知道的配置文件可以通过Config Server存储到Git等地方，通过Config Client进行读取，但是我们的配置文件不可能是一直不变的，当我们的配置文件放生变化的时候如何进行更新哪？</p>
+<p>​    一种最简单的方式重新一下Config Client进行重新获取，但Spring Cloud绝对不会让你这样做的，Spring Cloud Bus正是提供一种操作使得我们在不关闭服务的情况下更新我们的配置。</p>
+<p>​    Spring Cloud Bus官方意义：消息总线。</p>
+<p>​    当然动态更新服务配置只是消息总线的一个用处，还有很多其他用处。</p>
+<p>应用场景：</p>
+<ul>
+<li>将消息路由到一个或多个目的地；</li>
+<li>消息转换为其他的表现形式；</li>
+<li>执行消息聚焦、消息分解，并将结果发送到其他的目的地，然后重新组合响应返回给消息用户；</li>
+<li>调用web服务来检索数据；</li>
+<li>响应错误时间；</li>
+<li>使用发布-订阅模式来提供内容，或基于主题的消息路由</li>
+</ul>
+<p><img src="../SpringCloud%E6%A6%82%E8%BF%B0/Bus.png" alt="Bus"></p>
+<p>两个消息组件：</p>
+<p>kafka：</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>spring.cloud.stream.kafka.binder.brokers</td>
+<td>Kafka的服务端列表</td>
+<td>localhost</td>
+</tr>
+<tr>
+<td>spring.cloud.stream.kafka.binder.defaultBrokerPort</td>
+<td>Kafka服务端的端口。当brokers中没有配置端口时，默认使用这个端口</td>
+<td>9092</td>
+</tr>
+<tr>
+<td>spring.cloud.stream.kafka.binder.zkNodes</td>
+<td>Kafka服务端连接的Zookeeper节点列表</td>
+<td>localhost</td>
+</tr>
+<tr>
+<td>spring.cloud.stream.kafka.binder.defaultZkPort</td>
+<td>Zookeeper节点的默认端口。当zkNodes中没有配置端口时，默认使用这个端口</td>
+<td>2181</td>
+</tr>
+</tbody></table>
+<p>RabbitMQ：</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>spring.rabbitmq.host</td>
+<td>RabbitMQ的服务地址</td>
+<td>localhost</td>
+</tr>
+<tr>
+<td>spring.rabbitmq.port</td>
+<td>RabbitMQ的服务端口</td>
+<td>5672</td>
+</tr>
+<tr>
+<td>spring.rabbitmq.username</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>spring.rabbitmq.password</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>#总结</p>
+<p>前面介绍了很多Spring Cloud的组件，本篇按照自己的角度来做一次归纳。</p>
+<p>Spring Cloud技术应用从场景上可以分为两大类：润物无声类和独挑大梁类。</p>
+<p>润物无声，融合在每个微服务中、依赖其它组件并为其提供服务。</p>
+<p>Ribbon，客户端负载均衡，特性有区域亲和、重试机制。</p>
+<p>Hystrix，客户端容错保护，特性有服务降级、服务熔断、请求缓存、请求合并、依赖隔离。</p>
+<p>Feign，声明式服务调用，本质上就是Ribbon+Hystrix</p>
+<p>Stream，消息驱动，有Sink、Source、Processor三种通道，特性有订阅发布、消费组、消息分区。</p>
+<p>Bus，消息总线，配合Config仓库修改的一种Stream实现，</p>
+<p>Sleuth，分布式服务追踪，需要搞清楚TraceID和SpanID以及抽样，如何与ELK整合。</p>
+<p>独挑大梁，独自启动不需要依赖其它组件。</p>
+<p>Eureka，服务注册中心，特性有失效剔除、服务保护。</p>
+<p>Dashboard，Hystrix仪表盘，监控集群模式和单点模式，其中集群模式需要收集器Turbine配合。</p>
+<p>Zuul，API服务网关，功能有路由分发和过滤。</p>
+<p>Config，分布式配置中心，支持本地仓库、SVN、Git、Jar包内配置等模式，</p>
+<p>每个组件都不是平白无故的产生的，是为了解决某一特定的问题而存在。</p>
+<p>Eureka和Ribbon，是最基础的组件，一个注册服务，一个消费服务。</p>
+<p>Hystrix为了优化Ribbon、防止整个微服务架构因为某个服务节点的问题导致崩溃，是个保险丝的作用。</p>
+<p>Dashboard给Hystrix统计和展示用的，而且监控服务节点的整体压力和健康情况。</p>
+<p>Turbine是集群收集器，服务于Dashboard的。</p>
+<p>Feign是方便我们程序员些更优美的代码的。</p>
+<p>Zuul是加在整个微服务最前沿的防火墙和代理器，隐藏微服务结点IP端口信息，加强安全保护的。</p>
+<p>Config是为了解决所有微服务各自维护各自的配置，设置一个同意的配置中心，方便修改配置的。</p>
+<p>Bus是因为config修改完配置后各个结点都要refresh才能生效实在太麻烦，所以交给bus来通知服务节点刷新配置的。</p>
+<p>Stream是为了简化研发人员对MQ使用的复杂度，弱化MQ的差异性，达到程序和MQ松耦合。</p>
+<p>Sleuth是因为单次请求在微服务节点中跳转无法追溯，解决任务链日志追踪问题的。</p>
+<p>特殊成员Zipkin，之所以特殊是因为从jar包和包名来看它不属于Spring Cloud的一员，但是它与Spring Cloud Sleuth的抽样日志结合的天衣无缝。乍一看它与Hystrix的Dashboard作用有重叠的部分，但是他们的侧重点完全不同。Dashboard侧重的是单个服务的统计和是否可用，Zipkin侧重的监控环节时长。简言之，Dashboard侧重故障诊断，Zipkin侧重性能优化。</p>
+<p>内容参考：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yejingtao703/article/details/78331442">https://blog.csdn.net/yejingtao703/article/details/78331442</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xlgen157387/article/details/77773908">https://blog.csdn.net/xlgen157387/article/details/77773908</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/tudou201601/article/details/79123912">https://blog.csdn.net/tudou201601/article/details/79123912</a></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2018/05/24/Python%E8%A7%84%E8%8C%83/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2018-05-29
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="Tags"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/SpringCloud/" title="SpringCloud">
+                        <b>#</b> SpringCloud
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2018/05/29/%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1-%E5%90%8E%E7%AB%AF/" target="_self">
+                <span>Next</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div class="post-catalog" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6"><span class="toc-text">组件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Zuul"><span class="toc-text">Zuul</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Eureka"><span class="toc-text">Eureka</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ribbon"><span class="toc-text">Ribbon</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Feign"><span class="toc-text">Feign</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hystrix"><span class="toc-text">Hystrix</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Config"><span class="toc-text">Config</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bus"><span class="toc-text">Bus</span></a></li></ol>
     </div>
   </div>
 
-{% endblock %}
+  
+<script src="/js/catalog.js"></script>
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="facebook" href="">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="twitter" href="">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="wechat" href="">
+            <i class="iconfont icon-wechat"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="weibo" href="">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="rss" href="/atom.xml">
+            <i class="iconfont icon-rss"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © Oranges 2020</a>
+    </div>
+  
+    <div class="footer-more">
+      <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+      
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+    </div>
+  </body>
+</html>
