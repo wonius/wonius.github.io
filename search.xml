@@ -4294,7 +4294,7 @@
 <p>到这基本验证了pod创建是成功的，且相互之间也可以访问。问题应该出在3台pod在竞选时，没有使用cluster.conf中设置的内部域名，而是通过其他方式访问，导致相互之间访问失败。这时候目标转向service。</p>
 <h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>然后到网上搜了下，有的说将service设置为<code>ClusterIP: none</code>，改为headless service。尝试了下，果然好了。</p>
 <h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>​    为什么改为headless service就好了呢？</p>
-<p>​    因为默认的Service的type是ClusterIP，会在创建service的时候，为service创建ip，所有访问该service的请求，都会经过该ip然后做负载均衡。如果设置为none，就不会为该service分配ip，只能通过pod的域名访问每个pod。</p>
+<p>​    因为默认的Service的type是ClusterIP，会在创建service的时候，为service创建ip，所有访问该service的请求，都会经过该ip然后做负载均衡。如果设置为none，就不会为该service分配ip，只能通过pod的域名访问每个pod。一般pod间需要相互访问的服务都采用这种模式，比如zk等。</p>
 <p>​    通过<code>kuectl get svc</code>可以查看所有的service。也可以通过<code>kubectl describe svc xxx</code>，查看每个service的详情。</p>
 <p>​    </p>
 <p>​    </p>
