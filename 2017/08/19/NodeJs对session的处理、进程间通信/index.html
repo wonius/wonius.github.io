@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
   
-  <title>Node对session的处理、进程间通信 | Gavin&#39;s Notes</title>
+  <title>NodeJs对session的处理、进程间通信 | Gavin&#39;s Notes</title>
 
   
     <link rel="apple-touch-icon" href="/images/favicon.png">
@@ -100,7 +100,7 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">Node对session的处理、进程间通信</div>
+      <div class="post-title">NodeJs对session的处理、进程间通信</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime" title="Update time"></i>
@@ -111,8 +111,8 @@
                 <i class="iconfont icon-tags" title="Tags"></i>
                 
                 <span class="span--tag">
-                  <a href="/tags/Node/" title="Node">
-                    <b>#</b> Node
+                  <a href="/tags/NodeJs/" title="NodeJs">
+                    <b>#</b> NodeJs
                   </a>
                 </span>
                 
@@ -120,9 +120,9 @@
           
       </div>
       <div class="markdown-body">
-        <h2 id="对于session的处理"><a href="#对于session的处理" class="headerlink" title="对于session的处理"></a>对于session的处理</h2><p>​    最近项目中有用到Node，也在学习。开发过程中发现，Node对于session的处理方式与普通服务器不同。</p>
+        <h2 id="对于session的处理"><a href="#对于session的处理" class="headerlink" title="对于session的处理"></a>对于session的处理</h2><p>​    最近项目中有用到NodeJs，也在学习。开发过程中发现，NodeJs对于session的处理方式与普通服务器不同。</p>
 <ol>
-<li>Node服务器收到请求后，会为本次请求创建session，但是如果这次请求中没有对session的处理（放值等操作），在请求返回时不会做set-cookie操作，该次请求不会生成cookie。所以重复调用该请求每次都会生成一个新的session；</li>
+<li>NodeJs服务器收到请求后，会为本次请求创建session，但是如果这次请求中没有对session的处理（放值等操作），在请求返回时不会做set-cookie操作，该次请求不会生成cookie。所以重复调用该请求每次都会生成一个新的session；</li>
 <li>请求处理函数中对session有操作，返回时有set-cookie，生成cookie，下次请求时不会生成新的session；</li>
 </ol>
 <h2 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h2><p>​    Node开始时是单线程，为了有效利用资源，后来增加了child_process可以多进程。后来又封装了cluster模块，更好的处理多进程。进程间通信主要依赖于监听。</p>
@@ -181,8 +181,8 @@
                     <i class="iconfont icon-tags" title="Tags"></i>
                     
                     <span class="span--tag">
-                      <a href="/tags/Node/" title="Node">
-                        <b>#</b> Node
+                      <a href="/tags/NodeJs/" title="NodeJs">
+                        <b>#</b> NodeJs
                       </a>
                     </span>
                     
