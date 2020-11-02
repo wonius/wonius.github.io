@@ -4274,4 +4274,36 @@
         <tag>NodeJs</tag>
       </tags>
   </entry>
+  <entry>
+    <title>K8S部署Nacos节点列表为空</title>
+    <url>/2020/11/02/K8S%E9%83%A8%E7%BD%B2nacos%E8%8A%82%E7%82%B9%E5%88%97%E8%A1%A8%E4%B8%BA%E7%A9%BA/</url>
+    <content><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>​    最新因为项目需要，需要搭建一个配置中心，nacos相对来说教简单，而且还赠送一个注册中心，买一送一，业界良心啊，就它了。过程就不赘述了，下载<code>nacos-mysql</code>、<code>nacos-server</code>镜像，编写好helm模板后直接部署。</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><h2 id="发现"><a href="#发现" class="headerlink" title="发现"></a>发现</h2><p>​    噼里啪啦一顿操作后，输入账号登录nacos-console，体验了一下，配置中心增删改查都正常，但是集群管理中的节点列表却是空的。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
+<li>第一反应是查看服务的状态与日志，<code>kubectl log xx</code>和<code>kubectl describe po xx</code>看到都是成功的状态。</li>
+</ol>
+<p>​    2. 先验证下配置中心吧，修改代码，加载配置中心的配置，成功。所以验证只有注册中心有问题。</p>
+<p>​    3. 进入到nacos-server pod，查看日志。<code>/home/nacos/logs</code>目录下主要分2类日志，<code>config-*.log</code>和<code>naming-*.log</code>，分别对应配置中心的日志和注册中心的日志。</p>
+<ol start="4">
+<li><p>先看naming-raft.log，这个是选举日志，发现果然有问题。</p>
+<p><code>WARN [IS LEADER] no leader is available now!</code></p>
+</li>
+<li><p>nacos在创建过程中，会将每个节点的地址存放在<code>/home/nacos/config/cluster.conf</code>，查看该文件，3个pod的内部域名也是正常。进到pod内部，telnet其余2台的域名、端口也是通的。</p>
+</li>
+</ol>
+<p>到这基本验证了pod创建是成功的，且相互之间也可以访问。问题应该出在3台pod在竞选时，没有使用cluster.conf中设置的内部域名，而是通过其他方式访问，导致相互之间访问失败。这时候目标转向service。</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>然后到网上搜了下，有的说将service设置为<code>ClusterIP: none</code>，改为headless service。尝试了下，果然好了。</p>
+<h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>​    为什么改为headless service就好了呢？</p>
+<p>​    因为默认的Service的type是ClusterIP，会在创建service的时候，为service创建ip，所有访问该service的请求，都会经过该ip然后做负载均衡。如果设置为none，就不会为该service分配ip，只能通过pod的域名访问每个pod。</p>
+<p>​    通过<code>kuectl get svc</code>可以查看所有的service。也可以通过<code>kubectl describe svc xxx</code>，查看每个service的详情。</p>
+<p>​    </p>
+<p>​    </p>
+]]></content>
+      <categories>
+        <category>K8S</category>
+      </categories>
+      <tags>
+        <tag>K8S</tag>
+      </tags>
+  </entry>
 </search>
