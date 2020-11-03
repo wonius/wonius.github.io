@@ -4132,7 +4132,10 @@
 <p>可以访问<a href="https://developer.apple.com/download/more/">苹果开发者下载中心</a>，搜索<code>Command Line Tools</code>，根据系统版本找到对应的安装包，下载安装就可以了。</p>
 <h1 id="再修改主题"><a href="#再修改主题" class="headerlink" title="再修改主题"></a>再修改主题</h1><p>之前一直用的Next，时间久了有点审美疲劳，而且我当时的版本离最新版差别比较大，后续自己改过很多东西，升级也比较麻烦。所以干脆换了个主题。</p>
 <p>发现Oranges挺清新脱俗的，就它了。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 进入到hexo目录，安装主题</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/zchengsite/hexo-theme-oranges.git themes/oranges</span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后修改hexo的_config.yml中的主题</span></span><br><span class="line">theme: oranges</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新编译、部署</span></span><br><span class="line">hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 进入到hexo目录，安装主题</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/zchengsite/hexo-theme-oranges.git themes/oranges</span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后修改hexo的_config.yml中的主题</span></span><br><span class="line">theme: oranges</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新编译、部署</span></span><br><span class="line">hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+
+<h1 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h1><p>hexo升级后真不是一般的快哇，真香！</p>
+]]></content>
       <categories>
         <category>Hexo</category>
       </categories>
