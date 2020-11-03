@@ -11,7 +11,7 @@
 
   
     <link rel="apple-touch-icon" href="/images/favicon.png">
-    <link rel="icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.ico">
   
 
   <!-- Raleway-Font -->
@@ -36,6 +36,16 @@
 
 
   
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-102902020-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-102902020-1');
+    </script>
+  
 
 <meta name="generator" content="Hexo 5.2.0"></head>
 
@@ -47,10 +57,10 @@
     <a href="/">
       <!-- 头像取消懒加载，添加no-lazy -->
       
-        <img src="/images/avatar.png" alt="">
+        <img src="/images/avatar.jpg" alt="">
       
     </a>
-    <div class="nickname"><a href="/">Oranges</a></div>
+    <div class="nickname"><a href="/">Gavin</a></div>
   </div>
   <div class="navbar">
     <ul>
@@ -63,12 +73,12 @@
           <a href="/archives/">Archives</a>
         </li>
       
-        <li class="nav-item" data-path="/tags/">
-          <a href="/tags/">Tags</a>
+        <li class="nav-item" data-path="/categories/">
+          <a href="/categories/">Categories</a>
         </li>
       
-        <li class="nav-item" data-path="/friends/">
-          <a href="/friends/">Friends</a>
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
         </li>
       
         <li class="nav-item" data-path="/about/">
@@ -107,6 +117,17 @@
           2017-08-02
         </span>
         
+              <span class="post-categories">
+                <i class="iconfont icon-bookmark" title="Categories"></i>
+                
+                <span class="span--category">
+                  <a href="/categories/%E7%A7%AF%E7%B4%AF/" title="积累">
+                    <b>#</b> 积累
+                  </a>
+                </span>
+                
+              </span>
+          
               <span class="post-tags">
                 <i class="iconfont icon-tags" title="Tags"></i>
                 
@@ -139,6 +160,17 @@
               2017-08-02
             </span>
             
+                  <span class="post-categories">
+                    <i class="iconfont icon-bookmark" title="Categories"></i>
+                    
+                    <span class="span--category">
+                      <a href="/categories/%E7%A7%AF%E7%B4%AF/" title="积累">
+                        <b>#</b> 积累
+                      </a>
+                    </span>
+                    
+                  </span>
+              
                   <span class="post-tags">
                     <i class="iconfont icon-tags" title="Tags"></i>
                     
@@ -181,6 +213,27 @@
         
 
 
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+  <div id="vcomments"></div>
+
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'XYnpHEQEf0APV7JixjIjXCVn-MdYXbMMI',
+      appKey: 'c8KHBerJzAHSIAO12zHOabJh',
+      placeholder: 'Welcome!',
+      avatar: 'retro',
+      lang: 'zh-Hans'
+    })
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
 
 
 
@@ -194,44 +247,26 @@
     <ul>
       
         <li>
-          <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+          <a title="github" target="_blank" rel="noopener" href="https://github.com/wonius">
             <i class="iconfont icon-github"></i>
           </a>
         </li>
       
         <li>
-          <a title="email" href="">
+          <a title="email" href="mailto:woniuyf@gmail.com">
             <i class="iconfont icon-envelope"></i>
           </a>
         </li>
       
         <li>
-          <a title="facebook" href="">
-            <i class="iconfont icon-facebooksquare"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a title="twitter" href="">
+          <a title="twitter" target="_blank" rel="noopener" href="https://twitter.com/GavinGogoing">
             <i class="iconfont icon-twitter"></i>
           </a>
         </li>
       
         <li>
-          <a title="wechat" href="">
-            <i class="iconfont icon-wechat"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a title="weibo" href="">
+          <a title="weibo" target="_blank" rel="noopener" href="https://weibo.com/woniuyf">
             <i class="iconfont icon-weibo"></i>
-          </a>
-        </li>
-      
-        <li>
-          <a title="rss" href="/atom.xml">
-            <i class="iconfont icon-rss"></i>
           </a>
         </li>
       
@@ -239,7 +274,7 @@
   </div>
   
     <div class="footer-more">
-      <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © Oranges 2020</a>
+      <a target="_blank" rel="noopener" href="http://www.beian.miit.gov.cn/">沪ICP备18011513号</a>
     </div>
   
     <div class="footer-more">
