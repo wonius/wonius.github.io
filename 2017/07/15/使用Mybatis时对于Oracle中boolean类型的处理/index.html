@@ -155,7 +155,7 @@
 <img src="/2017/07/15/%E4%BD%BF%E7%94%A8Mybatis%E6%97%B6%E5%AF%B9%E4%BA%8EOracle%E4%B8%ADboolean%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%A4%84%E7%90%86/setBooleanInternal.png" class="" title="setBoolean方法的实现">
 
 <p>&emsp;&emsp;因此，在做insert、update操作时，用decode进行处理，即可将true/false转换成自己想要的值。我通常用Y/N表示状态。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">decode</span><span class="params">(#&#123;enabled&#125;, <span class="number">1</span>, <span class="string">&#x27;Y&#x27;</span>, <span class="string">&#x27;N&#x27;</span>)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">decode(<span class="comment">#&#123;enabled&#125;, 1, &#x27;Y&#x27;, &#x27;N&#x27;)</span></span><br></pre></td></tr></table></figure>
 
 
 <h1 id="DB为Oracle时，将查询结果转换为boolean类型"><a href="#DB为Oracle时，将查询结果转换为boolean类型" class="headerlink" title="DB为Oracle时，将查询结果转换为boolean类型"></a>DB为Oracle时，将查询结果转换为boolean类型</h1><p>&emsp;&emsp;同样，由TypeHandler作为入口，查看Mybatis的处理方式。针对不同情况，有三种处理方法，根据入参大体可以猜到每个方法的作用，此处不做展开。挑选一个方法深入，最终找到getBoolean的实现。</p>
@@ -165,7 +165,7 @@
 <img src="/2017/07/15/%E4%BD%BF%E7%94%A8Mybatis%E6%97%B6%E5%AF%B9%E4%BA%8EOracle%E4%B8%ADboolean%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%A4%84%E7%90%86/getBoolean.png" class="" title="getBoolean方法的实现">
 
 <p>&emsp;&emsp;所以当你希望将ResultSet中的某个属性转换为boolean类型时，可以使用如下方式。enabled为字段名称。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">decode</span><span class="params">(enabled, <span class="string">&#x27;Y&#x27;</span>, <span class="number">1</span>, <span class="string">&#x27;N&#x27;</span>, <span class="number">0</span>)</span></span> enabled</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">decode(enabled, &#x27;Y&#x27;, 1, &#x27;N&#x27;, 0) enabled</span><br></pre></td></tr></table></figure>
 
       </div>
       

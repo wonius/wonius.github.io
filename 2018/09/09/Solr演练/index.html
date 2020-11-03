@@ -160,7 +160,7 @@
 <p>使用root用户：</p>
 <p><code>ERROR: Failed to start Solr using command: &quot;bin/solr&quot; start -cloud -p 8983 -s &quot;example/cloud/node1/solr&quot; Exception : org.apache.commons.exec.ExecuteException: Process exited with an error: 1 (Exit value: 1)</code></p>
 <p>是因为用户访问权限不对，修改下权限就可以。我这里直接开了所有权限</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo</span> chmod -R <span class="number">777</span> /etc/solr-<span class="number">7</span>.<span class="number">4</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod -R 777 /etc/solr-7.4.0</span><br></pre></td></tr></table></figure>
 
 <h1 id="索引数据"><a href="#索引数据" class="headerlink" title="索引数据"></a>索引数据</h1><p>Solr目录中的example提供了基础数据，我们可以把这些基础数据加载到刚才创建的techproducts集合，并建立索引：</p>
 <p><code>bin/post -c techproducts example/exampledocs/*</code></p>
@@ -171,13 +171,13 @@
 <li>多条件查询，中间用<code>+</code>连接，如：<code>+(features:&quot;CAS latency&quot;)+(id:&quot;VDBDB1A16&quot;)</code>；相反，如果希望结果中过滤掉某个属性的内容，用<code>-</code>连接，如：<code>+(features:&quot;CAS latency&quot;)-(id:&quot;VDBDB1A16&quot;)</code></li>
 <li>fl对查询结果进行过滤，仅显示fl中的属性。多个属性<code>,</code>间隔；</li>
 </ol>
-<h1 id="Solr其他命令"><a href="#Solr其他命令" class="headerlink" title="Solr其他命令"></a>Solr其他命令</h1><h3 id="删除集合"><a href="#删除集合" class="headerlink" title="删除集合"></a>删除集合</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/solr <span class="keyword">delete</span> -c techproducts</span><br></pre></td></tr></table></figure>
+<h1 id="Solr其他命令"><a href="#Solr其他命令" class="headerlink" title="Solr其他命令"></a>Solr其他命令</h1><h3 id="删除集合"><a href="#删除集合" class="headerlink" title="删除集合"></a>删除集合</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/solr delete -c techproducts</span><br></pre></td></tr></table></figure>
 
-<h3 id="创建新集合"><a href="#创建新集合" class="headerlink" title="创建新集合"></a>创建新集合</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/solr create -c &lt;yourCollection&gt; -s <span class="number">2</span> -rf <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h3 id="创建新集合"><a href="#创建新集合" class="headerlink" title="创建新集合"></a>创建新集合</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/solr create -c &lt;yourCollection&gt; -s 2 -rf 2</span><br></pre></td></tr></table></figure>
 
-<h3 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h3><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/solr <span class="keyword">stop</span> -<span class="built_in">all</span></span><br></pre></td></tr></table></figure>
+<h3 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/solr stop -all</span><br></pre></td></tr></table></figure>
 
-<h3 id="重新启动"><a href="#重新启动" class="headerlink" title="重新启动"></a>重新启动</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bin<span class="regexp">/solr start -c -p 8983 -s example/</span>cloud<span class="regexp">/node1/</span>solr</span><br><span class="line">bin<span class="regexp">/solr start -c -p 7574 -s example/</span>cloud<span class="regexp">/node2/</span>solr -z localhost:<span class="number">9983</span></span><br></pre></td></tr></table></figure>
+<h3 id="重新启动"><a href="#重新启动" class="headerlink" title="重新启动"></a>重新启动</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bin/solr start -c -p 8983 -s example/cloud/node1/solr</span><br><span class="line">bin/solr start -c -p 7574 -s example/cloud/node2/solr -z localhost:9983</span><br></pre></td></tr></table></figure>
 
 
       </div>

@@ -162,9 +162,9 @@
 </li>
 <li><p><strong>将整个sql循环</strong></p>
 <p>将整个sql循环，而不是参数。例如入参是有100个参数的list，循环创建出100条update语句，参数固定为一个，形式如下：</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">foreach</span> collection=list item=&quot;item&quot; <span class="keyword">index</span>=&quot;index&quot; <span class="keyword">open</span>=&quot;begin&quot; <span class="keyword">close</span>=&quot;;end;&quot; separator=&quot;;&quot;&gt;</span><br><span class="line"><span class="keyword">update</span> worker </span><br><span class="line"><span class="keyword">set</span> status = &quot;Y&quot;</span><br><span class="line"><span class="keyword">where</span> id = #&#123;item.id&#125;</span><br><span class="line">&lt;/<span class="keyword">foreach</span>&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;foreach collection=list item=&quot;item&quot; index=&quot;index&quot; open=&quot;begin&quot; close=&quot;;end;&quot; separator=&quot;;&quot;&gt;</span><br><span class="line"><span class="keyword">update</span> worker </span><br><span class="line"><span class="keyword">set</span> <span class="keyword">status</span> = <span class="string">&quot;Y&quot;</span></span><br><span class="line"><span class="keyword">where</span> <span class="keyword">id</span> = <span class="comment">#&#123;item.id&#125;</span></span><br><span class="line">&lt;/foreach&gt;</span><br></pre></td></tr></table></figure>
 
-<p>​</p>
+
 </li>
 </ol>
 

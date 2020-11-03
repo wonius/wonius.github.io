@@ -158,7 +158,7 @@
 <img src="/2018/01/06/01Pico-Pro-Maker-Kit-%E5%88%B7%E5%85%A5Android-Things/4.png" class="" title="fastboot">
 
 <p>加入环境变量：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span>我安装了ohmyzsh插件，所以需要编辑.zshrc。同学们根据实际配置修改</span><br><span class="line">vim ~/.zshrc</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span>文件末尾中加入</span><br><span class="line">export PATH=<span class="variable">$PATH</span>:<span class="regexp">/Users/</span>woniu<span class="regexp">/Library/</span>Android<span class="regexp">/sdk/</span>platform-tools</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span>别忘了编译</span><br><span class="line">source ~/.zshrc</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span>检测是否可用</span><br><span class="line">fastboot -h</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我安装了ohmyzsh插件，所以需要编辑.zshrc。同学们根据实际配置修改</span></span><br><span class="line">vim ~/.zshrc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件末尾中加入</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/Users/woniu/Library/Android/sdk/platform-tools</span><br><span class="line"></span><br><span class="line"><span class="comment"># 别忘了编译</span></span><br><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检测是否可用</span></span><br><span class="line">fastboot -h</span><br></pre></td></tr></table></figure>
 
 
 
@@ -167,7 +167,7 @@
 
 <p>从上图可以看到，最后报错了，原因是找不到fastboot命令。当我配置好fastboot后重新在线安装，一直无法下载。只好下载镜像手动安装。</p>
 <p>下载iot_imx7d_pico后，解压，到该目录下执行：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./flash-<span class="keyword">all</span>.<span class="keyword">sh</span>		//Win系统下执行flash-<span class="keyword">all</span>.bat</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./flash-all.sh		//Win系统下执行flash-all.bat</span><br></pre></td></tr></table></figure>
 
 <p>之后静待安装，完成后会自动重启，就可以了：</p>
 <img src="/2018/01/06/01Pico-Pro-Maker-Kit-%E5%88%B7%E5%85%A5Android-Things/5.jpeg" class="" title="成功">

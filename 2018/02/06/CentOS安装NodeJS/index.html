@@ -143,11 +143,11 @@
       <div class="markdown-body">
         <p>​    最近需要在服务器上安装nodejs，网上搜了一下，文章都是转来转去，都出到9.x版本了还在讲如何装6.x，很无语。所以自己整理一下。</p>
 <h3 id="选择合适的版本"><a href="#选择合适的版本" class="headerlink" title="选择合适的版本"></a>选择合适的版本</h3><p>​    yum安装自带nodjs版本太低，到<a target="_blank" rel="noopener" href="https://github.com/nodesource/distributions">node源码版本</a>上选择合适的版本，我安装了最新版本，9.x</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">curl</span> -<span class="built_in">sL</span> https:<span class="comment">//rpm.nodesource.com/setup_9.x | bash -</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sL https://rpm.nodesource.com/setup_9.x | bash -</span><br></pre></td></tr></table></figure>
 
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> -y nodejs</span><br></pre></td></tr></table></figure>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y nodejs</span><br></pre></td></tr></table></figure>
 
-<h3 id="检查node、npm版本"><a href="#检查node、npm版本" class="headerlink" title="检查node、npm版本"></a>检查node、npm版本</h3><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">node</span> <span class="title">-v</span></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<h3 id="检查node、npm版本"><a href="#检查node、npm版本" class="headerlink" title="检查node、npm版本"></a>检查node、npm版本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
 
 <h3 id="one-more-thing"><a href="#one-more-thing" class="headerlink" title="one more thing"></a>one more thing</h3><p>​    除了在线安装，还有下载安装包、加压、编译安装的方法，操作繁琐，不推荐。</p>
 

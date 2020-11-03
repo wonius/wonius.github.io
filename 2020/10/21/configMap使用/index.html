@@ -148,7 +148,8 @@
       </div>
       <div class="markdown-body">
         <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>​    我们系统的微服务是通过K8S容器化部署的，由于某些原因，没有对接配置中心。所以为了将配置与应用分离，便于后续修改配置，决定使用configMap+deployment的方式，将配置文件外挂到应用上。</p>
-<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="修改应用"><a href="#修改应用" class="headerlink" title="修改应用"></a>修改应用</h2><h2 id="创建configMap"><a href="#创建configMap" class="headerlink" title="创建configMap"></a>创建configMap</h2><h2 id="修改deployment"><a href="#修改deployment" class="headerlink" title="修改deployment"></a>修改deployment</h2><h2 id="部署服务"><a href="#部署服务" class="headerlink" title="部署服务"></a>部署服务</h2>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>​    整体思路是，创建application.yml配置文件，应用打包时将该文件打到包内。然后将每个环境的</p>
+<h2 id="修改应用"><a href="#修改应用" class="headerlink" title="修改应用"></a>修改应用</h2><h2 id="创建configMap"><a href="#创建configMap" class="headerlink" title="创建configMap"></a>创建configMap</h2><h2 id="修改deployment"><a href="#修改deployment" class="headerlink" title="修改deployment"></a>修改deployment</h2><h2 id="部署服务"><a href="#部署服务" class="headerlink" title="部署服务"></a>部署服务</h2>
       </div>
       
         <div class="prev-or-next">
@@ -210,7 +211,7 @@
   <div class="post-catalog" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%BA%94%E7%94%A8"><span class="toc-text">修改应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAconfigMap"><span class="toc-text">创建configMap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9deployment"><span class="toc-text">修改deployment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1"><span class="toc-text">部署服务</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%BA%94%E7%94%A8"><span class="toc-text">修改应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAconfigMap"><span class="toc-text">创建configMap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9deployment"><span class="toc-text">修改deployment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1"><span class="toc-text">部署服务</span></a></li></ol></li></ol>
     </div>
   </div>
 
