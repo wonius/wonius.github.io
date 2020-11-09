@@ -4186,7 +4186,8 @@
 </li>
 </ol>
 <p>目前我实验了v2ray，发现并没有开启科学上网！！！</p>
-<p>原因是最新的插件不支持v2ray。我还没试过ssr，等有时间搭个ssr试一下。不过现在ss经常被墙，不如v2ray好用。</p>
+<p>原因是路由器本身的内存太小，不足以支撑v2ray插件运行。</p>
+<p>买一个好点的U盘，查到路由器上，安装虚拟内存的插件，然后创建1G的虚拟内存并挂载，然后就能科学上网啦！</p>
 <h2 id="路由器相关的一些命令"><a href="#路由器相关的一些命令" class="headerlink" title="路由器相关的一些命令"></a>路由器相关的一些命令</h2><p>清空jffs，改命令会将软件中心下所有的插件删掉。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">kill</span> -9 $(pidof skipd)</span><br><span class="line"><span class="built_in">cd</span> /jffs</span><br><span class="line">rm -r .[a-zA-Z_]* *</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
 
