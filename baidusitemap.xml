@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://wonius.top/2020/11/12/%E5%BA%8A%E4%BA%86%E4%B8%AA%E5%9E%AB/</loc>
+    <lastmod>2020-11-16</lastmod>
+  </url>
+  <url>
+    <loc>https://wonius.top/2020/10/21/configMap%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2020-11-12</lastmod>
+  </url>
+  <url>
     <loc>https://wonius.top/2020/10/27/%E5%8D%8E%E7%A1%95TUF-AX3000%E9%85%8D%E7%BD%AE%E6%A2%85%E6%9E%97%E5%9B%BA%E4%BB%B6/</loc>
-    <lastmod>2020-11-09</lastmod>
+    <lastmod>2020-11-12</lastmod>
   </url>
   <url>
     <loc>https://wonius.top/2020/10/19/Hexo%E5%8D%87%E7%BA%A7%E8%AE%B0%E5%BD%95/</loc>
@@ -226,10 +234,6 @@
   </url>
   <url>
     <loc>https://wonius.top/2018/07/21/kubectl%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
-    <lastmod>2020-11-03</lastmod>
-  </url>
-  <url>
-    <loc>https://wonius.top/2020/10/21/configMap%E4%BD%BF%E7%94%A8/</loc>
     <lastmod>2020-11-03</lastmod>
   </url>
   <url>
