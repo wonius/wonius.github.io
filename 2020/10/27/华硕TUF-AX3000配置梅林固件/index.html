@@ -145,10 +145,11 @@
 <h1 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h1><p>目标价位是800左右，然后有几个备选都还不错，网件R8000P、华硕RT-AC86U、华硕TUF-AX3000。奈何其余两款不支持WiFi6，购入这个路由器短期内肯定不会更换了，所以一步到位，直接上WiFi6，最终选择了华硕TUF-AX3000。</p>
 <p>如何挑路由器就只能在网上找资料了，比较权威的还是<a target="_blank" rel="noopener" href="https://www.acwifi.net/">acwifi</a>。</p>
 <h1 id="购入"><a href="#购入" class="headerlink" title="购入"></a>购入</h1><p>对比了狗东、拼夕夕，还是拼夕夕香啊，最后在拼夕夕下单。</p>
-<p>拼夕夕有好多拆封帮忙刷入梅林固件的，我担心是返修的机器，直接买了全新版本。600多软妹币。另外还入了一个Intel-AX3000T无线网卡，让家里的台式焕发青春。</p>
-<h1 id="刷固件"><a href="#刷固件" class="headerlink" title="刷固件"></a>刷固件</h1><h2 id="找固件"><a href="#找固件" class="headerlink" title="找固件"></a>找固件</h2><p>机器到手后就开始了折腾之旅，不然也不会买华硕了。</p>
+<p>拼夕夕有好多拆封帮忙刷入梅林固件的，我担心是返修的机器，直接买了全新版本。600多软妹币。</p>
+<p>家里的台式网卡坏了好久，拖着一直没弄，这次顺便入了个Intel-AX3000T无线网卡，同样支持wifi6，终于重新焕发青春。这下子终于可以云顶下棋啦🥳</p>
+<h1 id="刷固件"><a href="#刷固件" class="headerlink" title="刷固件"></a>刷固件</h1><h2 id="找固件"><a href="#找固件" class="headerlink" title="找固件"></a>找固件</h2><p>机器到手后就开始了折腾，不折腾也不会买华硕了。</p>
 <p>找固件常用的论坛有<a target="_blank" rel="noopener" href="https://www.right.com.cn/forum/">恩山</a>、<a target="_blank" rel="noopener" href="https://koolshare.cn/portal.php">koolshare</a>。</p>
-<p>几经周折，找了好几个版本都比较旧，最终在kooshare上找到<a target="_blank" rel="noopener" href="https://koolshare.cn/thread-179968-1-1.html">这篇帖子</a>，是基于最新官方固件（384_9923）修改的。一起就绪，开整。</p>
+<p>几经周折，找了好几个版本都比较旧，最终在koolshare上找到<a target="_blank" rel="noopener" href="https://koolshare.cn/thread-179968-1-1.html">这篇帖子</a>，是基于最新官方固件（384_9923）修改的。一起就绪，开整。</p>
 <h2 id="刷机"><a href="#刷机" class="headerlink" title="刷机"></a>刷机</h2><p>刷机比较简单，连上wifi后，访问router.asus.com，登入后在系统设置里，上传固件，等待刷新，升级完重启就行了。</p>
 <p>重新登录，看到里面有了软件中心。有一些内置的插件可以直接安装，不过没有我们想要的科学上网插件。好吧，继续找。</p>
 <h1 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h1><h2 id="找插件"><a href="#找插件" class="headerlink" title="找插件"></a>找插件</h2><p>又是几经周折，终于找到了<a target="_blank" rel="noopener" href="https://github.com/hq450/fancyss_history_package/tree/master/fancyss_hnd">ss插件</a>，我这里下载的是1.8.8版本。</p>
@@ -170,10 +171,13 @@
 <p>原因是路由器本身的内存太小，不足以支撑v2ray插件运行。</p>
 <p>买一个好点的U盘，插到路由器上，安装虚拟内存的插件，创建1G的虚拟内存并挂载，然后就能科学上网啦！</p>
 <h2 id="路由器相关的一些命令"><a href="#路由器相关的一些命令" class="headerlink" title="路由器相关的一些命令"></a>路由器相关的一些命令</h2><p>清空jffs，改命令会将软件中心下所有的插件删掉。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">kill</span> -9 $(pidof skipd)</span><br><span class="line"><span class="built_in">cd</span> /jffs</span><br><span class="line">rm -r .[a-zA-Z_]* *</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 $(pidof skipd)</span><br><span class="line"><span class="built_in">cd</span> /jffs</span><br><span class="line">rm -r .[a-zA-Z_]* *</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
 
 <p>删除软件中心</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 $(pidof skipd)</span><br><span class="line">rm -rf /jffs/.asusrouter /jffs/.koolshare /jffs/db /jffs/ksdb /jffs/config/* /jffs/etc/profile</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<h1 id="one-more-thing"><a href="#one-more-thing" class="headerlink" title="one more thing"></a>one more thing</h1><p>v2ray运行的时候会占用系统资源，因为路由器天生的局限性，配置不会太高，所以最近又被软路由种草了…兴冲冲的跟女票说这个事儿，又被无情的diss了…</p>
+<p>不过一般情况路由器就够用了。除非你家宽带和机场带宽都500M以上，不然看不出来差距。</p>
 
       </div>
       
@@ -230,7 +234,7 @@
   <div class="post-catalog" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%89%E6%8B%A9"><span class="toc-text">选择</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B4%AD%E5%85%A5"><span class="toc-text">购入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%B7%E5%9B%BA%E4%BB%B6"><span class="toc-text">刷固件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%BE%E5%9B%BA%E4%BB%B6"><span class="toc-text">找固件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%B7%E6%9C%BA"><span class="toc-text">刷机</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="toc-text">安装插件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%BE%E6%8F%92%E4%BB%B6"><span class="toc-text">找插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6-1"><span class="toc-text">安装插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%9A%84%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4"><span class="toc-text">路由器相关的一些命令</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%89%E6%8B%A9"><span class="toc-text">选择</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B4%AD%E5%85%A5"><span class="toc-text">购入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%B7%E5%9B%BA%E4%BB%B6"><span class="toc-text">刷固件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%BE%E5%9B%BA%E4%BB%B6"><span class="toc-text">找固件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%B7%E6%9C%BA"><span class="toc-text">刷机</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="toc-text">安装插件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%BE%E6%8F%92%E4%BB%B6"><span class="toc-text">找插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6-1"><span class="toc-text">安装插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%9A%84%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4"><span class="toc-text">路由器相关的一些命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#one-more-thing"><span class="toc-text">one more thing</span></a></li></ol>
     </div>
   </div>
 
@@ -252,8 +256,8 @@
   <script>
     new Valine({
       el: '#vcomments',
-      appId: 'XYnpHEQEf0APV7JixjIjXCVn-MdYXbMMI',
-      appKey: 'c8KHBerJzAHSIAO12zHOabJh',
+      appId: 'OYA4UGzj3dzmj5MFV4mwgM8H-gzGzoHsz',
+      appKey: 'Wq3VXnF9PYeghJRNMKBTkOzd',
       placeholder: 'Welcome!',
       avatar: 'retro',
       lang: 'zh-Hans'
