@@ -4371,7 +4371,7 @@
 <p><code>&quot;go.gopath&quot;: &quot;/Users/woniu/go&quot;</code></p>
 <h2 id="安装go组件"><a href="#安装go组件" class="headerlink" title="安装go组件"></a>安装go组件</h2><p>按住command+shift+p，输入<code>go: install/update tools</code>，然后勾选全部组件，确定，即可开始安装。</p>
 <p>如果提示连接失败，可以改下代理</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">go env -w GO111MODULE=on</span><br><span class="line">go env -w GOPROXY=https://goproxy.io,direct</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># shell中执行</span></span><br><span class="line">go env -w GO111MODULE=on</span><br><span class="line">go env -w GOPROXY=https://goproxy.io,direct</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
