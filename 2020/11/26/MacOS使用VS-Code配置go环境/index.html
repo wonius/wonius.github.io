@@ -6,10 +6,8 @@
   <meta name="author" content="zchengsite, 1451426471@qq.com" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-    <meta name="robots" content="noindex" />
   
-  
-  <title>Gavin&#39;s 自留地儿</title>
+  <title>MacOS使用VS Code配置go环境 | Gavin&#39;s 自留地儿</title>
 
   
     <link rel="apple-touch-icon" href="/images/favicon.png">
@@ -97,151 +95,176 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="Redis-Session管理">
-        <div class="time-m-d">2018-07-13</div>
-        <div class="title">
-          <a href="/2018/07/13/Redis-Session%E7%AE%A1%E7%90%86/">
-            
-              
-                <span>Redis-Session管理</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">MacOS使用VS Code配置go环境</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2020-11-26
+        </span>
+        
+              <span class="post-categories">
+                <i class="iconfont icon-bookmark" title="Categories"></i>
+                
+                <span class="span--category">
+                  <a href="/categories/Go/" title="Go">
+                    <b>#</b> Go
+                  </a>
+                </span>
+                
+              </span>
+          
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="Tags"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Go/" title="Go">
+                    <b>#</b> Go
+                  </a>
+                </span>
+                
+                <span class="span--tag">
+                  <a href="/tags/VS-Code/" title="VS Code">
+                    <b>#</b> VS Code
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="Spring集成HanLP分词">
-        <div class="time-m-d">2018-06-15</div>
-        <div class="title">
-          <a href="/2018/06/15/Spring%E9%9B%86%E6%88%90HanLP%E5%88%86%E8%AF%8D/">
-            
-              
-                <span>Spring集成HanLP分词</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <h1 id="安装Go"><a href="#安装Go" class="headerlink" title="安装Go"></a>安装Go</h1><h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>访问<a target="_blank" rel="noopener" href="https://golang.org/dl/">官网</a>，根据需求下载。</p>
+<p>我下载的是1.15.5，直接点击执行pkg文件安装就可以了。</p>
+<p>默认是安装到<code>/usr/local/go</code>目录。</p>
+<p><em>PS: 也可以使用brew安装的方式</em></p>
+<h2 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h2><p>主要有2个环境变量：GOROOT、GOPATH。</p>
+<p>GOROOT：go的安装路径</p>
+<p>GOPATH：项目路径</p>
+<p>根据情况修改配置文件。我用的是zsh，座椅在.zshrc最后追加如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> GOROOT=/usr/<span class="built_in">local</span>/go</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$GOROOT</span>/bin</span><br><span class="line"><span class="built_in">export</span> GOPATH=/Users/xxxx/go</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$GOPATH</span>/bin</span><br></pre></td></tr></table></figure>
+
+<p>改为别忘了source刷新下，然后<code>go version</code>验证下。</p>
+<h1 id="VS-Code配置"><a href="#VS-Code配置" class="headerlink" title="VS Code配置"></a>VS Code配置</h1><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>在扩展商店里搜索go，安装就可以了。</p>
+<h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><p>安装完成后，同时按住command+shift+p，输入<code>open settings</code>，打开setting.json，加入</p>
+<p><code>&quot;go.gopath&quot;: &quot;/Users/woniu/go&quot;</code></p>
+<h2 id="安装go组件"><a href="#安装go组件" class="headerlink" title="安装go组件"></a>安装go组件</h2><p>按住command+shift+p，输入<code>go: install/update tools</code>，然后勾选全部组件，确定，即可开始安装。</p>
+<p>如果提示连接失败，可以改下代理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">go env -w GO111MODULE=on</span><br><span class="line">go env -w GOPROXY=https://goproxy.io,direct</span><br></pre></td></tr></table></figure>
+
+
       </div>
-    
-      <div class="post-item" title="iOS12_Beta升级">
-        <div class="time-m-d">2018-06-06</div>
-        <div class="title">
-          <a href="/2018/06/06/iOS12-Beta%E5%8D%87%E7%BA%A7/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>iOS12_Beta升级</span>
-              
+              <a href="/2020/11/12/%E5%BA%8A%E4%BA%86%E4%B8%AA%E5%9E%AB/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2020-11-26
+            </span>
+            
+                  <span class="post-categories">
+                    <i class="iconfont icon-bookmark" title="Categories"></i>
+                    
+                    <span class="span--category">
+                      <a href="/categories/Go/" title="Go">
+                        <b>#</b> Go
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="Tags"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Go/" title="Go">
+                        <b>#</b> Go
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/VS-Code/" title="VS Code">
+                        <b>#</b> VS Code
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="SpringBoot多台实例监控redis-key失效事件">
-        <div class="time-m-d">2018-06-06</div>
-        <div class="title">
-          <a href="/2018/06/06/SpringBoot%E5%A4%9A%E5%AE%9E%E4%BE%8B%E7%9B%91%E6%8E%A7redis-key%E5%A4%B1%E6%95%88%E4%BA%8B%E4%BB%B6/">
-            
-              
-                <span>SpringBoot多台实例监控redis-key失效事件</span>
-              
-            
-          </a>
-        </div>
-      </div>
+  <div class="post-catalog" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Go"><span class="toc-text">安装Go</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85"><span class="toc-text">下载安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">设置环境变量</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VS-Code%E9%85%8D%E7%BD%AE"><span class="toc-text">VS Code配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="toc-text">安装插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="toc-text">修改配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85go%E7%BB%84%E4%BB%B6"><span class="toc-text">安装go组件</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="SpringCloud项目搭建">
-        <div class="time-m-d">2018-05-31</div>
-        <div class="title">
-          <a href="/2018/05/31/SpringCloud%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/">
-            
-              
-                <span>SpringCloud项目搭建</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="vim键位介绍">
-        <div class="time-m-d">2018-05-29</div>
-        <div class="title">
-          <a href="/2018/05/29/vim%E9%94%AE%E4%BD%8D%E4%BB%8B%E7%BB%8D/">
-            
-              
-                <span>vim键位介绍</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="技能图谱-后端">
-        <div class="time-m-d">2018-05-29</div>
-        <div class="title">
-          <a href="/2018/05/29/%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1-%E5%90%8E%E7%AB%AF/">
-            
-              
-                <span>技能图谱-后端</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="SpringCloud概述">
-        <div class="time-m-d">2018-05-29</div>
-        <div class="title">
-          <a href="/2018/05/29/SpringCloud%E6%A6%82%E8%BF%B0/">
-            
-              
-                <span>SpringCloud概述</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Python基础知识">
-        <div class="time-m-d">2018-05-24</div>
-        <div class="title">
-          <a href="/2018/05/24/Python%E8%A7%84%E8%8C%83/">
-            
-              
-                <span>Python基础知识</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Python2与Python3差异">
-        <div class="time-m-d">2018-05-23</div>
-        <div class="title">
-          <a href="/2018/05/23/Python2%E4%B8%8EPython3%E5%B7%AE%E5%BC%82/">
-            
-              
-                <span>Python2与Python3差异</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+  <div id="vcomments"></div>
+
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'OYA4UGzj3dzmj5MFV4mwgM8H-gzGzoHsz',
+      appKey: 'Wq3VXnF9PYeghJRNMKBTkOzd',
+      placeholder: 'Welcome!',
+      avatar: 'retro',
+      lang: 'zh-Hans'
+    })
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/page/4/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">5 / 11</span>
-    
-      <a href="/page/6/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         <div class="footer">
   <div class="social">
