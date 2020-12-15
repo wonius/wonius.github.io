@@ -4482,7 +4482,8 @@
 <li>你算法的时间复杂度应该为 O(<em>n2</em>) 。</li>
 </ul>
 <p><strong>进阶:</strong> 你能将算法的时间复杂度降低到 O(<em>n</em> log <em>n</em>) 吗?</p>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><h2 id="Round-1（失败）"><a href="#Round-1（失败）" class="headerlink" title="Round 1（失败）"></a>Round 1（失败）</h2><p>​    一般来讲，解</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><h2 id="Round-1（失败）"><a href="#Round-1（失败）" class="headerlink" title="Round 1（失败）"></a>Round 1（失败）</h2><p>思路：</p>
+<p>解子序列问题要用动态规划，解动态规划先写出来递归解法，然后再转换成dp数组存储中间变量</p>
 ]]></content>
       <categories>
         <category>算法</category>
