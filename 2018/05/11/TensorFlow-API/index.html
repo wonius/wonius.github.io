@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon-logo.svg" color="#222">
+  <meta name="google-site-verification" content="X19PXVlvd84YaSCV_p_MS02GftxVA-Q_tcfJj1fbIT4">
+  <meta name="msvalidate.01" content="6A3ECE18580F609916EB5B7C47804ADB">
+  <meta name="baidu-site-verification" content="code-tLSKP4h7Ge">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wonius.top","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="TensorFlow常用API">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TensorFlow-API">
+<meta property="og:url" content="https://wonius.top/2018/05/11/TensorFlow-API/index.html">
+<meta property="og:site_name" content="Gavin&#39;s 自留地儿">
+<meta property="og:description" content="TensorFlow常用API">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-05-11T07:36:01.000Z">
+<meta property="article:modified_time" content="2020-11-03T14:12:45.000Z">
+<meta property="article:author" content="Gavin">
+<meta property="article:tag" content="TensorFlow">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://wonius.top/2018/05/11/TensorFlow-API/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wonius.top/2018/05/11/TensorFlow-API/","path":"2018/05/11/TensorFlow-API/","title":"TensorFlow-API"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>TensorFlow-API | Gavin's 自留地儿</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-102902020-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-102902020-1","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?8cfc05493126c4fa21cfa198c7007a37"></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Gavin's 自留地儿</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-constant"><span class="nav-number">1.</span> <span class="nav-text">tf.constant</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define"><span class="nav-number">1.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter"><span class="nav-number">1.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo"><span class="nav-number">1.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-placeholder"><span class="nav-number">2.</span> <span class="nav-text">tf.placeholder</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-1"><span class="nav-number">2.1.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-1"><span class="nav-number">2.2.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-nn-conv2d"><span class="nav-number">3.</span> <span class="nav-text">tf.nn.conv2d</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-1"><span class="nav-number">3.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-2"><span class="nav-number">3.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-2"><span class="nav-number">3.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-nn-relu"><span class="nav-number">4.</span> <span class="nav-text">tf.nn.relu</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-2"><span class="nav-number">4.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-3"><span class="nav-number">4.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-3"><span class="nav-number">4.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-nn-max-pool"><span class="nav-number">5.</span> <span class="nav-text">tf.nn.max_pool</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-3"><span class="nav-number">5.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-4"><span class="nav-number">5.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-4"><span class="nav-number">5.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-nn-dropout"><span class="nav-number">6.</span> <span class="nav-text">tf.nn.dropout</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-4"><span class="nav-number">6.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-5"><span class="nav-number">6.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-5"><span class="nav-number">6.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-nn-sigmoid-cross-entropy-with-logits"><span class="nav-number">7.</span> <span class="nav-text">tf.nn.sigmoid_cross_entropy_with_logits</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-5"><span class="nav-number">7.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-6"><span class="nav-number">7.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-6"><span class="nav-number">7.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-nn-bias-add"><span class="nav-number">8.</span> <span class="nav-text">tf.nn.bias_add</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-6"><span class="nav-number">8.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-7"><span class="nav-number">8.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-7"><span class="nav-number">8.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-truncated-normal"><span class="nav-number">9.</span> <span class="nav-text">tf.truncated_normal</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-7"><span class="nav-number">9.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-8"><span class="nav-number">9.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-8"><span class="nav-number">9.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-reduce-mean"><span class="nav-number">10.</span> <span class="nav-text">tf.reduce_mean</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-8"><span class="nav-number">10.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-9"><span class="nav-number">10.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-9"><span class="nav-number">10.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-square"><span class="nav-number">11.</span> <span class="nav-text">tf.square</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-9"><span class="nav-number">11.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-10"><span class="nav-number">11.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-10"><span class="nav-number">11.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-squared-difference"><span class="nav-number">12.</span> <span class="nav-text">tf.squared_difference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-10"><span class="nav-number">12.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-11"><span class="nav-number">12.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-11"><span class="nav-number">12.3.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-Variable"><span class="nav-number">13.</span> <span class="nav-text">tf.Variable</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Define-11"><span class="nav-number">13.1.</span> <span class="nav-text">Define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-12"><span class="nav-number">13.2.</span> <span class="nav-text">Parameter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo-12"><span class="nav-number">13.3.</span> <span class="nav-text">Demo</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Gavin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Gavin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">118</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:woniuyf@gmail.com" title="E-Mail → mailto:woniuyf@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wonius.top/2018/05/11/TensorFlow-API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Gavin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gavin's 自留地儿">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          TensorFlow-API
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-05-11 15:36:01" itemprop="dateCreated datePublished" datetime="2018-05-11T15:36:01+08:00">2018-05-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2020-11-03 22:12:45" itemprop="dateModified" datetime="2020-11-03T22:12:45+08:00">2020-11-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/TensorFlow/" itemprop="url" rel="index"><span itemprop="name">TensorFlow</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>22k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>20 mins.</span>
+    </span>
+</div>
+
+            <div class="post-description">TensorFlow常用API</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="tf-constant"><a href="#tf-constant" class="headerlink" title="tf.constant"></a>tf.constant</h2><p><strong>根据value的值，生成一个shape维度的张量常量</strong></p>
+<h3 id="Define"><a href="#Define" class="headerlink" title="Define"></a>Define</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">constant(value, dtype=<span class="literal">None</span>, shape=<span class="literal">None</span>, name=<span class="string">&#x27;Const&#x27;</span>, verify_shape=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Parameter"><a href="#Parameter" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必须</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>value</td>
+<td>Y</td>
+<td>常量、list</td>
+<td>张量的值</td>
+</tr>
+<tr>
+<td>dtype</td>
+<td>N</td>
+<td>dtype</td>
+<td>张量的元素类型</td>
+</tr>
+<tr>
+<td>shape</td>
+<td>N</td>
+<td>1维整型张量、array</td>
+<td>张量的维度</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>张量的名称</td>
+</tr>
+<tr>
+<td>verify_shape</td>
+<td>N</td>
+<td>boolean</td>
+<td>检测shape是否和value的shape一致。<br />若值为False，当不一致时，会用最后一个元素将shape补全</td>
+</tr>
+</tbody></table>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">@version: ??</span></span><br><span class="line"><span class="string">@author: Gavin</span></span><br><span class="line"><span class="string">@license: Apache Licence </span></span><br><span class="line"><span class="string">@contact: woniuyf@gmail.com</span></span><br><span class="line"><span class="string">@site: https://wonius.top/</span></span><br><span class="line"><span class="string">@software: PyCharm</span></span><br><span class="line"><span class="string">@file: constant.py</span></span><br><span class="line"><span class="string">@time: 2018/5/11 10:00</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">a = tf.constant([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>], shape=[<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">b = tf.constant(-<span class="number">1</span>, shape=[<span class="number">3</span>,<span class="number">2</span>])</span><br><span class="line">c = tf.matmul(a,b)</span><br><span class="line"></span><br><span class="line">e = tf.constant(np.arange(<span class="number">1</span>,<span class="number">13</span>,dtype=np.int32), shape=[<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">f = tf.constant(np.arange(<span class="number">13</span>,<span class="number">25</span>, dtype=np.int32), shape=[<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>])</span><br><span class="line">g = tf.matmul(e,f)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;-----------------&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (a.get_shape())</span><br><span class="line">    <span class="built_in">print</span> (sess.run(a))</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;-----------------&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (b.get_shape())</span><br><span class="line">    <span class="built_in">print</span> (sess.run(b))</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;-----------------&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (c.get_shape())</span><br><span class="line">    <span class="built_in">print</span> (sess.run(c))</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;-----------------&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (e.get_shape())</span><br><span class="line">    <span class="built_in">print</span> (sess.run(e))</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;-----------------&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (f.get_shape())</span><br><span class="line">    <span class="built_in">print</span> (sess.run(f))</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;-----------------&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (g.get_shape())</span><br><span class="line">    <span class="built_in">print</span> (sess.run(g))</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 执行结果</span></span><br><span class="line"><span class="comment"># -----------------</span></span><br><span class="line"><span class="comment"># (2, 3)</span></span><br><span class="line"><span class="comment"># [[1 2 3]</span></span><br><span class="line"><span class="comment">#  [4 5 6]]</span></span><br><span class="line"><span class="comment"># -----------------</span></span><br><span class="line"><span class="comment"># (3, 2)</span></span><br><span class="line"><span class="comment"># [[-1 -1]</span></span><br><span class="line"><span class="comment">#  [-1 -1]</span></span><br><span class="line"><span class="comment">#  [-1 -1]]</span></span><br><span class="line"><span class="comment"># -----------------</span></span><br><span class="line"><span class="comment"># (2, 2)</span></span><br><span class="line"><span class="comment"># [[ -6  -6]</span></span><br><span class="line"><span class="comment">#  [-15 -15]]</span></span><br><span class="line"><span class="comment"># -----------------</span></span><br><span class="line"><span class="comment"># (2, 2, 3)</span></span><br><span class="line"><span class="comment"># [[[ 1  2  3]</span></span><br><span class="line"><span class="comment">#   [ 4  5  6]]</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#  [[ 7  8  9]</span></span><br><span class="line"><span class="comment">#   [10 11 12]]]</span></span><br><span class="line"><span class="comment"># -----------------</span></span><br><span class="line"><span class="comment"># (2, 3, 2)</span></span><br><span class="line"><span class="comment"># [[[13 14]</span></span><br><span class="line"><span class="comment">#   [15 16]</span></span><br><span class="line"><span class="comment">#   [17 18]]</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#  [[19 20]</span></span><br><span class="line"><span class="comment">#   [21 22]</span></span><br><span class="line"><span class="comment">#   [23 24]]]</span></span><br><span class="line"><span class="comment"># -----------------</span></span><br><span class="line"><span class="comment"># (2, 2, 2)</span></span><br><span class="line"><span class="comment"># [[[ 94 100]</span></span><br><span class="line"><span class="comment">#   [229 244]]</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#  [[508 532]</span></span><br><span class="line"><span class="comment">#   [697 730]]]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="tf-placeholder"><a href="#tf-placeholder" class="headerlink" title="tf.placeholder"></a>tf.placeholder</h2><p><strong>一种占位符，在执行时填入具体值</strong></p>
+<p>###Define</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">placeholder(dtype, shape=<span class="literal">None</span>, name=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Parameter-1"><a href="#Parameter-1" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dtype</td>
+<td>Y</td>
+<td>dtype</td>
+<td>占位符的数据类型</td>
+</tr>
+<tr>
+<td>shape</td>
+<td>N</td>
+<td>1维整型张量、array</td>
+<td>占位符的维度</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>占位符的名称</td>
+</tr>
+</tbody></table>
+<h3 id="Demo-1"><a href="#Demo-1" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">@version: ??</span></span><br><span class="line"><span class="string">@author: Gavin</span></span><br><span class="line"><span class="string">@license: Apache Licence </span></span><br><span class="line"><span class="string">@contact: woniuyf@gmail.com</span></span><br><span class="line"><span class="string">@site: https://wonius.top/</span></span><br><span class="line"><span class="string">@software: PyCharm</span></span><br><span class="line"><span class="string">@file: placeholder.py</span></span><br><span class="line"><span class="string">@time: 2018/5/11 10:57</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">x = tf.placeholder(tf.float32, [<span class="literal">None</span>, <span class="number">3</span>])</span><br><span class="line">y = tf.matmul(x, x)</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    rand_array = np.random.rand(<span class="number">3</span>,<span class="number">3</span>)</span><br><span class="line">    <span class="built_in">print</span> (sess.run(y, feed_dict=&#123;x:rand_array&#125;))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行结果</span></span><br><span class="line"><span class="comment"># [[ 0.88505751  0.79640609  0.46087515]</span></span><br><span class="line"><span class="comment">#  [ 0.36539319  0.41709256  0.16832483]</span></span><br><span class="line"><span class="comment">#  [ 0.75206953  0.90277183  0.37584797]]</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="tf-nn-conv2d"><a href="#tf-nn-conv2d" class="headerlink" title="tf.nn.conv2d"></a>tf.nn.conv2d</h2><p><strong>卷积运算</strong></p>
+<h3 id="Define-1"><a href="#Define-1" class="headerlink" title="Define"></a>Define</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conv2d(<span class="built_in">input</span>, <span class="built_in">filter</span>, strides, padding, </span><br><span class="line">		use_cudnn_on_gpu=<span class="literal">True</span>, data_format=<span class="string">&#x27;NHWC&#x27;</span>, name=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Parameter-2"><a href="#Parameter-2" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>input</td>
+<td>Y</td>
+<td>tensor</td>
+<td>4维的tensor，即[batch, in_height, in_width, in_channels]<br />(若input是图像，即[训练时一个batch的图片数量，图片高度，图片宽度，图片的通道数])<br />类型需为float32、float64</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>Y</td>
+<td>tensor</td>
+<td>4维的tensor，即[filter_height, filter_width, in_channels, out_channels]<br />(若input是图像，即[卷积核的高度，卷积核的宽度，图像通道数，卷积核个数])<br />filter的in_channels必须与input的in_channels相等</td>
+</tr>
+<tr>
+<td>strides</td>
+<td>Y</td>
+<td>list</td>
+<td>长度为4的list，卷积时在input上每一维的步长，一般strides[0]=strides[3]=1</td>
+</tr>
+<tr>
+<td>padding</td>
+<td>Y</td>
+<td>string</td>
+<td>卷积方式，只能为”SAME”、”VALID”其中之一。SAME：补全方式；VALID：丢弃方式</td>
+</tr>
+<tr>
+<td>use_cudnn_on_gpu</td>
+<td>N</td>
+<td>boolean</td>
+<td>是否使用cudnn加速，默认为true</td>
+</tr>
+<tr>
+<td>data_format</td>
+<td>N</td>
+<td>string</td>
+<td>只能为”NHWC”、”NCHW”，默认”NHWC”</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>N</td>
+<td>string</td>
+<td>运算名称</td>
+</tr>
+</tbody></table>
+<h3 id="Demo-2"><a href="#Demo-2" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">@version: ??</span></span><br><span class="line"><span class="string">@author: Gavin</span></span><br><span class="line"><span class="string">@license: Apache Licence </span></span><br><span class="line"><span class="string">@contact: woniuyf@gmail.com</span></span><br><span class="line"><span class="string">@site: https://wonius.top/</span></span><br><span class="line"><span class="string">@software: PyCharm</span></span><br><span class="line"><span class="string">@file: conv2d.py</span></span><br><span class="line"><span class="string">@time: 2018/5/9 20:48</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">a = tf.constant([<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>],dtype=tf.float32,shape=[<span class="number">1</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">1</span>])</span><br><span class="line">b = tf.constant([<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>],dtype=tf.float32,shape=[<span class="number">3</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>])</span><br><span class="line">c = tf.nn.conv2d(a,b,strides=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>],padding=<span class="string">&#x27;VALID&#x27;</span>)</span><br><span class="line">d = tf.nn.conv2d(a,b,strides=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>],padding=<span class="string">&#x27;SAME&#x27;</span>)</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;c shape:&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (c.get_shape())</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;c value:&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (sess.run(c))</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;d shape:&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (d.get_shape())</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;d value:&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (sess.run(d))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运算结果</span></span><br><span class="line"><span class="comment"># c shape:</span></span><br><span class="line"><span class="comment"># (1, 2, 2, 1)</span></span><br><span class="line"><span class="comment"># c value:</span></span><br><span class="line"><span class="comment"># [[[[ 4.]</span></span><br><span class="line"><span class="comment">#    [ 4.]]</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   [[ 2.]</span></span><br><span class="line"><span class="comment">#    [ 4.]]]]</span></span><br><span class="line"><span class="comment"># d shape:</span></span><br><span class="line"><span class="comment"># (1, 3, 3, 1)</span></span><br><span class="line"><span class="comment"># d value:</span></span><br><span class="line"><span class="comment"># [[[[ 2.]</span></span><br><span class="line"><span class="comment">#    [ 3.]</span></span><br><span class="line"><span class="comment">#    [ 1.]]</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   [[ 1.]</span></span><br><span class="line"><span class="comment">#    [ 4.]</span></span><br><span class="line"><span class="comment">#    [ 3.]]</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   [[ 0.]</span></span><br><span class="line"><span class="comment">#    [ 2.]</span></span><br><span class="line"><span class="comment">#    [ 1.]]]]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="tf-nn-relu"><a href="#tf-nn-relu" class="headerlink" title="tf.nn.relu"></a>tf.nn.relu</h2><p><strong>激活函数</strong></p>
+<h3 id="Define-2"><a href="#Define-2" class="headerlink" title="Define"></a>Define</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">relu(features, name=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Parameter-3"><a href="#Parameter-3" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>features</td>
+<td>Y</td>
+<td>tensor</td>
+<td>float32、float64、int8、int16、int32、int64、uint8、unit16、half</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>运算名称</td>
+</tr>
+</tbody></table>
+<h3 id="Demo-3"><a href="#Demo-3" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">@version: ??</span></span><br><span class="line"><span class="string">@author: Gavin</span></span><br><span class="line"><span class="string">@license: Apache Licence </span></span><br><span class="line"><span class="string">@contact: woniuyf@gmail.com</span></span><br><span class="line"><span class="string">@site: https://wonius.top/</span></span><br><span class="line"><span class="string">@software: PyCharm</span></span><br><span class="line"><span class="string">@file: relu.py</span></span><br><span class="line"><span class="string">@time: 2018/5/9 21:30</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">a = tf.constant([<span class="number">1</span>,-<span class="number">2</span>,<span class="number">0</span>,<span class="number">4</span>,-<span class="number">5</span>,<span class="number">6</span>])</span><br><span class="line">b = tf.nn.relu(a)</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="built_in">print</span> (sess.run(b))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运算结果</span></span><br><span class="line"><span class="comment"># [1 0 0 4 0 6]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="tf-nn-max-pool"><a href="#tf-nn-max-pool" class="headerlink" title="tf.nn.max_pool"></a>tf.nn.max_pool</h2><p><strong>池化</strong></p>
+<h3 id="Define-3"><a href="#Define-3" class="headerlink" title="Define"></a>Define</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">max_pool(value, ksize, strides, padding,</span><br><span class="line">		data_format=<span class="string">&#x27;NHWC&#x27;</span>, name=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Parameter-4"><a href="#Parameter-4" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>value</td>
+<td>Y</td>
+<td>tensor</td>
+<td>4维的张量，即[batch, height, width, channels]，类型为tf.float32</td>
+</tr>
+<tr>
+<td>ksize</td>
+<td>Y</td>
+<td>list</td>
+<td>池化窗口的大小，长度为4的list，一般是[1，height，width，1]，因为不在batch和channels上做池化，所以第一个和最后一个维度为1</td>
+</tr>
+<tr>
+<td>strides</td>
+<td>Y</td>
+<td>list</td>
+<td>池化窗口在每一个维度上的步长。一般strides[0]=strides[3]=1</td>
+</tr>
+<tr>
+<td>padding</td>
+<td>Y</td>
+<td>string</td>
+<td>只能为”VALID”、”SAME”其中之一，这个值决定了不同的池化方式。VALID：丢弃方式；SAME：补全方式</td>
+</tr>
+<tr>
+<td>data_format</td>
+<td>N</td>
+<td>string</td>
+<td>只能为”NHWC”、”NCHW”。默认”NHWC”</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>运算名称</td>
+</tr>
+</tbody></table>
+<h3 id="Demo-4"><a href="#Demo-4" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">@version: ??</span></span><br><span class="line"><span class="string">@author: Gavin</span></span><br><span class="line"><span class="string">@license: Apache Licence </span></span><br><span class="line"><span class="string">@contact: woniuyf@gmail.com</span></span><br><span class="line"><span class="string">@site: https://wonius.top/</span></span><br><span class="line"><span class="string">@software: PyCharm</span></span><br><span class="line"><span class="string">@file: max_pool.py</span></span><br><span class="line"><span class="string">@time: 2018/5/10 20:38</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">a = tf.constant([<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">2</span>], dtype=tf.float32, shape=[<span class="number">1</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">1</span>])</span><br><span class="line">b = tf.nn.max_pool(a, ksize=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>], strides=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>], padding=<span class="string">&#x27;SAME&#x27;</span>)</span><br><span class="line">c = tf.nn.max_pool(a, ksize=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>], strides=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>], padding=<span class="string">&#x27;VALID&#x27;</span>)</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;b.shape&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (b.get_shape())</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;b.value&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (sess.run(b))</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;c.shape&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (c.get_shape())</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;c.value&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (sess.run(c))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运算结果</span></span><br><span class="line"><span class="comment"># b.shape</span></span><br><span class="line"><span class="comment"># (1, 2, 2, 1)</span></span><br><span class="line"><span class="comment"># b.value</span></span><br><span class="line"><span class="comment"># [[[[ 9.]</span></span><br><span class="line"><span class="comment">#    [ 2.]]</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   [[ 6.]</span></span><br><span class="line"><span class="comment">#    [ 3.]]]]</span></span><br><span class="line"><span class="comment"># c.shape</span></span><br><span class="line"><span class="comment"># (1, 2, 2, 1)</span></span><br><span class="line"><span class="comment"># c.value</span></span><br><span class="line"><span class="comment"># [[[[ 9.]</span></span><br><span class="line"><span class="comment">#    [ 2.]]</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   [[ 6.]</span></span><br><span class="line"><span class="comment">#    [ 3.]]]]</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="tf-nn-dropout"><a href="#tf-nn-dropout" class="headerlink" title="tf.nn.dropout"></a>tf.nn.dropout</h2><p><strong>丢弃函数。在训练过程中，按照一定概率将一部分神经网络单元暂时从网络中丢弃，相当于从原始网络中找到一个更瘦的网络</strong></p>
+<h3 id="Define-4"><a href="#Define-4" class="headerlink" title="Define"></a>Define</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dropout(x, keep_prob, noise_shape=<span class="literal">None</span>, seed=<span class="literal">None</span>, name=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Parameter-5"><a href="#Parameter-5" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>x</td>
+<td>Y</td>
+<td>tensor</td>
+<td>x中keep_prob概率的元素，除以keep_prob。或者为0</td>
+</tr>
+<tr>
+<td>keep_prob</td>
+<td>Y</td>
+<td>scalar</td>
+<td>dropout的概率，一般先用占位符</td>
+</tr>
+<tr>
+<td>noise_shape</td>
+<td>N</td>
+<td>tensor</td>
+<td>默认情况下，每个元素是否dropout是相互独立的。<br />如果noise_shape[i]==shape(x)[i]，该维度元素相互独立；<br />如果noise_shape[i]!=shape(x)[i]，该维度元素不相互独立，即要么一起dropout，要么一起保留</td>
+</tr>
+<tr>
+<td>seed</td>
+<td>N</td>
+<td>数值</td>
+<td>如果指定该值，每次dropout结果相同</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>运算名称</td>
+</tr>
+</tbody></table>
+<h3 id="Demo-5"><a href="#Demo-5" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">@version: ??</span></span><br><span class="line"><span class="string">@author: Gavin</span></span><br><span class="line"><span class="string">@license: Apache Licence </span></span><br><span class="line"><span class="string">@contact: woniuyf@gmail.com</span></span><br><span class="line"><span class="string">@site: https://wonius.top/</span></span><br><span class="line"><span class="string">@software: PyCharm</span></span><br><span class="line"><span class="string">@file: dropout.py</span></span><br><span class="line"><span class="string">@time: 2018/5/10 20:58</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">a = tf.constant([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>], shape=[<span class="number">2</span>,<span class="number">3</span>], dtype=tf.float32)</span><br><span class="line">b = tf.placeholder(tf.float32)</span><br><span class="line">c = tf.nn.dropout(a, b, [<span class="number">2</span>,<span class="number">1</span>], <span class="number">1</span>)</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(tf.global_variables_initializer())</span><br><span class="line">    <span class="built_in">print</span> (sess.run(c, feed_dict=&#123;b:<span class="number">0.75</span>&#125;))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运算结果</span></span><br><span class="line"><span class="comment"># [[ 0.          0.          0.        ]</span></span><br><span class="line"><span class="comment">#  [ 5.33333349  6.66666651  8.        ]]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="tf-nn-sigmoid-cross-entropy-with-logits"><a href="#tf-nn-sigmoid-cross-entropy-with-logits" class="headerlink" title="tf.nn.sigmoid_cross_entropy_with_logits"></a>tf.nn.sigmoid_cross_entropy_with_logits</h2><p><strong>计算交叉熵函数。先对 logits 进行 sigmoid 计算，再计算交叉熵</strong></p>
+<p>交叉熵：Loss函数的一种。常见的Loss函数为均方平方差；</p>
+<p>sigmoid：激活函数的一种；</p>
+<p>另外除了tf.nn.sigmoid_cross_entropy_with_logits以外，还有</p>
+<p>tf.nn.softmax_cross_entropy_with_logits（参数logits必须为未经缩放的，函数中会对logits进行sigmoid运算）</p>
+<p>tf.nn.sparse_softmax_cross_entropy_with_logits</p>
+<p>tf.nn.weighted_cross_entropy_with_logits三种交叉熵函数</p>
+<h3 id="Define-5"><a href="#Define-5" class="headerlink" title="Define"></a>Define</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sigmoid_cross_entropy_with_logits(_sentinel=<span class="literal">None</span>, labels=<span class="literal">None</span>, logits=<span class="literal">None</span>, name=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Parameter-6"><a href="#Parameter-6" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>_sentinel</td>
+<td>N</td>
+<td>None</td>
+<td>一般不使用</td>
+</tr>
+<tr>
+<td>logits</td>
+<td>N</td>
+<td>tensor</td>
+<td>float32、float64</td>
+</tr>
+<tr>
+<td>labels</td>
+<td>N</td>
+<td>tensor</td>
+<td>shape与logits相同</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>运算名称</td>
+</tr>
+</tbody></table>
+<h3 id="Demo-6"><a href="#Demo-6" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">@version: ??</span></span><br><span class="line"><span class="string">@author: Gavin</span></span><br><span class="line"><span class="string">@license: Apache Licence </span></span><br><span class="line"><span class="string">@contact: woniuyf@gmail.com</span></span><br><span class="line"><span class="string">@site: https://wonius.top/</span></span><br><span class="line"><span class="string">@software: PyCharm</span></span><br><span class="line"><span class="string">@file: sigmod_cross_entropy_with_logits.py.py</span></span><br><span class="line"><span class="string">@time: 2018/5/11 09:27</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">x = tf.constant([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>], dtype=tf.float64)</span><br><span class="line">y = tf.constant([<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>], dtype=tf.float64)</span><br><span class="line">loss = tf.nn.sigmoid_cross_entropy_with_logits(logits=x, labels=y)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="built_in">print</span> (sess.run(loss))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运算结果</span></span><br><span class="line"><span class="comment"># [3.13261688e-01   1.26928011e-01   4.85873516e-02   4.01814993e+00</span></span><br><span class="line"><span class="comment">#  5.00671535e+00   2.47568514e-03   7.00091147e+00]</span></span><br></pre></td></tr></table></figure>
+<p><strong>该函数返回值是一个向量，并不是一个数。</strong></p>
+<p><strong>如果要求交叉熵，需要进一步做tf.reduce_sum操作，即对向量里所有元素求和；</strong></p>
+<p><strong>如果要求Loss（常见），需要进一步做tf.reduce_mean操作，对向量求平均值；</strong></p>
+<h2 id="tf-nn-bias-add"><a href="#tf-nn-bias-add" class="headerlink" title="tf.nn.bias_add"></a>tf.nn.bias_add</h2><p><strong>将偏差项 bias 加到 value 上面，可以看做是 tf.add 的一个特例。其中 bias 必须是一维的，并且维度和 value 的最后一维相同，数据类型必须和 value 相同</strong></p>
+<h3 id="Define-6"><a href="#Define-6" class="headerlink" title="Define"></a>Define</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bias_add(value, bias, data_format=<span class="literal">None</span>, name=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Parameter-7"><a href="#Parameter-7" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>value</td>
+<td>Y</td>
+<td>tensor</td>
+<td>Float、double、int64、int32、int16、int8、uint8、complex64、complex128</td>
+</tr>
+<tr>
+<td>bias</td>
+<td>Y</td>
+<td>1维tensor</td>
+<td>维度必须和value最后一维维度相等</td>
+</tr>
+<tr>
+<td>data_format</td>
+<td>N</td>
+<td>string</td>
+<td>支持”NHWC”、”NCHW”</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>运算名称</td>
+</tr>
+</tbody></table>
+<h3 id="Demo-7"><a href="#Demo-7" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">@version: ??</span></span><br><span class="line"><span class="string">@author: Gavin</span></span><br><span class="line"><span class="string">@license: Apache Licence </span></span><br><span class="line"><span class="string">@contact: woniuyf@gmail.com</span></span><br><span class="line"><span class="string">@site: https://wonius.top/</span></span><br><span class="line"><span class="string">@software: PyCharm</span></span><br><span class="line"><span class="string">@file: bias_add.py</span></span><br><span class="line"><span class="string">@time: 2018/5/11 11:45</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">a = tf.constant([[<span class="number">1.0</span>, <span class="number">2.0</span>],[<span class="number">1.0</span>, <span class="number">2.0</span>],[<span class="number">1.0</span>, <span class="number">2.0</span>]])</span><br><span class="line">b = tf.constant([<span class="number">2.0</span>,<span class="number">1.0</span>])</span><br><span class="line">c = tf.constant([<span class="number">1.0</span>])</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;bias_add(a, b)&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (sess.run(tf.nn.bias_add(a, b)))</span><br><span class="line">    <span class="comment"># print (sess.run(tf.nn.bias_add(a, c))) error</span></span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;-----------------&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;tf.add(a, b)&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (sess.run(tf.add(a, b)))</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;-----------------&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;tf.add(a, c&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (sess.run(tf.add(a, c)))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># bias_add(a, b)</span></span><br><span class="line"><span class="comment"># [[ 3.  3.]</span></span><br><span class="line"><span class="comment">#  [ 3.  3.]</span></span><br><span class="line"><span class="comment">#  [ 3.  3.]]</span></span><br><span class="line"><span class="comment"># -----------------</span></span><br><span class="line"><span class="comment"># tf.add(a, b)</span></span><br><span class="line"><span class="comment"># [[ 3.  3.]</span></span><br><span class="line"><span class="comment">#  [ 3.  3.]</span></span><br><span class="line"><span class="comment">#  [ 3.  3.]]</span></span><br><span class="line"><span class="comment"># -----------------</span></span><br><span class="line"><span class="comment"># tf.add(a, c</span></span><br><span class="line"><span class="comment"># [[ 2.  3.]</span></span><br><span class="line"><span class="comment">#  [ 2.  3.]</span></span><br><span class="line"><span class="comment">#  [ 2.  3.]]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="tf-truncated-normal"><a href="#tf-truncated-normal" class="headerlink" title="tf.truncated_normal"></a>tf.truncated_normal</h2><p><strong>在截断的正态分布中输出随机数，取值范围[ mean - 2 * stddev, mean + 2 * stddev ]</strong></p>
+<h3 id="Define-7"><a href="#Define-7" class="headerlink" title="Define"></a>Define</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truncated_normal(shape, mean=<span class="number">0.0</span>, stddev=<span class="number">1.0</span>, dtype=tf.float32, seed=<span class="literal">None</span>, name=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Parameter-8"><a href="#Parameter-8" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>shape</td>
+<td>Y</td>
+<td>1维整型张量、array</td>
+<td>输出张量的维度</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>N</td>
+<td>0维张量、数值</td>
+<td>均值</td>
+</tr>
+<tr>
+<td>stddev</td>
+<td>N</td>
+<td>0维张量、数值</td>
+<td>标准差</td>
+</tr>
+<tr>
+<td>dtype</td>
+<td>N</td>
+<td>dtype</td>
+<td>输出类型</td>
+</tr>
+<tr>
+<td>seed</td>
+<td>N</td>
+<td>数值</td>
+<td>随机种子，若seed复制，每次产生相同随机数</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>运算名称</td>
+</tr>
+</tbody></table>
+<h3 id="Demo-8"><a href="#Demo-8" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">@version: ??</span></span><br><span class="line"><span class="string">@author: Gavin</span></span><br><span class="line"><span class="string">@license: Apache Licence </span></span><br><span class="line"><span class="string">@contact: woniuyf@gmail.com</span></span><br><span class="line"><span class="string">@site: https://wonius.top/</span></span><br><span class="line"><span class="string">@software: PyCharm</span></span><br><span class="line"><span class="string">@file: truncated_nomal.py</span></span><br><span class="line"><span class="string">@time: 2018/5/11 09:52</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">initial = tf.truncated_normal(shape=[<span class="number">3</span>,<span class="number">3</span>], mean=<span class="number">0</span>, stddev=<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span> (tf.Session().run(initial))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运算结果</span></span><br><span class="line"><span class="comment"># [[-0.49039015  0.67874366  1.00580561]</span></span><br><span class="line"><span class="comment">#  [ 0.97545707  0.15845388 -0.73228759]</span></span><br><span class="line"><span class="comment">#  [-0.60446167 -0.87802863  0.24452373]]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="tf-reduce-mean"><a href="#tf-reduce-mean" class="headerlink" title="tf.reduce_mean"></a>tf.reduce_mean</h2><p><strong>计算张量input_tensor的平均值</strong></p>
+<h3 id="Define-8"><a href="#Define-8" class="headerlink" title="Define"></a>Define</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reduce_mean(input_tensor, axis=<span class="literal">None</span>, keep_dims=<span class="literal">False</span>, name=<span class="literal">None</span>, reduction_indices=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Parameter-9"><a href="#Parameter-9" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>input_tensor</td>
+<td>Y</td>
+<td>张量</td>
+<td>待求平均值的张量</td>
+</tr>
+<tr>
+<td>axis</td>
+<td>N</td>
+<td>None、0、1</td>
+<td>None：全局球平均值<br />0：求每一列平均值<br />1：求每一行平均值</td>
+</tr>
+<tr>
+<td>keep_dims</td>
+<td>N</td>
+<td>boolean</td>
+<td>保留原来的维度（例如不会从二维矩阵降为一维）</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>运算名称</td>
+</tr>
+<tr>
+<td>reduction_indices</td>
+<td>N</td>
+<td>None</td>
+<td>和axis等价，已弃用</td>
+</tr>
+</tbody></table>
+<h3 id="Demo-9"><a href="#Demo-9" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">@version: ??</span></span><br><span class="line"><span class="string">@author: Gavin</span></span><br><span class="line"><span class="string">@license: Apache Licence </span></span><br><span class="line"><span class="string">@contact: woniuyf@gmail.com</span></span><br><span class="line"><span class="string">@site: https://wonius.top/</span></span><br><span class="line"><span class="string">@software: PyCharm</span></span><br><span class="line"><span class="string">@file: reduce_mean.py</span></span><br><span class="line"><span class="string">@time: 2018/5/11 13:46</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">initial = [[<span class="number">1.</span>,<span class="number">1.</span>],[<span class="number">2.</span>,<span class="number">2.</span>]]</span><br><span class="line">x = tf.Variable(initial, dtype=tf.float32)</span><br><span class="line">init_op = tf.global_variables_initializer()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(init_op)</span><br><span class="line">    <span class="built_in">print</span> (sess.run(tf.reduce_mean(x)))</span><br><span class="line">    <span class="built_in">print</span> (sess.run(tf.reduce_mean(x, <span class="number">0</span>)))  <span class="comment">#column</span></span><br><span class="line">    <span class="built_in">print</span> (sess.run(tf.reduce_mean(x, <span class="number">1</span>)))  <span class="comment">#row</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 运算结果</span></span><br><span class="line"><span class="comment"># 1.5</span></span><br><span class="line"><span class="comment"># [ 1.5  1.5]</span></span><br><span class="line"><span class="comment"># [ 1.  2.]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="tf-square"><a href="#tf-square" class="headerlink" title="tf.square"></a>tf.square</h2><p><strong>计算张量对应元素的平方</strong></p>
+<h3 id="Define-9"><a href="#Define-9" class="headerlink" title="Define"></a>Define</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">square(x, name=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Parameter-10"><a href="#Parameter-10" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>x</td>
+<td>Y</td>
+<td>tensor</td>
+<td>half、float32、float64、int32、int64、complex64、complex128</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>运算名称</td>
+</tr>
+</tbody></table>
+<h3 id="Demo-10"><a href="#Demo-10" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">@version: ??</span></span><br><span class="line"><span class="string">@author: Gavin</span></span><br><span class="line"><span class="string">@license: Apache Licence </span></span><br><span class="line"><span class="string">@contact: woniuyf@gmail.com</span></span><br><span class="line"><span class="string">@site: https://wonius.top/</span></span><br><span class="line"><span class="string">@software: PyCharm</span></span><br><span class="line"><span class="string">@file: square.py</span></span><br><span class="line"><span class="string">@time: 2018/5/11 13:59</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">initial_x = [[<span class="number">1.</span>,<span class="number">1.</span>], [<span class="number">2.</span>,<span class="number">2.</span>]]</span><br><span class="line">x = tf.Variable(initial_x, dtype=tf.float32)</span><br><span class="line">x_2 = tf.square(initial_x)</span><br><span class="line"></span><br><span class="line">init_op = tf.global_variables_initializer()</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(init_op)</span><br><span class="line">    <span class="built_in">print</span> (sess.run(x_2))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运算结果</span></span><br><span class="line"><span class="comment"># [[ 1.  1.]</span></span><br><span class="line"><span class="comment">#  [ 4.  4.]]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="tf-squared-difference"><a href="#tf-squared-difference" class="headerlink" title="tf.squared_difference"></a>tf.squared_difference</h2><p><strong>计算张量x、y对应元素差平方</strong></p>
+<h3 id="Define-10"><a href="#Define-10" class="headerlink" title="Define"></a>Define</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">squared_difference(x, y, name=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Parameter-11"><a href="#Parameter-11" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>必选</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>x</td>
+<td>Y</td>
+<td>tensor</td>
+<td>half、float32、float64、int32、int64、complex64、complex128</td>
+</tr>
+<tr>
+<td>y</td>
+<td>Y</td>
+<td>tensor</td>
+<td>half、float32、float64、int32、int64、complex64、complex128</td>
+</tr>
+<tr>
+<td>name</td>
+<td>N</td>
+<td>string</td>
+<td>运算名称</td>
+</tr>
+</tbody></table>
+<h3 id="Demo-11"><a href="#Demo-11" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">@version: ??</span></span><br><span class="line"><span class="string">@author: Gavin</span></span><br><span class="line"><span class="string">@license: Apache Licence </span></span><br><span class="line"><span class="string">@contact: woniuyf@gmail.com</span></span><br><span class="line"><span class="string">@site: https://wonius.top/</span></span><br><span class="line"><span class="string">@software: PyCharm</span></span><br><span class="line"><span class="string">@file: squared_difference.py</span></span><br><span class="line"><span class="string">@time: 2018/5/11 13:54</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">initial_x = [[<span class="number">1.</span>,<span class="number">1.</span>], [<span class="number">2.</span>,<span class="number">2.</span>]]</span><br><span class="line">x = tf.Variable(initial_x, dtype=tf.float32)</span><br><span class="line">initial_y = [[<span class="number">3.</span>,<span class="number">3.</span>], [<span class="number">4.</span>,<span class="number">4.</span>]]</span><br><span class="line">y = tf.Variable(initial_y, dtype=tf.float32)</span><br><span class="line"></span><br><span class="line">diff = tf.squared_difference(x, y)</span><br><span class="line">init_op = tf.global_variables_initializer()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(init_op)</span><br><span class="line">    <span class="built_in">print</span> (sess.run(diff))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运算名称</span></span><br><span class="line"><span class="comment"># [[ 4.  4.]</span></span><br><span class="line"><span class="comment">#  [ 4.  4.]]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="tf-Variable"><a href="#tf-Variable" class="headerlink" title="tf.Variable"></a>tf.Variable</h2><p><strong>类，维护图在执行过程中的状态信息，例如神经网络权重值的变化</strong></p>
+<h3 id="Define-11"><a href="#Define-11" class="headerlink" title="Define"></a>Define</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">__init__(initial_value=<span class="literal">None</span>, trainable=<span class="literal">True</span>, collections=<span class="literal">None</span>, validate_shape=<span class="literal">True</span>,</span><br><span class="line">		caching_device=<span class="literal">None</span>, name=<span class="literal">None</span>, variable_def=<span class="literal">None</span>, dtype=<span class="literal">None</span>, expected_shape=<span class="literal">None</span>,</span><br><span class="line">		import_scope=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Parameter-12"><a href="#Parameter-12" class="headerlink" title="Parameter"></a>Parameter</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>initial_value</td>
+<td>tensor</td>
+<td>Variable类的初始值。这个张量必须制定shape信息，否则后面validate_shape需设为False</td>
+</tr>
+<tr>
+<td>trainable</td>
+<td>boolean</td>
+<td>是否把变量添加到 GraphKeys.TRAINABLE_VARIABLES中。<br />（ collection 是一种全局存储，不受变量名生存空间影响，一处保存，到处可取）</td>
+</tr>
+<tr>
+<td>collections</td>
+<td>Graph collections</td>
+<td>全局存储，默认是 GraphKeys.GLOBAL_VARIABLES</td>
+</tr>
+<tr>
+<td>validate_shape</td>
+<td>boolean</td>
+<td>是否允许被位置维度的initial_value初始化</td>
+</tr>
+<tr>
+<td>caching_device</td>
+<td>string</td>
+<td>指明哪个device用来缓存变量</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>变量名</td>
+</tr>
+<tr>
+<td>dtype</td>
+<td>dtype</td>
+<td>如果设置，初始化的值按照该类型初始化</td>
+</tr>
+<tr>
+<td>expected_shape</td>
+<td>tensorShape</td>
+<td>要是设置了，那么初始的值会是这种维度</td>
+</tr>
+</tbody></table>
+<h3 id="Demo-12"><a href="#Demo-12" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">@version: ??</span></span><br><span class="line"><span class="string">@author: Gavin</span></span><br><span class="line"><span class="string">@license: Apache Licence </span></span><br><span class="line"><span class="string">@contact: woniuyf@gmail.com</span></span><br><span class="line"><span class="string">@site: https://wonius.top/</span></span><br><span class="line"><span class="string">@software: PyCharm</span></span><br><span class="line"><span class="string">@file: Variable.py</span></span><br><span class="line"><span class="string">@time: 2018/5/11 14:46</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">initial = tf.truncated_normal(shape=[<span class="number">10</span>, <span class="number">10</span>], mean=<span class="number">0</span>, stddev=<span class="number">1</span>)</span><br><span class="line">W = tf.Variable(initial)</span><br><span class="line"></span><br><span class="line"><span class="built_in">list</span> = [[<span class="number">1.</span>,<span class="number">1.</span>], [<span class="number">2.</span>,<span class="number">2.</span>]]</span><br><span class="line">X = tf.Variable(<span class="built_in">list</span>, dtype=tf.float32)</span><br><span class="line"></span><br><span class="line">init_op = tf.global_variables_initializer()</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(init_op)</span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;------------------------------------------------------------&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (sess.run(W))</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;------------------------------------------------------------&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (sess.run(W[:<span class="number">2</span>,:<span class="number">2</span>]))</span><br><span class="line">    op = W[:<span class="number">2</span>,:<span class="number">2</span>].assign(<span class="number">22.</span>*tf.ones((<span class="number">2</span>,<span class="number">2</span>)))</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;------------------------------------------------------------&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (sess.run(op))</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;------------------------------------------------------------&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (W.<span class="built_in">eval</span>(sess)) <span class="comment"># computes and returns the value of this variable</span></span><br><span class="line">    <span class="built_in">print</span> (W.<span class="built_in">eval</span>())    <span class="comment"># user with the default session</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;------------------------------------------------------------&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (W.dtype)</span><br><span class="line">    <span class="built_in">print</span> (sess.run(W.initial_value))</span><br><span class="line">    <span class="built_in">print</span> (sess.run(W.op))</span><br><span class="line">    <span class="built_in">print</span> (W.shape)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span> (<span class="string">&quot;------------------------------------------------------------&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (sess.run(X))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运算结果</span></span><br><span class="line"><span class="comment"># ------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># [[ -1.36460924e+00  -8.78410161e-01   1.87626636e+00   1.27253577e-01</span></span><br><span class="line"><span class="comment">#     1.77748889e-01  -2.79777735e-01  -1.29324961e+00   1.18464601e+00</span></span><br><span class="line"><span class="comment">#     5.91014000e-03   3.91639054e-01]</span></span><br><span class="line"><span class="comment">#  [  1.09924674e+00  -1.08868659e+00  -1.12289786e+00  -6.78496242e-01</span></span><br><span class="line"><span class="comment">#     4.25694019e-01   1.06920172e-02   8.05350840e-01  -7.63205171e-01</span></span><br><span class="line"><span class="comment">#     3.23375136e-01   4.49576497e-01]</span></span><br><span class="line"><span class="comment">#  [ -1.05841234e-01  -2.85442650e-01   1.01552248e+00  -1.69130695e+00</span></span><br><span class="line"><span class="comment">#    -1.15725782e-03   1.47837210e+00   6.69513494e-02   4.84152675e-01</span></span><br><span class="line"><span class="comment">#    -3.82478178e-01  -1.20722222e+00]</span></span><br><span class="line"><span class="comment">#  [  3.09620090e-02  -7.98057988e-02   5.60789108e-01  -1.78828037e+00</span></span><br><span class="line"><span class="comment">#     1.95968688e-01  -2.27404922e-01  -1.72476351e+00  -1.23355138e+00</span></span><br><span class="line"><span class="comment">#    -9.63081241e-01  -1.60457373e+00]</span></span><br><span class="line"><span class="comment">#  [  3.23699638e-02  -5.90677261e-01  -1.92470342e-01  -4.10615206e-01</span></span><br><span class="line"><span class="comment">#     3.35628651e-02  -1.41288012e-01  -3.40104014e-01   1.13289797e+00</span></span><br><span class="line"><span class="comment">#     6.52421772e-01   9.17639136e-01]</span></span><br><span class="line"><span class="comment">#  [  5.11528432e-01   1.64260656e-01  -7.84879684e-01  -2.26418376e-01</span></span><br><span class="line"><span class="comment">#    -8.90385628e-01  -3.38358462e-01   1.96581781e+00  -7.17314780e-02</span></span><br><span class="line"><span class="comment">#     1.23814851e-01   7.64766455e-01]</span></span><br><span class="line"><span class="comment">#  [  2.22003132e-01  -1.70102561e+00  -1.60155982e-01   1.10927892e+00</span></span><br><span class="line"><span class="comment">#    -1.14349496e+00  -6.86953589e-02  -3.56495827e-01  -5.14335275e-01</span></span><br><span class="line"><span class="comment">#     1.98457405e-01  -2.56361932e-01]</span></span><br><span class="line"><span class="comment">#  [ -6.98417068e-01  -1.91254735e-01   2.43045017e-01   1.62485635e+00</span></span><br><span class="line"><span class="comment">#     1.34399071e-01   4.48576242e-01   9.65317804e-03   2.63324082e-01</span></span><br><span class="line"><span class="comment">#     1.71964037e+00   1.81242809e-01]</span></span><br><span class="line"><span class="comment">#  [ -3.06579232e-01   6.82186067e-01  -1.34259194e-01   8.21067274e-01</span></span><br><span class="line"><span class="comment">#     2.75264233e-01   2.36507237e-01  -5.18465579e-01   2.66540438e-01</span></span><br><span class="line"><span class="comment">#    -4.08049405e-01   4.00008321e-01]</span></span><br><span class="line"><span class="comment">#  [  6.39303386e-01  -3.73077720e-01  -3.93441260e-01   1.44391823e+00</span></span><br><span class="line"><span class="comment">#    -4.43163812e-01  -2.28796184e-01  -9.21004534e-01  -6.29425883e-01</span></span><br><span class="line"><span class="comment">#    -1.04850844e-01   5.76163709e-01]]</span></span><br><span class="line"><span class="comment"># ------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># [[-1.36460924 -0.87841016]</span></span><br><span class="line"><span class="comment">#  [ 1.09924674 -1.08868659]]</span></span><br><span class="line"><span class="comment"># ------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># [[  2.20000000e+01   2.20000000e+01   1.87626636e+00   1.27253577e-01</span></span><br><span class="line"><span class="comment">#     1.77748889e-01  -2.79777735e-01  -1.29324961e+00   1.18464601e+00</span></span><br><span class="line"><span class="comment">#     5.91014000e-03   3.91639054e-01]</span></span><br><span class="line"><span class="comment">#  [  2.20000000e+01   2.20000000e+01  -1.12289786e+00  -6.78496242e-01</span></span><br><span class="line"><span class="comment">#     4.25694019e-01   1.06920172e-02   8.05350840e-01  -7.63205171e-01</span></span><br><span class="line"><span class="comment">#     3.23375136e-01   4.49576497e-01]</span></span><br><span class="line"><span class="comment">#  [ -1.05841234e-01  -2.85442650e-01   1.01552248e+00  -1.69130695e+00</span></span><br><span class="line"><span class="comment">#    -1.15725782e-03   1.47837210e+00   6.69513494e-02   4.84152675e-01</span></span><br><span class="line"><span class="comment">#    -3.82478178e-01  -1.20722222e+00]</span></span><br><span class="line"><span class="comment">#  [  3.09620090e-02  -7.98057988e-02   5.60789108e-01  -1.78828037e+00</span></span><br><span class="line"><span class="comment">#     1.95968688e-01  -2.27404922e-01  -1.72476351e+00  -1.23355138e+00</span></span><br><span class="line"><span class="comment">#    -9.63081241e-01  -1.60457373e+00]</span></span><br><span class="line"><span class="comment">#  [  3.23699638e-02  -5.90677261e-01  -1.92470342e-01  -4.10615206e-01</span></span><br><span class="line"><span class="comment">#     3.35628651e-02  -1.41288012e-01  -3.40104014e-01   1.13289797e+00</span></span><br><span class="line"><span class="comment">#     6.52421772e-01   9.17639136e-01]</span></span><br><span class="line"><span class="comment">#  [  5.11528432e-01   1.64260656e-01  -7.84879684e-01  -2.26418376e-01</span></span><br><span class="line"><span class="comment">#    -8.90385628e-01  -3.38358462e-01   1.96581781e+00  -7.17314780e-02</span></span><br><span class="line"><span class="comment">#     1.23814851e-01   7.64766455e-01]</span></span><br><span class="line"><span class="comment">#  [  2.22003132e-01  -1.70102561e+00  -1.60155982e-01   1.10927892e+00</span></span><br><span class="line"><span class="comment">#    -1.14349496e+00  -6.86953589e-02  -3.56495827e-01  -5.14335275e-01</span></span><br><span class="line"><span class="comment">#     1.98457405e-01  -2.56361932e-01]</span></span><br><span class="line"><span class="comment">#  [ -6.98417068e-01  -1.91254735e-01   2.43045017e-01   1.62485635e+00</span></span><br><span class="line"><span class="comment">#     1.34399071e-01   4.48576242e-01   9.65317804e-03   2.63324082e-01</span></span><br><span class="line"><span class="comment">#     1.71964037e+00   1.81242809e-01]</span></span><br><span class="line"><span class="comment">#  [ -3.06579232e-01   6.82186067e-01  -1.34259194e-01   8.21067274e-01</span></span><br><span class="line"><span class="comment">#     2.75264233e-01   2.36507237e-01  -5.18465579e-01   2.66540438e-01</span></span><br><span class="line"><span class="comment">#    -4.08049405e-01   4.00008321e-01]</span></span><br><span class="line"><span class="comment">#  [  6.39303386e-01  -3.73077720e-01  -3.93441260e-01   1.44391823e+00</span></span><br><span class="line"><span class="comment">#    -4.43163812e-01  -2.28796184e-01  -9.21004534e-01  -6.29425883e-01</span></span><br><span class="line"><span class="comment">#    -1.04850844e-01   5.76163709e-01]]</span></span><br><span class="line"><span class="comment"># ------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># [[  2.20000000e+01   2.20000000e+01   1.87626636e+00   1.27253577e-01</span></span><br><span class="line"><span class="comment">#     1.77748889e-01  -2.79777735e-01  -1.29324961e+00   1.18464601e+00</span></span><br><span class="line"><span class="comment">#     5.91014000e-03   3.91639054e-01]</span></span><br><span class="line"><span class="comment">#  [  2.20000000e+01   2.20000000e+01  -1.12289786e+00  -6.78496242e-01</span></span><br><span class="line"><span class="comment">#     4.25694019e-01   1.06920172e-02   8.05350840e-01  -7.63205171e-01</span></span><br><span class="line"><span class="comment">#     3.23375136e-01   4.49576497e-01]</span></span><br><span class="line"><span class="comment">#  [ -1.05841234e-01  -2.85442650e-01   1.01552248e+00  -1.69130695e+00</span></span><br><span class="line"><span class="comment">#    -1.15725782e-03   1.47837210e+00   6.69513494e-02   4.84152675e-01</span></span><br><span class="line"><span class="comment">#    -3.82478178e-01  -1.20722222e+00]</span></span><br><span class="line"><span class="comment">#  [  3.09620090e-02  -7.98057988e-02   5.60789108e-01  -1.78828037e+00</span></span><br><span class="line"><span class="comment">#     1.95968688e-01  -2.27404922e-01  -1.72476351e+00  -1.23355138e+00</span></span><br><span class="line"><span class="comment">#    -9.63081241e-01  -1.60457373e+00]</span></span><br><span class="line"><span class="comment">#  [  3.23699638e-02  -5.90677261e-01  -1.92470342e-01  -4.10615206e-01</span></span><br><span class="line"><span class="comment">#     3.35628651e-02  -1.41288012e-01  -3.40104014e-01   1.13289797e+00</span></span><br><span class="line"><span class="comment">#     6.52421772e-01   9.17639136e-01]</span></span><br><span class="line"><span class="comment">#  [  5.11528432e-01   1.64260656e-01  -7.84879684e-01  -2.26418376e-01</span></span><br><span class="line"><span class="comment">#    -8.90385628e-01  -3.38358462e-01   1.96581781e+00  -7.17314780e-02</span></span><br><span class="line"><span class="comment">#     1.23814851e-01   7.64766455e-01]</span></span><br><span class="line"><span class="comment">#  [  2.22003132e-01  -1.70102561e+00  -1.60155982e-01   1.10927892e+00</span></span><br><span class="line"><span class="comment">#    -1.14349496e+00  -6.86953589e-02  -3.56495827e-01  -5.14335275e-01</span></span><br><span class="line"><span class="comment">#     1.98457405e-01  -2.56361932e-01]</span></span><br><span class="line"><span class="comment">#  [ -6.98417068e-01  -1.91254735e-01   2.43045017e-01   1.62485635e+00</span></span><br><span class="line"><span class="comment">#     1.34399071e-01   4.48576242e-01   9.65317804e-03   2.63324082e-01</span></span><br><span class="line"><span class="comment">#     1.71964037e+00   1.81242809e-01]</span></span><br><span class="line"><span class="comment">#  [ -3.06579232e-01   6.82186067e-01  -1.34259194e-01   8.21067274e-01</span></span><br><span class="line"><span class="comment">#     2.75264233e-01   2.36507237e-01  -5.18465579e-01   2.66540438e-01</span></span><br><span class="line"><span class="comment">#    -4.08049405e-01   4.00008321e-01]</span></span><br><span class="line"><span class="comment">#  [  6.39303386e-01  -3.73077720e-01  -3.93441260e-01   1.44391823e+00</span></span><br><span class="line"><span class="comment">#    -4.43163812e-01  -2.28796184e-01  -9.21004534e-01  -6.29425883e-01</span></span><br><span class="line"><span class="comment">#    -1.04850844e-01   5.76163709e-01]]</span></span><br><span class="line"><span class="comment"># [[  2.20000000e+01   2.20000000e+01   1.87626636e+00   1.27253577e-01</span></span><br><span class="line"><span class="comment">#     1.77748889e-01  -2.79777735e-01  -1.29324961e+00   1.18464601e+00</span></span><br><span class="line"><span class="comment">#     5.91014000e-03   3.91639054e-01]</span></span><br><span class="line"><span class="comment">#  [  2.20000000e+01   2.20000000e+01  -1.12289786e+00  -6.78496242e-01</span></span><br><span class="line"><span class="comment">#     4.25694019e-01   1.06920172e-02   8.05350840e-01  -7.63205171e-01</span></span><br><span class="line"><span class="comment">#     3.23375136e-01   4.49576497e-01]</span></span><br><span class="line"><span class="comment">#  [ -1.05841234e-01  -2.85442650e-01   1.01552248e+00  -1.69130695e+00</span></span><br><span class="line"><span class="comment">#    -1.15725782e-03   1.47837210e+00   6.69513494e-02   4.84152675e-01</span></span><br><span class="line"><span class="comment">#    -3.82478178e-01  -1.20722222e+00]</span></span><br><span class="line"><span class="comment">#  [  3.09620090e-02  -7.98057988e-02   5.60789108e-01  -1.78828037e+00</span></span><br><span class="line"><span class="comment">#     1.95968688e-01  -2.27404922e-01  -1.72476351e+00  -1.23355138e+00</span></span><br><span class="line"><span class="comment">#    -9.63081241e-01  -1.60457373e+00]</span></span><br><span class="line"><span class="comment">#  [  3.23699638e-02  -5.90677261e-01  -1.92470342e-01  -4.10615206e-01</span></span><br><span class="line"><span class="comment">#     3.35628651e-02  -1.41288012e-01  -3.40104014e-01   1.13289797e+00</span></span><br><span class="line"><span class="comment">#     6.52421772e-01   9.17639136e-01]</span></span><br><span class="line"><span class="comment">#  [  5.11528432e-01   1.64260656e-01  -7.84879684e-01  -2.26418376e-01</span></span><br><span class="line"><span class="comment">#    -8.90385628e-01  -3.38358462e-01   1.96581781e+00  -7.17314780e-02</span></span><br><span class="line"><span class="comment">#     1.23814851e-01   7.64766455e-01]</span></span><br><span class="line"><span class="comment">#  [  2.22003132e-01  -1.70102561e+00  -1.60155982e-01   1.10927892e+00</span></span><br><span class="line"><span class="comment">#    -1.14349496e+00  -6.86953589e-02  -3.56495827e-01  -5.14335275e-01</span></span><br><span class="line"><span class="comment">#     1.98457405e-01  -2.56361932e-01]</span></span><br><span class="line"><span class="comment">#  [ -6.98417068e-01  -1.91254735e-01   2.43045017e-01   1.62485635e+00</span></span><br><span class="line"><span class="comment">#     1.34399071e-01   4.48576242e-01   9.65317804e-03   2.63324082e-01</span></span><br><span class="line"><span class="comment">#     1.71964037e+00   1.81242809e-01]</span></span><br><span class="line"><span class="comment">#  [ -3.06579232e-01   6.82186067e-01  -1.34259194e-01   8.21067274e-01</span></span><br><span class="line"><span class="comment">#     2.75264233e-01   2.36507237e-01  -5.18465579e-01   2.66540438e-01</span></span><br><span class="line"><span class="comment">#    -4.08049405e-01   4.00008321e-01]</span></span><br><span class="line"><span class="comment">#  [  6.39303386e-01  -3.73077720e-01  -3.93441260e-01   1.44391823e+00</span></span><br><span class="line"><span class="comment">#    -4.43163812e-01  -2.28796184e-01  -9.21004534e-01  -6.29425883e-01</span></span><br><span class="line"><span class="comment">#    -1.04850844e-01   5.76163709e-01]]</span></span><br><span class="line"><span class="comment"># ------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># &lt;dtype: &#x27;float32_ref&#x27;&gt;</span></span><br><span class="line"><span class="comment"># [[-1.26520741  0.15191878 -0.20875564 -1.3333143  -1.2195878   1.98078632</span></span><br><span class="line"><span class="comment">#   -0.37404546 -0.08800519  1.59779143  0.43416482]</span></span><br><span class="line"><span class="comment">#  [-0.49763143  1.67703199 -0.75461388  1.39778709 -0.59904957  1.07046878</span></span><br><span class="line"><span class="comment">#   -0.66246015  1.20341682 -0.91598368  0.02659398]</span></span><br><span class="line"><span class="comment">#  [ 0.15760519  1.58692122 -1.64905691 -0.82413578 -1.35249043 -0.05494672</span></span><br><span class="line"><span class="comment">#    0.1835352  -1.16055572  0.06633712 -0.60654968]</span></span><br><span class="line"><span class="comment">#  [ 0.44664332  1.32015193  1.19064319  1.04832637 -1.35440087  1.46269107</span></span><br><span class="line"><span class="comment">#   -0.73073471  1.79925811 -0.81201482 -0.52865958]</span></span><br><span class="line"><span class="comment">#  [ 0.86693144  0.58485049  0.74763191  0.16709246  0.87199962 -0.01152798</span></span><br><span class="line"><span class="comment">#   -0.45584357  1.63553476 -0.97385317  0.22666731]</span></span><br><span class="line"><span class="comment">#  [ 0.88356006  0.02941392  0.48637423  0.6196385   0.72364163  0.73068076</span></span><br><span class="line"><span class="comment">#    0.24449067 -1.82126474  0.43334225 -0.57979202]</span></span><br><span class="line"><span class="comment">#  [ 0.90533078 -0.46376067  1.15587556 -0.83500886  0.61234719  0.32427955</span></span><br><span class="line"><span class="comment">#    1.49570584 -0.48938131 -1.18225038  0.19612415]</span></span><br><span class="line"><span class="comment">#  [ 0.66482532  1.62603843  0.83715767  0.93517244 -1.04942799  1.2456522</span></span><br><span class="line"><span class="comment">#    1.45724511  0.82795757 -0.39859715 -1.37503803]</span></span><br><span class="line"><span class="comment">#  [ 0.84474677 -0.97584003 -0.23359941  0.02022619  0.15871523  0.07553232</span></span><br><span class="line"><span class="comment">#   -0.58795238 -1.66832328 -1.08443391 -0.25014412]</span></span><br><span class="line"><span class="comment">#  [ 0.00373921  0.82514638 -0.06235779  0.58550674 -0.90887821 -0.91024882</span></span><br><span class="line"><span class="comment">#    0.57362115 -1.92959452  1.00629067 -0.69716936]]</span></span><br><span class="line"><span class="comment"># None</span></span><br><span class="line"><span class="comment"># (10, 10)</span></span><br><span class="line"><span class="comment"># ------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># [[ 1.  1.]</span></span><br><span class="line"><span class="comment">#  [ 2.  2.]]</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/TensorFlow/" rel="tag"># TensorFlow</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/05/06/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAshadowsocks%E6%9C%8D%E5%8A%A1/" rel="prev" title="搭建shadowsocks服务">
+                  <i class="fa fa-chevron-left"></i> 搭建shadowsocks服务
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/05/12/TensorFlow%E5%9B%9B%E7%A7%8DCross-Entropy%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%E4%B8%8E%E5%BA%94%E7%94%A8/" rel="next" title="TensorFlow四种Cross_Entropy算法实现与应用">
+                  TensorFlow四种Cross_Entropy算法实现与应用 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">备案 </a>
+      <img src="http://www.beian.gov.cn/portal/download" alt=""><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=18011513" rel="noopener" target="_blank">沪ICP备18011513号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gavin</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Symbols count total">184k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">2:48</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wonius","repo":"hexo-gitalk","client_id":"de355e0b18ad1758390d","client_secret":"5cf7bc7437448f5ba445cd5d9bd0c2109b5ee47e","admin_user":"wonius","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"7c1d6eed086caec6117bce57587769b3"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":200},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

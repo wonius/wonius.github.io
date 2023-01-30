@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon-logo.svg" color="#222">
+  <meta name="google-site-verification" content="X19PXVlvd84YaSCV_p_MS02GftxVA-Q_tcfJj1fbIT4">
+  <meta name="msvalidate.01" content="6A3ECE18580F609916EB5B7C47804ADB">
+  <meta name="baidu-site-verification" content="code-tLSKP4h7Ge">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wonius.top","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="SpringBoot集成Swagger2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot集成Swagger2">
+<meta property="og:url" content="https://wonius.top/2018/04/27/SpringBoot%E9%9B%86%E6%88%90Swagger2/index.html">
+<meta property="og:site_name" content="Gavin&#39;s 自留地儿">
+<meta property="og:description" content="SpringBoot集成Swagger2">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-04-27T07:57:56.000Z">
+<meta property="article:modified_time" content="2020-11-03T14:06:26.000Z">
+<meta property="article:author" content="Gavin">
+<meta property="article:tag" content="SpringBoot">
+<meta property="article:tag" content="Swagger2">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://wonius.top/2018/04/27/SpringBoot%E9%9B%86%E6%88%90Swagger2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wonius.top/2018/04/27/SpringBoot%E9%9B%86%E6%88%90Swagger2/","path":"2018/04/27/SpringBoot集成Swagger2/","title":"SpringBoot集成Swagger2"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>SpringBoot集成Swagger2 | Gavin's 自留地儿</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-102902020-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-102902020-1","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?8cfc05493126c4fa21cfa198c7007a37"></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Gavin's 自留地儿</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A2%9E%E5%8A%A0denpendency"><span class="nav-number">1.</span> <span class="nav-text">增加denpendency</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BASwagger2%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">创建Swagger2配置类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8C%B0"><span class="nav-number">3.</span> <span class="nav-text">🌰</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3"><span class="nav-number">4.</span> <span class="nav-text">常用注解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Api-%E7%94%A8%E5%9C%A8%E8%AF%B7%E6%B1%82%E7%9A%84%E7%B1%BB%E4%B8%8A%EF%BC%8C%E8%AF%B4%E6%98%8E%E8%AF%A5%E7%B1%BB%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">4.1.</span> <span class="nav-text">@Api 用在请求的类上，说明该类的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ApiOperation%E7%94%A8%E5%9C%A8%E8%AF%B7%E6%B1%82%E7%9A%84%E6%96%B9%E6%B3%95%E4%B8%8A%EF%BC%8C%E8%AF%B4%E6%98%8E%E6%96%B9%E6%B3%95%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">4.2.</span> <span class="nav-text">@ApiOperation用在请求的方法上，说明方法的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ApiImplicitParams-ApiImplicitParam-%E7%94%A8%E5%9C%A8%E8%AF%B7%E6%B1%82%E7%9A%84%E6%96%B9%E6%B3%95%E4%B8%8A%EF%BC%8C%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="nav-number">4.3.</span> <span class="nav-text">@ApiImplicitParams&#x2F;@ApiImplicitParam 用在请求的方法上，请求参数说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ApiResponses-ApiResponse%E7%94%A8%E5%9C%A8%E8%AF%B7%E6%B1%82%E7%9A%84%E6%96%B9%E6%B3%95%E4%B8%8A%EF%BC%8C%E5%93%8D%E5%BA%94%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="nav-number">4.4.</span> <span class="nav-text">@ApiResponses&#x2F;@ApiResponse用在请求的方法上，响应参数说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ApiModel-ApiModelProperty%E7%94%A8%E5%9C%A8%E5%93%8D%E5%BA%94%E7%B1%BB%E4%B8%8A%EF%BC%8C%E8%A1%A8%E7%A4%BA%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="nav-number">4.5.</span> <span class="nav-text">@ApiModel&#x2F;@ApiModelProperty用在响应类上，表示响应数据的信息</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Gavin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Gavin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">118</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:woniuyf@gmail.com" title="E-Mail → mailto:woniuyf@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wonius.top/2018/04/27/SpringBoot%E9%9B%86%E6%88%90Swagger2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Gavin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gavin's 自留地儿">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SpringBoot集成Swagger2
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-04-27 15:57:56" itemprop="dateCreated datePublished" datetime="2018-04-27T15:57:56+08:00">2018-04-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2020-11-03 22:06:26" itemprop="dateModified" datetime="2020-11-03T22:06:26+08:00">2020-11-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Spring/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>4k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>4 mins.</span>
+    </span>
+</div>
+
+            <div class="post-description">SpringBoot集成Swagger2</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="增加denpendency"><a href="#增加denpendency" class="headerlink" title="增加denpendency"></a>增加denpendency</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger-ui<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="创建Swagger2配置类"><a href="#创建Swagger2配置类" class="headerlink" title="创建Swagger2配置类"></a>创建Swagger2配置类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableSwagger2</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Swagger2Config</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Docket <span class="title">createRestApi</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.SWAGGER_2)</span><br><span class="line">                .apiInfo(apiInfo())</span><br><span class="line">                .select()</span><br><span class="line">                .apis(RequestHandlerSelectors.basePackage(<span class="string">&quot;com.springboot.controller&quot;</span>))</span><br><span class="line">                .paths(PathSelectors.any())</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ApiInfo <span class="title">apiInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ApiInfoBuilder()</span><br><span class="line">                .title(<span class="string">&quot;SpringBoot中使用Swagger2构建RESTful APIS&quot;</span>)</span><br><span class="line">                .description(<span class="string">&quot;更多SpringBoot相关文章请关注：http://wonius.top&quot;</span>)</span><br><span class="line">                .termsOfServiceUrl(<span class="string">&quot;http://wonius.top&quot;</span>)</span><br><span class="line">                .contact(<span class="string">&quot;Gavin&#x27;s Notes&quot;</span>)</span><br><span class="line">                .version(<span class="string">&quot;1.0&quot;</span>)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="🌰"><a href="#🌰" class="headerlink" title="🌰"></a>🌰</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;/users&quot;)</span></span><br><span class="line"><span class="meta">@Api(tags = &quot;用户管理类&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserControllerWithSwagger2</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> Map&lt;Long, User&gt; users = Collections.synchronizedMap(<span class="keyword">new</span> HashMap&lt;Long, User&gt;());</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiOperation(value = &quot;获取用户列表&quot;)</span></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/getUsers&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">getUsers</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;User&gt;(users.values());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiOperation(value = &quot;创建用户&quot;, notes = &quot;根据User对象创建用户&quot;)</span></span><br><span class="line">    <span class="meta">@ApiImplicitParam(name = &quot;user&quot;, value = &quot;用户实体User&quot;, required = true, dataType = &quot;User&quot;)</span></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/postUser&quot;, method = RequestMethod.POST)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">postUser</span><span class="params">(<span class="meta">@RequestBody</span> User user)</span> </span>&#123;</span><br><span class="line">        users.put(user.getId(), user);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiOperation(value = &quot;获取用户信息&quot;, notes = &quot;根据id获取用户信息&quot;)</span></span><br><span class="line">    <span class="meta">@ApiImplicitParam(name = &quot;id&quot;, value = &quot;用户id&quot;, required = true, dataType = &quot;Long&quot;)</span></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/getUser&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">getUser</span><span class="params">(<span class="meta">@PathVariable</span> Long id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> users.get(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiOperation(value = &quot;更新用户详细信息&quot;, notes = &quot;根据id更新对应user&quot;)</span></span><br><span class="line">    <span class="meta">@ApiImplicitParams(&#123;</span></span><br><span class="line"><span class="meta">            @ApiImplicitParam(name = &quot;id&quot;, value = &quot;用户id&quot;, required = true, dataType = &quot;Long&quot;),</span></span><br><span class="line"><span class="meta">            @ApiImplicitParam(name = &quot;user&quot;, value = &quot;用户实体user&quot;, required = true, dataType = &quot;User&quot;)</span></span><br><span class="line"><span class="meta">    &#125;)</span></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/putUser&quot;, method = RequestMethod.POST)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">putUser</span><span class="params">(<span class="meta">@PathVariable</span> Long id, <span class="meta">@RequestBody</span> User user)</span> </span>&#123;</span><br><span class="line">        User u = users.get(id);</span><br><span class="line">        u.setHost(user.getHost());</span><br><span class="line">        u.setName(user.getName());</span><br><span class="line">        users.put(id, u);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiOperation(value = &quot;删除用户&quot;, notes = &quot;根据id删除用户&quot;)</span></span><br><span class="line">    <span class="meta">@ApiImplicitParam(name = &quot;id&quot;, value = &quot;用户id&quot;, required = true, dataType = &quot;Long&quot;)</span></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/deleteUser&quot;, method = RequestMethod.DELETE)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">deleteUser</span><span class="params">(<span class="meta">@PathVariable</span> Long id)</span> </span>&#123;</span><br><span class="line">        users.remove(id);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>之后访问<a target="_blank" rel="noopener" href="http://localhost:8080/swagger-ui.html%E5%8A%A0%E8%BD%BD%E3%80%82">http://localhost:8080/swagger-ui.html加载。</a></p>
+<p><strong>PS: method一定要写，不然swagger2会将该方法的所有method枚举一遍</strong></p>
+<h2 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h2><h3 id="Api-用在请求的类上，说明该类的作用"><a href="#Api-用在请求的类上，说明该类的作用" class="headerlink" title="@Api 用在请求的类上，说明该类的作用"></a><code>@Api</code> <em>用在请求的类上，说明该类的作用</em></h3><p>tags=”说明该类的作用”<br>value=”该参数没什么意义，所以不需要配置”</p>
+<h3 id="ApiOperation用在请求的方法上，说明方法的作用"><a href="#ApiOperation用在请求的方法上，说明方法的作用" class="headerlink" title="@ApiOperation用在请求的方法上，说明方法的作用"></a><code>@ApiOperation</code><em>用在请求的方法上，说明方法的作用</em></h3><p>value=”说明方法的作用”</p>
+<p>notes=”方法的备注说明”</p>
+<h3 id="ApiImplicitParams-ApiImplicitParam-用在请求的方法上，请求参数说明"><a href="#ApiImplicitParams-ApiImplicitParam-用在请求的方法上，请求参数说明" class="headerlink" title="@ApiImplicitParams/@ApiImplicitParam 用在请求的方法上，请求参数说明"></a><code>@ApiImplicitParams/@ApiImplicitParam</code> <em>用在请求的方法上，请求参数说明</em></h3><p>@ApiImplicitParams：用在请求的方法上，包含一组参数说明<br>​    @ApiImplicitParam：用在 @ApiImplicitParams 注解中，指定一个请求参数的配置信息<br>​        name：参数名<br>​        value：参数的汉字说明、解释<br>​        required：参数是否必须传<br>​        paramType：参数放在哪个地方<br>​            · header –&gt; 请求参数的获取：@RequestHeader<br>​            · query –&gt; 请求参数的获取：@RequestParam<br>​            · path（用于restful接口）–&gt; 请求参数的获取：@PathVariable<br>​            · body（不常用）<br>​            · form（不常用）<br>​        dataType：参数类型，默认String，其它值dataType=”Integer”<br>​        defaultValue：参数的默认值</p>
+<h3 id="ApiResponses-ApiResponse用在请求的方法上，响应参数说明"><a href="#ApiResponses-ApiResponse用在请求的方法上，响应参数说明" class="headerlink" title="@ApiResponses/@ApiResponse用在请求的方法上，响应参数说明"></a><code>@ApiResponses/@ApiResponse</code><em>用在请求的方法上，响应参数说明</em></h3><p>@ApiResponses：用于请求的方法上，表示一组响应<br>​    @ApiResponse：用在@ApiResponses中，一般用于表达一个错误的响应信息<br>​        code：数字，例如400<br>​        message：信息，例如”请求参数没填好”<br>​        response：抛出异常的类</p>
+<h3 id="ApiModel-ApiModelProperty用在响应类上，表示响应数据的信息"><a href="#ApiModel-ApiModelProperty用在响应类上，表示响应数据的信息" class="headerlink" title="@ApiModel/@ApiModelProperty用在响应类上，表示响应数据的信息"></a><code>@ApiModel/@ApiModelProperty</code><em>用在响应类上，表示响应数据的信息</em></h3><p>@ApiModel：用于响应类上，表示一个返回响应数据的信息<br>​            （这种一般用在post创建的时候，使用@RequestBody这样的场景，<br>​            请求参数无法使用@ApiImplicitParam注解进行描述的时候）<br>​    @ApiModelProperty：用在属性上，描述响应类的属性</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/SpringBoot/" rel="tag"># SpringBoot</a>
+              <a href="/tags/Swagger2/" rel="tag"># Swagger2</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/04/27/SpringBoot%E9%9B%86%E6%88%90TestNG/" rel="prev" title="SpringBoot集成TestNG">
+                  <i class="fa fa-chevron-left"></i> SpringBoot集成TestNG
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/05/03/Vimium%E5%BF%AB%E6%8D%B7%E9%94%AE/" rel="next" title="Vimium快捷键">
+                  Vimium快捷键 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">备案 </a>
+      <img src="http://www.beian.gov.cn/portal/download" alt=""><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=18011513" rel="noopener" target="_blank">沪ICP备18011513号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gavin</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Symbols count total">184k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">2:48</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wonius","repo":"hexo-gitalk","client_id":"de355e0b18ad1758390d","client_secret":"5cf7bc7437448f5ba445cd5d9bd0c2109b5ee47e","admin_user":"wonius","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"7f34fe0acba0cb290cd55986eb186ea0"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":200},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

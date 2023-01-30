@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon-logo.svg" color="#222">
+  <meta name="google-site-verification" content="X19PXVlvd84YaSCV_p_MS02GftxVA-Q_tcfJj1fbIT4">
+  <meta name="msvalidate.01" content="6A3ECE18580F609916EB5B7C47804ADB">
+  <meta name="baidu-site-verification" content="code-tLSKP4h7Ge">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wonius.top","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="SpringCloud的基本组件介绍等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringCloud概述">
+<meta property="og:url" content="https://wonius.top/2018/05/29/SpringCloud%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="Gavin&#39;s 自留地儿">
+<meta property="og:description" content="SpringCloud的基本组件介绍等">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wonius.top/2018/05/29/SpringCloud%E6%A6%82%E8%BF%B0/SpringCloud.png">
+<meta property="og:image" content="https://wonius.top/2018/05/29/SpringCloud%E6%A6%82%E8%BF%B0/Eureka.png">
+<meta property="og:image" content="https://wonius.top/2018/05/29/img/Hystrix.png">
+<meta property="og:image" content="https://wonius.top/2018/05/29/SpringCloud%E6%A6%82%E8%BF%B0/Bus.png">
+<meta property="article:published_time" content="2018-05-29T03:12:03.000Z">
+<meta property="article:modified_time" content="2018-05-31T10:00:40.000Z">
+<meta property="article:author" content="Gavin">
+<meta property="article:tag" content="SpringCloud">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wonius.top/2018/05/29/SpringCloud%E6%A6%82%E8%BF%B0/SpringCloud.png">
+
+
+<link rel="canonical" href="https://wonius.top/2018/05/29/SpringCloud%E6%A6%82%E8%BF%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wonius.top/2018/05/29/SpringCloud%E6%A6%82%E8%BF%B0/","path":"2018/05/29/SpringCloud概述/","title":"SpringCloud概述"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>SpringCloud概述 | Gavin's 自留地儿</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-102902020-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-102902020-1","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?8cfc05493126c4fa21cfa198c7007a37"></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Gavin's 自留地儿</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Zuul"><span class="nav-number">2.</span> <span class="nav-text">Zuul</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Eureka"><span class="nav-number">3.</span> <span class="nav-text">Eureka</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ribbon"><span class="nav-number">4.</span> <span class="nav-text">Ribbon</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Feign"><span class="nav-number">5.</span> <span class="nav-text">Feign</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hystrix"><span class="nav-number">6.</span> <span class="nav-text">Hystrix</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Config"><span class="nav-number">7.</span> <span class="nav-text">Config</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bus"><span class="nav-number">8.</span> <span class="nav-text">Bus</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Gavin"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Gavin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">118</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:woniuyf@gmail.com" title="E-Mail → mailto:woniuyf@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wonius.top/2018/05/29/SpringCloud%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Gavin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gavin's 自留地儿">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SpringCloud概述
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-05-29 11:12:03" itemprop="dateCreated datePublished" datetime="2018-05-29T11:12:03+08:00">2018-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2018-05-31 18:00:40" itemprop="dateModified" datetime="2018-05-31T18:00:40+08:00">2018-05-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Spring/SpringCloud/" itemprop="url" rel="index"><span itemprop="name">SpringCloud</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Symbols count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Symbols count in article: </span>
+      <span>4.8k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>4 mins.</span>
+    </span>
+</div>
+
+            <div class="post-description">SpringCloud的基本组件介绍等</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h1><p><img data-src="../SpringCloud%E6%A6%82%E8%BF%B0/SpringCloud.png" alt="组件关系图"></p>
+<h1 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h1><p><strong>Zuul 是在云平台上提供动态路由,监控,弹性,安全等边缘服务的框架。Zuul 相当于是设备和 Netflix 流应用的 Web 网站后端所有请求的前门。</strong></p>
+<p>​    服务网关是微服务架构中一个不可或缺的部分。通过服务网关统一向外系统提供REST API的过程中，除了具备服务路由、均衡负载功能之外，它还具备了权限控制等功能。Spring Cloud Netflix中的Zuul就担任了这样的一个角色，为微服务架构提供了前门保护的作用，同时将权限控制这些较重的非业务逻辑内容迁移到服务路由层面，使得服务集群主体能够具备更高的可复用性和可测试性。</p>
+<h1 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h1><p><strong>云端服务发现，一个基于 REST 的服务，用于定位服务，以实现云端中间层服务发现和故障转移。</strong></p>
+<p><img data-src="../SpringCloud%E6%A6%82%E8%BF%B0/Eureka.png" alt="Eureka"></p>
+<p><strong>三部分</strong>：服务注册中心、服务提供者、服务消费者；</p>
+<p><strong>两功能</strong>：服务注册、服务发现；</p>
+<p><strong>运行流程</strong>：</p>
+<ol>
+<li>两台<code>Eureka服务注册中心</code>组成主从注册中心集群（防止一台挂掉整个服务挂掉）；</li>
+<li><code>服务提供者</code>向<code>Eureka服务注册中心</code>进行注册、续约、下线服务等操作；</li>
+<li><code>服务消费者</code>从<code>Eureka服务注册中心</code>拉取服务列表，并维护在本地（这是客户端发现模式的机制体现）；</li>
+<li><code>服务消费者</code>根据服务列表找到对应服务提供者，进行消费；</li>
+</ol>
+<p><strong>注意</strong>：</p>
+<ol>
+<li><p>服务续约任务调用时间间隔，默认30s；</p>
+</li>
+<li><p>服务缓存清单更新机制，次/30s；</p>
+</li>
+<li><p>服务时效时间，默认90s；</p>
+</li>
+<li><p>默认每60s将当前清单中超过90s（没有续约）的服务踢出去；</p>
+</li>
+<li><p>自我保护机制，工作机制是如果15min内超过85%的客户端节点都没有正常的心跳，那么Eureka就认为客户端与注册中心出现了网络故障，Eureka Server自动进入自我保护机制。<em>（Eureka自我保护机制，通过配置eureka.server.enable-self-preservation，默认为打开状态，建议生产环境打开此配置）</em></p>
+<ul>
+<li>Eureka Server不再从注册列表中移除因为长时间没收到心跳检测的<code>过期服务</code>；</li>
+</ul>
+<ul>
+<li>Eureka Server仍然能够接受新服务的注册、查询请求，但是不会同步到其他节点上，保证当前节点依然可用；</li>
+<li>当网络稳定时，当前Eureka Server新的注册信息会被同步到其他节点上；</li>
+</ul>
+</li>
+</ol>
+<h1 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h1><p><strong>提供云端负载均衡，有多种负载均衡策略可供选择，可配合服务发现和断路器使用。</strong></p>
+<p><code>服务消费者</code>根据服务列表中的服务提供者，找到实际的<code>服务生产者</code>，通过Spring Cloud Ribbon实现。</p>
+<p><strong>负载均衡策略</strong>：</p>
+<ul>
+<li>RandomRule：从实例列表随机选取。选择逻辑在一个while(server == null)循环内，正常情况下会返回一个服务实例。如果出现死循环，取不到服务实例，则有可能存在并发的bug；</li>
+<li>RoundRobinRule（默认）：按照线性轮询选择一个实例。随机次数超过10次，结束尝试；</li>
+<li>WeightedResponseTimeRule：基于RoundRobinRule，增加了根据实例的运行情况计算权重，然后根据权重挑选实例。主要有三个核心内容：<ul>
+<li>定时任务<ul>
+<li>每30s执行一次权重计算；</li>
+</ul>
+</li>
+<li>权重计算<ul>
+<li>记录每个实例的统计信息，累加所有实例的平均响应时间，得到总平均响应时间，totalResponseTime；</li>
+<li>循环所有的实例，计算其权重，weightSoFar+=totalResponseTime - 实例平均响应时间，其中weightSoFar初始值为0。每个实例权重结果，保存到ArrayList currentWeights中；</li>
+</ul>
+</li>
+<li>实例选择<ul>
+<li>判断最后一个实例的权重，是否 &lt; 0.001d，若是，采用RoundRobbinRule策略；</li>
+<li>生成一个[0, 最大权重值) 区间内的随机数；</li>
+<li>遍历权重清单currentWeights，若权重 &gt;= 随机得到的数值，就选择这个实例；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>其他策略还有BestAvailableRule、AvaliablityFilteringRule、ZoneAvoidanceRule、RetryRule</li>
+</ul>
+<h1 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a>Feign</h1><p><strong>Feign是一种声明式、模板化的HTTP客户端。</strong></p>
+<p>​    Spring Cloud Feign 是一个声明web服务客户端，这使得编写Web服务客户端更容易，使用Feign 创建一个接口并对它进行注解，它具有可插拔的注解支持包括Feign注解与JAX-RS注解，Feign还支持可插拔的编码器与解码器，Spring Cloud 增加了对 Spring MVC的注解，Spring Web 默认使用了HttpMessageConverters, Spring Cloud 集成 Ribbon 和 Eureka 提供的负载均衡的HTTP客户端 Feign。</p>
+<h1 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h1><p><strong>熔断器，容错管理工具，旨在通过熔断机制控制服务和第三方库的节点,从而对延迟和故障提供更强大的容错能力。</strong></p>
+<p>​    在分布式架构中，当某个服务单元发生故障（类似电器发生短路）之后，通过断路器的故障监控（类似熔断保险丝）， 想调用方返回一个错误响应，而不是长时间等待，这样就不会使得线程因调用故障服务被长时间占用不放，避免了故障在分布式系统中的蔓延<br>​    针对这一机制，Spring Cloud Hystrix实现了断路器，线程隔离等一系列服务保护功能。它也是基于Netfix的开源框架Hystrix实现的，该框架的目标在于通过控制那些访问远程系统、服务和第三方库的节点，从而对延迟和故障提供更强大的容错能力。</p>
+<p>Hystrix具有：</p>
+<ul>
+<li><p>服务降级</p>
+</li>
+<li><p>服务熔断</p>
+<ul>
+<li>请求总数（默认20）</li>
+<li>错误百分比（默认50）</li>
+</ul>
+</li>
+<li><p>线程和信号隔离</p>
+</li>
+<li><p>请求缓存</p>
+</li>
+<li><p>请求合并</p>
+</li>
+<li><p>服务监控</p>
+<p><img data-src="../img/Hystrix.png" alt="Hystrix"></p>
+</li>
+<li><p>集群监控（Turbine）</p>
+</li>
+</ul>
+<h1 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h1><p><strong>配置管理工具包，让你可以把配置放到远程服务器，集中化管理集群配置，目前支持本地存储、Git以及Subversion。</strong></p>
+<p>​    分布式系统中，由于服务数量巨多，为了方便服务配置文件统一管理，实时更新，所以需要分布式配置中心组件。    在Spring Cloud中，有分布式配置中心组件Spring Cloud Config ，它支持配置服务放在配置服务的内存中（即本地），也支持放在远程Git仓库中。在Cpring Cloud Config 组件中，分两个角色，一是Config Server，二是Config Client。</p>
+<p>​    Config Server用于配置属性的存储，存储的位置可以为Git仓库、SVN仓库、本地文件等，Config Client用于服务属性的读取。</p>
+<h1 id="Bus"><a href="#Bus" class="headerlink" title="Bus"></a>Bus</h1><p><strong>事件、消息总线，用于在集群（例如，配置变化事件）中传播状态变化，可与Spring Cloud Config联合实现热部署。</strong></p>
+<p>​    在Spring Cloud Config中，我们知道的配置文件可以通过Config Server存储到Git等地方，通过Config Client进行读取，但是我们的配置文件不可能是一直不变的，当我们的配置文件放生变化的时候如何进行更新哪？</p>
+<p>​    一种最简单的方式重新一下Config Client进行重新获取，但Spring Cloud绝对不会让你这样做的，Spring Cloud Bus正是提供一种操作使得我们在不关闭服务的情况下更新我们的配置。</p>
+<p>​    Spring Cloud Bus官方意义：消息总线。</p>
+<p>​    当然动态更新服务配置只是消息总线的一个用处，还有很多其他用处。</p>
+<p>应用场景：</p>
+<ul>
+<li>将消息路由到一个或多个目的地；</li>
+<li>消息转换为其他的表现形式；</li>
+<li>执行消息聚焦、消息分解，并将结果发送到其他的目的地，然后重新组合响应返回给消息用户；</li>
+<li>调用web服务来检索数据；</li>
+<li>响应错误时间；</li>
+<li>使用发布-订阅模式来提供内容，或基于主题的消息路由</li>
+</ul>
+<p><img data-src="../SpringCloud%E6%A6%82%E8%BF%B0/Bus.png" alt="Bus"></p>
+<p>两个消息组件：</p>
+<p>kafka：</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>spring.cloud.stream.kafka.binder.brokers</td>
+<td>Kafka的服务端列表</td>
+<td>localhost</td>
+</tr>
+<tr>
+<td>spring.cloud.stream.kafka.binder.defaultBrokerPort</td>
+<td>Kafka服务端的端口。当brokers中没有配置端口时，默认使用这个端口</td>
+<td>9092</td>
+</tr>
+<tr>
+<td>spring.cloud.stream.kafka.binder.zkNodes</td>
+<td>Kafka服务端连接的Zookeeper节点列表</td>
+<td>localhost</td>
+</tr>
+<tr>
+<td>spring.cloud.stream.kafka.binder.defaultZkPort</td>
+<td>Zookeeper节点的默认端口。当zkNodes中没有配置端口时，默认使用这个端口</td>
+<td>2181</td>
+</tr>
+</tbody></table>
+<p>RabbitMQ：</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>spring.rabbitmq.host</td>
+<td>RabbitMQ的服务地址</td>
+<td>localhost</td>
+</tr>
+<tr>
+<td>spring.rabbitmq.port</td>
+<td>RabbitMQ的服务端口</td>
+<td>5672</td>
+</tr>
+<tr>
+<td>spring.rabbitmq.username</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>spring.rabbitmq.password</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>#总结</p>
+<p>前面介绍了很多Spring Cloud的组件，本篇按照自己的角度来做一次归纳。</p>
+<p>Spring Cloud技术应用从场景上可以分为两大类：润物无声类和独挑大梁类。</p>
+<p>润物无声，融合在每个微服务中、依赖其它组件并为其提供服务。</p>
+<p>Ribbon，客户端负载均衡，特性有区域亲和、重试机制。</p>
+<p>Hystrix，客户端容错保护，特性有服务降级、服务熔断、请求缓存、请求合并、依赖隔离。</p>
+<p>Feign，声明式服务调用，本质上就是Ribbon+Hystrix</p>
+<p>Stream，消息驱动，有Sink、Source、Processor三种通道，特性有订阅发布、消费组、消息分区。</p>
+<p>Bus，消息总线，配合Config仓库修改的一种Stream实现，</p>
+<p>Sleuth，分布式服务追踪，需要搞清楚TraceID和SpanID以及抽样，如何与ELK整合。</p>
+<p>独挑大梁，独自启动不需要依赖其它组件。</p>
+<p>Eureka，服务注册中心，特性有失效剔除、服务保护。</p>
+<p>Dashboard，Hystrix仪表盘，监控集群模式和单点模式，其中集群模式需要收集器Turbine配合。</p>
+<p>Zuul，API服务网关，功能有路由分发和过滤。</p>
+<p>Config，分布式配置中心，支持本地仓库、SVN、Git、Jar包内配置等模式，</p>
+<p>每个组件都不是平白无故的产生的，是为了解决某一特定的问题而存在。</p>
+<p>Eureka和Ribbon，是最基础的组件，一个注册服务，一个消费服务。</p>
+<p>Hystrix为了优化Ribbon、防止整个微服务架构因为某个服务节点的问题导致崩溃，是个保险丝的作用。</p>
+<p>Dashboard给Hystrix统计和展示用的，而且监控服务节点的整体压力和健康情况。</p>
+<p>Turbine是集群收集器，服务于Dashboard的。</p>
+<p>Feign是方便我们程序员些更优美的代码的。</p>
+<p>Zuul是加在整个微服务最前沿的防火墙和代理器，隐藏微服务结点IP端口信息，加强安全保护的。</p>
+<p>Config是为了解决所有微服务各自维护各自的配置，设置一个同意的配置中心，方便修改配置的。</p>
+<p>Bus是因为config修改完配置后各个结点都要refresh才能生效实在太麻烦，所以交给bus来通知服务节点刷新配置的。</p>
+<p>Stream是为了简化研发人员对MQ使用的复杂度，弱化MQ的差异性，达到程序和MQ松耦合。</p>
+<p>Sleuth是因为单次请求在微服务节点中跳转无法追溯，解决任务链日志追踪问题的。</p>
+<p>特殊成员Zipkin，之所以特殊是因为从jar包和包名来看它不属于Spring Cloud的一员，但是它与Spring Cloud Sleuth的抽样日志结合的天衣无缝。乍一看它与Hystrix的Dashboard作用有重叠的部分，但是他们的侧重点完全不同。Dashboard侧重的是单个服务的统计和是否可用，Zipkin侧重的监控环节时长。简言之，Dashboard侧重故障诊断，Zipkin侧重性能优化。</p>
+<p>内容参考：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yejingtao703/article/details/78331442">https://blog.csdn.net/yejingtao703/article/details/78331442</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xlgen157387/article/details/77773908">https://blog.csdn.net/xlgen157387/article/details/77773908</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/tudou201601/article/details/79123912">https://blog.csdn.net/tudou201601/article/details/79123912</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/SpringCloud/" rel="tag"># SpringCloud</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/05/24/Python%E8%A7%84%E8%8C%83/" rel="prev" title="Python基础知识">
+                  <i class="fa fa-chevron-left"></i> Python基础知识
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/05/29/%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1-%E5%90%8E%E7%AB%AF/" rel="next" title="技能图谱-后端">
+                  技能图谱-后端 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">备案 </a>
+      <img src="http://www.beian.gov.cn/portal/download" alt=""><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=18011513" rel="noopener" target="_blank">沪ICP备18011513号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gavin</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Symbols count total">184k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">2:48</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wonius","repo":"hexo-gitalk","client_id":"de355e0b18ad1758390d","client_secret":"5cf7bc7437448f5ba445cd5d9bd0c2109b5ee47e","admin_user":"wonius","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"e8e9c3ffbfa40a998b8a08d483d235d4"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":200},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
